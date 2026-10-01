@@ -52,7 +52,7 @@ AI 모델 최적화 플랫폼(압축·양자화·변환·프로파일링)은 "�
 | 대상 도메인 | AI 모델 최적화 파이프라인 (NetsPresso 공개 SDK를 참조 대상으로 삼음) |
 | 프레임워크 언어/환경 | Python 3.14, pytest, PyYAML, Jinja2 (최소 의존성) |
 | 실 SDK 환경 | Python 3.11 별도 venv (`.venv-netspresso`, netspresso 1.17.0) — 현재 조사 완료, 실 호출은 미실행 |
-| 현재 단계 | Phase 2–4 완료: Mock 기반 전체 QA 엔진 + 테스트 89개 + CI. 실 NetsPresso API 호출 0회, Credit 사용 0 / 500 |
+| 현재 단계 | Phase 2–4 완료(Mock 기반 전체 QA 엔진 + CI) → Phase 5-A 완료(실 NetsPressoAdapter **안전 경계 + dry-run**). 실 NetsPresso API 호출 0회, Credit 사용 0 / 500 |
 
 ---
 
@@ -131,16 +131,16 @@ AI 최적화 플랫폼 QA Engineer 포지션에서 일반적으로 요구되는 
 디렉터리:
 
 ```
-configs/            models / devices / runtimes / backends / optimizations / quality_gate / risk / mock_scenarios
+configs/            models / devices / runtimes / backends / optimizations / quality_gate / risk / mock_scenarios / netspresso (provider·execution policy)
 framework/
-  adapters/         base.py, mock_adapter.py
+  adapters/         base.py, mock_adapter.py, netspresso_adapter.py (dry-run only), factory.py
   matrix/           generator.py (full product, support), pairwise.py, risk.py
   pipeline/         result.py (Result Model), runner.py
   validation/       accuracy.py, performance.py, artifact.py, reproducibility.py
   quality_gate.py   defects.py   regression.py   reporter.py   credit_ledger.py   config.py
   templates/        run_report.html.j2, regression_report.html.j2
 tests/              unit / integration / regression (89 tests, 모두 오프라인)
-scripts/            run_mock_qa.py, compare_regression.py
+scripts/            run_mock_qa.py, compare_regression.py, netspresso_dry_run.py
 reports/            credit_usage.json (0/500), examples/ (생성된 예시 리포트)
 docs/               netspresso_sdk_research.md (Phase 1 SDK 조사, source of truth)
 .github/workflows/  qa.yml
@@ -369,7 +369,42 @@ Mock 수치는 실제 모델의 측정값이 아니며, HTML 리포트 상단에
 
 ## 16. 향후 NetsPressoAdapter
 
-Phase 1 조사에서 확인한 사실을 바탕으로 어댑터가 반드시 지켜야 할 제약을 미리 기록합니다 (구현은 Phase 9, 사용자 승인 후).
+### 16.1 현재 상태 (Phase 5-A): 안전 경계 + Dry-run만 구현
+
+`framework/adapters/netspresso_adapter.py`는 MockAdapter와 동일한 `BaseAdapter` 계약을 구현하지만, **이 단계에서는 실 SDK를 호출하지 않습니다.** 실 NetsPresso 실행이 검증되었다는 주장은 하지 않습니다.
+
+| ExecutionMode | 조건 | 동작 |
+|---|---|---|
+| `DRY_RUN` (기본) | `execution.mode: dry_run` | 구조화된 실행 계획(`DryRunPlan`)만 생성. SDK import 없음, 네트워크 없음, Credit 0 |
+| `REAL_RUN_UNAUTHORIZED` | `mode: real`이지만 `confirm_credit_use: false` | 어떤 작업도 `RealExecutionNotAuthorizedError`로 즉시 거부 (SDK 접근 전) |
+| `REAL_RUN_AUTHORIZED` | `mode: real` + `confirm_credit_use: true` (`--confirm-credit-use`) | **Phase 5-A에서는 의도적으로 `RealExecutionNotImplementedError`** — 실제 실행 경로는 Credit을 쓰지 않고는 검증할 수 없으므로 Phase 5-B에서 승인 후 구현 |
+
+- SDK는 `importlib.import_module("netspresso")`로 **지연 로드**되며, 인가된 실 실행에서만 호출됩니다. 3.14 프레임워크 어디에도 `import netspresso` 문이 없음을 테스트가 강제합니다.
+- API 키는 환경변수 이름(`NETSPRESSO_API_KEY`)만 알고 **값은 저장·로그·렌더링하지 않습니다** (테스트: 가짜 키가 어떤 출력에도 나타나지 않음).
+- 객체 생성 시 인증하지 않습니다. 인증은 인가된 실 실행 경로에서만 명시적 단계로 수행됩니다.
+- 작업 모델: `validate_connection()`, `optimize()`(automatic_compression), `quantize()`, `convert()`, `profile()`. 각 작업은 Phase 1에서 검증된 SDK 서비스/메서드 이름(`compressor_v2().automatic_compression`, `converter_v2().convert_model`, `quantizer().automatic_quantization`, `profiler().profile_model`, `graph_optimizer().optimize_model`)에 매핑되며, 테스트가 이 이름들을 `docs/research_cache/sdk_surface.json`과 대조합니다.
+- 설정: `configs/netspresso.yaml` (`provider.type: mock`, `execution.mode: dry_run`, `confirm_credit_use: false`가 기본). YAML에 키 값이 들어오면 `ConfigurationError`.
+
+Dry-run 예시:
+
+```
+$ python scripts/netspresso_dry_run.py --operation profile --device jetson_orin_nano --runtime tensorrt
+Provider:          NetsPresso
+Execution:         DRY_RUN
+Operation:         profile
+SDK call:          NetsPresso.profiler().profile_model
+Model:             mobilenet_v2
+Estimated Credit:  25 (CLIENT_SIDE_PRE_CHECK_CONSTANT ...; actual server-side deduction NOT verified)
+Actual Credit:     NOT MEASURED
+API call:          NOT EXECUTED
+Credit consumed:   0
+```
+
+`--matrix pairwise`를 주면 선택된 전체 조합의 계획과 클라이언트 측 Credit 추정 합계를 장부(`reports/credit_usage.json`)의 잔량·예비분과 대조해 예산 초과 여부를 보여줍니다. 이 숫자는 SDK의 클라이언트 측 사전 체크 상수(Automatic Compression 25, Advanced Compression 50, Convert 50, Profile 25, Quantize 50, Graph Optimize 50)이며 **서버 실제 차감이 검증된 값이 아닙니다**.
+
+### 16.2 실 실행 경로(Phase 5-B)가 지켜야 할 제약
+
+Phase 1 조사에서 확인한 사실을 바탕으로 어댑터가 반드시 지켜야 할 제약을 미리 기록합니다 (구현은 사용자 승인 후).
 
 - `NetsPresso(api_key=...)`를 사용합니다. email/password 경로는 SDK 코드상 deprecated입니다.
 - **객체 생성 자체가 네트워크 동작**입니다: PyPI 버전 확인(구버전이면 `sys.exit(1)`), 로그인, 사용자/Credit 조회가 생성자에서 수행됩니다. 어댑터는 생성을 명시적 단계로 취급하고 `dev_mode` 사용 여부를 기록합니다.
@@ -387,7 +422,8 @@ NetsPresso Credit은 이 프로젝트의 소모성 자원(500)입니다. 안전�
 | 층 | 장치 |
 |---|---|
 | 구조 | 실 API 코드는 별도 인터프리터(3.11)에만 존재. 3.14 프레임워크·pytest·CI에서는 import 자체가 불가 |
-| 런타임 | `BaseAdapter.credit_consuming=True`인 어댑터는 `allow_credit_consuming=True` 없이는 `PipelineRunner`가 생성 단계에서 `CreditSafetyError` |
+| 런타임 | `BaseAdapter.credit_consuming=True`인 어댑터는 `allow_credit_consuming=True` 없이는 `PipelineRunner`가 생성 단계에서 `CreditSafetyError`. NetsPressoAdapter는 `DRY_RUN`에서만 `credit_consuming=False` |
+| 실행 정책 | `ExecutionMode` 3단계(§16.1). 기본 `DRY_RUN`; 실 실행은 `mode: real` + `confirm_credit_use` 두 조건을 모두 요구하고, Phase 5-A에서는 그래도 실행되지 않음 |
 | 스크립트 | `--confirm-credit-use` 없이는 중단 (Phase 9) |
 | 장부 | `reports/credit_usage.json` — `simulated`는 실 잔액을 건드리지 않고 `simulated_total`에만 누적, `actual`은 계정 조회값 + 명시적 confirmation 없이는 기록 불가 (`CreditLedgerError`) |
 | 테스트 | 저장소 장부가 0 / 500, operations 비어 있음을 확인하는 가드 테스트. CI도 동일 assert |
@@ -418,7 +454,7 @@ Git 위생: `.gitignore`가 `.env`, `netspresso.env`, `.venv-netspresso/`, 모�
 ## 19. 현재 한계 (Limitations)
 
 - **실 NetsPresso 실행 결과가 아직 없습니다.** 모든 수치는 MockAdapter의 합성값입니다. 실 실험은 사용자 승인 후 Phase 9–11에서 최소 범위로 수행할 계획입니다.
-- `NetsPressoAdapter`는 미구현입니다. 구현 후에도 실 SDK 호출 코드는 3.14 pytest에서 직접 실행할 수 없어, 3.14에서는 응답 JSON 픽스처 기반 단위 테스트, 3.11에서는 `--dry-run`으로 검증하는 이원 구조가 됩니다.
+- `NetsPressoAdapter`는 **안전 경계와 dry-run까지만** 구현되어 있습니다(Phase 5-A). 실 SDK 호출 경로는 미구현이며, 구현 후에도 3.14 pytest에서는 직접 실행할 수 없어 3.14에서는 응답 JSON 픽스처 기반 단위 테스트, 3.11에서는 dry-run으로 검증하는 이원 구조가 됩니다.
 - 매트릭스의 지원 지식은 공식 예제 주석 수준의 출처만 반영했습니다. 특정 Framework × Device × DataType 조합의 실제 지원 여부는 서버 응답으로만 확정할 수 있습니다.
 - Pairwise는 greedy 휴리스틱으로 최소 케이스 수를 보장하지 않습니다. 커버리지 100 %만 보장·보고합니다.
 - 리스크 가중치와 Quality Gate 임계값은 데모용 초기값입니다. 실제 제품에서는 도메인 데이터로 보정해야 합니다.

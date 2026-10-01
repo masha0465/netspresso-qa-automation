@@ -156,6 +156,53 @@ class MockConfig:
 
 
 # --------------------------------------------------------------------------- #
+# Provider / execution policy (configs/netspresso.yaml)
+# --------------------------------------------------------------------------- #
+@dataclass(frozen=True)
+class ProviderConfig:
+    """Which adapter runs and under which safety policy. Defaults are the safe ones."""
+
+    provider: str = "mock"  # mock | netspresso
+    mode: str = "dry_run"  # dry_run | real
+    confirm_credit_use: bool = False
+    api_key_env: str = "NETSPRESSO_API_KEY"
+    disable_analytics: bool = True
+    dev_mode: bool = False
+    sleep_interval_s: int = 30
+    reserve_credit: int = 100
+
+
+def load_provider(path: Path) -> ProviderConfig:
+    """Load the provider policy. A missing file yields the safe defaults."""
+    if not path.exists():
+        return ProviderConfig()
+    raw = _load_yaml(path)
+    provider = str((raw.get("provider") or {}).get("type", "mock"))
+    if provider not in ("mock", "netspresso"):
+        raise ConfigurationError(f"provider.type must be 'mock' or 'netspresso', got '{provider}'")
+    execution = raw.get("execution") or {}
+    mode = str(execution.get("mode", "dry_run"))
+    if mode not in ("dry_run", "real"):
+        raise ConfigurationError(f"execution.mode must be 'dry_run' or 'real', got '{mode}'")
+    np_cfg = raw.get("netspresso") or {}
+    forbidden = {k for k in np_cfg if "key" in k.lower() and k.lower() != "api_key_env"}
+    if forbidden:
+        raise ConfigurationError(
+            f"netspresso.yaml must not contain credential values ({sorted(forbidden)}); use the environment variable named by api_key_env"
+        )
+    return ProviderConfig(
+        provider=provider,
+        mode=mode,
+        confirm_credit_use=bool(execution.get("confirm_credit_use", False)),
+        api_key_env=str(np_cfg.get("api_key_env", "NETSPRESSO_API_KEY")),
+        disable_analytics=bool(np_cfg.get("disable_analytics", True)),
+        dev_mode=bool(np_cfg.get("dev_mode", False)),
+        sleep_interval_s=int(np_cfg.get("sleep_interval_s", 30)),
+        reserve_credit=int(np_cfg.get("reserve_credit", 100)),
+    )
+
+
+# --------------------------------------------------------------------------- #
 # Aggregate
 # --------------------------------------------------------------------------- #
 @dataclass(frozen=True)
@@ -169,6 +216,7 @@ class FrameworkConfig:
     risk: RiskConfig
     mock: MockConfig
     source_dir: Path
+    provider: ProviderConfig = ProviderConfig()
 
     def model(self, name: str) -> ModelSpec:
         return _lookup(self.models, name, "model")
@@ -393,6 +441,7 @@ def load_config(
         risk=load_risk(base / "risk.yaml"),
         mock=load_mock(scenarios_path),
         source_dir=base,
+        provider=load_provider(base / "netspresso.yaml"),
     )
     _cross_validate(cfg)
     return cfg

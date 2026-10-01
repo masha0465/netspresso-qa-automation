@@ -151,6 +151,23 @@ class CreditLedger:
         self._data["operations"].append(entry.to_dict())
         return entry
 
+    def budget_check(self, estimates: list[int], reserve: int = 100) -> dict[str, Any]:
+        """Read-only planning helper: can the planned operations run while keeping ``reserve``?
+
+        Uses client-side estimates only; never records anything.
+        """
+        planned = int(sum(estimates))
+        remaining_after = self.remaining_estimate - planned
+        return {
+            "planned_operations": len(estimates),
+            "estimated_total": planned,
+            "estimate_basis": "client-side SDK pre-check constants (not verified server-side)",
+            "remaining_before": self.remaining_estimate,
+            "remaining_after": remaining_after,
+            "reserve": int(reserve),
+            "affordable": remaining_after >= int(reserve),
+        }
+
     def summary(self) -> dict[str, Any]:
         return {
             "starting_credit": self.starting_credit,

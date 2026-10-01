@@ -1,0 +1,29 @@
+# Provider / execution policy for the QA pipeline.
+#
+# SAFETY DEFAULTS (do not change casually):
+#   provider.type              mock      -> MockAdapter, fully offline, 0 credits
+#   execution.mode             dry_run   -> NetsPressoAdapter only produces plans; no SDK import, no network
+#   execution.confirm_credit_use false   -> real execution is rejected even if mode = real
+#
+# Real, credit-consuming execution requires ALL of:
+#   provider.type = netspresso, execution.mode = real, confirm_credit_use = true
+#   (or the CLI flag --confirm-credit-use), the Python 3.11 SDK environment,
+#   and NETSPRESSO_API_KEY in the environment. It is NOT implemented in Phase 5-A.
+#
+# NEVER put an API key in this file. The key is read only from the environment
+# variable named below, only when a real run is explicitly authorized.
+provider:
+  type: mock                  # mock | netspresso
+
+execution:
+  mode: dry_run               # dry_run | real
+  confirm_credit_use: false
+
+netspresso:
+  api_key_env: NETSPRESSO_API_KEY
+  disable_analytics: true     # sets GA_DISABLE_ANALYTICS=1 before the SDK is imported (behaviour observed in 1.17.0 source)
+  dev_mode: false             # SDK constructor checks PyPI for a newer version and calls sys.exit(1) if stale; dev_mode=true skips it
+  sleep_interval_s: 30        # SDK polling interval for asynchronous tasks (SDK default)
+  reserve_credit: 100         # budget guard: planned operations must leave at least this many credits
+  # Credit figures used for planning are CLIENT-SIDE PRE-CHECK CONSTANTS from
+  # netspresso/enums/credit.py (1.17.0). Actual server-side deduction is NOT verified.
