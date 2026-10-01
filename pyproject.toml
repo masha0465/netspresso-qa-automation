@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netspresso-qa-automation"
+version = "0.1.0"
+description = "QA automation framework for AI model optimization pipelines (personal portfolio project using public NetsPresso resources)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Sunah Kim" }]
+# The main framework intentionally has a tiny dependency footprint.
+# The NetsPresso SDK is NEVER a dependency of this package; it lives in a
+# separate Python 3.11 environment (.venv-netspresso) and communicates via JSON.
+dependencies = [
+    "PyYAML>=6.0",
+    "Jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.5",
+]
+
+[tool.setuptools.packages.find]
+include = ["framework*"]
+
+[tool.setuptools.package-data]
+framework = ["templates/*.j2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "unit: fast isolated tests",
+    "integration: mock end-to-end pipeline tests",
+    "regression: baseline-vs-current comparison tests",
+]
+
+[tool.coverage.run]
+source = ["framework"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+exclude = [".venv", ".venv-netspresso", "docs/research_cache"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]

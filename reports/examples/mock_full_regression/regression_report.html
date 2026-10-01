@@ -1,0 +1,5130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Regression Report RUN-18c03d4100 → RUN-03394a51be</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1200px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.6rem; margin-bottom: .25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  .muted { color: #616e7c; font-size: .9rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; }
+  th { background: #f5f7fa; font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS, .IMPROVED, .UNCHANGED { background: #e3f6ec; color: #0f5132; }
+  .REGRESSION { background: #fbe3e4; color: #7a1e26; }
+  .NEW, .MISSING, .NOT_COMPARABLE { background: #eef0f3; color: #3e4c59; }
+  .kv td:first-child { width: 28%; color: #616e7c; }
+  code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+  .note { background: #f5f7fa; border-left: 3px solid #9aa5b1; padding: .5rem .75rem; margin: 1rem 0; font-size: .88rem; }
+</style>
+</head>
+<body>
+<h1>Regression Report</h1>
+<p class="muted">Baseline <code>RUN-18c03d4100</code> (2026-10-01T00:00:00+00:00) → Current <code>RUN-03394a51be</code> (2026-10-01T00:00:00+00:00)</p>
+<p>Overall: <span class="status REGRESSION">REGRESSION</span></p>
+<div class="note">REGRESSION = any compared metric worse than its threshold, status degraded, artifact checksum became invalid, or reproducibility level dropped out of the accepted set. No statistical significance is claimed; thresholds are explicit and configurable.</div>
+
+<h2>1. Summary</h2>
+<table class="kv">
+<tr><td><span class="status PASS">PASS</span></td><td class="num">113</td></tr><tr><td><span class="status REGRESSION">REGRESSION</span></td><td class="num">3</td></tr><tr><td><span class="status NEW">NEW</span></td><td class="num">0</td></tr><tr><td><span class="status MISSING">MISSING</span></td><td class="num">0</td></tr><tr><td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td><td class="num">10</td></tr></table>
+
+<h2>2. Thresholds</h2>
+<table class="kv">
+<tr><td>accuracy_max_drop_pp</td><td class="num">1.0</td></tr><tr><td>latency_max_increase_percent</td><td class="num">10.0</td></tr><tr><td>memory_max_increase_percent</td><td class="num">15.0</td></tr><tr><td>model_size_max_increase_percent</td><td class="num">10.0</td></tr></table>
+
+<h2>3. Regressions</h2>
+<table>
+<tr><th>Case</th><th>Configuration</th><th>Status (base → cur)</th><th>Reasons</th></tr>
+<tr>
+  <td><code>TC-0a1676c3</code></td>
+  <td>yolov8n / intel_xeon_w2233 / onnxruntime / default / fp16_conversion</td>
+  <td>PASS → FAIL</td>
+  <td><ul><li>status degraded PASS -&gt; FAIL</li><li>accuracy: 0.5188 -&gt; 0.5008 (delta 1.8, threshold 1.0)</li></ul></td>
+</tr>
+<tr>
+  <td><code>TC-1663cd50</code></td>
+  <td>mobilenet_v2 / intel_xeon_w2233 / onnxruntime / default / int8_quantization</td>
+  <td>PASS → FAIL</td>
+  <td><ul><li>status degraded PASS -&gt; FAIL</li><li>latency_ms: 4.446 -&gt; 11.541 (delta 159.582, threshold 10.0)</li></ul></td>
+</tr>
+<tr>
+  <td><code>TC-3687db15</code></td>
+  <td>mobilenet_v2 / raspberry_pi_4b / tflite / default / fp16_conversion</td>
+  <td>PASS → FAIL</td>
+  <td><ul><li>status degraded PASS -&gt; FAIL</li><li>reproducibility degraded BITWISE_REPRODUCIBLE -&gt; NOT_REPRODUCIBLE</li></ul></td>
+</tr>
+</table>
+
+<h2>4. Metric Comparison (all compared cases)</h2>
+<table>
+<tr><th>Case</th><th>Metric</th><th class="num">Baseline</th><th class="num">Current</th><th class="num">Delta</th><th class="num">Threshold</th><th>Result</th></tr>
+  <tr>
+    <td><code>TC-019001d8</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7115</td>
+    <td class="num">0.7115</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">2.722</td>
+    <td class="num">2.722</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.583</td>
+    <td class="num">23.583</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-022362bf</code><br><span class="muted">yolov8n / intel_xeon_w2233 / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.514</td>
+    <td class="num">0.514</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">19.958</td>
+    <td class="num">19.958</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">58.593</td>
+    <td class="num">58.593</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-03b64841</code><br><span class="muted">pidnet_s / raspberry_pi_4b / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7818</td>
+    <td class="num">0.7818</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">548.916</td>
+    <td class="num">548.916</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">155.851</td>
+    <td class="num">155.851</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-057c8b05</code><br><span class="muted">yolov8n / raspberry_pi_4b / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5153</td>
+    <td class="num">0.5153</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">197.104</td>
+    <td class="num">197.104</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">70.678</td>
+    <td class="num">70.678</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-0992a781</code><br><span class="muted">pidnet_s / jetson_orin_nano / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7801</td>
+    <td class="num">0.7801</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">33.496</td>
+    <td class="num">33.496</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">130.483</td>
+    <td class="num">130.483</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-0a1676c3</code><br><span class="muted">yolov8n / intel_xeon_w2233 / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5188</td>
+    <td class="num">0.5008</td>
+    <td class="num">1.8 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status REGRESSION">REGRESSION</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">28.314</td>
+    <td class="num">28.314</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">75.796</td>
+    <td class="num">75.796</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-0b648e95</code><br><span class="muted">yolov8n / intel_xeon_w2233 / openvino / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5193</td>
+    <td class="num">0.5193</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">28.09</td>
+    <td class="num">28.09</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">75.275</td>
+    <td class="num">75.275</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-0d13d7a9</code><br><span class="muted">pidnet_s / raspberry_pi_4b / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7802</td>
+    <td class="num">0.7802</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">356.212</td>
+    <td class="num">356.212</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">128.442</td>
+    <td class="num">128.442</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-13737853</code><br><span class="muted">yolov8n / intel_xeon_w2233 / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5137</td>
+    <td class="num">0.5137</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">20.311</td>
+    <td class="num">20.311</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.501</td>
+    <td class="num">59.501</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-13bf31ba</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7166</td>
+    <td class="num">0.7166</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.44</td>
+    <td class="num">6.44</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.86</td>
+    <td class="num">30.86</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-1663cd50</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7117</td>
+    <td class="num">0.7117</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">4.446</td>
+    <td class="num">11.541</td>
+    <td class="num">159.582 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status REGRESSION">REGRESSION</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.937</td>
+    <td class="num">23.937</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-19885d05</code><br><span class="muted">pidnet_s / raspberry_pi_4b / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7854</td>
+    <td class="num">0.7854</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">516.934</td>
+    <td class="num">516.934</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">165.206</td>
+    <td class="num">165.206</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-1b4f5d27</code><br><span class="muted">yolov8n / jetson_orin_nano / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5154</td>
+    <td class="num">0.5154</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">17.915</td>
+    <td class="num">17.915</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">69.694</td>
+    <td class="num">69.694</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-1dc2d9f6</code><br><span class="muted">yolov8n / raspberry_pi_4b / tflite / xnnpack / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5155</td>
+    <td class="num">0.5155</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">198.054</td>
+    <td class="num">198.054</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">71.807</td>
+    <td class="num">71.807</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-1feeeaf7</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / openvino / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7801</td>
+    <td class="num">0.7801</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">54.577</td>
+    <td class="num">54.577</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">128.947</td>
+    <td class="num">128.947</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-22927836</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / tflite / xnnpack / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7166</td>
+    <td class="num">0.7166</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">41.87</td>
+    <td class="num">41.87</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">29.941</td>
+    <td class="num">29.941</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-2377a0cf</code><br><span class="muted">yolov8n / jetson_orin_nano / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5136</td>
+    <td class="num">0.5136</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">11.571</td>
+    <td class="num">11.571</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.354</td>
+    <td class="num">59.354</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-25122491</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.712</td>
+    <td class="num">0.712</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">28.848</td>
+    <td class="num">28.848</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.634</td>
+    <td class="num">23.634</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-2643eff8</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7117</td>
+    <td class="num">0.7117</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">28.337</td>
+    <td class="num">28.337</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.527</td>
+    <td class="num">23.527</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-29b27126</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7799</td>
+    <td class="num">0.7799</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">55.492</td>
+    <td class="num">55.492</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">129.218</td>
+    <td class="num">129.218</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-29dd53e4</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7168</td>
+    <td class="num">0.7168</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">3.878</td>
+    <td class="num">3.878</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.594</td>
+    <td class="num">30.594</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-2a07c2aa</code><br><span class="muted">pidnet_s / raspberry_pi_4b / tflite / xnnpack / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7818</td>
+    <td class="num">0.7818</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">538.626</td>
+    <td class="num">538.626</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">156.35</td>
+    <td class="num">156.35</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-2c3a9994</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7804</td>
+    <td class="num">0.7804</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">54.337</td>
+    <td class="num">54.337</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">131.203</td>
+    <td class="num">131.203</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-2e58f367</code><br><span class="muted">pidnet_s / raspberry_pi_4b / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7799</td>
+    <td class="num">0.7799</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">370.152</td>
+    <td class="num">370.152</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">128.831</td>
+    <td class="num">128.831</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-2e6e0d66</code><br><span class="muted">yolov8n / raspberry_pi_4b / tflite / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5189</td>
+    <td class="num">0.5189</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">185.753</td>
+    <td class="num">185.753</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">78.245</td>
+    <td class="num">78.245</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-33b99656</code><br><span class="muted">pidnet_s / jetson_orin_nano / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7799</td>
+    <td class="num">0.7799</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">32.318</td>
+    <td class="num">32.318</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">130.121</td>
+    <td class="num">130.121</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-33e3b487</code><br><span class="muted">yolov8n / jetson_orin_nano / tflite / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5191</td>
+    <td class="num">0.5191</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">17.207</td>
+    <td class="num">17.207</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">75.931</td>
+    <td class="num">75.931</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-34ec367a</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / tflite / xnnpack / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7854</td>
+    <td class="num">0.7854</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">80.524</td>
+    <td class="num">80.524</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">167.698</td>
+    <td class="num">167.698</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-3687db15</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / tflite / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7171</td>
+    <td class="num">0.7171</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">40.882</td>
+    <td class="num">40.882</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.743</td>
+    <td class="num">30.743</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-3766224e</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7852</td>
+    <td class="num">0.7852</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">78.849</td>
+    <td class="num">78.849</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">168.981</td>
+    <td class="num">168.981</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-3838431c</code><br><span class="muted">yolov8n / intel_xeon_w2233 / tflite / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.519</td>
+    <td class="num">0.519</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">27.786</td>
+    <td class="num">27.786</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">76.741</td>
+    <td class="num">76.741</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-3cb57ccb</code><br><span class="muted">yolov8n / intel_xeon_w2233 / onnxruntime / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.516</td>
+    <td class="num">0.516</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">30.075</td>
+    <td class="num">30.075</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">71.973</td>
+    <td class="num">71.973</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-3f7765f7</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / onnxruntime / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7132</td>
+    <td class="num">0.7132</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.579</td>
+    <td class="num">6.579</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.078</td>
+    <td class="num">28.078</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-41f81a69</code><br><span class="muted">yolov8n / raspberry_pi_4b / tflite / xnnpack / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5187</td>
+    <td class="num">0.5187</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">180.727</td>
+    <td class="num">180.727</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">77.026</td>
+    <td class="num">77.026</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-4233c0c1</code><br><span class="muted">yolov8n / raspberry_pi_4b / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5192</td>
+    <td class="num">0.5192</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">190.631</td>
+    <td class="num">190.631</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">76.425</td>
+    <td class="num">76.425</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-43d47a02</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7135</td>
+    <td class="num">0.7135</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">45.042</td>
+    <td class="num">45.042</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.287</td>
+    <td class="num">28.287</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-45ab33f0</code><br><span class="muted">pidnet_s / raspberry_pi_4b / onnxruntime / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7813</td>
+    <td class="num">0.7813</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">555.921</td>
+    <td class="num">555.921</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">155.241</td>
+    <td class="num">155.241</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-45c981fe</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7172</td>
+    <td class="num">0.7172</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">42.429</td>
+    <td class="num">42.429</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.104</td>
+    <td class="num">30.104</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-492fc940</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / onnxruntime / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7137</td>
+    <td class="num">0.7137</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">42.885</td>
+    <td class="num">42.885</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.001</td>
+    <td class="num">28.001</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-49db50ea</code><br><span class="muted">pidnet_s / jetson_orin_nano / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7849</td>
+    <td class="num">0.7849</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">49.359</td>
+    <td class="num">49.359</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">166.556</td>
+    <td class="num">166.556</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-4c1563c6</code><br><span class="muted">pidnet_s / jetson_orin_nano / tflite / xnnpack / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7847</td>
+    <td class="num">0.7847</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">48.488</td>
+    <td class="num">48.488</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">166.309</td>
+    <td class="num">166.309</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-53b2a739</code><br><span class="muted">pidnet_s / jetson_orin_nano / tensorrt / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7797</td>
+    <td class="num">0.7797</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">33.553</td>
+    <td class="num">33.553</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">131.992</td>
+    <td class="num">131.992</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-54844f55</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / openvino / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7123</td>
+    <td class="num">0.7123</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">4.365</td>
+    <td class="num">4.365</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.666</td>
+    <td class="num">23.666</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-57fdb5b2</code><br><span class="muted">pidnet_s / jetson_orin_nano / tflite / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7852</td>
+    <td class="num">0.7852</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">48.288</td>
+    <td class="num">48.288</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">171.121</td>
+    <td class="num">171.121</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-584c0cb9</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7798</td>
+    <td class="num">0.7798</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">54.591</td>
+    <td class="num">54.591</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">131.042</td>
+    <td class="num">131.042</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-5a89c4e4</code><br><span class="muted">pidnet_s / raspberry_pi_4b / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7846</td>
+    <td class="num">0.7846</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">518.14</td>
+    <td class="num">518.14</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">168.418</td>
+    <td class="num">168.418</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-5bb2e80a</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / openvino / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7134</td>
+    <td class="num">0.7134</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.759</td>
+    <td class="num">6.759</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.54</td>
+    <td class="num">28.54</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-62bcdfb2</code><br><span class="muted">yolov8n / raspberry_pi_4b / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5154</td>
+    <td class="num">0.5154</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">193.625</td>
+    <td class="num">193.625</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">71.184</td>
+    <td class="num">71.184</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-64d3ed58</code><br><span class="muted">yolov8n / jetson_orin_nano / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5136</td>
+    <td class="num">0.5136</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">11.872</td>
+    <td class="num">11.872</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.031</td>
+    <td class="num">59.031</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-67ba6732</code><br><span class="muted">yolov8n / jetson_orin_nano / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5155</td>
+    <td class="num">0.5155</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">17.641</td>
+    <td class="num">17.641</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">71.801</td>
+    <td class="num">71.801</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-6baee999</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / onnxruntime / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7136</td>
+    <td class="num">0.7136</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">3.946</td>
+    <td class="num">3.946</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">27.874</td>
+    <td class="num">27.874</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-6e983948</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7169</td>
+    <td class="num">0.7169</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">42.711</td>
+    <td class="num">42.711</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.945</td>
+    <td class="num">30.945</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-6f99e7de</code><br><span class="muted">yolov8n / raspberry_pi_4b / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.514</td>
+    <td class="num">0.514</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">130.929</td>
+    <td class="num">130.929</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.946</td>
+    <td class="num">59.946</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-70ebd445</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7816</td>
+    <td class="num">0.7816</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">83.862</td>
+    <td class="num">83.862</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">157.013</td>
+    <td class="num">157.013</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-71d639bf</code><br><span class="muted">pidnet_s / raspberry_pi_4b / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.78</td>
+    <td class="num">0.78</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">367.172</td>
+    <td class="num">367.172</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">129.728</td>
+    <td class="num">129.728</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-732e9e90</code><br><span class="muted">yolov8n / raspberry_pi_4b / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.519</td>
+    <td class="num">0.519</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">188.993</td>
+    <td class="num">188.993</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">76.876</td>
+    <td class="num">76.876</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-73a117e5</code><br><span class="muted">pidnet_s / raspberry_pi_4b / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7803</td>
+    <td class="num">0.7803</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">363.683</td>
+    <td class="num">363.683</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">131.797</td>
+    <td class="num">131.797</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-75eb100b</code><br><span class="muted">pidnet_s / jetson_orin_nano / tensorrt / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7849</td>
+    <td class="num">0.7849</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">85.214</td>
+    <td class="num">49.106</td>
+    <td class="num">-42.373 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status IMPROVED">IMPROVED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">167.184</td>
+    <td class="num">167.184</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-77989d7c</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7137</td>
+    <td class="num">0.7137</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">43.56</td>
+    <td class="num">43.56</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">27.938</td>
+    <td class="num">27.938</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-79e2f529</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / tflite / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7168</td>
+    <td class="num">0.7168</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">3.99</td>
+    <td class="num">3.99</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">29.924</td>
+    <td class="num">29.924</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-7abb8878</code><br><span class="muted">yolov8n / jetson_orin_nano / tensorrt / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5188</td>
+    <td class="num">0.5188</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">17.127</td>
+    <td class="num">17.127</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">77.298</td>
+    <td class="num">77.298</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-7e786422</code><br><span class="muted">yolov8n / jetson_orin_nano / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5144</td>
+    <td class="num">0.5144</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">11.553</td>
+    <td class="num">11.553</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.59</td>
+    <td class="num">59.59</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-7ecf20df</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / tflite / xnnpack / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7135</td>
+    <td class="num">0.7135</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">3.97</td>
+    <td class="num">3.97</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">27.673</td>
+    <td class="num">27.673</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-7ef642c2</code><br><span class="muted">yolov8n / intel_xeon_w2233 / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5143</td>
+    <td class="num">0.5143</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">19.736</td>
+    <td class="num">19.736</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">60.14</td>
+    <td class="num">60.14</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-7f0c31dc</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7853</td>
+    <td class="num">0.7853</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">82.621</td>
+    <td class="num">82.621</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">167.859</td>
+    <td class="num">167.859</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-800b82c2</code><br><span class="muted">pidnet_s / jetson_orin_nano / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7847</td>
+    <td class="num">0.7847</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">49.538</td>
+    <td class="num">49.538</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">166.167</td>
+    <td class="num">166.167</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-81189b4c</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7168</td>
+    <td class="num">0.7168</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.492</td>
+    <td class="num">6.492</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">29.873</td>
+    <td class="num">29.873</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-82afbd38</code><br><span class="muted">yolov8n / raspberry_pi_4b / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5136</td>
+    <td class="num">0.5136</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">130.613</td>
+    <td class="num">130.613</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">60.456</td>
+    <td class="num">60.456</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-901ee4d7</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / tensorrt / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.717</td>
+    <td class="num">0.717</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">3.899</td>
+    <td class="num">3.899</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.324</td>
+    <td class="num">30.324</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-91c58704</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / tensorrt / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.712</td>
+    <td class="num">0.712</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">2.678</td>
+    <td class="num">2.678</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.331</td>
+    <td class="num">23.331</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-95ad56a0</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7165</td>
+    <td class="num">0.7165</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">3.769</td>
+    <td class="num">3.769</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.344</td>
+    <td class="num">30.344</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-96837770</code><br><span class="muted">yolov8n / jetson_orin_nano / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5138</td>
+    <td class="num">0.5138</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">12.193</td>
+    <td class="num">12.193</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.833</td>
+    <td class="num">59.833</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-96e80e36</code><br><span class="muted">yolov8n / jetson_orin_nano / tensorrt / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5144</td>
+    <td class="num">0.5144</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">12.101</td>
+    <td class="num">12.101</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.91</td>
+    <td class="num">59.91</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-a03d1747</code><br><span class="muted">pidnet_s / jetson_orin_nano / onnxruntime / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.782</td>
+    <td class="num">0.782</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">50.766</td>
+    <td class="num">50.766</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">154.108</td>
+    <td class="num">154.108</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-a3126365</code><br><span class="muted">yolov8n / intel_xeon_w2233 / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5139</td>
+    <td class="num">0.5139</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">19.807</td>
+    <td class="num">19.807</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">58.741</td>
+    <td class="num">58.741</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-a6a60347</code><br><span class="muted">yolov8n / intel_xeon_w2233 / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5187</td>
+    <td class="num">0.5187</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">29.335</td>
+    <td class="num">29.335</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">78.25</td>
+    <td class="num">78.25</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-a7df49b7</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7116</td>
+    <td class="num">0.7116</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">2.742</td>
+    <td class="num">2.742</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.671</td>
+    <td class="num">23.671</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-a8bd376c</code><br><span class="muted">pidnet_s / jetson_orin_nano / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7798</td>
+    <td class="num">0.7798</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">32.962</td>
+    <td class="num">32.962</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">127.973</td>
+    <td class="num">127.973</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-b84a7977</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7122</td>
+    <td class="num">0.7122</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">4.411</td>
+    <td class="num">4.411</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.882</td>
+    <td class="num">23.882</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-ba4f852c</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / tflite / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7845</td>
+    <td class="num">0.7845</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">80.064</td>
+    <td class="num">80.064</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">165.507</td>
+    <td class="num">165.507</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-bb1baf52</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7811</td>
+    <td class="num">0.7811</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">81.369</td>
+    <td class="num">81.369</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">155.635</td>
+    <td class="num">155.635</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-bbcb1ae6</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / tflite / xnnpack / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7175</td>
+    <td class="num">0.7175</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">3.921</td>
+    <td class="num">3.921</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.843</td>
+    <td class="num">30.843</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-be1a781d</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7138</td>
+    <td class="num">0.7138</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.716</td>
+    <td class="num">6.716</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.248</td>
+    <td class="num">28.248</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-bf6aec2f</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7136</td>
+    <td class="num">0.7136</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">4.132</td>
+    <td class="num">4.132</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.184</td>
+    <td class="num">28.184</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c075c256</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7119</td>
+    <td class="num">0.7119</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">29.176</td>
+    <td class="num">29.176</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.264</td>
+    <td class="num">23.264</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c184ebce</code><br><span class="muted">yolov8n / intel_xeon_w2233 / openvino / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5139</td>
+    <td class="num">0.5139</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">19.557</td>
+    <td class="num">19.557</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.775</td>
+    <td class="num">59.775</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c192cd67</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / tflite / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.717</td>
+    <td class="num">0.717</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.435</td>
+    <td class="num">6.435</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.493</td>
+    <td class="num">30.493</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c3583188</code><br><span class="muted">yolov8n / jetson_orin_nano / onnxruntime / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.519</td>
+    <td class="num">0.519</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">17.003</td>
+    <td class="num">17.003</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">75.508</td>
+    <td class="num">75.508</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c50e115c</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / onnxruntime / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7818</td>
+    <td class="num">0.7818</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">84.777</td>
+    <td class="num">84.777</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">153.625</td>
+    <td class="num">153.625</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c602fc80</code><br><span class="muted">yolov8n / intel_xeon_w2233 / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5157</td>
+    <td class="num">0.5157</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">30.029</td>
+    <td class="num">30.029</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">70.128</td>
+    <td class="num">70.128</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c74dc774</code><br><span class="muted">yolov8n / raspberry_pi_4b / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.4885</td>
+    <td class="num">0.4885</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">129.274</td>
+    <td class="num">129.274</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">60.563</td>
+    <td class="num">60.563</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c853d868</code><br><span class="muted">yolov8n / raspberry_pi_4b / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5145</td>
+    <td class="num">0.5145</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">125.103</td>
+    <td class="num">125.103</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">59.909</td>
+    <td class="num">59.909</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.348</td>
+    <td class="num">3.348</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c8d1f508</code><br><span class="muted">pidnet_s / raspberry_pi_4b / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7814</td>
+    <td class="num">0.7814</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">528.943</td>
+    <td class="num">528.943</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">153.248</td>
+    <td class="num">153.248</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c958583e</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / openvino / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7171</td>
+    <td class="num">0.7171</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.349</td>
+    <td class="num">6.349</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.358</td>
+    <td class="num">30.358</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-c9d21f40</code><br><span class="muted">pidnet_s / jetson_orin_nano / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7812</td>
+    <td class="num">0.7812</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">49.441</td>
+    <td class="num">49.441</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">152.407</td>
+    <td class="num">152.407</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-ca3e9af3</code><br><span class="muted">pidnet_s / jetson_orin_nano / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.781</td>
+    <td class="num">0.781</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">48.837</td>
+    <td class="num">48.837</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">157.583</td>
+    <td class="num">157.583</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-ce913248</code><br><span class="muted">pidnet_s / jetson_orin_nano / tflite / xnnpack / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7815</td>
+    <td class="num">0.7815</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">50.749</td>
+    <td class="num">50.749</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">155.893</td>
+    <td class="num">155.893</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">16.555</td>
+    <td class="num">16.555</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-d2ec540d</code><br><span class="muted">yolov8n / intel_xeon_w2233 / onnxruntime / openvino_ep / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.515</td>
+    <td class="num">0.515</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">30.478</td>
+    <td class="num">30.478</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">70.978</td>
+    <td class="num">70.978</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-d5c3cba8</code><br><span class="muted">pidnet_s / jetson_orin_nano / onnxruntime / openvino_ep / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7797</td>
+    <td class="num">0.7797</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">34.198</td>
+    <td class="num">34.198</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">129.29</td>
+    <td class="num">129.29</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-d7cd8099</code><br><span class="muted">yolov8n / jetson_orin_nano / onnxruntime / openvino_ep / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5194</td>
+    <td class="num">0.5194</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">16.935</td>
+    <td class="num">16.935</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">76.858</td>
+    <td class="num">76.858</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-d8015d0e</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7118</td>
+    <td class="num">0.7118</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">2.744</td>
+    <td class="num">2.744</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.968</td>
+    <td class="num">23.968</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-d9f42ac2</code><br><span class="muted">yolov8n / jetson_orin_nano / tflite / xnnpack / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5192</td>
+    <td class="num">0.5192</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">17.326</td>
+    <td class="num">17.326</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">75.593</td>
+    <td class="num">75.593</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-df426039</code><br><span class="muted">yolov8n / jetson_orin_nano / tflite / xnnpack / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5156</td>
+    <td class="num">0.5156</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">17.358</td>
+    <td class="num">17.358</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">71.462</td>
+    <td class="num">71.462</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-e24cddbd</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7121</td>
+    <td class="num">0.7121</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">4.445</td>
+    <td class="num">4.445</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.802</td>
+    <td class="num">23.802</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-e2c520e9</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.713</td>
+    <td class="num">0.713</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">4.166</td>
+    <td class="num">4.166</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.489</td>
+    <td class="num">28.489</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-e5265c74</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / openvino / default / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7846</td>
+    <td class="num">0.7846</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">80.751</td>
+    <td class="num">80.751</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">171.13</td>
+    <td class="num">171.13</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">15.652</td>
+    <td class="num">15.652</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-eaa0c560</code><br><span class="muted">yolov8n / intel_xeon_w2233 / tflite / xnnpack / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5195</td>
+    <td class="num">0.5195</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">28.209</td>
+    <td class="num">28.209</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">76.775</td>
+    <td class="num">76.775</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.448</td>
+    <td class="num">6.448</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-eb44caeb</code><br><span class="muted">yolov8n / intel_xeon_w2233 / openvino / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5152</td>
+    <td class="num">0.5152</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">29.796</td>
+    <td class="num">29.796</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">72.112</td>
+    <td class="num">72.112</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-edd1bf7b</code><br><span class="muted">yolov8n / raspberry_pi_4b / onnxruntime / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.5151</td>
+    <td class="num">0.5151</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">194.142</td>
+    <td class="num">194.142</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">69.993</td>
+    <td class="num">69.993</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">6.82</td>
+    <td class="num">6.82</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-f38051cb</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / tflite / xnnpack / fp16_conversion</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7166</td>
+    <td class="num">0.7166</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.361</td>
+    <td class="num">6.361</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">30.978</td>
+    <td class="num">30.978</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.072</td>
+    <td class="num">7.072</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-f4af37ce</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / onnxruntime / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7123</td>
+    <td class="num">0.7123</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">28.9</td>
+    <td class="num">28.9</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.839</td>
+    <td class="num">23.839</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-f559c8f2</code><br><span class="muted">mobilenet_v2 / raspberry_pi_4b / tflite / xnnpack / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7134</td>
+    <td class="num">0.7134</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">44.651</td>
+    <td class="num">44.651</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.096</td>
+    <td class="num">28.096</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-f810e324</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7119</td>
+    <td class="num">0.7119</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">4.468</td>
+    <td class="num">4.468</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.312</td>
+    <td class="num">23.312</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-f9ac6955</code><br><span class="muted">mobilenet_v2 / jetson_orin_nano / tflite / default / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7124</td>
+    <td class="num">0.7124</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">2.643</td>
+    <td class="num">2.643</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">23.736</td>
+    <td class="num">23.736</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">3.672</td>
+    <td class="num">3.672</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-f9d77239</code><br><span class="muted">mobilenet_v2 / intel_xeon_w2233 / tflite / default / automatic_compression</span></td>
+    <td>accuracy</td>
+    <td class="num">0.713</td>
+    <td class="num">0.713</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">6.756</td>
+    <td class="num">6.756</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">28.002</td>
+    <td class="num">28.002</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">7.48</td>
+    <td class="num">7.48</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td><code>TC-fdd36f66</code><br><span class="muted">pidnet_s / intel_xeon_w2233 / tflite / xnnpack / int8_quantization</span></td>
+    <td>accuracy</td>
+    <td class="num">0.7803</td>
+    <td class="num">0.7803</td>
+    <td class="num">0.0 pp (drop)</td>
+    <td class="num">1.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>latency_ms</td>
+    <td class="num">55.256</td>
+    <td class="num">55.256</td>
+    <td class="num">0.0 % (ms)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>memory_mb</td>
+    <td class="num">130.901</td>
+    <td class="num">130.901</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">15.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>model_size_mb</td>
+    <td class="num">8.127</td>
+    <td class="num">8.127</td>
+    <td class="num">0.0 % (MB)</td>
+    <td class="num">10.0</td>
+    <td><span class="status UNCHANGED">UNCHANGED</span></td>
+  </tr>
+</table>
+
+<h2>5. Non-metric Changes</h2>
+<table>
+<tr><th>Case</th><th>Result</th><th>Artifact changed</th><th>Reproducibility change</th><th>Notes</th></tr>
+<tr>
+  <td><code>TC-019001d8</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-022362bf</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-03b64841</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-057c8b05</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-0992a781</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-0a1676c3</code></td>
+  <td><span class="status REGRESSION">REGRESSION</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted">status degraded PASS -&gt; FAIL; accuracy: 0.5188 -&gt; 0.5008 (delta 1.8, threshold 1.0)</td>
+</tr>
+<tr>
+  <td><code>TC-0b648e95</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-0d13d7a9</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-13737853</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-13bf31ba</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-1663cd50</code></td>
+  <td><span class="status REGRESSION">REGRESSION</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted">status degraded PASS -&gt; FAIL; latency_ms: 4.446 -&gt; 11.541 (delta 159.582, threshold 10.0)</td>
+</tr>
+<tr>
+  <td><code>TC-19885d05</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-1b4f5d27</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-1dc2d9f6</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-1dd7b5f0</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-1feeeaf7</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-22927836</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2377a0cf</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-25122491</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2643eff8</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-29b27126</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-29dd53e4</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2a07c2aa</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2c3a9994</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2e58f367</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2e6e0d66</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-33b99656</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-33e3b487</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-34ec367a</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3687db15</code></td>
+  <td><span class="status REGRESSION">REGRESSION</span></td>
+  <td>False</td>
+  <td>BITWISE_REPRODUCIBLE → NOT_REPRODUCIBLE</td>
+  <td class="muted">status degraded PASS -&gt; FAIL; reproducibility degraded BITWISE_REPRODUCIBLE -&gt; NOT_REPRODUCIBLE</td>
+</tr>
+<tr>
+  <td><code>TC-3766224e</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3838431c</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3cb57ccb</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3f7765f7</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-41f81a69</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-4233c0c1</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-43d47a02</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-45ab33f0</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-45c981fe</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-492fc940</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-49db50ea</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-4c1563c6</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-53b2a739</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-54844f55</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-5761cfb9</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-57fdb5b2</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-584c0cb9</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-5a89c4e4</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-5bb2e80a</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-5beea90f</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-62bcdfb2</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-64d3ed58</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-67ba6732</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-6b8764ed</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-6baee999</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-6e983948</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-6f4015d0</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-6f99e7de</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-70ebd445</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-71d639bf</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-732e9e90</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-73a117e5</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-75eb100b</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-77989d7c</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-79e2f529</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-7abb8878</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-7e786422</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-7ecf20df</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-7ef642c2</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-7f0c31dc</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-800b82c2</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-81189b4c</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-82afbd38</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-901ee4d7</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-91c58704</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-92eaae12</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-95ad56a0</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-96837770</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-96e80e36</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a03d1747</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a3126365</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a6a60347</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a7df49b7</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a8bd376c</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-b84a7977</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-ba4f852c</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-bb1baf52</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-bbcb1ae6</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-bcd1e760</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-be1a781d</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-bf6aec2f</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c075c256</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c184ebce</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c192cd67</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c3583188</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c50e115c</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c602fc80</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c74dc774</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c853d868</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c86c8805</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-c8d1f508</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c958583e</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c9d21f40</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-ca3e9af3</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-ce913248</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d27940d0</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-d2ec540d</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d495aff3</code></td>
+  <td><span class="status NOT_COMPARABLE">NOT_COMPARABLE</span></td>
+  <td>-</td>
+  <td>-</td>
+  <td class="muted">metrics unavailable in baseline and/or current run</td>
+</tr>
+<tr>
+  <td><code>TC-d5c3cba8</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d7cd8099</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d8015d0e</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d9f42ac2</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-df426039</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-e24cddbd</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-e2c520e9</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-e5265c74</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-eaa0c560</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-eb44caeb</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-edd1bf7b</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f38051cb</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f4af37ce</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f559c8f2</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f810e324</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f9ac6955</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f9d77239</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-fdd36f66</code></td>
+  <td><span class="status PASS">PASS</span></td>
+  <td>False</td>
+  <td>-</td>
+  <td class="muted"></td>
+</tr>
+</table>
+<p class="muted">NetsPresso-based AI Model Optimization QA Automation Framework (personal portfolio project)</p>
+</body>
+</html>

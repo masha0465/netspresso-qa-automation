@@ -1,0 +1,2920 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>QA Run Report RUN-abf97fbb34</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1200px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.6rem; margin-bottom: .25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  .muted { color: #616e7c; font-size: .9rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; }
+  th { background: #f5f7fa; font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS { background: #e3f6ec; color: #0f5132; }
+  .FAIL { background: #fbe3e4; color: #7a1e26; }
+  .BLOCKED { background: #fff1cc; color: #6b4e00; }
+  .NOT_TESTED { background: #eef0f3; color: #3e4c59; }
+  .UNSUPPORTED { background: #e6e9f5; color: #2f3b6e; }
+  .WARN { background: #fff1cc; color: #6b4e00; }
+  .NOT_APPLICABLE { background: #eef0f3; color: #3e4c59; }
+  .kv td:first-child { width: 28%; color: #616e7c; }
+  code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+  .note { background: #f5f7fa; border-left: 3px solid #9aa5b1; padding: .5rem .75rem; margin: 1rem 0; font-size: .88rem; }
+  details summary { cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>AI Model Optimization QA Run Report</h1>
+<p class="muted">Run <code>RUN-abf97fbb34</code> · 2026-10-01T00:00:00+00:00 · adapter <code>mock 1.0.0</code> · strategy <code>pairwise</code> · framework v0.1.0</p>
+<div class="note">Personal portfolio project using publicly available NetsPresso SDK/API resources. Results produced by the <code>mock</code> adapter are <strong>simulated and deterministic</strong>; they are not measurements of real models.</div>
+
+<h2>1. Execution Summary</h2>
+<table class="kv">
+  <tr><td>Total combinations (full matrix)</td><td class="num">324</td></tr>
+  <tr><td>Selected for execution</td><td class="num">15</td></tr>
+  <tr><td>Tested (PASS + FAIL + BLOCKED)</td><td class="num">14</td></tr>
+  <tr><td><span class="status PASS">PASS</span></td><td class="num">9</td></tr>
+  <tr><td><span class="status FAIL">FAIL</span></td><td class="num">4</td></tr>
+  <tr><td><span class="status BLOCKED">BLOCKED</span></td><td class="num">1</td></tr>
+  <tr><td><span class="status NOT_TESTED">NOT_TESTED</span> <span class="muted">— support unknown, not yet verified</span></td><td class="num">111</td></tr>
+  <tr><td><span class="status UNSUPPORTED">UNSUPPORTED</span> <span class="muted">— explicitly known unsupported; not a failure</span></td><td class="num">199</td></tr>
+  <tr><td>Coverage of feasible combinations (tested / non-unsupported)</td><td class="num">11.2 %</td></tr>
+</table>
+
+<h2>2. Matrix &amp; Selection</h2>
+<table class="kv">
+<tr><td>Dimension: model</td><td class="num">3</td></tr><tr><td>Dimension: device</td><td class="num">3</td></tr><tr><td>Dimension: runtime</td><td class="num">4</td></tr><tr><td>Dimension: backend</td><td class="num">3</td></tr><tr><td>Dimension: optimization</td><td class="num">3</td></tr>  <tr><td>Feasible combinations</td><td class="num">126</td></tr>
+  <tr><td>Unknown-support combinations (start as NOT_TESTED)</td><td class="num">126</td></tr>
+<tr><td>Selection: strategy</td><td class="num">pairwise</td></tr><tr><td>Selection: candidates_feasible</td><td class="num">126</td></tr><tr><td>Selection: selected</td><td class="num">15</td></tr><tr><td>Selection: reduction_percent</td><td class="num">88.1</td></tr><tr><td>Selection: pairs_in_full_matrix</td><td class="num">102</td></tr><tr><td>Selection: feasible_pairs</td><td class="num">92</td></tr><tr><td>Selection: covered_pairs</td><td class="num">92</td></tr><tr><td>Selection: pair_coverage_percent</td><td class="num">100.0</td></tr></table>
+<details><summary class="muted">Infeasible pairs excluded from pairwise coverage (10)</summary>
+<ul class="muted"><li><code>device=intel_xeon_w2233 &amp; runtime=tensorrt</code></li><li><code>device=jetson_orin_nano &amp; runtime=openvino</code></li><li><code>device=raspberry_pi_4b &amp; runtime=openvino</code></li><li><code>device=raspberry_pi_4b &amp; runtime=tensorrt</code></li><li><code>runtime=onnxruntime &amp; backend=xnnpack</code></li><li><code>runtime=openvino &amp; backend=openvino_ep</code></li><li><code>runtime=openvino &amp; backend=xnnpack</code></li><li><code>runtime=tensorrt &amp; backend=openvino_ep</code></li><li><code>runtime=tensorrt &amp; backend=xnnpack</code></li><li><code>runtime=tflite &amp; backend=openvino_ep</code></li></ul></details>
+<table class="kv">
+<tr><td>Risk level HIGH</td><td class="num">150</td></tr><tr><td>Risk level MEDIUM</td><td class="num">150</td></tr><tr><td>Risk level LOW</td><td class="num">24</td></tr></table>
+
+<h2>3. Quality Gate</h2>
+<table class="kv">
+  <tr><td>Evaluated</td><td class="num">12</td></tr>
+  <tr><td>Gate PASS</td><td class="num">9</td></tr>
+  <tr><td>Gate FAIL</td><td class="num">3</td></tr>
+</table>
+
+<h2>4. Defect Distribution</h2>
+<table><tr><th>Category</th><th class="num">Count</th></tr>
+<tr><td><code>MODEL_COMPATIBILITY_ERROR</code></td><td class="num">1</td></tr><tr><td><code>ACCURACY_REGRESSION</code></td><td class="num">1</td></tr><tr><td><code>PERFORMANCE_REGRESSION</code></td><td class="num">1</td></tr><tr><td><code>REPRODUCIBILITY_ERROR</code></td><td class="num">1</td></tr><tr><td><code>ENVIRONMENT_ERROR</code></td><td class="num">1</td></tr></table>
+
+<h2>5. Failed / Blocked Scenarios</h2>
+<table>
+<tr><th>Case</th><th>Configuration</th><th>Status</th><th>Gate reasons / error</th><th>Defect</th><th>Suspected cause</th></tr>
+<tr>
+  <td><code>TC-c74dc774</code><br><span class="muted">SCN-001</span></td>
+  <td>yolov8n / raspberry_pi_4b / tflite / xnnpack / int8_quantization</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td><ul><li>Accuracy: accuracy drop 3.15 pp exceeds threshold 1.00 pp</li></ul></td>
+  <td><code>ACCURACY_REGRESSION</code> <span class="muted">HIGH</span></td>
+  <td>INT8 quantization precision loss / calibration coverage (suspected, not confirmed)</td>
+</tr>
+<tr>
+  <td><code>TC-5beea90f</code><br><span class="muted">SCN-008</span></td>
+  <td>yolov8n / jetson_orin_nano / tensorrt / default / automatic_compression</td>
+  <td><span class="status BLOCKED">BLOCKED</span></td>
+  <td>Target device farm slot unavailable; execution not attempted (mock)</td>
+  <td><code>ENVIRONMENT_ERROR</code> <span class="muted">MEDIUM</span></td>
+  <td>-</td>
+</tr>
+<tr>
+  <td><code>TC-91c58704</code><br><span class="muted">SCN-004</span></td>
+  <td>mobilenet_v2 / jetson_orin_nano / tensorrt / default / int8_quantization</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td><ul><li>Reproducibility: NOT_REPRODUCIBLE over 2 run(s): outputs diverge beyond tolerance (mock)</li></ul></td>
+  <td><code>REPRODUCIBILITY_ERROR</code> <span class="muted">MEDIUM</span></td>
+  <td>-</td>
+</tr>
+<tr>
+  <td><code>TC-1dd7b5f0</code><br><span class="muted">SCN-006</span></td>
+  <td>pidnet_s / intel_xeon_w2233 / openvino / default / automatic_compression</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td>Model contains dynamic input shape not supported by compression service (mock)</td>
+  <td><code>MODEL_COMPATIBILITY_ERROR</code> <span class="muted">MEDIUM</span></td>
+  <td>-</td>
+</tr>
+<tr>
+  <td><code>TC-75eb100b</code><br><span class="muted">SCN-002</span></td>
+  <td>pidnet_s / jetson_orin_nano / tensorrt / default / fp16_conversion</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td><ul><li>Latency: latency 70.800 -&gt; 85.214 ms (+20.36%) exceeds +10.0%</li></ul></td>
+  <td><code>PERFORMANCE_REGRESSION</code> <span class="muted">MEDIUM</span></td>
+  <td>-</td>
+</tr>
+</table>
+
+<h2>6. Tested Cases — Metrics &amp; Gate Criteria</h2>
+<table>
+<tr><th>Case</th><th>Configuration</th><th>Status</th><th class="num">Acc. base</th><th class="num">Acc. cur</th><th class="num">Latency base (ms)</th><th class="num">Latency cur (ms)</th><th class="num">Mem base (MB)</th><th class="num">Mem cur (MB)</th><th>Artifact</th><th>Repro.</th><th>Criteria</th></tr>
+<tr>
+  <td><code>TC-0a1676c3</code></td>
+  <td>yolov8n / intel_xeon_w2233 / onnxruntime / default / fp16_conversion</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.5200</td>
+  <td class="num">0.5188</td>
+  <td class="num">42.000</td>
+  <td class="num">28.314</td>
+  <td class="num">96.000</td>
+  <td class="num">75.796</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.12 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 42.000 -&gt; 28.314 ms (-32.59%) within +10.0%">latency</span> <span class="status PASS" title="memory 96.000 -&gt; 75.796 MB (-21.05%) within +15.0%">memory</span> <span class="status PASS" title="model_size 12.400 -&gt; 6.448 MB (-48.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-a6a60347</code></td>
+  <td>yolov8n / intel_xeon_w2233 / onnxruntime / openvino_ep / fp16_conversion</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.5200</td>
+  <td class="num">0.5187</td>
+  <td class="num">42.000</td>
+  <td class="num">29.335</td>
+  <td class="num">96.000</td>
+  <td class="num">78.250</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.13 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 42.000 -&gt; 29.335 ms (-30.16%) within +10.0%">latency</span> <span class="status PASS" title="memory 96.000 -&gt; 78.250 MB (-18.49%) within +15.0%">memory</span> <span class="status PASS" title="model_size 12.400 -&gt; 6.448 MB (-48.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-0b648e95</code></td>
+  <td>yolov8n / intel_xeon_w2233 / openvino / default / fp16_conversion</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.5200</td>
+  <td class="num">0.5193</td>
+  <td class="num">42.000</td>
+  <td class="num">28.090</td>
+  <td class="num">96.000</td>
+  <td class="num">75.275</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.07 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 42.000 -&gt; 28.090 ms (-33.12%) within +10.0%">latency</span> <span class="status PASS" title="memory 96.000 -&gt; 75.275 MB (-21.59%) within +15.0%">memory</span> <span class="status PASS" title="model_size 12.400 -&gt; 6.448 MB (-48.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-c74dc774</code></td>
+  <td>yolov8n / raspberry_pi_4b / tflite / xnnpack / int8_quantization</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td class="num">0.5200</td>
+  <td class="num">0.4885</td>
+  <td class="num">273.000</td>
+  <td class="num">129.274</td>
+  <td class="num">96.000</td>
+  <td class="num">60.563</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status FAIL" title="accuracy drop 3.15 pp exceeds threshold 1.00 pp">accuracy</span> <span class="status PASS" title="latency 273.000 -&gt; 129.274 ms (-52.65%) within +10.0%">latency</span> <span class="status PASS" title="memory 96.000 -&gt; 60.563 MB (-36.91%) within +15.0%">memory</span> <span class="status PASS" title="model_size 12.400 -&gt; 3.348 MB (-73.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-5beea90f</code></td>
+  <td>yolov8n / jetson_orin_nano / tensorrt / default / automatic_compression</td>
+  <td><span class="status BLOCKED">BLOCKED</span></td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td>-</td>
+  <td>NOT_VERIFIED</td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>TC-54844f55</code></td>
+  <td>mobilenet_v2 / intel_xeon_w2233 / openvino / default / int8_quantization</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.7180</td>
+  <td class="num">0.7123</td>
+  <td class="num">9.500</td>
+  <td class="num">4.365</td>
+  <td class="num">38.000</td>
+  <td class="num">23.666</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.57 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 9.500 -&gt; 4.365 ms (-54.05%) within +10.0%">latency</span> <span class="status PASS" title="memory 38.000 -&gt; 23.666 MB (-37.72%) within +15.0%">memory</span> <span class="status PASS" title="model_size 13.600 -&gt; 3.672 MB (-73.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-43d47a02</code></td>
+  <td>mobilenet_v2 / raspberry_pi_4b / onnxruntime / openvino_ep / automatic_compression</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.7180</td>
+  <td class="num">0.7135</td>
+  <td class="num">61.750</td>
+  <td class="num">45.042</td>
+  <td class="num">38.000</td>
+  <td class="num">28.287</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.45 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 61.750 -&gt; 45.042 ms (-27.06%) within +10.0%">latency</span> <span class="status PASS" title="memory 38.000 -&gt; 28.287 MB (-25.56%) within +15.0%">memory</span> <span class="status PASS" title="model_size 13.600 -&gt; 7.480 MB (-45.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-bbcb1ae6</code></td>
+  <td>mobilenet_v2 / jetson_orin_nano / tflite / xnnpack / fp16_conversion</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.7180</td>
+  <td class="num">0.7175</td>
+  <td class="num">5.700</td>
+  <td class="num">3.921</td>
+  <td class="num">38.000</td>
+  <td class="num">30.843</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.05 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 5.700 -&gt; 3.921 ms (-31.21%) within +10.0%">latency</span> <span class="status PASS" title="memory 38.000 -&gt; 30.843 MB (-18.83%) within +15.0%">memory</span> <span class="status PASS" title="model_size 13.600 -&gt; 7.072 MB (-48.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-91c58704</code></td>
+  <td>mobilenet_v2 / jetson_orin_nano / tensorrt / default / int8_quantization</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td class="num">0.7180</td>
+  <td class="num">0.7120</td>
+  <td class="num">5.700</td>
+  <td class="num">2.678</td>
+  <td class="num">38.000</td>
+  <td class="num">23.331</td>
+  <td>valid</td>
+  <td>NOT_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.60 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 5.700 -&gt; 2.678 ms (-53.02%) within +10.0%">latency</span> <span class="status PASS" title="memory 38.000 -&gt; 23.331 MB (-38.60%) within +15.0%">memory</span> <span class="status PASS" title="model_size 13.600 -&gt; 3.672 MB (-73.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status FAIL" title="NOT_REPRODUCIBLE over 2 run(s): outputs diverge beyond tolerance (mock)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-70ebd445</code></td>
+  <td>pidnet_s / intel_xeon_w2233 / tflite / default / automatic_compression</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.7860</td>
+  <td class="num">0.7816</td>
+  <td class="num">118.000</td>
+  <td class="num">83.862</td>
+  <td class="num">210.000</td>
+  <td class="num">157.013</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.44 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 118.000 -&gt; 83.862 ms (-28.93%) within +10.0%">latency</span> <span class="status PASS" title="memory 210.000 -&gt; 157.013 MB (-25.23%) within +15.0%">memory</span> <span class="status PASS" title="model_size 30.100 -&gt; 16.555 MB (-45.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-1dd7b5f0</code></td>
+  <td>pidnet_s / intel_xeon_w2233 / openvino / default / automatic_compression</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td class="num">-</td>
+  <td>-</td>
+  <td>NOT_VERIFIED</td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>TC-5a89c4e4</code></td>
+  <td>pidnet_s / raspberry_pi_4b / onnxruntime / default / fp16_conversion</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.7860</td>
+  <td class="num">0.7846</td>
+  <td class="num">767.000</td>
+  <td class="num">518.140</td>
+  <td class="num">210.000</td>
+  <td class="num">168.418</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.14 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 767.000 -&gt; 518.140 ms (-32.45%) within +10.0%">latency</span> <span class="status PASS" title="memory 210.000 -&gt; 168.418 MB (-19.80%) within +15.0%">memory</span> <span class="status PASS" title="model_size 30.100 -&gt; 15.652 MB (-48.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-d5c3cba8</code></td>
+  <td>pidnet_s / jetson_orin_nano / onnxruntime / openvino_ep / int8_quantization</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="num">0.7860</td>
+  <td class="num">0.7797</td>
+  <td class="num">70.800</td>
+  <td class="num">34.198</td>
+  <td class="num">210.000</td>
+  <td class="num">129.290</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.63 pp &lt;= 1.00 pp">accuracy</span> <span class="status PASS" title="latency 70.800 -&gt; 34.198 ms (-51.70%) within +10.0%">latency</span> <span class="status PASS" title="memory 210.000 -&gt; 129.290 MB (-38.43%) within +15.0%">memory</span> <span class="status PASS" title="model_size 30.100 -&gt; 8.127 MB (-73.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+<tr>
+  <td><code>TC-75eb100b</code></td>
+  <td>pidnet_s / jetson_orin_nano / tensorrt / default / fp16_conversion</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td class="num">0.7860</td>
+  <td class="num">0.7849</td>
+  <td class="num">70.800</td>
+  <td class="num">85.214</td>
+  <td class="num">210.000</td>
+  <td class="num">167.184</td>
+  <td>valid</td>
+  <td>BITWISE_REPRODUCIBLE</td>
+  <td><span class="status PASS" title="accuracy drop 0.11 pp &lt;= 1.00 pp">accuracy</span> <span class="status FAIL" title="latency 70.800 -&gt; 85.214 ms (+20.36%) exceeds +10.0%">latency</span> <span class="status PASS" title="memory 210.000 -&gt; 167.184 MB (-20.39%) within +15.0%">memory</span> <span class="status PASS" title="model_size 30.100 -&gt; 15.652 MB (-48.00%) within +10.0%">model_size</span> <span class="status PASS" title="artifact exists and checksum validated">artifact</span> <span class="status PASS" title="BITWISE_REPRODUCIBLE over 2 run(s)">reproducibility</span> </td>
+</tr>
+</table>
+
+<h2>7. Full Matrix</h2>
+<details><summary>Show all 324 combinations</summary>
+<table>
+<tr><th>Case</th><th>Model</th><th>Device</th><th>Runtime</th><th>Backend</th><th>Optimization</th><th>Support</th><th>Risk</th><th>Status</th><th>Selection reason / support reason</th></tr>
+<tr>
+  <td><code>TC-0a1676c3</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>SUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 10 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-a3126365</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3cb57ccb</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c31d5120</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-26c77d69</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-f0cb66ed</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-a6a60347</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>SUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 3 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-7ef642c2</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d2ec540d</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3838431c</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-022362bf</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c602fc80</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-eaa0c560</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-13737853</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d495aff3</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-7c33d2a3</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-64675149</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-367c6ee5</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-39bc68e0</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-d545cdbc</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-d77e08d0</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-27a6d1aa</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0ecf0d91</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-7e28eb1a</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-5b89bba6</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-44f30f16</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-2379bfb8</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0b648e95</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>SUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 2 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-c184ebce</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-eb44caeb</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-0376d205</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-a3b36190</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-8c0beb7b</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-2366675d</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-5a433b30</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-92cbcb14</code></td>
+  <td>yolov8n</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-4233c0c1</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-6f99e7de</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-edd1bf7b</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-9a2288a9</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-d02366f0</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-5ee8f8f1</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-732e9e90</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-82afbd38</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (11)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-62bcdfb2</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (12)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2e6e0d66</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c853d868</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-057c8b05</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-41f81a69</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c74dc774</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>SUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td class="muted">pairwise: covers 10 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-1dc2d9f6</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-cef12638</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-596c0677</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-efd46bf0</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-6cc4cbfc</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-9d5d067d</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-ac966a8f</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-806b3c5a</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-e75dce2d</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-50096f8d</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-1c93c968</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-527be02c</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (14)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-bfe88b3e</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (15)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-ffae5411</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-7b23fe41</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-93888b34</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-6c899d0d</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-722305c2</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-7aa5fb7f</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-fa409814</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0a4d43f0</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-1f365ff5</code></td>
+  <td>yolov8n</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (14)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-c3583188</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-7e786422</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-bcd1e760</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-5a4e745c</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-5bcf1f0b</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-91e4bd5d</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-d7cd8099</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-96837770</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (11)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-67ba6732</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (12)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-33e3b487</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-64d3ed58</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-1b4f5d27</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d9f42ac2</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2377a0cf</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-df426039</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-da88c8d7</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-7855bdbf</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-61f74df9</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-7abb8878</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (11)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-96e80e36</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (12)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-5beea90f</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (13)</td>
+  <td><span class="status BLOCKED">BLOCKED</span></td>
+  <td class="muted">pairwise: covers 5 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-4046155a</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-ad9afde3</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-34d372b4</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-9c29f99c</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-07af71d4</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (14)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-31b94921</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (15)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-ef061fed</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-59d85041</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-be4f41bf</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-efc26557</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0678032a</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-7eed17fc</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0d7f0a51</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0d592d51</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-edf64c71</code></td>
+  <td>yolov8n</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (14)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-13bf31ba</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>LOW (2)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-1663cd50</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>LOW (3)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3f7765f7</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>LOW (4)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-510165f1</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>LOW (2)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-9a7f9858</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>LOW (3)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-7c2cf880</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>LOW (4)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-81189b4c</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>LOW (4)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-b84a7977</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-be1a781d</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c192cd67</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>LOW (2)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f810e324</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>LOW (3)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f9d77239</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>LOW (4)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f38051cb</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>LOW (2)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-e24cddbd</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>LOW (3)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-5761cfb9</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>LOW (4)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-df40c11c</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>LOW (4)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-94a43356</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-8fe46081</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-16f863c0</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-6b7767ac</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-b168d4f4</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-5b099550</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-c6fb9513</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-f51f1241</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-9f5460cb</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-d2676a6d</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-481f08d1</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-c958583e</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>LOW (4)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-54844f55</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>SUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 6 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-5bb2e80a</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3340fa50</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>LOW (4)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-f74bac5d</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-3ba48302</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-e9be8d72</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-66a79f49</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-61d450f9</code></td>
+  <td>mobilenet_v2</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-6e983948</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f4af37ce</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-492fc940</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-9b2a62aa</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-6c9a4efd</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-79371341</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-45c981fe</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2643eff8</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-43d47a02</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>SUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 10 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-3687db15</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-25122491</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-77989d7c</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-22927836</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c075c256</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f559c8f2</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a1ba1d6e</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-eb57bdb2</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-68034b80</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-708194b4</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-e2de25c3</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-89a68d61</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-3def973d</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-d99ec581</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-15831198</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-bf469f3c</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-3e67289f</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-99a3587b</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-49abf2fc</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-50e52037</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-49e95fc6</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-7884f2de</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-1094cba6</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-d715b89d</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-f1f4478b</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-44902bd5</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-2be50aed</code></td>
+  <td>mobilenet_v2</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-95ad56a0</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-019001d8</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-6baee999</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-cc12ba31</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-62fc9551</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-64da37fc</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-29dd53e4</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a7df49b7</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-bf6aec2f</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-79e2f529</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-f9ac6955</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-e2c520e9</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-bbcb1ae6</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>SUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 8 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-d8015d0e</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-7ecf20df</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-3510161a</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-789c4776</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-b84076ba</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-901ee4d7</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-91c58704</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>SUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td class="muted">pairwise: covers 10 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-92eaae12</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-ebbf5d5e</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-5d9f78e5</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-accfc578</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-1a427f36</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-e0ec4e3d</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-69d548ef</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-eced17e5</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-0f3a2bcf</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-de2d0283</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-eee3c943</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-a9ec102d</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-96a2cb65</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-06544ef2</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-3b408f15</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-f2cce448</code></td>
+  <td>mobilenet_v2</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-3766224e</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>LOW (3)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-584c0cb9</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>LOW (4)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c50e115c</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c8514813</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>LOW (3)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-906f7048</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>LOW (4)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-9c442c96</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-7f0c31dc</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2c3a9994</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-bb1baf52</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-ba4f852c</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>LOW (3)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-29b27126</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>LOW (4)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-70ebd445</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>SUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 9 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-34ec367a</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>LOW (3)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-fdd36f66</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>LOW (4)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d27940d0</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">pairwise: covers 3 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-ead56bdc</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-12c8fc18</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-8dccd1b1</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-239ddeaf</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-e16ea584</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-b6c8ff98</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;intel_xeon_w2233&#39;: TensorRT targets NVIDIA devices (official example comment: examples/converter &amp; profiler/onnx2tflite.py)</td>
+</tr>
+<tr>
+  <td><code>TC-9b042fbe</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-916db65c</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-365eda59</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-b273ca98</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-9218056e</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-49aea7ab</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-e5265c74</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-1feeeaf7</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-1dd7b5f0</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td class="muted">pairwise: covers 2 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-0961a51e</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (5)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0a000287</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-6ea8ab57</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-39284d24</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0e3a61fa</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-30f7a6b4</code></td>
+  <td>pidnet_s</td><td>intel_xeon_w2233</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-5a89c4e4</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>SUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 4 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-2e58f367</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-45ab33f0</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c0eabc95</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-b28a7cf0</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-a8f02d25</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-19885d05</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-71d639bf</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (9)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-03b64841</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-6b8764ed</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-73a117e5</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c8d1f508</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-6f4015d0</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-0d13d7a9</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-2a07c2aa</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-cfa20207</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-049e9975</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-31831b2a</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-5557c28b</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-be26fa24</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-dab2f05f</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: TensorRT targets NVIDIA devices (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-63f4a8df</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-f308a16b</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-012b4f4c</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-09f0184c</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-e0568132</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-67c8f140</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-836a0271</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-877ada15</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-016679b0</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;raspberry_pi_4b&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-b7b2fa5b</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-c32b3181</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-2f72cd0e</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-5a33d6df</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-6e5f9547</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-f38a7f44</code></td>
+  <td>pidnet_s</td><td>raspberry_pi_4b</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-800b82c2</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-0992a781</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a03d1747</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d54a36cb</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-0caddb41</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-a66942be</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;onnxruntime&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-49db50ea</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-d5c3cba8</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>SUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status PASS">PASS</span></td>
+  <td class="muted">pairwise: covers 8 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-c9d21f40</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>onnxruntime</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-57fdb5b2</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-a8bd376c</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-ca3e9af3</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-4c1563c6</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (6)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-33b99656</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (7)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-ce913248</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-5f780f4e</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-8deec85b</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-11f14d25</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tflite</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tflite&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-75eb100b</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>fp16_conversion</td>
+  <td>SUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status FAIL">FAIL</span></td>
+  <td class="muted">pairwise: covers 2 new pair(s)</td>
+</tr>
+<tr>
+  <td><code>TC-53b2a739</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>int8_quantization</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (10)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-c86c8805</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>default</td><td>automatic_compression</td>
+  <td>UNKNOWN</td>
+  <td>HIGH (11)</td>
+  <td><span class="status NOT_TESTED">NOT_TESTED</span></td>
+  <td class="muted"></td>
+</tr>
+<tr>
+  <td><code>TC-43a0fa86</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-a2f16711</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-ae17260f</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-6a54ea3c</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-a50f7b9e</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-60ff98a6</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>tensorrt</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (13)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;tensorrt&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-940699ab</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-86373c8e</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-d807c528</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>default</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">device &#39;jetson_orin_nano&#39;: OpenVINO targets Intel CPUs (official example comment)</td>
+</tr>
+<tr>
+  <td><code>TC-4a1f3d40</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>MEDIUM (8)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-9e9f4fea</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (9)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-d1d359b1</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>xnnpack</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;xnnpack&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-c629ff82</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>fp16_conversion</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (10)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-892736e7</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>int8_quantization</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (11)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+<tr>
+  <td><code>TC-7691c0b1</code></td>
+  <td>pidnet_s</td><td>jetson_orin_nano</td><td>openvino</td><td>openvino_ep</td><td>automatic_compression</td>
+  <td>UNSUPPORTED</td>
+  <td>HIGH (12)</td>
+  <td><span class="status UNSUPPORTED">UNSUPPORTED</span></td>
+  <td class="muted">backend &#39;openvino_ep&#39; is not defined for runtime &#39;openvino&#39; (structural constraint)</td>
+</tr>
+</table>
+</details>
+
+<h2>8. Environment</h2>
+<table class="kv">
+<tr><td>adapter</td><td>mock</td></tr><tr><td>adapter_version</td><td>1.0.0</td></tr><tr><td>sdk_name</td><td>-</td></tr><tr><td>sdk_version</td><td>-</td></tr><tr><td>python_version</td><td>3.14.6</td></tr><tr><td>platform</td><td>Windows-11-10.0.26200-SP0</td></tr><tr><td>extra.deterministic</td><td>True</td></tr><tr><td>extra.network</td><td>False</td></tr><tr><td>extra.credits</td><td>simulated</td></tr>  <tr><td>config_dir</td><td><code>configs</code></td></tr>
+</table>
+<p class="muted">Generated 2026-10-01T00:00:00+00:00 · NetsPresso-based AI Model Optimization QA Automation Framework (personal portfolio project)</p>
+</body>
+</html>

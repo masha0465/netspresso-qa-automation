@@ -1,0 +1,23 @@
+# Backend dimension of the test matrix.
+#
+# A "backend" here means the execution provider / delegate used inside a runtime.
+# `applicable_runtimes` is a structural constraint: a backend that does not exist
+# for a runtime yields UNSUPPORTED by definition (not NOT_TESTED).
+backends:
+  - name: default
+    display_name: "Runtime default backend"
+    applicable_runtimes: [onnxruntime, tflite, tensorrt, openvino]
+    risk:
+      new_backend: false
+
+  - name: xnnpack
+    display_name: "XNNPACK delegate"
+    applicable_runtimes: [tflite]
+    risk:
+      new_backend: false
+
+  - name: openvino_ep
+    display_name: "OpenVINO Execution Provider"
+    applicable_runtimes: [onnxruntime]
+    risk:
+      new_backend: true

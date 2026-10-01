@@ -1,0 +1,47 @@
+# --- secrets ---
+.env
+.env.*
+*.env
+!.env.example
+netspresso.env
+
+# --- virtual environments ---
+.venv/
+.venv-netspresso/
+venv/
+
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+coverage/
+.coverage
+.coverage.*
+
+# --- real experiment outputs (models can be large) ---
+outputs/
+*.onnx
+*.pt
+*.pth
+*.h5
+*.tflite
+*.npy
+!examples/**/*.npy
+
+# --- regenerable report outputs (keep only curated examples tracked) ---
+reports/ci/
+reports/regression/
+reports/examples/*/credit_usage_simulated.json
+reports/examples/mock_full/qa_report.json
+reports/examples/mock_full_regressed/qa_report.json
+reports/examples/mock_risk/qa_report.json
+reports/examples/mock_pairwise_risk/qa_report.json
+
+# --- tooling ---
+.claude/
+.idea/
+.vscode/

@@ -1,0 +1,101 @@
+# Deterministic MockAdapter scenarios.
+#
+# Default behaviour (no matching scenario): the mock derives metrics from the
+# model's mock_baseline and the optimization profile below, perturbed by a
+# SHA-256 hash of the configuration. The same configuration always yields the
+# same numbers. No random module is used.
+#
+# Scenarios override the default for matching configurations. A field set to
+# "*" matches any value. The FIRST matching scenario wins (ordered list), so put
+# specific scenarios before broad ones.
+#
+# outcome values:
+#   COMPLETED   - execution succeeded; metrics are produced (Quality Gate decides PASS/FAIL)
+#   ERROR       - execution failed; `error_kind` and `message` describe it
+#   BLOCKED     - could not execute due to an external precondition
+#   UNSUPPORTED - adapter reports the combination as unsupported at run time
+#
+# `metric_overrides` apply on top of the derived metrics (used to create
+# Quality Gate FAIL cases such as accuracy or latency regressions).
+
+optimization_profiles:
+  fp16_conversion:
+    accuracy_delta_pp: -0.10      # percentage points
+    latency_factor: 0.68
+    memory_factor: 0.80
+    size_factor: 0.52
+  int8_quantization:
+    accuracy_delta_pp: -0.60
+    latency_factor: 0.47
+    memory_factor: 0.62
+    size_factor: 0.27
+  automatic_compression:
+    accuracy_delta_pp: -0.45
+    latency_factor: 0.71
+    memory_factor: 0.74
+    size_factor: 0.55
+
+scenarios:
+  # --- Quality Gate FAIL: accuracy regression (known INT8 issue on ARM, mock) ---
+  - id: SCN-001
+    match: { model: yolov8n, device: raspberry_pi_4b, runtime: tflite, backend: xnnpack, optimization: int8_quantization }
+    outcome: COMPLETED
+    metric_overrides: { accuracy_delta_pp: -3.20 }
+    note: "Deterministic accuracy regression example (mock)"
+
+  # --- Quality Gate FAIL: latency regression on FP16/TensorRT (mock) ---
+  - id: SCN-002
+    match: { model: pidnet_s, device: jetson_orin_nano, runtime: tensorrt, backend: default, optimization: fp16_conversion }
+    outcome: COMPLETED
+    metric_overrides: { latency_factor: 1.18 }
+    note: "Deterministic latency regression example (mock)"
+
+  # --- Quality Gate FAIL: artifact checksum mismatch (mock) ---
+  - id: SCN-003
+    match: { model: mobilenet_v2, device: intel_xeon_w2233, runtime: onnxruntime, backend: openvino_ep, optimization: int8_quantization }
+    outcome: COMPLETED
+    artifact_checksum_valid: false
+    note: "Deterministic artifact integrity failure example (mock)"
+
+  # --- Quality Gate FAIL: non-reproducible outputs (mock) ---
+  - id: SCN-004
+    match: { model: mobilenet_v2, device: jetson_orin_nano, runtime: tensorrt, backend: default, optimization: int8_quantization }
+    outcome: COMPLETED
+    reproducibility: NOT_REPRODUCIBLE
+    note: "Deterministic reproducibility failure example (mock)"
+
+  # --- Execution ERROR: conversion failure with clear evidence (mock) ---
+  - id: SCN-005
+    match: { model: pidnet_s, device: raspberry_pi_4b, runtime: tflite, backend: "*", optimization: fp16_conversion }
+    outcome: ERROR
+    error_kind: CONVERSION_FAILURE
+    message: "Unsupported operator 'GridSample' during TFLite conversion (mock)"
+    note: "Deterministic conversion failure example (mock)"
+
+  # --- Execution ERROR: model compatibility (mock) ---
+  - id: SCN-006
+    match: { model: pidnet_s, device: "*", runtime: openvino, backend: "*", optimization: automatic_compression }
+    outcome: ERROR
+    error_kind: MODEL_COMPATIBILITY_ERROR
+    message: "Model contains dynamic input shape not supported by compression service (mock)"
+
+  # --- Execution ERROR without enough evidence to classify (mock) ---
+  - id: SCN-007
+    match: { model: yolov8n, device: jetson_orin_nano, runtime: onnxruntime, backend: default, optimization: automatic_compression }
+    outcome: ERROR
+    error_kind: null
+    message: "Task ended with status ERROR and empty error_log (mock)"
+    note: "Demonstrates UNCLASSIFIED: no evidence-based category is inferred"
+
+  # --- BLOCKED: environment precondition not met (mock) ---
+  - id: SCN-008
+    match: { model: "*", device: jetson_orin_nano, runtime: tensorrt, backend: default, optimization: automatic_compression }
+    outcome: BLOCKED
+    error_kind: ENVIRONMENT_ERROR
+    message: "Target device farm slot unavailable; execution not attempted (mock)"
+
+  # --- UNSUPPORTED discovered at run time (mock) ---
+  - id: SCN-009
+    match: { model: "*", device: intel_xeon_w2233, runtime: tflite, backend: xnnpack, optimization: automatic_compression }
+    outcome: UNSUPPORTED
+    message: "Service reported: compression output not deployable to TFLite/XNNPACK on this target (mock)"

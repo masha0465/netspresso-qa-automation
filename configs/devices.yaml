@@ -1,0 +1,46 @@
+# Device dimension of the test matrix.
+#
+# `sdk_device_name` is the exact value of netspresso.enums.DeviceName verified
+# during Phase 1 against netspresso==1.17.0 (see docs/netspresso_sdk_research.md §5.5).
+# There is NO generic "CPU" device in the SDK, so the matrix uses concrete names.
+#
+# Support knowledge policy:
+#   - `known_unsupported` lists combinations that are EXPLICITLY documented as
+#     unsupported (source cited). These become UNSUPPORTED.
+#   - Everything else is UNKNOWN and therefore starts as NOT_TESTED. The framework
+#     never assumes support that has not been verified.
+devices:
+  - name: intel_xeon_w2233
+    display_name: "Intel Xeon W-2233 (x86 CPU)"
+    sdk_device_name: "Intel-Xeon"     # DeviceName.INTEL_XEON_W_2233
+    family: x86_cpu
+    risk:
+      new_device: false
+      known_compatibility_issue: false
+    known_unsupported:
+      - runtime: tensorrt
+        reason: "TensorRT targets NVIDIA devices (official example comment: examples/converter & profiler/onnx2tflite.py)"
+
+  - name: raspberry_pi_4b
+    display_name: "Raspberry Pi 4B (ARM CPU)"
+    sdk_device_name: "RaspberryPi4B"  # DeviceName.RASPBERRY_PI_4B
+    family: arm_cpu
+    risk:
+      new_device: false
+      known_compatibility_issue: true  # scenario: INT8 delegate issues previously observed (mock)
+    known_unsupported:
+      - runtime: tensorrt
+        reason: "TensorRT targets NVIDIA devices (official example comment)"
+      - runtime: openvino
+        reason: "OpenVINO targets Intel CPUs (official example comment)"
+
+  - name: jetson_orin_nano
+    display_name: "NVIDIA Jetson Orin Nano"
+    sdk_device_name: "Jetson-Orin-Nano"  # DeviceName.JETSON_ORIN_NANO
+    family: nvidia_gpu
+    risk:
+      new_device: true
+      known_compatibility_issue: false
+    known_unsupported:
+      - runtime: openvino
+        reason: "OpenVINO targets Intel CPUs (official example comment)"

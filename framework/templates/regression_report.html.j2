@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Regression Report {{ r.baseline_run_id }} → {{ r.current_run_id }}</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1200px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.6rem; margin-bottom: .25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  .muted { color: #616e7c; font-size: .9rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; }
+  th { background: #f5f7fa; font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS, .IMPROVED, .UNCHANGED { background: #e3f6ec; color: #0f5132; }
+  .REGRESSION { background: #fbe3e4; color: #7a1e26; }
+  .NEW, .MISSING, .NOT_COMPARABLE { background: #eef0f3; color: #3e4c59; }
+  .kv td:first-child { width: 28%; color: #616e7c; }
+  code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+  .note { background: #f5f7fa; border-left: 3px solid #9aa5b1; padding: .5rem .75rem; margin: 1rem 0; font-size: .88rem; }
+</style>
+</head>
+<body>
+<h1>Regression Report</h1>
+<p class="muted">Baseline <code>{{ r.baseline_run_id }}</code> ({{ r.baseline_timestamp }}) → Current <code>{{ r.current_run_id }}</code> ({{ r.current_timestamp }})</p>
+<p>Overall: <span class="status {{ r.overall }}">{{ r.overall }}</span></p>
+<div class="note">REGRESSION = any compared metric worse than its threshold, status degraded, artifact checksum became invalid, or reproducibility level dropped out of the accepted set. No statistical significance is claimed; thresholds are explicit and configurable.</div>
+
+<h2>1. Summary</h2>
+<table class="kv">
+  {% for k, v in r.summary.items() %}<tr><td><span class="status {{ k }}">{{ k }}</span></td><td class="num">{{ v }}</td></tr>{% endfor %}
+</table>
+
+<h2>2. Thresholds</h2>
+<table class="kv">
+  {% for k, v in r.thresholds.items() %}<tr><td>{{ k }}</td><td class="num">{{ v }}</td></tr>{% endfor %}
+</table>
+
+<h2>3. Regressions</h2>
+{% set regs = r.comparisons | selectattr("result", "equalto", "REGRESSION") | list %}
+{% if regs %}
+<table>
+<tr><th>Case</th><th>Configuration</th><th>Status (base → cur)</th><th>Reasons</th></tr>
+{% for c in regs %}
+<tr>
+  <td><code>{{ c.case_id }}</code></td>
+  <td>{{ c.configuration.model }} / {{ c.configuration.device }} / {{ c.configuration.runtime }} / {{ c.configuration.backend }} / {{ c.configuration.optimization }}</td>
+  <td>{{ c.baseline_status }} → {{ c.current_status }}</td>
+  <td><ul>{% for reason in c.reasons %}<li>{{ reason }}</li>{% endfor %}</ul></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}<p class="muted">No regressions detected.</p>{% endif %}
+
+<h2>4. Metric Comparison (all compared cases)</h2>
+<table>
+<tr><th>Case</th><th>Metric</th><th class="num">Baseline</th><th class="num">Current</th><th class="num">Delta</th><th class="num">Threshold</th><th>Result</th></tr>
+{% for c in r.comparisons if c.deltas %}
+  {% for d in c.deltas %}
+  <tr>
+    <td>{% if loop.first %}<code>{{ c.case_id }}</code><br><span class="muted">{{ c.configuration.model }} / {{ c.configuration.device }} / {{ c.configuration.runtime }} / {{ c.configuration.backend }} / {{ c.configuration.optimization }}</span>{% endif %}</td>
+    <td>{{ d.metric }}</td>
+    <td class="num">{{ d.baseline if d.baseline is not none else "-" }}</td>
+    <td class="num">{{ d.current if d.current is not none else "-" }}</td>
+    <td class="num">{{ d.delta if d.delta is not none else "-" }} {{ d.unit }}</td>
+    <td class="num">{{ d.threshold }}</td>
+    <td><span class="status {{ d.result }}">{{ d.result }}</span></td>
+  </tr>
+  {% endfor %}
+{% endfor %}
+</table>
+
+<h2>5. Non-metric Changes</h2>
+<table>
+<tr><th>Case</th><th>Result</th><th>Artifact changed</th><th>Reproducibility change</th><th>Notes</th></tr>
+{% for c in r.comparisons %}
+<tr>
+  <td><code>{{ c.case_id }}</code></td>
+  <td><span class="status {{ c.result }}">{{ c.result }}</span></td>
+  <td>{{ c.artifact_changed if c.artifact_changed is not none else "-" }}</td>
+  <td>{{ c.reproducibility_change | join(" → ") if c.reproducibility_change else "-" }}</td>
+  <td class="muted">{{ c.reasons | join("; ") }}</td>
+</tr>
+{% endfor %}
+</table>
+<p class="muted">NetsPresso-based AI Model Optimization QA Automation Framework (personal portfolio project)</p>
+</body>
+</html>

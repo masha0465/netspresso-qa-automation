@@ -1,0 +1,26 @@
+# Risk-based selection configuration.
+#
+# Each factor is a boolean flag defined on a dimension item in the other config
+# files (models.yaml, devices.yaml, ...). The score of a combination is the sum of
+# the weights of all factors that are true, plus the optimization/backend
+# structural factors. Levels are assigned by threshold.
+#
+# No claim of statistical or mathematical optimality is made: this is an
+# explicit, reviewable heuristic that a QA team can tune.
+risk:
+  weights:
+    new_model: 3
+    new_device: 3
+    new_runtime: 2
+    new_backend: 2
+    new_method: 2
+    previous_regression: 3
+    customer_facing: 2
+    known_compatibility_issue: 3
+    lossy_precision: 1          # INT8 (lossy) optimizations carry inherent accuracy risk
+  levels:
+    high_min_score: 9
+    medium_min_score: 5
+  selection:
+    # Which risk levels are executed when strategy = "risk"
+    include_levels: [HIGH]

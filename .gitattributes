@@ -1,0 +1,14 @@
+* text=auto eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.j2 text eol=lf
+*.onnx binary
+*.pt binary
+*.pth binary
+*.h5 binary
+*.tflite binary
+*.npy binary
+*.engine binary

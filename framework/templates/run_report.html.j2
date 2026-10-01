@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>QA Run Report {{ r.run_id }}</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1200px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.6rem; margin-bottom: .25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  .muted { color: #616e7c; font-size: .9rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; }
+  th { background: #f5f7fa; font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS { background: #e3f6ec; color: #0f5132; }
+  .FAIL { background: #fbe3e4; color: #7a1e26; }
+  .BLOCKED { background: #fff1cc; color: #6b4e00; }
+  .NOT_TESTED { background: #eef0f3; color: #3e4c59; }
+  .UNSUPPORTED { background: #e6e9f5; color: #2f3b6e; }
+  .WARN { background: #fff1cc; color: #6b4e00; }
+  .NOT_APPLICABLE { background: #eef0f3; color: #3e4c59; }
+  .kv td:first-child { width: 28%; color: #616e7c; }
+  code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+  .note { background: #f5f7fa; border-left: 3px solid #9aa5b1; padding: .5rem .75rem; margin: 1rem 0; font-size: .88rem; }
+  details summary { cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>AI Model Optimization QA Run Report</h1>
+<p class="muted">Run <code>{{ r.run_id }}</code> · {{ r.timestamp }} · adapter <code>{{ r.environment.adapter }} {{ r.environment.adapter_version }}</code> · strategy <code>{{ r.strategy }}</code> · framework v{{ r.framework_version }}</p>
+<div class="note">Personal portfolio project using publicly available NetsPresso SDK/API resources. Results produced by the <code>{{ r.environment.adapter }}</code> adapter{% if r.environment.adapter == "mock" %} are <strong>simulated and deterministic</strong>; they are not measurements of real models{% endif %}.</div>
+
+<h2>1. Execution Summary</h2>
+<table class="kv">
+  <tr><td>Total combinations (full matrix)</td><td class="num">{{ r.summary.total_combinations }}</td></tr>
+  <tr><td>Selected for execution</td><td class="num">{{ r.summary.selected_combinations }}</td></tr>
+  <tr><td>Tested (PASS + FAIL + BLOCKED)</td><td class="num">{{ r.summary.tested_combinations }}</td></tr>
+  <tr><td><span class="status PASS">PASS</span></td><td class="num">{{ r.summary.PASS }}</td></tr>
+  <tr><td><span class="status FAIL">FAIL</span></td><td class="num">{{ r.summary.FAIL }}</td></tr>
+  <tr><td><span class="status BLOCKED">BLOCKED</span></td><td class="num">{{ r.summary.BLOCKED }}</td></tr>
+  <tr><td><span class="status NOT_TESTED">NOT_TESTED</span> <span class="muted">— support unknown, not yet verified</span></td><td class="num">{{ r.summary.NOT_TESTED }}</td></tr>
+  <tr><td><span class="status UNSUPPORTED">UNSUPPORTED</span> <span class="muted">— explicitly known unsupported; not a failure</span></td><td class="num">{{ r.summary.UNSUPPORTED }}</td></tr>
+  <tr><td>Coverage of feasible combinations (tested / non-unsupported)</td><td class="num">{{ r.summary.coverage_percent_of_feasible }} %</td></tr>
+</table>
+
+<h2>2. Matrix &amp; Selection</h2>
+<table class="kv">
+  {% for k, v in r.matrix.dimension_sizes.items() %}<tr><td>Dimension: {{ k }}</td><td class="num">{{ v }}</td></tr>{% endfor %}
+  <tr><td>Feasible combinations</td><td class="num">{{ r.matrix.feasible_combinations }}</td></tr>
+  <tr><td>Unknown-support combinations (start as NOT_TESTED)</td><td class="num">{{ r.matrix.unknown_support_combinations }}</td></tr>
+  {% for k, v in r.selection.items() if k != "infeasible_pairs" %}<tr><td>Selection: {{ k }}</td><td class="num">{{ v }}</td></tr>{% endfor %}
+</table>
+{% if r.selection.infeasible_pairs %}
+<details><summary class="muted">Infeasible pairs excluded from pairwise coverage ({{ r.selection.infeasible_pairs | length }})</summary>
+<ul class="muted">{% for p in r.selection.infeasible_pairs %}<li><code>{{ p }}</code></li>{% endfor %}</ul></details>
+{% endif %}
+<table class="kv">
+  {% for k, v in r.risk_distribution.items() %}<tr><td>Risk level {{ k }}</td><td class="num">{{ v }}</td></tr>{% endfor %}
+</table>
+
+<h2>3. Quality Gate</h2>
+<table class="kv">
+  <tr><td>Evaluated</td><td class="num">{{ r.summary.quality_gate.evaluated }}</td></tr>
+  <tr><td>Gate PASS</td><td class="num">{{ r.summary.quality_gate.pass }}</td></tr>
+  <tr><td>Gate FAIL</td><td class="num">{{ r.summary.quality_gate.fail }}</td></tr>
+</table>
+
+<h2>4. Defect Distribution</h2>
+{% if r.summary.defects %}
+<table><tr><th>Category</th><th class="num">Count</th></tr>
+{% for k, v in r.summary.defects.items() %}<tr><td><code>{{ k }}</code></td><td class="num">{{ v }}</td></tr>{% endfor %}
+</table>
+{% else %}<p class="muted">No defects classified.</p>{% endif %}
+
+<h2>5. Failed / Blocked Scenarios</h2>
+{% if failed %}
+<table>
+<tr><th>Case</th><th>Configuration</th><th>Status</th><th>Gate reasons / error</th><th>Defect</th><th>Suspected cause</th></tr>
+{% for c in failed %}
+<tr>
+  <td><code>{{ c.case_id }}</code>{% if c.execution and c.execution.scenario_id %}<br><span class="muted">{{ c.execution.scenario_id }}</span>{% endif %}</td>
+  <td>{{ c.model }} / {{ c.device }} / {{ c.runtime }} / {{ c.backend }} / {{ c.optimization }}</td>
+  <td><span class="status {{ c.status }}">{{ c.status }}</span></td>
+  <td>{% if c.quality_gate and c.quality_gate.reasons %}<ul>{% for reason in c.quality_gate.reasons %}<li>{{ reason }}</li>{% endfor %}</ul>{% elif c.error %}{{ c.error.message }}{% endif %}</td>
+  <td>{% if c.defect %}<code>{{ c.defect.category }}</code> <span class="muted">{{ c.defect.severity }}</span>{% endif %}</td>
+  <td>{{ c.defect.suspected_cause if c.defect and c.defect.suspected_cause else "-" }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}<p class="muted">No failed or blocked cases.</p>{% endif %}
+
+<h2>6. Tested Cases — Metrics &amp; Gate Criteria</h2>
+<table>
+<tr><th>Case</th><th>Configuration</th><th>Status</th><th class="num">Acc. base</th><th class="num">Acc. cur</th><th class="num">Latency base (ms)</th><th class="num">Latency cur (ms)</th><th class="num">Mem base (MB)</th><th class="num">Mem cur (MB)</th><th>Artifact</th><th>Repro.</th><th>Criteria</th></tr>
+{% for c in tested %}
+<tr>
+  <td><code>{{ c.case_id }}</code></td>
+  <td>{{ c.model }} / {{ c.device }} / {{ c.runtime }} / {{ c.backend }} / {{ c.optimization }}</td>
+  <td><span class="status {{ c.status }}">{{ c.status }}</span></td>
+  <td class="num">{{ c.baseline_metrics.accuracy | fmt(4) if c.baseline_metrics else "-" }}</td>
+  <td class="num">{{ c.metrics.accuracy | fmt(4) if c.metrics else "-" }}</td>
+  <td class="num">{{ c.baseline_metrics.latency_ms | fmt if c.baseline_metrics else "-" }}</td>
+  <td class="num">{{ c.metrics.latency_ms | fmt if c.metrics else "-" }}</td>
+  <td class="num">{{ c.baseline_metrics.memory_mb | fmt if c.baseline_metrics else "-" }}</td>
+  <td class="num">{{ c.metrics.memory_mb | fmt if c.metrics else "-" }}</td>
+  <td>{% if c.artifact %}{{ "valid" if c.artifact.checksum_valid else "INVALID" }}{% else %}-{% endif %}</td>
+  <td>{{ c.reproducibility.level if c.reproducibility else "-" }}</td>
+  <td>{% if c.quality_gate %}{% for cr in c.quality_gate.criteria %}<span class="status {{ cr.status }}" title="{{ cr.message }}">{{ cr.name }}</span> {% endfor %}{% endif %}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>7. Full Matrix</h2>
+<details><summary>Show all {{ r.cases | length }} combinations</summary>
+<table>
+<tr><th>Case</th><th>Model</th><th>Device</th><th>Runtime</th><th>Backend</th><th>Optimization</th><th>Support</th><th>Risk</th><th>Status</th><th>Selection reason / support reason</th></tr>
+{% for c in r.cases %}
+<tr>
+  <td><code>{{ c.case_id }}</code></td>
+  <td>{{ c.model }}</td><td>{{ c.device }}</td><td>{{ c.runtime }}</td><td>{{ c.backend }}</td><td>{{ c.optimization }}</td>
+  <td>{{ c.support }}</td>
+  <td>{{ c.risk.level if c.risk else "-" }} ({{ c.risk.score if c.risk else "-" }})</td>
+  <td><span class="status {{ c.status }}">{{ c.status }}</span></td>
+  <td class="muted">{{ c.selection_reason or c.support_reason or "" }}</td>
+</tr>
+{% endfor %}
+</table>
+</details>
+
+<h2>8. Environment</h2>
+<table class="kv">
+  {% for k, v in r.environment.items() if k != "extra" %}<tr><td>{{ k }}</td><td>{{ v if v is not none else "-" }}</td></tr>{% endfor %}
+  {% for k, v in r.environment.extra.items() %}<tr><td>extra.{{ k }}</td><td>{{ v }}</td></tr>{% endfor %}
+  <tr><td>config_dir</td><td><code>{{ r.config_dir }}</code></td></tr>
+</table>
+<p class="muted">Generated {{ r.timestamp }} · NetsPresso-based AI Model Optimization QA Automation Framework (personal portfolio project)</p>
+</body>
+</html>

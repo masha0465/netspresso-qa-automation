@@ -1,0 +1,33 @@
+# Quality Gate configuration.
+#
+# Each criterion has a threshold and a `required` flag.
+#   required: true  -> a failing criterion fails the whole gate (mandatory)
+#   required: false -> a failing criterion is reported as WARN and does not
+#                      change the overall verdict
+#
+# Semantics (documented, generic; not NetsPresso-specific):
+#   accuracy.max_drop_percent      absolute drop in percentage points
+#                                  (baseline 0.520 -> current 0.512 = 0.8 pp)
+#   latency.max_increase_percent   relative increase vs baseline; decreases pass
+#   memory.max_increase_percent    relative increase vs baseline; decreases pass
+#   model_size.max_increase_percent relative increase vs baseline; decreases pass
+#   artifact.required              artifact must exist and checksum must validate
+#   reproducibility.required       level must be BITWISE_ or FUNCTIONALLY_REPRODUCIBLE;
+#                                  NOT_VERIFIED fails only when required is true
+quality_gate:
+  accuracy:
+    max_drop_percent: 1.0
+    required: true
+  latency:
+    max_increase_percent: 10.0
+    required: true
+  memory:
+    max_increase_percent: 15.0
+    required: true
+  model_size:
+    max_increase_percent: 10.0
+    required: false
+  artifact:
+    required: true
+  reproducibility:
+    required: true

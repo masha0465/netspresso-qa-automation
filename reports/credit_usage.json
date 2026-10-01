@@ -1,0 +1,8 @@
+{
+  "starting_credit": 500,
+  "used_credit": 0,
+  "remaining_estimate": 500,
+  "currency_note": "NetsPresso Credits. Values are estimates until verified against the account API (usage_type = actual).",
+  "last_updated": "2026-10-01",
+  "operations": []
+}

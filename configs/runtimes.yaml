@@ -1,0 +1,32 @@
+# Runtime dimension of the test matrix.
+#
+# `sdk_framework` maps to netspresso.enums.Framework values verified in Phase 1
+# where a mapping exists. `null` means the runtime is evaluated locally only.
+runtimes:
+  - name: onnxruntime
+    display_name: "ONNX Runtime"
+    sdk_framework: "onnx"
+    risk:
+      new_runtime: false
+      previous_regression: false
+
+  - name: tflite
+    display_name: "TensorFlow Lite"
+    sdk_framework: "tensorflow_lite"
+    risk:
+      new_runtime: false
+      previous_regression: false
+
+  - name: tensorrt
+    display_name: "TensorRT"
+    sdk_framework: "tensorrt"
+    risk:
+      new_runtime: false
+      previous_regression: true       # scenario: FP16 latency regression recorded previously (mock)
+
+  - name: openvino
+    display_name: "OpenVINO"
+    sdk_framework: "openvino"
+    risk:
+      new_runtime: true
+      previous_regression: false

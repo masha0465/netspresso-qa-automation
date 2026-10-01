@@ -1,0 +1,74 @@
+# QA pipeline for the main framework (Python 3.14, MockAdapter only).
+#
+# Safety guarantees for a public repository:
+#   * never installs the `netspresso` SDK
+#   * never reads NETSPRESSO_API_KEY (no secrets are referenced)
+#   * never contacts NetsPresso; MockAdapter is fully offline
+#   * therefore consumes 0 NetsPresso credits
+# Real API experiments are run manually from the separate Python 3.11
+# environment (.venv-netspresso) and are intentionally NOT part of CI.
+name: qa
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install main framework (no NetsPresso SDK)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+          python - <<'EOF'
+          import importlib.util, sys
+          assert importlib.util.find_spec("netspresso") is None, "netspresso must not be installed in CI"
+          print("OK: netspresso not installed; python", sys.version)
+          EOF
+
+      - name: Lint (ruff)
+        run: ruff check framework tests scripts
+
+      - name: Unit tests
+        run: pytest tests/unit -m unit -q
+
+      - name: Mock integration tests (matrix, pairwise, risk, Quality Gate)
+        run: pytest tests/integration -m integration -q
+
+      - name: Regression tests
+        run: pytest tests/regression -m regression -q
+
+      - name: Full suite with coverage + JUnit report
+        run: pytest --cov=framework --cov-report=term-missing --cov-report=xml:reports/ci/coverage.xml --junitxml=reports/ci/junit.xml -q
+
+      - name: Mock QA workflow (JSON/HTML reports + regression demo)
+        run: python scripts/run_mock_qa.py --strategy pairwise --regression-demo --out reports/ci/mock_pairwise
+
+      - name: Credit ledger must remain untouched (0 / 500)
+        run: |
+          python - <<'EOF'
+          import json
+          d = json.load(open("reports/credit_usage.json"))
+          assert d["used_credit"] == 0 and d["operations"] == [], d
+          print("credit ledger OK:", d["used_credit"], "/", d["starting_credit"])
+          EOF
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-reports
+          path: reports/ci/
+          retention-days: 14

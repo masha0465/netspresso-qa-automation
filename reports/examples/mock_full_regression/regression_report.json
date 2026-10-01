@@ -1,0 +1,6489 @@
+{
+  "baseline_run_id": "RUN-18c03d4100",
+  "current_run_id": "RUN-03394a51be",
+  "baseline_timestamp": "2026-10-01T00:00:00+00:00",
+  "current_timestamp": "2026-10-01T00:00:00+00:00",
+  "overall": "REGRESSION",
+  "thresholds": {
+    "accuracy_max_drop_pp": 1.0,
+    "latency_max_increase_percent": 10.0,
+    "memory_max_increase_percent": 15.0,
+    "model_size_max_increase_percent": 10.0
+  },
+  "summary": {
+    "PASS": 113,
+    "REGRESSION": 3,
+    "NEW": 0,
+    "MISSING": 0,
+    "NOT_COMPARABLE": 10
+  },
+  "not_executed_in_both": 198,
+  "comparisons": [
+    {
+      "case_id": "TC-019001d8",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7115,
+          "current": 0.7115,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 2.722,
+          "current": 2.722,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.583,
+          "current": 23.583,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-022362bf",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.514,
+          "current": 0.514,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 19.958,
+          "current": 19.958,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 58.593,
+          "current": 58.593,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-03b64841",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7818,
+          "current": 0.7818,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 548.916,
+          "current": 548.916,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 155.851,
+          "current": 155.851,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-057c8b05",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5153,
+          "current": 0.5153,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 197.104,
+          "current": 197.104,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 70.678,
+          "current": 70.678,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-0992a781",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7801,
+          "current": 0.7801,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 33.496,
+          "current": 33.496,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 130.483,
+          "current": 130.483,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-0a1676c3",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "FAIL",
+      "result": "REGRESSION",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5188,
+          "current": 0.5008,
+          "delta": 1.8,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "REGRESSION"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 28.314,
+          "current": 28.314,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 75.796,
+          "current": 75.796,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": [
+        "status degraded PASS -> FAIL",
+        "accuracy: 0.5188 -> 0.5008 (delta 1.8, threshold 1.0)"
+      ]
+    },
+    {
+      "case_id": "TC-0b648e95",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5193,
+          "current": 0.5193,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 28.09,
+          "current": 28.09,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 75.275,
+          "current": 75.275,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-0d13d7a9",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7802,
+          "current": 0.7802,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 356.212,
+          "current": 356.212,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 128.442,
+          "current": 128.442,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-13737853",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5137,
+          "current": 0.5137,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 20.311,
+          "current": 20.311,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.501,
+          "current": 59.501,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-13bf31ba",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7166,
+          "current": 0.7166,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.44,
+          "current": 6.44,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.86,
+          "current": 30.86,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-1663cd50",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "FAIL",
+      "result": "REGRESSION",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7117,
+          "current": 0.7117,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 4.446,
+          "current": 11.541,
+          "delta": 159.582,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "REGRESSION"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.937,
+          "current": 23.937,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": [
+        "status degraded PASS -> FAIL",
+        "latency_ms: 4.446 -> 11.541 (delta 159.582, threshold 10.0)"
+      ]
+    },
+    {
+      "case_id": "TC-19885d05",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7854,
+          "current": 0.7854,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 516.934,
+          "current": 516.934,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 165.206,
+          "current": 165.206,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-1b4f5d27",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5154,
+          "current": 0.5154,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 17.915,
+          "current": 17.915,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 69.694,
+          "current": 69.694,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-1dc2d9f6",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5155,
+          "current": 0.5155,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 198.054,
+          "current": 198.054,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 71.807,
+          "current": 71.807,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-1dd7b5f0",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "FAIL",
+      "current_status": "FAIL",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-1feeeaf7",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7801,
+          "current": 0.7801,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 54.577,
+          "current": 54.577,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 128.947,
+          "current": 128.947,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-22927836",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7166,
+          "current": 0.7166,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 41.87,
+          "current": 41.87,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 29.941,
+          "current": 29.941,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-2377a0cf",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5136,
+          "current": 0.5136,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 11.571,
+          "current": 11.571,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.354,
+          "current": 59.354,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-25122491",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.712,
+          "current": 0.712,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 28.848,
+          "current": 28.848,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.634,
+          "current": 23.634,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-2643eff8",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7117,
+          "current": 0.7117,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 28.337,
+          "current": 28.337,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.527,
+          "current": 23.527,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-29b27126",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7799,
+          "current": 0.7799,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 55.492,
+          "current": 55.492,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 129.218,
+          "current": 129.218,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-29dd53e4",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7168,
+          "current": 0.7168,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 3.878,
+          "current": 3.878,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.594,
+          "current": 30.594,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-2a07c2aa",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7818,
+          "current": 0.7818,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 538.626,
+          "current": 538.626,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 156.35,
+          "current": 156.35,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-2c3a9994",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7804,
+          "current": 0.7804,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 54.337,
+          "current": 54.337,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 131.203,
+          "current": 131.203,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-2e58f367",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7799,
+          "current": 0.7799,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 370.152,
+          "current": 370.152,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 128.831,
+          "current": 128.831,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-2e6e0d66",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5189,
+          "current": 0.5189,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 185.753,
+          "current": 185.753,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 78.245,
+          "current": 78.245,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-33b99656",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7799,
+          "current": 0.7799,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 32.318,
+          "current": 32.318,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 130.121,
+          "current": 130.121,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-33e3b487",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5191,
+          "current": 0.5191,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 17.207,
+          "current": 17.207,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 75.931,
+          "current": 75.931,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-34ec367a",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7854,
+          "current": 0.7854,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 80.524,
+          "current": 80.524,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 167.698,
+          "current": 167.698,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-3687db15",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "FAIL",
+      "result": "REGRESSION",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7171,
+          "current": 0.7171,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 40.882,
+          "current": 40.882,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.743,
+          "current": 30.743,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": [
+        "BITWISE_REPRODUCIBLE",
+        "NOT_REPRODUCIBLE"
+      ],
+      "reasons": [
+        "status degraded PASS -> FAIL",
+        "reproducibility degraded BITWISE_REPRODUCIBLE -> NOT_REPRODUCIBLE"
+      ]
+    },
+    {
+      "case_id": "TC-3766224e",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7852,
+          "current": 0.7852,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 78.849,
+          "current": 78.849,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 168.981,
+          "current": 168.981,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-3838431c",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.519,
+          "current": 0.519,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 27.786,
+          "current": 27.786,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 76.741,
+          "current": 76.741,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-3cb57ccb",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.516,
+          "current": 0.516,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 30.075,
+          "current": 30.075,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 71.973,
+          "current": 71.973,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-3f7765f7",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7132,
+          "current": 0.7132,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.579,
+          "current": 6.579,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.078,
+          "current": 28.078,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-41f81a69",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5187,
+          "current": 0.5187,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 180.727,
+          "current": 180.727,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 77.026,
+          "current": 77.026,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-4233c0c1",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5192,
+          "current": 0.5192,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 190.631,
+          "current": 190.631,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 76.425,
+          "current": 76.425,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-43d47a02",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7135,
+          "current": 0.7135,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 45.042,
+          "current": 45.042,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.287,
+          "current": 28.287,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-45ab33f0",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7813,
+          "current": 0.7813,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 555.921,
+          "current": 555.921,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 155.241,
+          "current": 155.241,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-45c981fe",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7172,
+          "current": 0.7172,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 42.429,
+          "current": 42.429,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.104,
+          "current": 30.104,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-492fc940",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7137,
+          "current": 0.7137,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 42.885,
+          "current": 42.885,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.001,
+          "current": 28.001,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-49db50ea",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7849,
+          "current": 0.7849,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 49.359,
+          "current": 49.359,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 166.556,
+          "current": 166.556,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-4c1563c6",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7847,
+          "current": 0.7847,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 48.488,
+          "current": 48.488,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 166.309,
+          "current": 166.309,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-53b2a739",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7797,
+          "current": 0.7797,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 33.553,
+          "current": 33.553,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 131.992,
+          "current": 131.992,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-54844f55",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7123,
+          "current": 0.7123,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 4.365,
+          "current": 4.365,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.666,
+          "current": 23.666,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-5761cfb9",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "UNSUPPORTED",
+      "current_status": "UNSUPPORTED",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-57fdb5b2",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7852,
+          "current": 0.7852,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 48.288,
+          "current": 48.288,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 171.121,
+          "current": 171.121,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-584c0cb9",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7798,
+          "current": 0.7798,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 54.591,
+          "current": 54.591,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 131.042,
+          "current": 131.042,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-5a89c4e4",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7846,
+          "current": 0.7846,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 518.14,
+          "current": 518.14,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 168.418,
+          "current": 168.418,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-5bb2e80a",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7134,
+          "current": 0.7134,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.759,
+          "current": 6.759,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.54,
+          "current": 28.54,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-5beea90f",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-62bcdfb2",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5154,
+          "current": 0.5154,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 193.625,
+          "current": 193.625,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 71.184,
+          "current": 71.184,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-64d3ed58",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5136,
+          "current": 0.5136,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 11.872,
+          "current": 11.872,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.031,
+          "current": 59.031,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-67ba6732",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5155,
+          "current": 0.5155,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 17.641,
+          "current": 17.641,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 71.801,
+          "current": 71.801,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-6b8764ed",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "FAIL",
+      "current_status": "FAIL",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-6baee999",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7136,
+          "current": 0.7136,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 3.946,
+          "current": 3.946,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 27.874,
+          "current": 27.874,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-6e983948",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7169,
+          "current": 0.7169,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 42.711,
+          "current": 42.711,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.945,
+          "current": 30.945,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-6f4015d0",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "FAIL",
+      "current_status": "FAIL",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-6f99e7de",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.514,
+          "current": 0.514,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 130.929,
+          "current": 130.929,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.946,
+          "current": 59.946,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-70ebd445",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7816,
+          "current": 0.7816,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 83.862,
+          "current": 83.862,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 157.013,
+          "current": 157.013,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-71d639bf",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.78,
+          "current": 0.78,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 367.172,
+          "current": 367.172,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 129.728,
+          "current": 129.728,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-732e9e90",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.519,
+          "current": 0.519,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 188.993,
+          "current": 188.993,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 76.876,
+          "current": 76.876,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-73a117e5",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7803,
+          "current": 0.7803,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 363.683,
+          "current": 363.683,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 131.797,
+          "current": 131.797,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-75eb100b",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "FAIL",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7849,
+          "current": 0.7849,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 85.214,
+          "current": 49.106,
+          "delta": -42.373,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "IMPROVED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 167.184,
+          "current": 167.184,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-77989d7c",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7137,
+          "current": 0.7137,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 43.56,
+          "current": 43.56,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 27.938,
+          "current": 27.938,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-79e2f529",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7168,
+          "current": 0.7168,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 3.99,
+          "current": 3.99,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 29.924,
+          "current": 29.924,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-7abb8878",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5188,
+          "current": 0.5188,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 17.127,
+          "current": 17.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 77.298,
+          "current": 77.298,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-7e786422",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5144,
+          "current": 0.5144,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 11.553,
+          "current": 11.553,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.59,
+          "current": 59.59,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-7ecf20df",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7135,
+          "current": 0.7135,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 3.97,
+          "current": 3.97,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 27.673,
+          "current": 27.673,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-7ef642c2",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5143,
+          "current": 0.5143,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 19.736,
+          "current": 19.736,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 60.14,
+          "current": 60.14,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-7f0c31dc",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7853,
+          "current": 0.7853,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 82.621,
+          "current": 82.621,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 167.859,
+          "current": 167.859,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-800b82c2",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7847,
+          "current": 0.7847,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 49.538,
+          "current": 49.538,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 166.167,
+          "current": 166.167,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-81189b4c",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7168,
+          "current": 0.7168,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.492,
+          "current": 6.492,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 29.873,
+          "current": 29.873,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-82afbd38",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5136,
+          "current": 0.5136,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 130.613,
+          "current": 130.613,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 60.456,
+          "current": 60.456,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-901ee4d7",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.717,
+          "current": 0.717,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 3.899,
+          "current": 3.899,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.324,
+          "current": 30.324,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-91c58704",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "FAIL",
+      "current_status": "FAIL",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.712,
+          "current": 0.712,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 2.678,
+          "current": 2.678,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.331,
+          "current": 23.331,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-92eaae12",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-95ad56a0",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7165,
+          "current": 0.7165,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 3.769,
+          "current": 3.769,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.344,
+          "current": 30.344,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-96837770",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5138,
+          "current": 0.5138,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 12.193,
+          "current": 12.193,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.833,
+          "current": 59.833,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-96e80e36",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5144,
+          "current": 0.5144,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 12.101,
+          "current": 12.101,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.91,
+          "current": 59.91,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-a03d1747",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.782,
+          "current": 0.782,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 50.766,
+          "current": 50.766,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 154.108,
+          "current": 154.108,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-a3126365",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5139,
+          "current": 0.5139,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 19.807,
+          "current": 19.807,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 58.741,
+          "current": 58.741,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-a6a60347",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5187,
+          "current": 0.5187,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 29.335,
+          "current": 29.335,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 78.25,
+          "current": 78.25,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-a7df49b7",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7116,
+          "current": 0.7116,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 2.742,
+          "current": 2.742,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.671,
+          "current": 23.671,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-a8bd376c",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7798,
+          "current": 0.7798,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 32.962,
+          "current": 32.962,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 127.973,
+          "current": 127.973,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-b84a7977",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "FAIL",
+      "current_status": "FAIL",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7122,
+          "current": 0.7122,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 4.411,
+          "current": 4.411,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.882,
+          "current": 23.882,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-ba4f852c",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7845,
+          "current": 0.7845,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 80.064,
+          "current": 80.064,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 165.507,
+          "current": 165.507,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-bb1baf52",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7811,
+          "current": 0.7811,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 81.369,
+          "current": 81.369,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 155.635,
+          "current": 155.635,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-bbcb1ae6",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7175,
+          "current": 0.7175,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 3.921,
+          "current": 3.921,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.843,
+          "current": 30.843,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-bcd1e760",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "FAIL",
+      "current_status": "FAIL",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-be1a781d",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7138,
+          "current": 0.7138,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.716,
+          "current": 6.716,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.248,
+          "current": 28.248,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-bf6aec2f",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7136,
+          "current": 0.7136,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 4.132,
+          "current": 4.132,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.184,
+          "current": 28.184,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c075c256",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7119,
+          "current": 0.7119,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 29.176,
+          "current": 29.176,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.264,
+          "current": 23.264,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c184ebce",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5139,
+          "current": 0.5139,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 19.557,
+          "current": 19.557,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.775,
+          "current": 59.775,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c192cd67",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.717,
+          "current": 0.717,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.435,
+          "current": 6.435,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.493,
+          "current": 30.493,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c3583188",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.519,
+          "current": 0.519,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 17.003,
+          "current": 17.003,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 75.508,
+          "current": 75.508,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c50e115c",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7818,
+          "current": 0.7818,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 84.777,
+          "current": 84.777,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 153.625,
+          "current": 153.625,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c602fc80",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5157,
+          "current": 0.5157,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 30.029,
+          "current": 30.029,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 70.128,
+          "current": 70.128,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c74dc774",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "FAIL",
+      "current_status": "FAIL",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.4885,
+          "current": 0.4885,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 129.274,
+          "current": 129.274,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 60.563,
+          "current": 60.563,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c853d868",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5145,
+          "current": 0.5145,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 125.103,
+          "current": 125.103,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 59.909,
+          "current": 59.909,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.348,
+          "current": 3.348,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c86c8805",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tensorrt",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-c8d1f508",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7814,
+          "current": 0.7814,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 528.943,
+          "current": 528.943,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 153.248,
+          "current": 153.248,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c958583e",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7171,
+          "current": 0.7171,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.349,
+          "current": 6.349,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.358,
+          "current": 30.358,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-c9d21f40",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7812,
+          "current": 0.7812,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 49.441,
+          "current": 49.441,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 152.407,
+          "current": 152.407,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-ca3e9af3",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.781,
+          "current": 0.781,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 48.837,
+          "current": 48.837,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 157.583,
+          "current": 157.583,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-ce913248",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7815,
+          "current": 0.7815,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 50.749,
+          "current": 50.749,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 155.893,
+          "current": 155.893,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 16.555,
+          "current": 16.555,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-d27940d0",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "UNSUPPORTED",
+      "current_status": "UNSUPPORTED",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-d2ec540d",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.515,
+          "current": 0.515,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 30.478,
+          "current": 30.478,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 70.978,
+          "current": 70.978,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-d495aff3",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "UNSUPPORTED",
+      "current_status": "UNSUPPORTED",
+      "result": "NOT_COMPARABLE",
+      "deltas": [],
+      "artifact_changed": null,
+      "reproducibility_change": null,
+      "reasons": [
+        "metrics unavailable in baseline and/or current run"
+      ]
+    },
+    {
+      "case_id": "TC-d5c3cba8",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7797,
+          "current": 0.7797,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 34.198,
+          "current": 34.198,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 129.29,
+          "current": 129.29,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-d7cd8099",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "onnxruntime",
+        "backend": "openvino_ep",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5194,
+          "current": 0.5194,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 16.935,
+          "current": 16.935,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 76.858,
+          "current": 76.858,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-d8015d0e",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7118,
+          "current": 0.7118,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 2.744,
+          "current": 2.744,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.968,
+          "current": 23.968,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-d9f42ac2",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5192,
+          "current": 0.5192,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 17.326,
+          "current": 17.326,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 75.593,
+          "current": 75.593,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-df426039",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5156,
+          "current": 0.5156,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 17.358,
+          "current": 17.358,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 71.462,
+          "current": 71.462,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-e24cddbd",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7121,
+          "current": 0.7121,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 4.445,
+          "current": 4.445,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.802,
+          "current": 23.802,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-e2c520e9",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.713,
+          "current": 0.713,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 4.166,
+          "current": 4.166,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.489,
+          "current": 28.489,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-e5265c74",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7846,
+          "current": 0.7846,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 80.751,
+          "current": 80.751,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 171.13,
+          "current": 171.13,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 15.652,
+          "current": 15.652,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-eaa0c560",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5195,
+          "current": 0.5195,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 28.209,
+          "current": 28.209,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 76.775,
+          "current": 76.775,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.448,
+          "current": 6.448,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-eb44caeb",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "openvino",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5152,
+          "current": 0.5152,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 29.796,
+          "current": 29.796,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 72.112,
+          "current": 72.112,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-edd1bf7b",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.5151,
+          "current": 0.5151,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 194.142,
+          "current": 194.142,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 69.993,
+          "current": 69.993,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 6.82,
+          "current": 6.82,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-f38051cb",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "fp16_conversion"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7166,
+          "current": 0.7166,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.361,
+          "current": 6.361,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 30.978,
+          "current": 30.978,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.072,
+          "current": 7.072,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-f4af37ce",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7123,
+          "current": 0.7123,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 28.9,
+          "current": 28.9,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.839,
+          "current": 23.839,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-f559c8f2",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "raspberry_pi_4b",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7134,
+          "current": 0.7134,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 44.651,
+          "current": 44.651,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.096,
+          "current": 28.096,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-f810e324",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7119,
+          "current": 0.7119,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 4.468,
+          "current": 4.468,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.312,
+          "current": 23.312,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-f9ac6955",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "jetson_orin_nano",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7124,
+          "current": 0.7124,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 2.643,
+          "current": 2.643,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 23.736,
+          "current": 23.736,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 3.672,
+          "current": 3.672,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-f9d77239",
+      "configuration": {
+        "model": "mobilenet_v2",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.713,
+          "current": 0.713,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 6.756,
+          "current": 6.756,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 28.002,
+          "current": 28.002,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 7.48,
+          "current": 7.48,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    },
+    {
+      "case_id": "TC-fdd36f66",
+      "configuration": {
+        "model": "pidnet_s",
+        "device": "intel_xeon_w2233",
+        "runtime": "tflite",
+        "backend": "xnnpack",
+        "optimization": "int8_quantization"
+      },
+      "baseline_status": "PASS",
+      "current_status": "PASS",
+      "result": "PASS",
+      "deltas": [
+        {
+          "metric": "accuracy",
+          "baseline": 0.7803,
+          "current": 0.7803,
+          "delta": 0.0,
+          "threshold": 1.0,
+          "unit": "pp (drop)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "latency_ms",
+          "baseline": 55.256,
+          "current": 55.256,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (ms)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "memory_mb",
+          "baseline": 130.901,
+          "current": 130.901,
+          "delta": 0.0,
+          "threshold": 15.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        },
+        {
+          "metric": "model_size_mb",
+          "baseline": 8.127,
+          "current": 8.127,
+          "delta": 0.0,
+          "threshold": 10.0,
+          "unit": "% (MB)",
+          "result": "UNCHANGED"
+        }
+      ],
+      "artifact_changed": false,
+      "reproducibility_change": null,
+      "reasons": []
+    }
+  ]
+}

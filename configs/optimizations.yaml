@@ -1,0 +1,30 @@
+# Optimization dimension of the test matrix.
+#
+# `sdk_operation` names the NetsPresso SDK service that a future NetsPressoAdapter
+# would use. `sdk_credit_constant` is the CLIENT-SIDE constant found in
+# netspresso/enums/credit.py (netspresso==1.17.0). It is used only for budget
+# planning and pre-checks; actual server-side deduction is NOT verified.
+optimizations:
+  - name: fp16_conversion
+    display_name: "FP16 conversion"
+    precision: fp16
+    sdk_operation: convert_model
+    sdk_credit_constant: 50
+    risk:
+      new_method: false
+
+  - name: int8_quantization
+    display_name: "INT8 automatic quantization"
+    precision: int8
+    sdk_operation: automatic_quantization
+    sdk_credit_constant: 50
+    risk:
+      new_method: false
+
+  - name: automatic_compression
+    display_name: "Automatic compression (pruning, ratio 0.5)"
+    precision: fp32
+    sdk_operation: automatic_compression
+    sdk_credit_constant: 25
+    risk:
+      new_method: true
