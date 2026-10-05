@@ -66,8 +66,9 @@ def validate_reproducibility(repro: Reproducibility | None, criterion: Criterion
         return CriterionResult(name=CRITERION, status=CriterionStatus.PASS, observed=level.value, threshold=threshold,
                                message=f"{level.value} over {runs} run(s)", required=criterion.required)
     if level == ReproducibilityLevel.NOT_VERIFIED:
-        status = CriterionStatus.FAIL if criterion.required else CriterionStatus.NOT_APPLICABLE
-        return CriterionResult(name=CRITERION, status=status, observed=level.value, threshold=threshold,
+        # Missing evidence, not a measured failure. The gate turns a required NOT_APPLICABLE into FAIL,
+        # but defect classification must not report a reproducibility *defect* without evidence.
+        return CriterionResult(name=CRITERION, status=CriterionStatus.NOT_APPLICABLE, observed=level.value, threshold=threshold,
                                message="reproducibility not verified (fewer than two runs)", required=criterion.required)
     return CriterionResult(
         name=CRITERION,

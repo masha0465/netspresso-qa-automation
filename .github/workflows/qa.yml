@@ -56,13 +56,15 @@ jobs:
       - name: Mock QA workflow (JSON/HTML reports + regression demo)
         run: python scripts/run_mock_qa.py --strategy pairwise --regression-demo --out reports/ci/mock_pairwise
 
-      - name: Credit ledger must remain untouched (0 / 500)
+      - name: Credit ledger integrity (CI never spends credits; entries must be confirmed real runs)
         run: |
           python - <<'EOF'
           import json
           d = json.load(open("reports/credit_usage.json"))
-          assert d["used_credit"] == 0 and d["operations"] == [], d
-          print("credit ledger OK:", d["used_credit"], "/", d["starting_credit"])
+          charged = sum((o["actual_credit"] if o["usage_type"] == "actual" else o["estimated_credit"]) or 0 for o in d["operations"])
+          assert all(o["confirmation"] and o["usage_type"] in ("actual", "estimated") for o in d["operations"]), d
+          assert d["used_credit"] == charged and d["remaining_estimate"] == d["starting_credit"] - charged, d
+          print("credit ledger OK:", d["used_credit"], "/", d["starting_credit"], "operations:", len(d["operations"]))
           EOF
 
       - name: Upload reports

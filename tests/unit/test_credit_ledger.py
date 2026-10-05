@@ -1,4 +1,5 @@
 import json
+import re
 
 import pytest
 
@@ -55,11 +56,28 @@ def test_save_and_reload_round_trip(tmp_path):
     assert data["last_updated"] is not None
 
 
-def test_repository_ledger_is_untouched(root):
-    """Guard: the real project ledger must stay at 0 / 500 with no operations during mock phases."""
+def test_repository_ledger_integrity(root):
+    """Guard: the real project ledger must be internally consistent and contain only confirmed real entries.
+
+    Mock runs never write here (they use separate simulated ledgers), so every entry must be a
+    confirmed real operation whose charge is explained by an observed (actual) or estimated figure.
+    """
     ledger = CreditLedger(root / "reports" / "credit_usage.json")
-    assert ledger.starting_credit == 500 and ledger.used_credit == 0 and ledger.remaining_estimate == 500
-    assert ledger.operations == [] and ledger.has_actual_usage() is False
+    assert ledger.starting_credit == 500 and ledger.simulated_total == 0
+    charged = 0
+    for op in ledger.operations:
+        assert op["confirmation"] is True and op["adapter"] == "netspresso"
+        assert op["usage_type"] in ("actual", "estimated")
+        if op["usage_type"] == "actual":
+            assert op["actual_credit"] is not None
+            charged += op["actual_credit"]
+        else:
+            assert op["actual_credit"] is None
+            charged += op["estimated_credit"] or 0
+        assert not re.search(r"[A-Za-z]:[\/]Users|/Users/|/home/", json.dumps(op))  # no local paths in the public ledger
+    assert ledger.used_credit == charged
+    assert ledger.remaining_estimate == ledger.starting_credit - ledger.used_credit
+    assert ledger.remaining_estimate >= 100  # project reserve
 
 
 def test_malformed_ledger_is_rejected(tmp_path):

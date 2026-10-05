@@ -123,14 +123,22 @@ def classify(execution: ExecutionResult, gate: QualityGateResult | None) -> Defe
 
 
 def _classify_gate_failure(execution: ExecutionResult, gate: QualityGateResult, affected: dict[str, str]) -> Defect:
-    failed = {c.name: c for c in gate.criteria if c.status in (CriterionStatus.FAIL, CriterionStatus.NOT_APPLICABLE) and c.required}
+    failed = {c.name: c for c in gate.criteria if c.status == CriterionStatus.FAIL and c.required}
+    missing = [c for c in gate.criteria if c.status == CriterionStatus.NOT_APPLICABLE and c.required]
     hits = [(cat, sev, failed[name]) for name, cat, sev in _CRITERION_MAP if name in failed]
     if not hits:
+        # A required criterion that could not be evaluated is missing evidence, not a measured regression.
+        message = (
+            "required criteria could not be evaluated (missing data): " + ", ".join(c.name for c in missing)
+            if missing
+            else "Quality Gate failed without a mapped criterion"
+        )
         return Defect(
             category=DefectCategory.UNCLASSIFIED,
             severity=Severity.MEDIUM,
-            message="Quality Gate failed without a mapped criterion",
+            message=message,
             evidence=list(gate.reasons),
+            suspected_cause=None,
             reproducibility=_reproducibility_label(execution),
             affected_configuration=affected,
         )

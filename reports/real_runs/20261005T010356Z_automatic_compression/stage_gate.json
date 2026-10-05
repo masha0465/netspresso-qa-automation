@@ -1,0 +1,22 @@
+{
+  "overall": "PASS",
+  "criteria": [
+    {
+      "name": "model_size",
+      "status": "PASS",
+      "observed": -73.825,
+      "threshold": 0.0,
+      "message": "model_size 28.485 -> 7.456 MB (-73.83%) within +0.0%",
+      "required": true
+    },
+    {
+      "name": "artifact",
+      "status": "NOT_APPLICABLE",
+      "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+      "threshold": "optional",
+      "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+      "required": false
+    }
+  ],
+  "reasons": []
+}

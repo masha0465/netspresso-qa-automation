@@ -8,7 +8,7 @@
 
 [![qa](https://img.shields.io/badge/CI-GitHub_Actions-informational)](.github/workflows/qa.yml)
 ![python](https://img.shields.io/badge/python-3.14_(framework)_|_3.11_(SDK_env)-blue)
-![credits](https://img.shields.io/badge/NetsPresso_Credits_used-0_/_500-success)
+![credits](https://img.shields.io/badge/NetsPresso_Credits_used-25_/_500-success)
 
 ---
 
@@ -52,7 +52,7 @@ AI 모델 최적화 플랫폼(압축·양자화·변환·프로파일링)은 "�
 | 대상 도메인 | AI 모델 최적화 파이프라인 (NetsPresso 공개 SDK를 참조 대상으로 삼음) |
 | 프레임워크 언어/환경 | Python 3.14, pytest, PyYAML, Jinja2 (최소 의존성) |
 | 실 SDK 환경 | Python 3.11 별도 venv (`.venv-netspresso`, netspresso 1.17.0) — 현재 조사 완료, 실 호출은 미실행 |
-| 현재 단계 | Phase 2–4 완료(Mock 기반 전체 QA 엔진 + CI) → Phase 5-A 완료(실 NetsPressoAdapter **안전 경계 + dry-run**). 실 NetsPresso API 호출 0회, Credit 사용 0 / 500 |
+| 현재 단계 | Phase 2–4(Mock QA 엔진 + CI) → 5-A(안전 경계 + dry-run) → **5-B 완료: 실 NetsPresso 작업 1회 실행** (`automatic_compression`, 2026-10-05). 실 API 작업 1회, Credit 사용 **25 / 500** (계정 잔액 500→475로 관찰) |
 
 ---
 
@@ -369,15 +369,15 @@ Mock 수치는 실제 모델의 측정값이 아니며, HTML 리포트 상단에
 
 ## 16. 향후 NetsPressoAdapter
 
-### 16.1 현재 상태 (Phase 5-A): 안전 경계 + Dry-run만 구현
+### 16.1 현재 상태: 안전 경계 + Dry-run + 실 작업 1종(`automatic_compression`) 구현·1회 실행 검증
 
-`framework/adapters/netspresso_adapter.py`는 MockAdapter와 동일한 `BaseAdapter` 계약을 구현하지만, **이 단계에서는 실 SDK를 호출하지 않습니다.** 실 NetsPresso 실행이 검증되었다는 주장은 하지 않습니다.
+`framework/adapters/netspresso_adapter.py`는 MockAdapter와 동일한 `BaseAdapter` 계약을 구현합니다. 실 실행 경로는 `automatic_compression` **한 가지만** 구현되어 있고, 2026-10-05에 정확히 1회 실행해 E2E 흐름(QA Engine → NetsPressoAdapter → SDK → 실 결과 → 공통 Result Model → Quality Gate → Ledger)을 검증했습니다(§16.3). 다른 작업(convert/quantize/profile/graph_optimize)의 실 경로는 미구현이며 인가되어도 `RealExecutionNotImplementedError`로 거부됩니다.
 
 | ExecutionMode | 조건 | 동작 |
 |---|---|---|
 | `DRY_RUN` (기본) | `execution.mode: dry_run` | 구조화된 실행 계획(`DryRunPlan`)만 생성. SDK import 없음, 네트워크 없음, Credit 0 |
 | `REAL_RUN_UNAUTHORIZED` | `mode: real`이지만 `confirm_credit_use: false` | 어떤 작업도 `RealExecutionNotAuthorizedError`로 즉시 거부 (SDK 접근 전) |
-| `REAL_RUN_AUTHORIZED` | `mode: real` + `confirm_credit_use: true` (`--confirm-credit-use`) | **Phase 5-A에서는 의도적으로 `RealExecutionNotImplementedError`** — 실제 실행 경로는 Credit을 쓰지 않고는 검증할 수 없으므로 Phase 5-B에서 승인 후 구현 |
+| `REAL_RUN_AUTHORIZED` | `mode: real` + `confirm_credit_use: true` (`--confirm-credit-use`) | `REAL_IMPLEMENTED_OPERATIONS`(현재 `automatic_compression`)만 실행. 순서: 정책 → 구현 여부 → 키 존재 확인 → SDK 지연 import → 인증(잔액 before) → **서비스 호출 1회** → 잔액 after → Result Model 매핑. 재시도 없음. 미구현 작업은 `RealExecutionNotImplementedError` |
 
 - SDK는 `importlib.import_module("netspresso")`로 **지연 로드**되며, 인가된 실 실행에서만 호출됩니다. 3.14 프레임워크 어디에도 `import netspresso` 문이 없음을 테스트가 강제합니다.
 - API 키는 환경변수 이름(`NETSPRESSO_API_KEY`)만 알고 **값은 저장·로그·렌더링하지 않습니다** (테스트: 가짜 키가 어떤 출력에도 나타나지 않음).
@@ -402,9 +402,27 @@ Credit consumed:   0
 
 `--matrix pairwise`를 주면 선택된 전체 조합의 계획과 클라이언트 측 Credit 추정 합계를 장부(`reports/credit_usage.json`)의 잔량·예비분과 대조해 예산 초과 여부를 보여줍니다. 이 숫자는 SDK의 클라이언트 측 사전 체크 상수(Automatic Compression 25, Advanced Compression 50, Convert 50, Profile 25, Quantize 50, Graph Optimize 50)이며 **서버 실제 차감이 검증된 값이 아닙니다**.
 
-### 16.2 실 실행 경로(Phase 5-B)가 지켜야 할 제약
+### 16.3 첫 실 실험 결과 (Phase 5-B, 2026-10-05) — `reports/real_runs/20261005T010356Z_automatic_compression/`
 
-Phase 1 조사에서 확인한 사실을 바탕으로 어댑터가 반드시 지켜야 할 제약을 미리 기록합니다 (구현은 사용자 승인 후).
+| 항목 | 값 |
+|---|---|
+| 실행 명령 | `.venv-netspresso/Scripts/python scripts/run_real_netspresso.py --confirm-credit-use` (Python 3.11) |
+| 작업 | `compressor_v2().automatic_compression` × **1회**, 재시도 0 |
+| 입력 모델 | 공식 샘플 `graphmodule.pt` (v1.17.0 태그, 28,485,001 bytes, 입력 `[1,3,224,224]`, ratio 0.5 — 공식 예제와 동일 조건) |
+| SDK / 결과 상태 | netspresso 1.17.0 / `completed`, method `PR_L2`, 레이어 50개 |
+| 모델 크기 | 28.485 MB → **7.456 MB** (파일 기준); 서버 보고 size 27.17 → 7.11, FLOPs 1.957 G → 0.943 G, 파라미터 7.06 M → 1.81 M |
+| 산출물 | `sdk_output.pt` (7,456,333 bytes, SHA-256 `bcb3162d…9da5`) + SDK가 로컬 변환한 `sdk_output.onnx`. 바이너리는 git 미추적, 메타데이터·체크섬만 추적 |
+| Credit | estimated 25 (CLIENT_SIDE_PRE_CHECK_CONSTANT) / **actual 25** — 계정 잔액 before 500 → after 475를 SDK 사용자·크레딧 조회로 관찰. 이 작업에 대해 클라이언트 상수와 실제 차감이 일치함을 확인 |
+| accuracy / latency / memory | **NOT_AVAILABLE** — 압축 작업은 측정하지 않음. 수치를 만들어내지 않았음 |
+| 기본 Quality Gate | **FAIL** — 사유 전부 "데이터 없음"(accuracy·latency·memory NOT_APPLICABLE, 기준 체크섬 없음, 단일 실행으로 재현성 NOT_VERIFIED). 결함 분류: `UNCLASSIFIED: required criteria could not be evaluated (missing data)` — 회귀로 오분류하지 않음 |
+| 압축 단계 Gate (model_size 필수 + artifact) | **PASS** (크기 −73.8 %) |
+| 케이스 상태 | `FAIL` (릴리스 기준 충족 증거 부족; 압축 자체는 성공). 이 구분이 바로 "실행 성공 ≠ PASS" 원칙 |
+
+이 실험이 드러낸 프레임워크 결함 2건은 실행 전 수정했습니다: 기준 체크섬이 없는 첫 산출물과 단일 실행 NOT_VERIFIED가 각각 `ARTIFACT_ERROR`/`REPRODUCIBILITY_ERROR`로 분류되던 문제 → 증거 부족(`NOT_APPLICABLE`)으로 처리. 서버 응답에서 SDK enum에 없는 값(`MIX` data type, Jetpack `6.2.1+b38`, `dlc` framework)도 관찰되어 연구 문서 §11에 기록했습니다.
+
+### 16.2 실 실행 경로가 지켜야 할 제약
+
+Phase 1 조사에서 확인한 사실을 바탕으로 어댑터가 지키는 제약입니다.
 
 - `NetsPresso(api_key=...)`를 사용합니다. email/password 경로는 SDK 코드상 deprecated입니다.
 - **객체 생성 자체가 네트워크 동작**입니다: PyPI 버전 확인(구버전이면 `sys.exit(1)`), 로그인, 사용자/Credit 조회가 생성자에서 수행됩니다. 어댑터는 생성을 명시적 단계로 취급하고 `dev_mode` 사용 여부를 기록합니다.
@@ -429,7 +447,7 @@ NetsPresso Credit은 이 프로젝트의 소모성 자원(500)입니다. 안전�
 | 테스트 | 저장소 장부가 0 / 500, operations 비어 있음을 확인하는 가드 테스트. CI도 동일 assert |
 | 비용 근거 | SDK 소스의 클라이언트 측 상수(Automatic Compression 25, Advanced Compression 50, Convert 50, Profile 25, Quantize 50, Graph Optimize 50)를 **예산 계획용**으로만 사용. 서버 실제 차감은 미검증. Simulator는 상수 테이블에 없으나 무료로 간주하지 않음 |
 
-현재 상태: **Credit 사용 0 / 500, 실 API 호출 0회, 로그인 0회.**
+현재 상태: **Credit 사용 25 / 500 (잔액 475, 계정 조회로 관찰), 실 API 작업 1회, 인증 세션 1회.** 장부: `reports/credit_usage.json` (usage_type `actual`, before/after 잔액과 추정 근거 기록).
 
 ---
 
@@ -442,7 +460,7 @@ NetsPresso Credit은 이 프로젝트의 소모성 자원(500)입니다. 안전�
 3. `pytest tests/unit`, `tests/integration`, `tests/regression`
 4. 전체 스위트 + coverage(xml) + JUnit 리포트
 5. `scripts/run_mock_qa.py --strategy pairwise --regression-demo` → JSON/HTML 리포트 생성
-6. `reports/credit_usage.json`이 0 / 500인지 assert
+6. `reports/credit_usage.json` 무결성 assert (CI는 Credit을 쓰지 않으며, 모든 항목은 confirmation=true인 실 작업이고 used = Σ 관찰/추정 차감이어야 함)
 7. 리포트 아티팩트 업로드
 
 CI는 API 키를 참조하지 않고, NetsPresso에 접속하지 않으며, Python 3.11 SDK 환경을 사용하지 않습니다. 실 API 실험은 CI 밖에서 수동으로만 실행됩니다.
@@ -453,8 +471,8 @@ Git 위생: `.gitignore`가 `.env`, `netspresso.env`, `.venv-netspresso/`, 모�
 
 ## 19. 현재 한계 (Limitations)
 
-- **실 NetsPresso 실행 결과가 아직 없습니다.** 모든 수치는 MockAdapter의 합성값입니다. 실 실험은 사용자 승인 후 Phase 9–11에서 최소 범위로 수행할 계획입니다.
-- `NetsPressoAdapter`는 **안전 경계와 dry-run까지만** 구현되어 있습니다(Phase 5-A). 실 SDK 호출 경로는 미구현이며, 구현 후에도 3.14 pytest에서는 직접 실행할 수 없어 3.14에서는 응답 JSON 픽스처 기반 단위 테스트, 3.11에서는 dry-run으로 검증하는 이원 구조가 됩니다.
+- **실 NetsPresso 실행은 1회(automatic_compression)뿐입니다.** 매트릭스·리포트 예시의 수치는 MockAdapter 합성값이며, 실 결과는 §16.3의 단일 실행만 존재합니다. 정확도·지연·메모리의 실측값은 아직 없습니다.
+- `NetsPressoAdapter`의 실 경로는 `automatic_compression` 1종만 구현되어 있습니다. 실 SDK 호출 코드는 3.14 pytest에서 직접 실행할 수 없어, 3.14에서는 가짜 SDK 모듈 주입으로 매핑·오류·BLOCKED 경로를 테스트하고 3.11에서는 수동 1회 실행으로 검증하는 이원 구조입니다.
 - 매트릭스의 지원 지식은 공식 예제 주석 수준의 출처만 반영했습니다. 특정 Framework × Device × DataType 조합의 실제 지원 여부는 서버 응답으로만 확정할 수 있습니다.
 - Pairwise는 greedy 휴리스틱으로 최소 케이스 수를 보장하지 않습니다. 커버리지 100 %만 보장·보고합니다.
 - 리스크 가중치와 Quality Gate 임계값은 데모용 초기값입니다. 실제 제품에서는 도메인 데이터로 보정해야 합니다.

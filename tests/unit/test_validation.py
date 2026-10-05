@@ -59,8 +59,9 @@ def test_artifact_validation_rules():
     mismatch = Artifact(path="a", exists=True, size_bytes=10, checksum_valid=False)
     assert "checksum mismatch" in validate_artifact(mismatch, REQ).message
     unverifiable = Artifact(path="a", exists=True, size_bytes=10, checksum_valid=None)
-    assert validate_artifact(unverifiable, REQ).status == CriterionStatus.FAIL
-    assert validate_artifact(unverifiable, OPT).status == CriterionStatus.WARN
+    # no reference checksum yet -> missing evidence (NOT_APPLICABLE); the gate turns a required one into FAIL
+    assert validate_artifact(unverifiable, REQ).status == CriterionStatus.NOT_APPLICABLE
+    assert validate_artifact(unverifiable, OPT).status == CriterionStatus.NOT_APPLICABLE
 
 
 def test_real_file_checksum_helpers(tmp_path):
@@ -90,7 +91,8 @@ def test_reproducibility_validation():
     opt = CriterionConfig("reproducibility", None, False)
     assert validate_reproducibility(Reproducibility(ReproducibilityLevel.BITWISE_REPRODUCIBLE, 2), req).status == CriterionStatus.PASS
     assert validate_reproducibility(Reproducibility(ReproducibilityLevel.FUNCTIONALLY_REPRODUCIBLE, 3), req).status == CriterionStatus.PASS
-    assert validate_reproducibility(Reproducibility(ReproducibilityLevel.NOT_VERIFIED, 1), req).status == CriterionStatus.FAIL
+    # NOT_VERIFIED is missing evidence -> NOT_APPLICABLE (a required one still fails the gate, but is not a defect)
+    assert validate_reproducibility(Reproducibility(ReproducibilityLevel.NOT_VERIFIED, 1), req).status == CriterionStatus.NOT_APPLICABLE
     assert validate_reproducibility(Reproducibility(ReproducibilityLevel.NOT_VERIFIED, 1), opt).status == CriterionStatus.NOT_APPLICABLE
     assert validate_reproducibility(Reproducibility(ReproducibilityLevel.NOT_REPRODUCIBLE, 2), req).status == CriterionStatus.FAIL
-    assert validate_reproducibility(None, req).status == CriterionStatus.FAIL
+    assert validate_reproducibility(None, req).status == CriterionStatus.NOT_APPLICABLE

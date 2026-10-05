@@ -1,0 +1,103 @@
+{
+  "operation": "automatic_compression",
+  "configuration": {
+    "model": "graphmodule_sample",
+    "device": "intel_xeon_w2233",
+    "runtime": "onnxruntime",
+    "backend": "default",
+    "optimization": "automatic_compression"
+  },
+  "execution_status": "COMPLETED",
+  "execution_time_s": 19.719,
+  "baseline_metrics": {
+    "accuracy": null,
+    "latency_ms": null,
+    "memory_mb": null,
+    "model_size_mb": 28.485,
+    "extra": {
+      "sdk_original_size": 27.1654,
+      "sdk_original_flops": 1956510000.0,
+      "sdk_original_number_of_parameters": 7060084.0,
+      "sdk_original_trainable_parameters": 7060084.0,
+      "sdk_original_non_trainable_parameters": 0.0
+    }
+  },
+  "metrics": {
+    "accuracy": null,
+    "latency_ms": null,
+    "memory_mb": null,
+    "model_size_mb": 7.456,
+    "extra": {
+      "sdk_compressed_size": 7.11091,
+      "sdk_compressed_flops": 942779000.0,
+      "sdk_compressed_number_of_parameters": 1814928.0,
+      "sdk_compressed_trainable_parameters": 1814928.0,
+      "sdk_compressed_non_trainable_parameters": 0.0
+    }
+  },
+  "artifact": {
+    "path": "reports/real_runs/20261005T010356Z_automatic_compression/sdk_output/sdk_output.pt",
+    "exists": true,
+    "size_bytes": 7456333,
+    "format": "pt",
+    "checksum_sha256": "bcb3162d792f2c78350ae82dd91f97fbda3e5e00849512c25cd705560f339da5",
+    "expected_checksum_sha256": null,
+    "checksum_valid": null,
+    "metadata": {
+      "source_model": "graphmodule.pt",
+      "source_model_sha256": "eca62020aeb07bdeccda2aceffe6fee3ba50b62374e3c656c81f171968db1762",
+      "operation": "automatic_compression",
+      "compression_method": "PR_L2",
+      "compression_ratio": 0.5,
+      "sdk_model_id": "9c77fe00-63e1-4f3a-85d1-181cd6932c5b",
+      "sdk_version": "1.17.0",
+      "sdk_metadata_path": "reports/real_runs/20261005T010356Z_automatic_compression/sdk_output/metadata.json",
+      "compressed_onnx_model_path": "reports/real_runs/20261005T010356Z_automatic_compression/sdk_output/sdk_output.onnx",
+      "configuration_key": "graphmodule_sample|intel_xeon_w2233|onnxruntime|default|automatic_compression",
+      "generated_by": "NetsPressoAdapter 0.2.0 (real run)"
+    }
+  },
+  "logs": [
+    "[netspresso] REAL RUN authorized: operation=automatic_compression sdk_version=1.17.0",
+    "[netspresso] input model: outputs/models/graphmodule.pt (28485001 bytes)",
+    "[netspresso] authenticated; account credit total before: 500",
+    "[netspresso] calling compressor_v2().automatic_compression(ratio=0.5, framework=pytorch, input_shapes=[{'batch': 1, 'channel': 3, 'dimension': [224, 224]}])",
+    "[netspresso] account credit total after: 475",
+    "[netspresso] SDK metadata status: completed",
+    "[netspresso] compressed model: reports/real_runs/20261005T010356Z_automatic_compression/sdk_output/sdk_output.pt exists=True sha256=bcb3162d792f2c78350ae82dd91f97fbda3e5e00849512c25cd705560f339da5"
+  ],
+  "error": null,
+  "environment": {
+    "adapter": "netspresso",
+    "adapter_version": "0.2.0",
+    "sdk_name": "netspresso",
+    "sdk_version": "1.17.0",
+    "python_version": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "extra": {
+      "execution_mode": "REAL_RUN_AUTHORIZED",
+      "sdk_loaded": true,
+      "sdk_version_researched": "1.17.0",
+      "api_calls_executed": 1,
+      "operations_executed": 1,
+      "api_key_env": "NETSPRESSO_API_KEY",
+      "api_key_present": true
+    }
+  },
+  "reproducibility": {
+    "level": "NOT_VERIFIED",
+    "runs": 1,
+    "checksums": [
+      "bcb3162d792f2c78350ae82dd91f97fbda3e5e00849512c25cd705560f339da5"
+    ],
+    "notes": "single real run; reproducibility requires a second authorized run"
+  },
+  "timestamp": "2026-10-05T01:04:10+00:00",
+  "credit": {
+    "usage_type": "actual",
+    "estimated": 25,
+    "actual": 25,
+    "note": "actual = account credit total before (500) - after (475), observed via the SDK's user/credit query; estimate 25 = CLIENT_SIDE_PRE_CHECK_CONSTANT (netspresso 1.17.0, netspresso/enums/credit.py); actual server-side deduction NOT verified"
+  },
+  "scenario_id": null
+}

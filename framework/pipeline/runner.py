@@ -37,7 +37,9 @@ from framework.pipeline.result import (
     CaseResult,
     CreditUsageType,
     Environment,
+    ExecutionResult,
     ExecutionStatus,
+    QualityGateResult,
     Status,
     SupportState,
     utc_now_iso,
@@ -57,6 +59,20 @@ def _portable_path(path: Path) -> str:
 
 class CreditSafetyError(RuntimeError):
     """Raised when a credit-consuming adapter is used without explicit confirmation."""
+
+
+def case_status_for(execution: ExecutionResult, gate: QualityGateResult | None) -> Status:
+    """Deterministic mapping from execution outcome (+ gate) to the case status (see module docstring)."""
+    es = execution.execution_status
+    if es == ExecutionStatus.COMPLETED:
+        return Status.PASS if gate is not None and gate.passed else Status.FAIL
+    if es == ExecutionStatus.ERROR:
+        return Status.FAIL
+    if es == ExecutionStatus.BLOCKED:
+        return Status.BLOCKED
+    if es == ExecutionStatus.UNSUPPORTED:
+        return Status.UNSUPPORTED
+    return Status.NOT_TESTED
 
 
 @dataclass
@@ -253,18 +269,11 @@ class PipelineRunner:
 
         if execution.execution_status == ExecutionStatus.COMPLETED:
             result.gate = self._gate.evaluate(execution)
-            result.status = Status.PASS if result.gate.passed else Status.FAIL
             result.support = SupportState.SUPPORTED
-        elif execution.execution_status == ExecutionStatus.ERROR:
-            result.status = Status.FAIL
-        elif execution.execution_status == ExecutionStatus.BLOCKED:
-            result.status = Status.BLOCKED
         elif execution.execution_status == ExecutionStatus.UNSUPPORTED:
-            result.status = Status.UNSUPPORTED
             result.support = SupportState.UNSUPPORTED
             result.support_reason = execution.error.message if execution.error else "reported unsupported at run time"
-        else:
-            result.status = Status.NOT_TESTED
+        result.status = case_status_for(execution, result.gate)
 
         result.defect = classify(execution, result.gate)
         return result

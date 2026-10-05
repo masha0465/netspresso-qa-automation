@@ -349,6 +349,25 @@ Python 3.11 (.venv-netspresso)                 Python 3.14 (main)
 
 ---
 
+---
+
+## 11. Phase 5-B 실 실행 관찰 (2026-10-05, automatic_compression 1회)
+
+Phase 1까지의 결론은 정적 조사였다. 아래는 실제 1회 실행에서 **관찰된 사실**이며, 실험 산출물은 `reports/real_runs/20261005T010356Z_automatic_compression/`에 있다.
+
+| 항목 | 관찰 |
+|---|---|
+| 시그니처 | 실행 직전 `inspect.signature`로 재확인: §6 표와 완전히 일치 |
+| 인증 | `NetsPresso(api_key=...)` 생성 시 PyPI 버전 확인(1.17.0 = 최신) → `login_by_api_key` → 사용자/크레딧 조회가 수행됨 (§5.1 기술과 일치). 로그에 키 값은 출력되지 않음 |
+| Credit (§7 미검증 항목 일부 해소) | 계정 잔액 **500 → 475**. `automatic_compression`의 실제 차감 **25 = 클라이언트 상수**. SDK 로그 "25 credits have been consumed. Remaining Credit: 475"와 잔액 조회가 일치. 다른 작업(convert/profile/quantize/graph_optimize)의 실 차감은 **여전히 미검증** |
+| 인증/조회 과금 | 로그인·사용자·크레딧 조회(세션 1회, 조회 수회) 후에도 잔액이 500에서 변하지 않았음 → 조회 작업은 이 관찰 범위에서 **비과금** |
+| 결과 메타데이터 | `status=completed`, `compression_info.method=PR_L2`, `ratio=0.5`, `layers` 50개, `results.original_model/compressed_model`의 size(27.17→7.11, 단위는 MB로 추정되나 SDK가 명시하지 않음)·flops·number_of_parameters 제공. `number_of_layers`는 null |
+| 산출물 | `sdk_output.pt`(7,456,333 bytes) 다운로드 후 SDK가 로컬에서 `torch.onnx.export`로 `sdk_output.onnx`(7,275,162 bytes)를 추가 생성. 즉 **ONNX 변환은 서버가 아니라 클라이언트에서 수행**됨 (torch 2.0.1) |
+| 서버 옵션 vs SDK enum | 서버가 반환한 변환 옵션(`available_options`)에 SDK enum에 없는 값이 포함됨: data type **`MIX`**(Jetson-AGX-Orin), software version **`6.2.1+b38`**(Jetpack 6.2.1), framework **`dlc`**(Samsung Galaxy S24 Ultra, SNPE 2.20.0). SDK는 알려지지 않은 framework `dlc`를 metadata에 **기록하지 않고 조용히 제외**했다(콘솔 응답에는 5개 framework, metadata.json에는 4개). → 클라이언트 enum이 서버 기능을 뒤따라가지 못하는 **버전 드리프트**가 존재하며, 매트릭스의 지원 지식을 SDK enum만으로 정의하면 서버가 실제로 지원하는 조합을 놓칠 수 있다. 분류: `CONFIGURATION_ERROR`(클라이언트-서버 메타데이터 불일치), 심각도 Low(기능 차단은 아님) |
+| 실행 시간 | 인증 ~14 s, 업로드 27.2 MB ~5 s, 압축 ~10 s, 다운로드·후처리 ~2 s (단일 관찰, 통계적 의미 없음) |
+
+Windows에서의 E2E 동작(§9 미검증 항목)은 이 1회 실행으로 확인되었다.
+
 ## 부록 A. 본 Phase에서 수행한 명령 (재현용)
 
 ```bash
@@ -364,10 +383,10 @@ python3.11 -m venv .venv-netspresso
 
 ## 부록 B. 미검증 항목 요약 (NOT VERIFIED)
 
-- 서버 측 실제 Credit 차감액 및 실패 시 환불 정책
-- 로그인/조회 API의 과금 여부 (SDK 코드상 비과금으로 추정)
+- 서버 측 실제 Credit 차감액 (automatic_compression은 §11에서 25 확인; 그 외 작업 미검증) 및 실패 시 환불 정책
+- 로그인/조회 API의 과금 여부 → §11에서 1회 관찰 범위 내 비과금 확인
 - GraphOptimizer / Simulator의 서버 측 과금
 - `BenchmarkResult` 각 필드의 단위·정밀도
 - 특정 Framework × Device × DataType 조합의 서버 지원 여부
-- Windows에서 실 API 호출의 End-to-End 동작
+- ~~Windows에서 실 API 호출의 End-to-End 동작~~ → §11에서 1회 확인
 - 서버 rate-limit

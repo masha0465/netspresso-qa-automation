@@ -27,9 +27,9 @@ if hasattr(sys.stdout, "reconfigure"):
 from framework.adapters.factory import build_adapter  # noqa: E402
 from framework.adapters.netspresso_adapter import (  # noqa: E402
     SDK_OPERATIONS,
+    ExecutionMode,
     NetsPressoAdapter,
     RealExecutionNotAuthorizedError,
-    RealExecutionNotImplementedError,
 )
 from framework.config import load_config  # noqa: E402
 from framework.credit_ledger import CreditLedger  # noqa: E402
@@ -100,8 +100,9 @@ def main(argv: list[str] | None = None) -> int:
     except RealExecutionNotAuthorizedError as exc:
         print(f"REJECTED: {exc}")
         return 2
-    except RealExecutionNotImplementedError as exc:
-        print(f"NOT IMPLEMENTED: {exc}")
+    if adapter.mode == ExecutionMode.REAL_RUN_AUTHORIZED:
+        print("REFUSED: the dry-run planner never executes real runs. Use scripts/run_real_netspresso.py "
+              "--confirm-credit-use from the Python 3.11 environment for a single authorized operation.")
         return 3
 
     result = _matrix(adapter, args, ledger, config) if args.matrix else _single(adapter, args, ledger)

@@ -15,7 +15,7 @@ Rules
 from __future__ import annotations
 
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -40,6 +40,7 @@ class LedgerEntry:
     error: str | None
     confirmation: bool
     adapter: str
+    details: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -116,6 +117,7 @@ class CreditLedger:
         confirmation: bool = False,
         adapter: str = "unknown",
         timestamp: str | None = None,
+        details: dict[str, Any] | None = None,
     ) -> LedgerEntry:
         usage = CreditUsageType(usage_type)
         if usage == CreditUsageType.NONE:
@@ -147,6 +149,7 @@ class CreditLedger:
             error=error,
             confirmation=confirmation,
             adapter=adapter,
+            details=dict(details or {}),
         )
         self._data["operations"].append(entry.to_dict())
         return entry

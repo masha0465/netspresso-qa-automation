@@ -1,8 +1,33 @@
 {
   "starting_credit": 500,
-  "used_credit": 0,
-  "remaining_estimate": 500,
-  "currency_note": "NetsPresso Credits. Values are estimates until verified against the account API (usage_type = actual).",
-  "last_updated": "2026-10-01",
-  "operations": []
+  "used_credit": 25,
+  "remaining_estimate": 475,
+  "simulated_total": 0,
+  "last_updated": "2026-10-05T01:04:30+00:00",
+  "operations": [
+    {
+      "timestamp": "2026-10-05T01:04:30+00:00",
+      "operation": "automatic_compression",
+      "model": "graphmodule_sample",
+      "purpose": "Phase 5-B: first real NetsPresso operation (E2E adapter validation)",
+      "usage_type": "actual",
+      "estimated_credit": 25,
+      "actual_credit": 25,
+      "remaining_estimate": 475,
+      "result": "COMPLETED",
+      "error": null,
+      "confirmation": true,
+      "adapter": "netspresso",
+      "details": {
+        "estimate_basis": "CLIENT_SIDE_PRE_CHECK_CONSTANT (not verified server-side)",
+        "credit_note": "actual = account credit total before (500) - after (475), observed via the SDK's user/credit query; estimate 25 = CLIENT_SIDE_PRE_CHECK_CONSTANT (netspresso 1.17.0, netspresso/enums/credit.py); actual server-side deduction NOT verified",
+        "run_dir": "reports/real_runs/20261005T010356Z_automatic_compression",
+        "sdk_version": "1.17.0",
+        "model_path": "outputs/models/graphmodule.pt",
+        "operations_executed": 1,
+        "api_calls_executed": 1
+      }
+    }
+  ],
+  "currency_note": "NetsPresso Credits. Values are estimates until verified against the account API (usage_type = actual)."
 }
