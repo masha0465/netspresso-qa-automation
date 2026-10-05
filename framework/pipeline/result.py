@@ -377,6 +377,7 @@ class QualityGateResult:
     overall: Status  # PASS or FAIL only
     criteria: list[CriterionResult]
     reasons: list[str] = field(default_factory=list)  # human readable failure reasons, never hidden
+    profile: str = "release"  # which gate profile produced this verdict
 
     @property
     def passed(self) -> bool:
@@ -385,6 +386,7 @@ class QualityGateResult:
     def to_dict(self) -> dict[str, Any]:
         return {
             "overall": self.overall.value,
+            "profile": self.profile,
             "criteria": [c.to_dict() for c in self.criteria],
             "reasons": list(self.reasons),
         }
@@ -397,6 +399,7 @@ class QualityGateResult:
             overall=Status(data["overall"]),
             criteria=[CriterionResult.from_dict(c) for c in data.get("criteria", [])],
             reasons=list(data.get("reasons") or []),
+            profile=data.get("profile", "release"),
         )
 
 

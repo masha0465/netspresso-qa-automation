@@ -1,0 +1,199 @@
+{
+  "credit_consuming": false,
+  "disclaimer": "Local ORT evaluation. No NetsPresso API call was made. Results are local validation evidence, not NetsPresso server-side measurements.",
+  "compression": {
+    "overall": "PASS",
+    "profile": "compression",
+    "criteria": [
+      {
+        "name": "accuracy",
+        "status": "NOT_APPLICABLE",
+        "observed": null,
+        "threshold": 1.0,
+        "message": "accuracy not available for baseline and/or current metrics",
+        "required": false
+      },
+      {
+        "name": "latency",
+        "status": "PASS",
+        "observed": 2.486,
+        "threshold": 10.0,
+        "message": "latency 3.488 -> 3.575 ms (+2.49%) within +10.0%",
+        "required": false
+      },
+      {
+        "name": "memory",
+        "status": "PASS",
+        "observed": -23.532,
+        "threshold": 15.0,
+        "message": "memory 75.977 -> 58.098 MB (-23.53%) within +15.0%",
+        "required": false
+      },
+      {
+        "name": "model_size",
+        "status": "PASS",
+        "observed": -74.23,
+        "threshold": 0.0,
+        "message": "model_size 28.231 -> 7.275 MB (-74.23%) within +0.0%",
+        "required": true
+      },
+      {
+        "name": "artifact",
+        "status": "PASS",
+        "observed": "exists, non-empty, checksum recorded (reference not yet promoted)",
+        "threshold": "required (checksum optional)",
+        "message": "artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+        "required": true
+      },
+      {
+        "name": "structural_validity",
+        "status": "PASS",
+        "observed": "PASS",
+        "threshold": "required",
+        "message": "valid ONNX graph (261 nodes, 120 initializers)",
+        "required": true
+      }
+    ],
+    "reasons": []
+  },
+  "local_eval": {
+    "overall": "FAIL",
+    "profile": "local_eval",
+    "criteria": [
+      {
+        "name": "accuracy",
+        "status": "NOT_APPLICABLE",
+        "observed": null,
+        "threshold": 1.0,
+        "message": "accuracy not available for baseline and/or current metrics",
+        "required": false
+      },
+      {
+        "name": "output_equivalence_proxy",
+        "status": "FAIL",
+        "observed": 0.824939,
+        "threshold": 0.99,
+        "message": "proxy (not accuracy): min cosine 0.8249 < 0.99",
+        "required": true
+      },
+      {
+        "name": "latency",
+        "status": "PASS",
+        "observed": 2.486,
+        "threshold": 10.0,
+        "message": "latency 3.488 -> 3.575 ms (+2.49%) within +10.0%",
+        "required": true
+      },
+      {
+        "name": "memory",
+        "status": "PASS",
+        "observed": -23.532,
+        "threshold": 15.0,
+        "message": "memory 75.977 -> 58.098 MB (-23.53%) within +15.0%",
+        "required": true
+      },
+      {
+        "name": "model_size",
+        "status": "PASS",
+        "observed": -74.23,
+        "threshold": 0.0,
+        "message": "model_size 28.231 -> 7.275 MB (-74.23%) within +0.0%",
+        "required": true
+      },
+      {
+        "name": "artifact",
+        "status": "PASS",
+        "observed": "exists, non-empty, checksum recorded (reference not yet promoted)",
+        "threshold": "required (checksum optional)",
+        "message": "artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+        "required": true
+      },
+      {
+        "name": "structural_validity",
+        "status": "PASS",
+        "observed": "PASS",
+        "threshold": "required",
+        "message": "valid ONNX graph (261 nodes, 120 initializers)",
+        "required": true
+      }
+    ],
+    "reasons": [
+      "Output Equiv. Proxy: proxy (not accuracy): min cosine 0.8249 < 0.99"
+    ]
+  },
+  "release": {
+    "overall": "FAIL",
+    "profile": "release",
+    "criteria": [
+      {
+        "name": "accuracy",
+        "status": "NOT_APPLICABLE",
+        "observed": null,
+        "threshold": 1.0,
+        "message": "accuracy not available for baseline and/or current metrics",
+        "required": true
+      },
+      {
+        "name": "output_equivalence_proxy",
+        "status": "WARN",
+        "observed": 0.824939,
+        "threshold": 0.99,
+        "message": "proxy (not accuracy): min cosine 0.8249 < 0.99",
+        "required": false
+      },
+      {
+        "name": "latency",
+        "status": "PASS",
+        "observed": 2.486,
+        "threshold": 10.0,
+        "message": "latency 3.488 -> 3.575 ms (+2.49%) within +10.0%",
+        "required": true
+      },
+      {
+        "name": "memory",
+        "status": "PASS",
+        "observed": -23.532,
+        "threshold": 15.0,
+        "message": "memory 75.977 -> 58.098 MB (-23.53%) within +15.0%",
+        "required": true
+      },
+      {
+        "name": "model_size",
+        "status": "PASS",
+        "observed": -74.23,
+        "threshold": 10.0,
+        "message": "model_size 28.231 -> 7.275 MB (-74.23%) within +10.0%",
+        "required": false
+      },
+      {
+        "name": "artifact",
+        "status": "NOT_APPLICABLE",
+        "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+        "threshold": "required",
+        "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+        "required": true
+      },
+      {
+        "name": "structural_validity",
+        "status": "PASS",
+        "observed": "PASS",
+        "threshold": "required",
+        "message": "valid ONNX graph (261 nodes, 120 initializers)",
+        "required": true
+      },
+      {
+        "name": "reproducibility",
+        "status": "NOT_APPLICABLE",
+        "observed": "NOT_VERIFIED",
+        "threshold": "required",
+        "message": "reproducibility not verified (fewer than two runs)",
+        "required": true
+      }
+    ],
+    "reasons": [
+      "Accuracy: accuracy not available for baseline and/or current metrics",
+      "Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+      "Reproducibility: reproducibility not verified (fewer than two runs)"
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "credit_consuming": false,
+  "disclaimer": "Local ORT evaluation. No NetsPresso API call was made. Results are local validation evidence, not NetsPresso server-side measurements.",
+  "latency": {
+    "baseline": {
+      "median_ms": 3.4881,
+      "p95_ms": 9.5486,
+      "min_ms": 2.4967,
+      "max_ms": 12.1385,
+      "mean_ms": 4.2536,
+      "iterations": 100,
+      "warmup": 10,
+      "source": "local_onnxruntime_cpu"
+    },
+    "optimized": {
+      "median_ms": 3.5748,
+      "p95_ms": 14.0982,
+      "min_ms": 2.8294,
+      "max_ms": 24.7401,
+      "mean_ms": 5.3688,
+      "iterations": 100,
+      "warmup": 10,
+      "source": "local_onnxruntime_cpu"
+    },
+    "source": "local_onnxruntime_cpu (development machine, not target device)"
+  },
+  "memory": {
+    "baseline": {
+      "status": "PASS",
+      "rss_before_mb": 20.402,
+      "rss_after_load_mb": 88.566,
+      "rss_peak_mb": 96.379,
+      "delta_mb": 75.977,
+      "method": "psutil process RSS (CPU only; GPU not applicable)"
+    },
+    "optimized": {
+      "status": "PASS",
+      "rss_before_mb": 20.348,
+      "rss_after_load_mb": 69.441,
+      "rss_peak_mb": 78.445,
+      "delta_mb": 58.098,
+      "method": "psutil process RSS (CPU only; GPU not applicable)"
+    }
+  },
+  "output_equivalence_proxy": {
+    "status": "FAIL",
+    "min_cosine_similarity": 0.824939,
+    "max_abs_diff": 11.255477,
+    "mean_abs_diff": 1.149045,
+    "relative_diff": 0.585982,
+    "shape_match": true,
+    "dtype_match": true,
+    "per_output": [
+      {
+        "cosine_similarity": 0.895852,
+        "max_abs_diff": 7.732115,
+        "mean_abs_diff": 1.610541,
+        "relative_diff": 0.525639,
+        "elements": 47040,
+        "index": 0,
+        "shape": [
+          1,
+          3,
+          28,
+          28,
+          20
+        ]
+      },
+      {
+        "cosine_similarity": 0.824939,
+        "max_abs_diff": 11.255477,
+        "mean_abs_diff": 1.342011,
+        "relative_diff": 0.585982,
+        "elements": 11760,
+        "index": 1,
+        "shape": [
+          1,
+          3,
+          14,
+          14,
+          20
+        ]
+      },
+      {
+        "cosine_similarity": 0.944678,
+        "max_abs_diff": 8.808567,
+        "mean_abs_diff": 0.494583,
+        "relative_diff": 0.330334,
+        "elements": 2940,
+        "index": 2,
+        "shape": [
+          1,
+          3,
+          7,
+          7,
+          20
+        ]
+      }
+    ],
+    "threshold_min_cosine": 0.99,
+    "note": "output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement"
+  }
+}

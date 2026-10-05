@@ -1,0 +1,151 @@
+{
+  "credit_consuming": false,
+  "disclaimer": "Local ORT evaluation. No NetsPresso API call was made. Results are local validation evidence, not NetsPresso server-side measurements.",
+  "optimized_pt": {
+    "path": "reports/real_runs/20261005T010356Z_automatic_compression/sdk_output/sdk_output.pt",
+    "format": "pt",
+    "status": "PASS",
+    "message": "loaded as graph_module via full_unpickle (trusted)",
+    "checks": {
+      "exists": true,
+      "non_empty": true,
+      "readable": true,
+      "zip_container": true,
+      "safe_load": false,
+      "full_load": true,
+      "recognised_structure": true,
+      "has_parameters": true
+    },
+    "details": {
+      "size_bytes": 7456333,
+      "magic": "504b0304",
+      "safe_load_error": "UnpicklingError",
+      "load_mode": "full_unpickle (trusted)",
+      "class_name": "GraphModule",
+      "parameter_count": 1814928,
+      "parameter_tensors": 177,
+      "object_kind": "graph_module"
+    },
+    "defect_category": null,
+    "sha256": "bcb3162d792f2c78350ae82dd91f97fbda3e5e00849512c25cd705560f339da5",
+    "trusted_for_full_unpickle": true
+  },
+  "optimized_onnx": {
+    "path": "reports/real_runs/20261005T010356Z_automatic_compression/sdk_output/sdk_output.onnx",
+    "format": "onnx",
+    "status": "PASS",
+    "message": "valid ONNX graph (261 nodes, 120 initializers)",
+    "checks": {
+      "exists": true,
+      "non_empty": true,
+      "readable": true,
+      "onnx_load": true,
+      "checker": true,
+      "graph_present": true,
+      "has_inputs": true,
+      "has_outputs": true,
+      "has_nodes": true,
+      "has_initializers": true
+    },
+    "details": {
+      "size_bytes": 7275162,
+      "magic": "08071207",
+      "ir_version": 7,
+      "opset_imports": [
+        13
+      ],
+      "inputs": [
+        {
+          "name": "images",
+          "shape": [
+            "batch_size",
+            3,
+            224,
+            224
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "shape": [
+            "batch_size",
+            3,
+            28,
+            28,
+            20
+          ]
+        },
+        {
+          "name": "638",
+          "shape": [
+            "Transpose638_dim_0",
+            3,
+            14,
+            14,
+            20
+          ]
+        },
+        {
+          "name": "680",
+          "shape": [
+            "Transpose680_dim_0",
+            3,
+            7,
+            7,
+            20
+          ]
+        }
+      ],
+      "node_count": 261,
+      "initializer_count": 120,
+      "op_type_histogram": {
+        "Conv": 60,
+        "Sigmoid": 57,
+        "Mul": 57,
+        "Add": 7,
+        "Concat": 16,
+        "MaxPool": 3,
+        "Constant": 26,
+        "Resize": 2,
+        "Shape": 9,
+        "Gather": 9,
+        "Unsqueeze": 9,
+        "Reshape": 3,
+        "Transpose": 3
+      }
+    },
+    "defect_category": null,
+    "sha256": "b835143bdb336db3dc2b7f545161b4ded594e32cfa7ae58d4ffd3fa5b6bded9c",
+    "trusted_for_full_unpickle": false
+  },
+  "original_pt": {
+    "path": "outputs/models/graphmodule.pt",
+    "format": "pt",
+    "status": "PASS",
+    "message": "loaded as graph_module via full_unpickle (trusted)",
+    "checks": {
+      "exists": true,
+      "non_empty": true,
+      "readable": true,
+      "zip_container": true,
+      "safe_load": false,
+      "full_load": true,
+      "recognised_structure": true,
+      "has_parameters": true
+    },
+    "details": {
+      "size_bytes": 28485001,
+      "magic": "504b0304",
+      "safe_load_error": "UnpicklingError",
+      "load_mode": "full_unpickle (trusted)",
+      "class_name": "GraphModule",
+      "parameter_count": 7060084,
+      "parameter_tensors": 177,
+      "object_kind": "graph_module"
+    },
+    "defect_category": null,
+    "sha256": "eca62020aeb07bdeccda2aceffe6fee3ba50b62374e3c656c81f171968db1762",
+    "trusted_for_full_unpickle": true
+  }
+}

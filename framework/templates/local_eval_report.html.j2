@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Local ORT Evaluation — {{ r.source_real_run }}</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1100px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; } th { background: #f5f7fa; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS { background: #e3f6ec; color: #0f5132; } .FAIL { background: #fbe3e4; color: #7a1e26; } .WARN { background: #fff1cc; color: #6b4e00; }
+  .NOT_APPLICABLE, .INCONCLUSIVE { background: #eef0f3; color: #3e4c59; }
+  .note { background: #fff8e6; border-left: 3px solid #d4a72c; padding: .5rem .75rem; margin: 1rem 0; font-size: .9rem; }
+  .muted { color: #616e7c; font-size: .9rem; } code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>Local ONNX Runtime Evaluation</h1>
+<p class="muted">source real run <code>{{ r.source_real_run }}</code> · evaluation_type <code>{{ r.evaluation_type }}</code> · credit_consuming <code>{{ r.credit_consuming }}</code> · NetsPresso API calls <code>{{ r.netspresso_api_calls }}</code></p>
+<div class="note"><strong>{{ r.disclaimer }}</strong><br>Latency and memory are development-machine measurements, not target-device measurements. The "output equivalence proxy" is NOT accuracy. Thresholds are project-defined example policy.</div>
+
+<h2>1. Quality Gate by profile</h2>
+<table><tr><th>Profile</th><th>Overall</th><th>Criteria</th><th>Reasons</th></tr>
+{% for name, g in r.quality_gate.items() %}
+<tr><td><code>{{ name }}</code></td><td><span class="status {{ g.overall }}">{{ g.overall }}</span></td>
+<td>{% for c in g.criteria %}<span class="status {{ c.status }}" title="{{ c.message }}">{{ c.name }}</span> {% endfor %}</td>
+<td>{% if g.reasons %}<ul>{% for x in g.reasons %}<li>{{ x }}</li>{% endfor %}</ul>{% else %}-{% endif %}</td></tr>
+{% endfor %}
+</table>
+{% if r.defects.release %}<p>Release-profile defect: <code>{{ r.defects.release.category }}</code> [{{ r.defects.release.severity }}] {{ r.defects.release.message }}</p>{% endif %}
+{% if r.defects.local_eval %}<p>Local-eval-profile defect: <code>{{ r.defects.local_eval.category }}</code> [{{ r.defects.local_eval.severity }}] {{ r.defects.local_eval.message }}{% if r.defects.local_eval.suspected_cause %}<br><span class="muted">suspected cause: {{ r.defects.local_eval.suspected_cause }}</span>{% endif %}</p>{% endif %}
+
+<h2>2. Artifact structural validation</h2>
+<table><tr><th>Artifact</th><th>Status</th><th>Message</th><th>Checks</th><th>SHA-256</th></tr>
+{% for k, v in r.artifact_validation.items() %}
+<tr><td>{{ k }}<br><span class="muted">{{ v.path }}</span></td><td><span class="status {{ v.status }}">{{ v.status }}</span></td><td>{{ v.message }}</td>
+<td>{% for ck, cv in (v.checks or {}).items() %}<code>{{ ck }}={{ cv }}</code> {% endfor %}</td><td><code>{{ (v.sha256 or '')[:16] }}…</code></td></tr>
+{% endfor %}
+</table>
+
+<h2>3. Independent verification of SDK-reported statistics</h2>
+<table><tr><th>Model</th><th>Quantity</th><th class="num">SDK reported</th><th class="num">Independently verified</th><th class="num">Δ %</th><th>Status</th><th>Method / notes</th></tr>
+{% for side, v in r.independent_verification.items() %}
+{% for key in ("params_torch", "params_onnx_initializers", "flops") %}
+{% set q = v[key] %}
+<tr><td>{{ side }}</td><td>{{ q.name }} <span class="muted">({{ key }})</span></td><td class="num">{{ q.sdk_reported }}</td><td class="num">{{ q.independently_verified if q.independently_verified is not none else "-" }}</td>
+<td class="num">{{ q.delta_percent if q.delta_percent is not none else "-" }}</td><td><span class="status {{ q.verification_status }}">{{ q.verification_status }}</span></td><td class="muted">{{ q.method }}{% for n in q.notes %}<br>{{ n }}{% endfor %}</td></tr>
+{% endfor %}
+<tr><td>{{ side }}</td><td colspan="6" class="muted">MAC estimate coverage: covered {{ v.macs_coverage.covered_ops }} · uncovered {{ v.macs_coverage.uncovered_ops }}</td></tr>
+{% endfor %}
+</table>
+
+<h2>4. Performance (local_onnxruntime_cpu)</h2>
+<table><tr><th>Metric</th><th class="num">Baseline (original → ONNX)</th><th class="num">Optimized (sdk_output.onnx)</th></tr>
+{% set bl = r.performance.latency.baseline %}{% set ol = r.performance.latency.optimized %}
+{% for k in ("median_ms", "p95_ms", "min_ms", "max_ms", "mean_ms", "iterations", "warmup") %}
+<tr><td>latency.{{ k }}</td><td class="num">{{ bl[k] if bl else "NOT_APPLICABLE" }}</td><td class="num">{{ ol[k] }}</td></tr>
+{% endfor %}
+{% set bm = r.performance.memory.baseline %}{% set om = r.performance.memory.optimized %}
+{% for k in ("rss_before_mb", "rss_after_load_mb", "rss_peak_mb", "delta_mb", "status") %}
+<tr><td>memory.{{ k }}</td><td class="num">{{ bm[k] if bm else "NOT_APPLICABLE" }}</td><td class="num">{{ om[k] }}</td></tr>
+{% endfor %}
+</table>
+
+<h2>5. Output equivalence PROXY (not accuracy)</h2>
+{% set p = r.output_equivalence_proxy %}
+<p><span class="status {{ p.status }}">{{ p.status }}</span> {{ p.note }}</p>
+{% if p.per_output %}
+<table><tr><th>Output</th><th>Shape</th><th class="num">cosine</th><th class="num">max |Δ|</th><th class="num">mean |Δ|</th><th class="num">relative Δ</th><th class="num">elements</th></tr>
+{% for o in p.per_output %}<tr><td>{{ o.index }}</td><td>{{ o.shape }}</td><td class="num">{{ o.cosine_similarity }}</td><td class="num">{{ o.max_abs_diff }}</td><td class="num">{{ o.mean_abs_diff }}</td><td class="num">{{ o.relative_diff }}</td><td class="num">{{ o.elements }}</td></tr>{% endfor %}
+</table>
+<p class="muted">threshold min cosine {{ p.threshold_min_cosine }} (project-defined example)</p>
+{% endif %}
+
+<h2>6. Accuracy</h2>
+<p><span class="status NOT_APPLICABLE">{{ r.accuracy.status }}</span> {{ r.accuracy.reason }}</p>
+
+<h2>7. Configuration consistency &amp; reproducibility</h2>
+<table><tr><th>Item</th><th>Requested</th><th>Metadata</th><th>Match</th></tr>
+{% for k, v in r.configuration_consistency.requested_vs_metadata.items() %}<tr><td>{{ k }}</td><td>{{ v.requested }}</td><td>{{ v.metadata }}</td><td>{{ v.match }}</td></tr>{% endfor %}
+</table>
+<p class="muted">reproducibility level {{ r.reproducibility.level }} — {{ r.configuration_consistency.note }}. Framework level: {{ r.reproducibility.framework_level.level }} (runs {{ r.reproducibility.framework_level.runs }}).</p>
+
+<h2>8. Baseline registry</h2>
+<p><code>{{ r.baseline_registry_entry.artifact_id }}</code> status <span class="status WARN">{{ r.baseline_registry_entry.status }}</span> — {{ r.baseline_registry_entry.notes | join("; ") }}</p>
+
+<h2>9. Environment fingerprint</h2>
+<table>{% for k, v in r.environment.extra.items() if k not in ("packages", "thread_env") %}<tr><td>{{ k }}</td><td>{{ v }}</td></tr>{% endfor %}
+<tr><td>packages</td><td>{% for k, v in r.environment.extra.packages.items() %}<code>{{ k }}={{ v }}</code> {% endfor %}</td></tr></table>
+<p class="muted">Personal portfolio project using publicly available NetsPresso SDK/API resources. Policy values are project-defined examples.</p>
+</body>
+</html>

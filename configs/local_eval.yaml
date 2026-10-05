@@ -1,0 +1,31 @@
+# Local ONNX Runtime evaluation policy (0 NetsPresso credits).
+#
+# Everything here is PROJECT-DEFINED EXAMPLE POLICY, not an official benchmark
+# protocol. Results are development-machine evidence, never server-side or
+# target-device measurements.
+local_eval:
+  warmup_iterations: 10          # excluded from statistics
+  measurement_iterations: 100    # latency samples per model
+  seed: 0                        # deterministic input generation
+  intra_op_threads: null         # null -> ONNX Runtime default
+  execution_provider: CPUExecutionProvider
+  input_distribution: uniform    # uniform [0, 1) float32 of the declared input shape
+
+  # Output equivalence PROXY (not accuracy): min over all outputs of cosine similarity
+  # between baseline and optimized outputs on identical inputs.
+  proxy_min_cosine_similarity: 0.99
+
+  # Independent verification tolerances for SDK-reported quantities.
+  params_tolerance_percent: 0.5
+  flops_tolerance_percent: 10.0
+
+  # Artifacts whose SHA-256 is listed here may be fully unpickled (torch.load with
+  # weights_only=False). Both are torch.fx GraphModule pickles that cannot be loaded
+  # with weights_only=True. Trust basis is recorded next to each hash.
+  trusted_artifact_sha256:
+    - sha256: eca62020aeb07bdeccda2aceffe6fee3ba50b62374e3c656c81f171968db1762
+      name: graphmodule.pt
+      trust_basis: "official PyNetsPresso v1.17.0 sample; git blob sha verified against GitHub on download"
+    - sha256: bcb3162d792f2c78350ae82dd91f97fbda3e5e00849512c25cd705560f339da5
+      name: sdk_output.pt
+      trust_basis: "produced by NetsPresso automatic_compression run 20261005T010356Z; SDK itself loaded it for ONNX export"

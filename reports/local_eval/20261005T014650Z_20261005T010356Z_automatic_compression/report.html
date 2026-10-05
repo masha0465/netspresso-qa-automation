@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Local ORT Evaluation — 20261005T010356Z_automatic_compression</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1100px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; } th { background: #f5f7fa; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS { background: #e3f6ec; color: #0f5132; } .FAIL { background: #fbe3e4; color: #7a1e26; } .WARN { background: #fff1cc; color: #6b4e00; }
+  .NOT_APPLICABLE, .INCONCLUSIVE { background: #eef0f3; color: #3e4c59; }
+  .note { background: #fff8e6; border-left: 3px solid #d4a72c; padding: .5rem .75rem; margin: 1rem 0; font-size: .9rem; }
+  .muted { color: #616e7c; font-size: .9rem; } code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>Local ONNX Runtime Evaluation</h1>
+<p class="muted">source real run <code>20261005T010356Z_automatic_compression</code> · evaluation_type <code>local_ort</code> · credit_consuming <code>False</code> · NetsPresso API calls <code>0</code></p>
+<div class="note"><strong>Local ORT evaluation. No NetsPresso API call was made. Results are local validation evidence, not NetsPresso server-side measurements.</strong><br>Latency and memory are development-machine measurements, not target-device measurements. The "output equivalence proxy" is NOT accuracy. Thresholds are project-defined example policy.</div>
+
+<h2>1. Quality Gate by profile</h2>
+<table><tr><th>Profile</th><th>Overall</th><th>Criteria</th><th>Reasons</th></tr>
+<tr><td><code>compression</code></td><td><span class="status PASS">PASS</span></td>
+<td><span class="status NOT_APPLICABLE" title="accuracy not available for baseline and/or current metrics">accuracy</span> <span class="status PASS" title="latency 3.488 -&gt; 3.575 ms (+2.49%) within +10.0%">latency</span> <span class="status PASS" title="memory 75.977 -&gt; 58.098 MB (-23.53%) within +15.0%">memory</span> <span class="status PASS" title="model_size 28.231 -&gt; 7.275 MB (-74.23%) within +0.0%">model_size</span> <span class="status PASS" title="artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against">artifact</span> <span class="status PASS" title="valid ONNX graph (261 nodes, 120 initializers)">structural_validity</span> </td>
+<td>-</td></tr>
+<tr><td><code>local_eval</code></td><td><span class="status FAIL">FAIL</span></td>
+<td><span class="status NOT_APPLICABLE" title="accuracy not available for baseline and/or current metrics">accuracy</span> <span class="status FAIL" title="proxy (not accuracy): min cosine 0.8249 &lt; 0.99">output_equivalence_proxy</span> <span class="status PASS" title="latency 3.488 -&gt; 3.575 ms (+2.49%) within +10.0%">latency</span> <span class="status PASS" title="memory 75.977 -&gt; 58.098 MB (-23.53%) within +15.0%">memory</span> <span class="status PASS" title="model_size 28.231 -&gt; 7.275 MB (-74.23%) within +0.0%">model_size</span> <span class="status PASS" title="artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against">artifact</span> <span class="status PASS" title="valid ONNX graph (261 nodes, 120 initializers)">structural_validity</span> </td>
+<td><ul><li>Output Equiv. Proxy: proxy (not accuracy): min cosine 0.8249 &lt; 0.99</li></ul></td></tr>
+<tr><td><code>release</code></td><td><span class="status FAIL">FAIL</span></td>
+<td><span class="status NOT_APPLICABLE" title="accuracy not available for baseline and/or current metrics">accuracy</span> <span class="status WARN" title="proxy (not accuracy): min cosine 0.8249 &lt; 0.99">output_equivalence_proxy</span> <span class="status PASS" title="latency 3.488 -&gt; 3.575 ms (+2.49%) within +10.0%">latency</span> <span class="status PASS" title="memory 75.977 -&gt; 58.098 MB (-23.53%) within +15.0%">memory</span> <span class="status PASS" title="model_size 28.231 -&gt; 7.275 MB (-74.23%) within +10.0%">model_size</span> <span class="status NOT_APPLICABLE" title="artifact exists but checksum is not verifiable: no expected checksum recorded yet">artifact</span> <span class="status PASS" title="valid ONNX graph (261 nodes, 120 initializers)">structural_validity</span> <span class="status NOT_APPLICABLE" title="reproducibility not verified (fewer than two runs)">reproducibility</span> </td>
+<td><ul><li>Accuracy: accuracy not available for baseline and/or current metrics</li><li>Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet</li><li>Reproducibility: reproducibility not verified (fewer than two runs)</li></ul></td></tr>
+</table>
+<p>Release-profile defect: <code>UNCLASSIFIED</code> [MEDIUM] required criteria could not be evaluated (missing data): accuracy, artifact, reproducibility</p><p>Local-eval-profile defect: <code>ACCURACY_REGRESSION</code> [MEDIUM] proxy (not accuracy): min cosine 0.8249 &lt; 0.99<br><span class="muted">suspected cause: pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)</span></p>
+<h2>2. Artifact structural validation</h2>
+<table><tr><th>Artifact</th><th>Status</th><th>Message</th><th>Checks</th><th>SHA-256</th></tr>
+<tr><td>optimized_pt<br><span class="muted">reports/real_runs/20261005T010356Z_automatic_compression/sdk_output/sdk_output.pt</span></td><td><span class="status PASS">PASS</span></td><td>loaded as graph_module via full_unpickle (trusted)</td>
+<td><code>exists=True</code> <code>non_empty=True</code> <code>readable=True</code> <code>zip_container=True</code> <code>safe_load=False</code> <code>full_load=True</code> <code>recognised_structure=True</code> <code>has_parameters=True</code> </td><td><code>bcb3162d792f2c78…</code></td></tr>
+<tr><td>optimized_onnx<br><span class="muted">reports/real_runs/20261005T010356Z_automatic_compression/sdk_output/sdk_output.onnx</span></td><td><span class="status PASS">PASS</span></td><td>valid ONNX graph (261 nodes, 120 initializers)</td>
+<td><code>exists=True</code> <code>non_empty=True</code> <code>readable=True</code> <code>onnx_load=True</code> <code>checker=True</code> <code>graph_present=True</code> <code>has_inputs=True</code> <code>has_outputs=True</code> <code>has_nodes=True</code> <code>has_initializers=True</code> </td><td><code>b835143bdb336db3…</code></td></tr>
+<tr><td>original_pt<br><span class="muted">outputs/models/graphmodule.pt</span></td><td><span class="status PASS">PASS</span></td><td>loaded as graph_module via full_unpickle (trusted)</td>
+<td><code>exists=True</code> <code>non_empty=True</code> <code>readable=True</code> <code>zip_container=True</code> <code>safe_load=False</code> <code>full_load=True</code> <code>recognised_structure=True</code> <code>has_parameters=True</code> </td><td><code>eca62020aeb07bde…</code></td></tr>
+</table>
+
+<h2>3. Independent verification of SDK-reported statistics</h2>
+<table><tr><th>Model</th><th>Quantity</th><th class="num">SDK reported</th><th class="num">Independently verified</th><th class="num">Δ %</th><th>Status</th><th>Method / notes</th></tr>
+<tr><td>compressed</td><td>params <span class="muted">(params_torch)</span></td><td class="num">1814928</td><td class="num">1814928</td>
+<td class="num">0.0</td><td><span class="status PASS">PASS</span></td><td class="muted">sum of torch parameter numel (trusted full unpickle)</td></tr>
+<tr><td>compressed</td><td>params <span class="muted">(params_onnx_initializers)</span></td><td class="num">1814928</td><td class="num">1809898</td>
+<td class="num">0.2771</td><td><span class="status PASS">PASS</span></td><td class="muted">sum of ONNX initializer elements</td></tr>
+<tr><td>compressed</td><td>flops <span class="muted">(flops)</span></td><td class="num">942779000.0</td><td class="num">933681280.0</td>
+<td class="num">0.965</td><td><span class="status PASS">PASS</span></td><td class="muted">ONNX shape-inference MAC estimate (Conv/Gemm/MatMul)<br>closest convention: 2*MACs (MACs=466840640, 2*MACs=933681280); SDK does not document its FLOPs convention</td></tr>
+<tr><td>compressed</td><td colspan="6" class="muted">MAC estimate coverage: covered {&#39;Conv&#39;: 60} · uncovered {&#39;Sigmoid&#39;: 57, &#39;Mul&#39;: 57, &#39;Add&#39;: 7, &#39;Concat&#39;: 16, &#39;MaxPool&#39;: 3, &#39;Constant&#39;: 26, &#39;Resize&#39;: 2, &#39;Shape&#39;: 9, &#39;Gather&#39;: 9, &#39;Unsqueeze&#39;: 9, &#39;Reshape&#39;: 3, &#39;Transpose&#39;: 3}</td></tr>
+<tr><td>original</td><td>params <span class="muted">(params_torch)</span></td><td class="num">7060084</td><td class="num">7060084</td>
+<td class="num">0.0</td><td><span class="status PASS">PASS</span></td><td class="muted">sum of torch parameter numel (trusted full unpickle)</td></tr>
+<tr><td>original</td><td>params <span class="muted">(params_onnx_initializers)</span></td><td class="num">7060084</td><td class="num">7050580</td>
+<td class="num">0.1346</td><td><span class="status PASS">PASS</span></td><td class="muted">sum of ONNX initializer elements (local export)</td></tr>
+<tr><td>original</td><td>flops <span class="muted">(flops)</span></td><td class="num">1956510000.0</td><td class="num">1944621056.0</td>
+<td class="num">0.6077</td><td><span class="status PASS">PASS</span></td><td class="muted">ONNX shape-inference MAC estimate (Conv/Gemm/MatMul)<br>closest convention: 2*MACs (MACs=972310528, 2*MACs=1944621056); SDK does not document its FLOPs convention</td></tr>
+<tr><td>original</td><td colspan="6" class="muted">MAC estimate coverage: covered {&#39;Conv&#39;: 60} · uncovered {&#39;Sigmoid&#39;: 57, &#39;Mul&#39;: 57, &#39;Add&#39;: 7, &#39;Concat&#39;: 13, &#39;MaxPool&#39;: 3, &#39;Constant&#39;: 5, &#39;Resize&#39;: 2, &#39;Reshape&#39;: 3, &#39;Transpose&#39;: 3}</td></tr>
+</table>
+
+<h2>4. Performance (local_onnxruntime_cpu)</h2>
+<table><tr><th>Metric</th><th class="num">Baseline (original → ONNX)</th><th class="num">Optimized (sdk_output.onnx)</th></tr>
+<tr><td>latency.median_ms</td><td class="num">3.4881</td><td class="num">3.5748</td></tr>
+<tr><td>latency.p95_ms</td><td class="num">9.5486</td><td class="num">14.0982</td></tr>
+<tr><td>latency.min_ms</td><td class="num">2.4967</td><td class="num">2.8294</td></tr>
+<tr><td>latency.max_ms</td><td class="num">12.1385</td><td class="num">24.7401</td></tr>
+<tr><td>latency.mean_ms</td><td class="num">4.2536</td><td class="num">5.3688</td></tr>
+<tr><td>latency.iterations</td><td class="num">100</td><td class="num">100</td></tr>
+<tr><td>latency.warmup</td><td class="num">10</td><td class="num">10</td></tr>
+<tr><td>memory.rss_before_mb</td><td class="num">20.402</td><td class="num">20.348</td></tr>
+<tr><td>memory.rss_after_load_mb</td><td class="num">88.566</td><td class="num">69.441</td></tr>
+<tr><td>memory.rss_peak_mb</td><td class="num">96.379</td><td class="num">78.445</td></tr>
+<tr><td>memory.delta_mb</td><td class="num">75.977</td><td class="num">58.098</td></tr>
+<tr><td>memory.status</td><td class="num">PASS</td><td class="num">PASS</td></tr>
+</table>
+
+<h2>5. Output equivalence PROXY (not accuracy)</h2>
+<p><span class="status FAIL">FAIL</span> output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement</p>
+<table><tr><th>Output</th><th>Shape</th><th class="num">cosine</th><th class="num">max |Δ|</th><th class="num">mean |Δ|</th><th class="num">relative Δ</th><th class="num">elements</th></tr>
+<tr><td>0</td><td>[1, 3, 28, 28, 20]</td><td class="num">0.895852</td><td class="num">7.732115</td><td class="num">1.610541</td><td class="num">0.525639</td><td class="num">47040</td></tr><tr><td>1</td><td>[1, 3, 14, 14, 20]</td><td class="num">0.824939</td><td class="num">11.255477</td><td class="num">1.342011</td><td class="num">0.585982</td><td class="num">11760</td></tr><tr><td>2</td><td>[1, 3, 7, 7, 20]</td><td class="num">0.944678</td><td class="num">8.808567</td><td class="num">0.494583</td><td class="num">0.330334</td><td class="num">2940</td></tr></table>
+<p class="muted">threshold min cosine 0.99 (project-defined example)</p>
+
+<h2>6. Accuracy</h2>
+<p><span class="status NOT_APPLICABLE">NOT_APPLICABLE</span> labeled evaluation dataset unavailable; SDK metadata task/dataset fields are empty</p>
+
+<h2>7. Configuration consistency &amp; reproducibility</h2>
+<table><tr><th>Item</th><th>Requested</th><th>Metadata</th><th>Match</th></tr>
+<tr><td>compression_ratio</td><td>0.5</td><td>0.5</td><td>True</td></tr><tr><td>input_shape</td><td>[1, 3, 224, 224]</td><td>[{&#39;batch&#39;: 1, &#39;channel&#39;: 3, &#39;dimension&#39;: [224, 224]}]</td><td>True</td></tr><tr><td>framework</td><td>pytorch</td><td>pytorch</td><td>True</td></tr></table>
+<p class="muted">reproducibility level 1 — Level 1 only; Level 2-4 require a second identical-condition real run. Framework level: NOT_VERIFIED (runs 1).</p>
+
+<h2>8. Baseline registry</h2>
+<p><code>automatic_compression:bcb3162d792f</code> status <span class="status WARN">candidate</span> — candidate only: promotion requires Level 3/4 reproducibility evidence from a second real run</p>
+
+<h2>9. Environment fingerprint</h2>
+<table><tr><td>credit_consuming</td><td>False</td></tr><tr><td>evaluation_type</td><td>local_ort</td></tr><tr><td>netspresso_api_calls</td><td>0</td></tr><tr><td>os</td><td>Windows</td></tr><tr><td>os_release</td><td>10</td></tr><tr><td>os_version</td><td>10.0.26200</td></tr><tr><td>architecture</td><td>AMD64</td></tr><tr><td>cpu</td><td>Intel64 Family 6 Model 198 Stepping 2, GenuineIntel</td></tr><tr><td>cpu_count</td><td>20</td></tr><tr><td>python</td><td>3.11.9</td></tr><tr><td>python_implementation</td><td>CPython</td></tr><tr><td>execution_provider</td><td>CPUExecutionProvider</td></tr><tr><td>intra_op_threads</td><td>None</td></tr><tr><td>packages</td><td><code>onnxruntime=1.30.0</code> <code>onnx=1.23.1</code> <code>numpy=1.26.4</code> <code>torch=2.0.1</code> <code>torchvision=0.15.2</code> <code>psutil=7.2.2</code> <code>netspresso=1.17.0</code> </td></tr></table>
+<p class="muted">Personal portfolio project using publicly available NetsPresso SDK/API resources. Policy values are project-defined examples.</p>
+</body>
+</html>

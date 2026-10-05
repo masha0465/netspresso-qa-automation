@@ -115,14 +115,25 @@ class CriterionConfig:
     name: str
     threshold: float | None
     required: bool
+    params: dict[str, Any] = field(default_factory=dict)  # criterion-specific knobs (e.g. min_cosine_similarity)
 
 
 @dataclass(frozen=True)
 class QualityGateConfig:
+    """Default criteria (== `release` profile) plus optional named stage profiles."""
+
     criteria: dict[str, CriterionConfig]
+    profiles: dict[str, dict[str, CriterionConfig]] = field(default_factory=dict)
 
     def get(self, name: str) -> CriterionConfig | None:
         return self.criteria.get(name)
+
+    def profile(self, name: str | None) -> dict[str, CriterionConfig]:
+        if name is None:
+            return self.criteria
+        if name not in self.profiles:
+            raise ConfigurationError(f"unknown quality gate profile '{name}', available: {sorted(self.profiles)}")
+        return self.profiles[name]
 
 
 @dataclass(frozen=True)
@@ -202,6 +213,31 @@ def load_provider(path: Path) -> ProviderConfig:
     )
 
 
+@dataclass(frozen=True)
+class TrustedArtifact:
+    sha256: str
+    name: str
+    trust_basis: str
+
+
+@dataclass(frozen=True)
+class LocalEvalConfig:
+    """Policy for the 0-credit local ONNX Runtime evaluation (project-defined example values)."""
+
+    warmup_iterations: int = 10
+    measurement_iterations: int = 100
+    seed: int = 0
+    intra_op_threads: int | None = None
+    execution_provider: str = "CPUExecutionProvider"
+    proxy_min_cosine_similarity: float = 0.99
+    params_tolerance_percent: float = 0.5
+    flops_tolerance_percent: float = 10.0
+    trusted_artifacts: tuple[TrustedArtifact, ...] = ()
+
+    def is_trusted(self, sha256: str | None) -> bool:
+        return bool(sha256) and any(t.sha256.lower() == sha256.lower() for t in self.trusted_artifacts)
+
+
 # --------------------------------------------------------------------------- #
 # Aggregate
 # --------------------------------------------------------------------------- #
@@ -217,6 +253,7 @@ class FrameworkConfig:
     mock: MockConfig
     source_dir: Path
     provider: ProviderConfig = ProviderConfig()
+    local_eval: LocalEvalConfig = LocalEvalConfig()
 
     def model(self, name: str) -> ModelSpec:
         return _lookup(self.models, name, "model")
@@ -343,19 +380,51 @@ def load_optimizations(path: Path) -> tuple[OptimizationSpec, ...]:
 
 
 _THRESHOLD_KEYS = ("max_drop_percent", "max_increase_percent")
+_RESERVED_CRITERION_KEYS = set(_THRESHOLD_KEYS) | {"required"}
 
 
-def load_quality_gate(path: Path) -> QualityGateConfig:
-    raw = _require(_load_yaml(path), "quality_gate", str(path))
+def _parse_criteria(raw: dict[str, Any], where: str) -> dict[str, CriterionConfig]:
     criteria: dict[str, CriterionConfig] = {}
     for name, body in raw.items():
         if not isinstance(body, dict):
-            raise ConfigurationError(f"quality_gate.{name} must be a mapping")
+            raise ConfigurationError(f"{where}.{name} must be a mapping")
         threshold = next((float(body[k]) for k in _THRESHOLD_KEYS if k in body), None)
         if threshold is not None and threshold < 0:
-            raise ConfigurationError(f"quality_gate.{name}: threshold must be >= 0")
-        criteria[name] = CriterionConfig(name=name, threshold=threshold, required=bool(body.get("required", True)))
-    return QualityGateConfig(criteria=criteria)
+            raise ConfigurationError(f"{where}.{name}: threshold must be >= 0")
+        params = {k: v for k, v in body.items() if k not in _RESERVED_CRITERION_KEYS}
+        criteria[name] = CriterionConfig(name=name, threshold=threshold, required=bool(body.get("required", True)), params=params)
+    return criteria
+
+
+def load_quality_gate(path: Path) -> QualityGateConfig:
+    data = _load_yaml(path)
+    criteria = _parse_criteria(_require(data, "quality_gate", str(path)), "quality_gate")
+    profiles = {str(n): _parse_criteria(body or {}, f"profiles.{n}") for n, body in (data.get("profiles") or {}).items()}
+    profiles.setdefault("release", criteria)  # the default gate is the release profile
+    return QualityGateConfig(criteria=criteria, profiles=profiles)
+
+
+def load_local_eval(path: Path) -> LocalEvalConfig:
+    if not path.exists():
+        return LocalEvalConfig()
+    raw = _load_yaml(path).get("local_eval") or {}
+    trusted = tuple(
+        TrustedArtifact(sha256=str(_require(t, "sha256", "local_eval.trusted_artifact_sha256")), name=str(t.get("name", "")),
+                        trust_basis=str(t.get("trust_basis", "")))
+        for t in raw.get("trusted_artifact_sha256") or []
+    )
+    threads = raw.get("intra_op_threads")
+    return LocalEvalConfig(
+        warmup_iterations=int(raw.get("warmup_iterations", 10)),
+        measurement_iterations=int(raw.get("measurement_iterations", 100)),
+        seed=int(raw.get("seed", 0)),
+        intra_op_threads=int(threads) if threads is not None else None,
+        execution_provider=str(raw.get("execution_provider", "CPUExecutionProvider")),
+        proxy_min_cosine_similarity=float(raw.get("proxy_min_cosine_similarity", 0.99)),
+        params_tolerance_percent=float(raw.get("params_tolerance_percent", 0.5)),
+        flops_tolerance_percent=float(raw.get("flops_tolerance_percent", 10.0)),
+        trusted_artifacts=trusted,
+    )
 
 
 def load_risk(path: Path) -> RiskConfig:
@@ -442,6 +511,7 @@ def load_config(
         mock=load_mock(scenarios_path),
         source_dir=base,
         provider=load_provider(base / "netspresso.yaml"),
+        local_eval=load_local_eval(base / "local_eval.yaml"),
     )
     _cross_validate(cfg)
     return cfg

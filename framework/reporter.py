@@ -75,3 +75,13 @@ def write_regression_html(report: RegressionReport, path: Path | str) -> Path:
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(html, encoding="utf-8")
     return p
+
+
+def write_local_eval_html(result: dict[str, Any], path: Path | str) -> Path:
+    """Render the 0-credit local evaluation result (see scripts/run_local_eval.py)."""
+    template = _env.get_template("local_eval_report.html.j2")
+    html = template.render(r=result)
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(html, encoding="utf-8")
+    return p

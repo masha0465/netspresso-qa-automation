@@ -34,6 +34,7 @@
 18. [GitHub / CI 구조](#18-github--ci-구조)
 19. [현재 한계 (Limitations)](#19-현재-한계-limitations)
 20. [Quick Start](#20-quick-start)
+21. [QA 설계 문서 (5-C) 와 0-Credit 로컬 검증 (5-D)](#21-qa-설계-문서-phase-5-c-와-0-credit-로컬-검증-phase-5-d)
 
 ---
 
@@ -52,7 +53,7 @@ AI 모델 최적화 플랫폼(압축·양자화·변환·프로파일링)은 "�
 | 대상 도메인 | AI 모델 최적화 파이프라인 (NetsPresso 공개 SDK를 참조 대상으로 삼음) |
 | 프레임워크 언어/환경 | Python 3.14, pytest, PyYAML, Jinja2 (최소 의존성) |
 | 실 SDK 환경 | Python 3.11 별도 venv (`.venv-netspresso`, netspresso 1.17.0) — 현재 조사 완료, 실 호출은 미실행 |
-| 현재 단계 | Phase 2–4(Mock QA 엔진 + CI) → 5-A(안전 경계 + dry-run) → **5-B 완료: 실 NetsPresso 작업 1회 실행** (`automatic_compression`, 2026-10-05). 실 API 작업 1회, Credit 사용 **25 / 500** (계정 잔액 500→475로 관찰) |
+| 현재 단계 | 2–4(Mock QA 엔진 + CI) → 5-A(안전 경계) → 5-B(실 작업 1회, 25 Credit) → 5-C(Quality Gap 분석) → **5-D 완료: 0 Credit 로컬 검증**(Gate 프로파일·레지스트리·구조 검증·독립 검증·로컬 ORT 평가). 실 API 작업 1회, Credit 사용 **25 / 500**(잔액 475) |
 
 ---
 
@@ -514,6 +515,37 @@ python3.11 -m venv .venv-netspresso
 .venv-netspresso/Scripts/python -m pip install -r requirements/netspresso-py311.lock.txt
 cp .env.example .env    # NETSPRESSO_API_KEY 입력. .env는 커밋되지 않음
 ```
+
+---
+
+## 21. QA 설계 문서 (Phase 5-C) 와 0-Credit 로컬 검증 (Phase 5-D)
+
+첫 실 실험(§16.3)은 "SDK `completed` ≠ Release PASS"를 실 데이터로 보여주었습니다. 압축은 성공했지만 릴리스 판단에 필요한 6개 질문 중 크기 1개만 답할 수 있었고, 나머지는 **증거 미수집**(NOT_APPLICABLE)이었습니다. 그 결과를 기반으로 "다음에 무엇을 검증해야 실제 Release Quality Gate가 되는가"를 세 문서로 분리해 설계했습니다 (API 호출 없이 작성, Credit 0).
+
+| 문서 | 답하는 질문 | 핵심 내용 |
+|---|---|---|
+| [`docs/quality_gap_analysis.md`](docs/quality_gap_analysis.md) | 지금 **무엇이 부족한가** | 실측값/SDK 보고값/QA 계산값/미측정값을 구분한 Quality Gap 표, Gate FAIL의 구조적 이유 5가지, Gap TOP 10, 0-Credit vs 실 API 분류, 다음 실험 4회·약 225 Credit 권고 |
+| [`docs/test_strategy.md`](docs/test_strategy.md) | **무엇을 어떻게** 테스트하는가 | API Contract(Layer 1) vs QA Validation(Layer 2) 분리와 기존 111개 테스트의 재분류, 파이프라인 8단계 최소 Release Test Suite(TC-M01 … TC-R02), Accuracy/Latency/Memory 측정 설계, Artifact 5단계 진술, Reproducibility Level 0–4, Roadmap 5-D/5-E/5-F |
+| [`docs/release_quality_gate.md`](docs/release_quality_gate.md) | **어떤 조건이면** Release PASS인가 | 6원칙, 기준 정의, Gate 프로파일(`compression_stage` / `local_eval` / `release`), Release PASS 조건 R1–R10과 현재 상태, 상태 의미론, 임계값 거버넌스 |
+
+### Phase 5-D — 0 Credit 로컬 검증 (구현 완료)
+
+5-C에서 식별한 구조적 Gap을 NetsPresso API 호출 없이 프레임워크에 반영하고, 5-B 산출물에 적용했습니다 (`reports/local_eval/`, `reports/baselines/registry.json`).
+
+| 구현 | 위치 | 5-B 산출물 적용 결과 |
+|---|---|---|
+| Gate 프로파일 `compression` / `local_eval` / `release` | `configs/quality_gate.yaml`, `QualityGate(config, profile=…)` | compression **PASS** · local_eval **FAIL** · release **FAIL** — 각각 사유가 다름(아래) |
+| Baseline 레지스트리 (`candidate → baseline → retired`, 승격 정책 명시) | `framework/baselines.py` | 압축 산출물을 `candidate`로 등록. 2회차 재현성 증거 없이는 기대 체크섬으로 쓰이지 않음 |
+| 산출물 구조 검증 (PT: `weights_only` 우선, 신뢰 SHA 목록에서만 전체 unpickle; ONNX: checker + I/O/노드/initializer) | `framework/evaluation/artifact_structure.py` | `sdk_output.pt`·`graphmodule.pt` GraphModule 로드 PASS, `sdk_output.onnx` 261 노드 PASS |
+| params / FLOPs 독립 검증 (`sdk_reported` / `independently_verified` / `delta` / `verification_status` 분리) | `framework/evaluation/model_stats.py` | params **정확 일치**(7,060,084 → 1,814,928). FLOPs는 ONNX MAC 추정의 **2×MACs**와 0.6–1.0 % 이내 일치 → SDK "flops" 관례 관찰 |
+| 프로세스 격리 로컬 ONNX Runtime 평가 (warm-up 10 / 100회, median·p95, peak RSS) | `framework/evaluation/local_ort.py`, `scripts/run_local_eval.py` (3.11) | latency median 3.49 → 3.57 ms(+2.5 %, 개발 머신), peak RSS 76.0 → 58.1 MB. **FLOPs −52 %가 CPU 지연 개선으로 이어지지 않음** |
+| Output equivalence **proxy** (정확도 아님) | `framework/validation/equivalence.py` | 3개 출력 min cosine **0.825** < 0.99 → FAIL. 재학습 없는 pruning 결과로 원본과 기능적 동등성이 깨짐 |
+| Accuracy | — | **NOT_APPLICABLE** (라벨 평가셋 없음). proxy와 절대 혼용하지 않음 |
+| 환경 fingerprint (시크릿 키/값 필터) | `framework/evaluation/environment.py` | OS·CPU·Python·ORT/torch 버전·EP·스레드 기록 |
+
+측정 중 발견한 QA 교훈 두 가지: (1) 같은 프로세스에서 두 모델을 순서대로 측정하면 첫 모델이 런타임의 1회성 할당을 떠안아 memory 비교가 뒤집힌다(+86 % → 격리 측정 시 −23.5 %) — 평가기는 모델별 새 인터프리터를 사용하도록 수정했습니다. (2) SDK `completed`·크기 −74 %·params 일치라는 "성공" 신호가 모두 참이어도, 출력 동등성 proxy는 이 산출물이 그대로 배포 가능한 모델이 아님을 보여줍니다 — Gate 프로파일 분리의 이유입니다.
+
+현재 실측 범위: 실 NetsPresso 작업 1회 + 로컬 평가. 정확도·재현성(Level 2+)·타깃 디바이스 성능은 **아직 측정되지 않았습니다**. 모든 임계값은 project-defined example이고 Nota 공식 기준이 아닙니다.
 
 ---
 

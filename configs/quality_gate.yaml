@@ -1,19 +1,30 @@
 # Quality Gate configuration.
 #
-# Each criterion has a threshold and a `required` flag.
+# ALL thresholds in this file are PROJECT-DEFINED EXAMPLE POLICY. They are not
+# Nota's official release criteria. Replace them when official criteria exist.
+#
+# Each criterion has an optional threshold and a `required` flag.
 #   required: true  -> a failing criterion fails the whole gate (mandatory)
 #   required: false -> a failing criterion is reported as WARN and does not
 #                      change the overall verdict
+# A required criterion that cannot be evaluated (NOT_APPLICABLE, missing data)
+# also fails the gate: a release decision must never rest on missing evidence.
 #
-# Semantics (documented, generic; not NetsPresso-specific):
-#   accuracy.max_drop_percent      absolute drop in percentage points
-#                                  (baseline 0.520 -> current 0.512 = 0.8 pp)
-#   latency.max_increase_percent   relative increase vs baseline; decreases pass
-#   memory.max_increase_percent    relative increase vs baseline; decreases pass
-#   model_size.max_increase_percent relative increase vs baseline; decreases pass
-#   artifact.required              artifact must exist and checksum must validate
-#   reproducibility.required       level must be BITWISE_ or FUNCTIONALLY_REPRODUCIBLE;
-#                                  NOT_VERIFIED fails only when required is true
+# Criterion semantics (generic; not NetsPresso-specific):
+#   accuracy.max_drop_percent            absolute drop in percentage points
+#   latency.max_increase_percent         relative increase vs baseline; decreases pass
+#   memory.max_increase_percent          relative increase vs baseline; decreases pass
+#   model_size.max_increase_percent      relative increase vs baseline; decreases pass
+#   artifact.required                    artifact exists, non-empty; checksum must match
+#                                        when `checksum_required` (default true) and an
+#                                        expected checksum exists
+#   structural_validity.required         artifact loads and passes format checks
+#   output_equivalence_proxy             baseline vs optimized output similarity on
+#     .min_cosine_similarity             identical deterministic inputs. A PROXY for
+#                                        functional equivalence, NOT labeled accuracy.
+#   reproducibility.required             BITWISE_ or FUNCTIONALLY_REPRODUCIBLE evidence
+
+# Default gate == `release` profile (kept at top level for backward compatibility).
 quality_gate:
   accuracy:
     max_drop_percent: 1.0
@@ -31,3 +42,76 @@ quality_gate:
     required: true
   reproducibility:
     required: true
+
+# Stage profiles. A lower profile's PASS never implies a higher profile's PASS.
+profiles:
+  # Right after a compression / quantization / conversion operation.
+  # Asks only what that stage can evidence: size did not grow, artifact is a
+  # usable file. Checksum is optional here because a first artifact has no
+  # reference checksum yet; it becomes mandatory once a baseline is promoted.
+  compression:
+    model_size:
+      max_increase_percent: 0.0
+      required: true
+    artifact:
+      required: true
+      checksum_required: false
+    structural_validity:
+      required: true
+    accuracy:
+      max_drop_percent: 1.0
+      required: false
+    latency:
+      max_increase_percent: 10.0
+      required: false
+    memory:
+      max_increase_percent: 15.0
+      required: false
+
+  # After the local ONNX Runtime evaluation (0 credits). Latency/memory here are
+  # DEVELOPMENT-MACHINE measurements, not target-device measurements.
+  local_eval:
+    artifact:
+      required: true
+      checksum_required: false
+    structural_validity:
+      required: true
+    output_equivalence_proxy:
+      min_cosine_similarity: 0.99
+      required: true
+    latency:
+      max_increase_percent: 10.0
+      required: true
+    memory:
+      max_increase_percent: 15.0
+      required: true
+    model_size:
+      max_increase_percent: 0.0
+      required: true
+    accuracy:
+      max_drop_percent: 1.0
+      required: false
+
+  # Release decision: everything, with verified checksum and reproducibility.
+  release:
+    accuracy:
+      max_drop_percent: 1.0
+      required: true
+    latency:
+      max_increase_percent: 10.0
+      required: true
+    memory:
+      max_increase_percent: 15.0
+      required: true
+    model_size:
+      max_increase_percent: 10.0
+      required: false
+    artifact:
+      required: true
+    structural_validity:
+      required: true
+    output_equivalence_proxy:
+      min_cosine_similarity: 0.99
+      required: false
+    reproducibility:
+      required: true

@@ -59,6 +59,16 @@ def validate_artifact(artifact: Artifact | None, criterion: CriterionConfig) -> 
         if artifact.checksum_valid is False:
             problems.append("checksum mismatch")
 
+    checksum_required = bool(criterion.params.get("checksum_required", True))
+    if not problems and artifact is not None and artifact.exists and artifact.checksum_valid is None and not checksum_required:
+        return CriterionResult(
+            name=CRITERION,
+            status=CriterionStatus.PASS,
+            observed="exists, non-empty, checksum recorded (reference not yet promoted)",
+            threshold="required (checksum optional)" if criterion.required else "optional",
+            message="artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+            required=criterion.required,
+        )
     if not problems and artifact is not None and artifact.exists and artifact.checksum_valid is None:
         # Exists and non-empty, but no reference checksum exists yet (e.g. first real artifact):
         # this is missing evidence, not an integrity failure. A required criterion still blocks PASS.

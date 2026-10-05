@@ -31,7 +31,10 @@ from framework.pipeline.result import (
 # Quality-gate criterion -> (category, severity). Order = priority for the primary category.
 _CRITERION_MAP: tuple[tuple[str, DefectCategory, Severity], ...] = (
     ("accuracy", DefectCategory.ACCURACY_REGRESSION, Severity.HIGH),
+    # proxy evidence points at the accuracy impact area; the message keeps the word "proxy"
+    ("output_equivalence_proxy", DefectCategory.ACCURACY_REGRESSION, Severity.MEDIUM),
     ("artifact", DefectCategory.ARTIFACT_ERROR, Severity.HIGH),
+    ("structural_validity", DefectCategory.ARTIFACT_ERROR, Severity.HIGH),
     ("reproducibility", DefectCategory.REPRODUCIBILITY_ERROR, Severity.MEDIUM),
     ("memory", DefectCategory.MEMORY_REGRESSION, Severity.MEDIUM),
     ("latency", DefectCategory.PERFORMANCE_REGRESSION, Severity.MEDIUM),
@@ -103,7 +106,7 @@ def _suspected_cause(category: DefectCategory, execution: ExecutionResult) -> st
     if category == DefectCategory.ACCURACY_REGRESSION and "int8" in optimization:
         return "INT8 quantization precision loss / calibration coverage (suspected, not confirmed)"
     if category == DefectCategory.ACCURACY_REGRESSION and "compression" in optimization:
-        return "pruning ratio too aggressive for this model (suspected, not confirmed)"
+        return "pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)"
     return None
 
 

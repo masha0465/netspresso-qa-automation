@@ -1,0 +1,34 @@
+{
+  "credit_consuming": false,
+  "adapter": "local_ort",
+  "adapter_version": "0.1.0",
+  "sdk_name": "onnxruntime",
+  "sdk_version": "1.30.0",
+  "python_version": "3.11.9",
+  "platform": "Windows 10 AMD64",
+  "extra": {
+    "credit_consuming": false,
+    "evaluation_type": "local_ort",
+    "netspresso_api_calls": 0,
+    "os": "Windows",
+    "os_release": "10",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "python": "3.11.9",
+    "python_implementation": "CPython",
+    "execution_provider": "CPUExecutionProvider",
+    "intra_op_threads": null,
+    "thread_env": {},
+    "packages": {
+      "onnxruntime": "1.30.0",
+      "onnx": "1.23.1",
+      "numpy": "1.26.4",
+      "torch": "2.0.1",
+      "torchvision": "0.15.2",
+      "psutil": "7.2.2",
+      "netspresso": "1.17.0"
+    }
+  }
+}
