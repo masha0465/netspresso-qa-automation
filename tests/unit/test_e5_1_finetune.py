@@ -258,5 +258,7 @@ def test_ft_014_phase_c_record(records):
     assert [row["model"] for row in r["comparison_table"]] == ["baseline", "E5-1 compressed", "fine-tuned A", "fine-tuned B", "fine-tuned C"]
     assert all(row["params"] == 882996 for row in r["comparison_table"][1:]) and r["comparison_table"][0]["params"] == 3157184
     assert "previous_vs_fine_tuned" in r["output_equivalence_proxy"]["real_images"]["aggregate"] and r["performance"].get("previous") and r["performance"].get("e5_1")
-    for f in ("finetune_config.json", "training_history.json", "validation_results.json", "phaseC_result.json", "environment_fingerprint.json", "artifact_validation.json", "recovery_summary.json", "finetune_summary.html"):
+    # phaseC_result.json is a byte-identical duplicate of finetune_result.json and is intentionally excluded from the
+    # public repository; FT-014 validates the canonical committed phase C record instead.
+    for f in ("finetune_config.json", "training_history.json", "validation_results.json", "finetune_result.json", "environment_fingerprint.json", "artifact_validation.json", "recovery_summary.json", "finetune_summary.html"):
         assert (d / f).is_file(), f
