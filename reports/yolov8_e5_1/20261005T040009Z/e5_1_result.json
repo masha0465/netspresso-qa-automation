@@ -1,0 +1,2934 @@
+{
+  "experiment": {
+    "phase": "5-E",
+    "experiment_id": "E5-1",
+    "timestamp": "2026-10-05T04:09:47+00:00",
+    "model": "yolov8n",
+    "operation": "automatic_compression",
+    "compression_ratio": 0.5,
+    "compression_method": "PR_L2",
+    "input_shape": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "run_dir": "reports/real_runs/20261005T040009Z_automatic_compression",
+    "e5_dir": "reports/yolov8_e5_1/20261005T040009Z",
+    "configuration": {
+      "model": "yolov8n",
+      "device": "intel_xeon_w2233",
+      "runtime": "onnxruntime",
+      "backend": "default",
+      "optimization": "automatic_compression"
+    }
+  },
+  "disclaimer": "E5-1 local validation of the NetsPresso-compressed artifact. No NetsPresso API call was made in this step. Local measurements are development-machine evidence, not NetsPresso server-side measurements.",
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "input_provenance": {
+    "source_artifact": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+    "source_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "source_size_bytes": 12846691,
+    "generation_method": "scripts/yolov8_r1_traceable_export.py: upstream ultralytics ultralytics 8.4.173 (upstream, unmodified), patch r1-upstream-body-wrapper-v1",
+    "r1_validation_reference": "reports/yolov8_baseline/20261005T034329Z_r1/r1_result.json",
+    "source_model": {
+      "weights": "outputs/models/yolov8n.pt",
+      "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "checkpoint": {
+        "date": "2022-12-30T00:12:08.084698",
+        "version": "8.0.0.dev0",
+        "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+        "docs": "https://docs.ultralytics.com"
+      }
+    },
+    "input_gate": {
+      "status": "PASS",
+      "checks": {
+        "exists": true,
+        "not_forbidden_path": true,
+        "sha256_matches": true,
+        "size_matches": true
+      },
+      "details": {
+        "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+        "expected_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "size_bytes": 12846691
+      },
+      "message": "input artifact identity verified"
+    },
+    "precheck_status": "READY"
+  },
+  "netspresso_execution": {
+    "sdk_version": "1.17.0",
+    "status": "COMPLETED",
+    "method": "NetsPresso.compressor_v2().automatic_compression",
+    "execution_time_s": 29.329,
+    "timestamp": "2026-10-05T04:00:15+00:00",
+    "sdk_model_id": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+    "compressed_model_id": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+    "server_metadata": {
+      "status": "completed",
+      "task_type": "compress",
+      "is_retrainable": false,
+      "model_info": {
+        "task": "",
+        "model": "",
+        "dataset": "",
+        "data_type": "FP32",
+        "framework": "pytorch",
+        "input_shapes": [
+          {
+            "batch": 1,
+            "channel": 3,
+            "dimension": [
+              640,
+              640
+            ]
+          }
+        ]
+      },
+      "compression_info": {
+        "method": "PR_L2",
+        "ratio": 0.5,
+        "options": {
+          "reshape_channel_axis": -1,
+          "policy": "average",
+          "layer_norm": "standard_score",
+          "group_policy": "average",
+          "step_size": 2,
+          "step_op": "round",
+          "reverse": false
+        },
+        "layers": [
+          {
+            "use": false,
+            "name": "layers_0_conv",
+            "channels": [
+              16
+            ],
+            "values": [
+              0.0
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_1_conv",
+            "channels": [
+              32
+            ],
+            "values": [
+              0.25
+            ]
+          },
+          {
+            "use": false,
+            "name": "layers_2_m_0_cv1_conv",
+            "channels": [
+              16
+            ],
+            "values": [
+              0.0
+            ]
+          },
+          {
+            "use": false,
+            "name": "add",
+            "channels": [
+              16
+            ],
+            "values": [
+              0.0
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_2_cv2_conv",
+            "channels": [
+              32
+            ],
+            "values": [
+              0.1875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_3_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.328125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_4_m_0_cv1_conv",
+            "channels": [
+              32
+            ],
+            "values": [
+              0.1875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_4_m_1_cv1_conv",
+            "channels": [
+              32
+            ],
+            "values": [
+              0.25
+            ]
+          },
+          {
+            "use": true,
+            "name": "add_2",
+            "channels": [
+              32
+            ],
+            "values": [
+              0.0625
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_4_cv2_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.390625
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_5_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.5078125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_6_m_0_cv1_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.328125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_6_m_1_cv1_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.28125
+            ]
+          },
+          {
+            "use": true,
+            "name": "add_4",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.21875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_6_cv2_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.4921875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_7_conv",
+            "channels": [
+              256
+            ],
+            "values": [
+              0.73828125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_8_m_0_cv1_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.5625
+            ]
+          },
+          {
+            "use": true,
+            "name": "add_5",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.4453125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_8_cv2_conv",
+            "channels": [
+              256
+            ],
+            "values": [
+              0.76171875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_9_cv1_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.5703125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_9_cv2_conv",
+            "channels": [
+              256
+            ],
+            "values": [
+              0.73046875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_12_cv1_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.5078125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_12_m_0_cv1_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.3125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_12_m_0_cv2_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.296875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_12_cv2_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.5546875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_15_cv1_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.09375
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_15_m_0_cv1_conv",
+            "channels": [
+              32
+            ],
+            "values": [
+              0.125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_15_m_0_cv2_conv",
+            "channels": [
+              32
+            ],
+            "values": [
+              0.21875
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_15_cv2_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.34375
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_16_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.4375
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv2_0_0_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.34375
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv3_0_0_conv",
+            "channels": [
+              80
+            ],
+            "values": [
+              0.425
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv2_0_1_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.359375
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv3_0_1_conv",
+            "channels": [
+              80
+            ],
+            "values": [
+              0.4125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_18_cv1_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.484375
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_18_m_0_cv1_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.328125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_18_m_0_cv2_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.28125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_18_cv2_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.53125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_19_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.5078125
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv2_1_0_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.328125
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv3_1_0_conv",
+            "channels": [
+              80
+            ],
+            "values": [
+              0.5
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv2_1_1_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.359375
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv3_1_1_conv",
+            "channels": [
+              80
+            ],
+            "values": [
+              0.45
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_21_cv1_conv",
+            "channels": [
+              256
+            ],
+            "values": [
+              0.70703125
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_21_m_0_cv1_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.484375
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_21_m_0_cv2_conv",
+            "channels": [
+              128
+            ],
+            "values": [
+              0.609375
+            ]
+          },
+          {
+            "use": true,
+            "name": "layers_21_cv2_conv",
+            "channels": [
+              256
+            ],
+            "values": [
+              0.71875
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv2_2_0_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.359375
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv3_2_0_conv",
+            "channels": [
+              80
+            ],
+            "values": [
+              0.4625
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv2_2_1_conv",
+            "channels": [
+              64
+            ],
+            "values": [
+              0.328125
+            ]
+          },
+          {
+            "use": true,
+            "name": "cv3_2_1_conv",
+            "channels": [
+              80
+            ],
+            "values": [
+              0.45
+            ]
+          }
+        ]
+      }
+    },
+    "sdk_reported": {
+      "original": {
+        "size": 12.2516,
+        "flops": 8800920000.0,
+        "number_of_parameters": 3157184,
+        "trainable_parameters": 0,
+        "non_trainable_parameters": 3157184,
+        "number_of_layers": null,
+        "model_id": "498c4990-5716-4ae9-8513-998062e4927a"
+      },
+      "compressed": {
+        "size": 3.52269,
+        "flops": 3874910000.0,
+        "number_of_parameters": 882996,
+        "trainable_parameters": 877796,
+        "non_trainable_parameters": 5200,
+        "number_of_layers": null,
+        "model_id": "491890fb-de7f-4a95-8e4b-a448859c73a7"
+      }
+    },
+    "credit": {
+      "account_total_before": 475,
+      "account_total_after": 450,
+      "delta_classification": {
+        "status": "MATCH",
+        "expected": 25,
+        "observed": 25,
+        "note": "observed account delta equals the client-side pre-check constant"
+      },
+      "framework_credit_record": {
+        "usage_type": "actual",
+        "estimated": 25,
+        "actual": 25,
+        "note": "actual = account credit total before (475) - after (450), observed via the SDK's user/credit query; estimate 25 = CLIENT_SIDE_PRE_CHECK_CONSTANT (netspresso 1.17.0, netspresso/enums/credit.py); actual server-side deduction NOT verified"
+      },
+      "ledger_transition": {
+        "ok": true,
+        "checks": {
+          "exactly_one_operation_added": true,
+          "used_delta_equals_observed": true,
+          "remaining_consistent": true
+        },
+        "operations_delta": 1,
+        "used_delta": 25
+      },
+      "ledger_entries_added": [
+        {
+          "timestamp": "2026-10-05T04:00:44+00:00",
+          "operation": "automatic_compression",
+          "model": "yolov8n",
+          "purpose": "Phase 5-E E5-1: single automatic_compression of the R1-validated upstream YOLOv8n fx body (ratio 0.5, 640x640)",
+          "usage_type": "actual",
+          "estimated_credit": 25,
+          "actual_credit": 25,
+          "remaining_estimate": 450,
+          "result": "COMPLETED",
+          "error": null,
+          "confirmation": true,
+          "adapter": "netspresso"
+        }
+      ],
+      "service_operations_executed": 1,
+      "auth_sessions": 1
+    },
+    "ledger_after": {
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9",
+      "used_credit": 50,
+      "remaining_estimate": 450,
+      "operations": 2
+    },
+    "operations_executed": 1,
+    "execution_record": "reports/real_runs/20261005T040009Z_automatic_compression/execution_result.json",
+    "e5_1_execution_record": "reports/yolov8_e5_1/20261005T040009Z/e5_1_execution.json",
+    "execution_stage_gate": {
+      "overall": "PASS",
+      "profile": "release",
+      "criteria": [
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.246,
+          "threshold": 0.0,
+          "message": "model_size 12.847 -> 3.694 MB (-71.25%) within +0.0%",
+          "required": true
+        },
+        {
+          "name": "artifact",
+          "status": "NOT_APPLICABLE",
+          "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+          "threshold": "optional",
+          "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+          "required": false
+        }
+      ],
+      "reasons": []
+    }
+  },
+  "candidate_artifact": {
+    "pt": {
+      "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+      "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "size_bytes": 3693813,
+      "format": "pt (torch.save GraphModule)",
+      "trusted_for_full_unpickle": true,
+      "trust_basis": "trust list (configs/local_eval.yaml)",
+      "structural": {
+        "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+        "format": "pt",
+        "status": "PASS",
+        "message": "loaded as graph_module via full_unpickle (trusted)",
+        "checks": {
+          "exists": true,
+          "non_empty": true,
+          "readable": true,
+          "zip_container": true,
+          "safe_load": false,
+          "full_load": true,
+          "recognised_structure": true,
+          "has_parameters": true
+        },
+        "details": {
+          "size_bytes": 3693813,
+          "magic": "504b0304",
+          "safe_load_error": "UnpicklingError",
+          "load_mode": "full_unpickle (trusted)",
+          "class_name": "GraphModule",
+          "parameter_count": 882996,
+          "parameter_tensors": 183,
+          "object_kind": "graph_module"
+        },
+        "defect_category": null
+      },
+      "forward_output_shapes": [
+        [
+          1,
+          144,
+          80,
+          80
+        ],
+        [
+          1,
+          144,
+          40,
+          40
+        ],
+        [
+          1,
+          144,
+          20,
+          20
+        ]
+      ],
+      "expected_output_shapes": [
+        [
+          1,
+          144,
+          80,
+          80
+        ],
+        [
+          1,
+          144,
+          40,
+          40
+        ],
+        [
+          1,
+          144,
+          20,
+          20
+        ]
+      ],
+      "schema_ok": true,
+      "schema_message": "output schema matches expected [[1, 144, 80, 80], [1, 144, 40, 40], [1, 144, 20, 20]]",
+      "parameter_count_torch": 882996
+    },
+    "onnx": {
+      "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.onnx",
+      "sha256": "925a818c138368f4b9a2671724aaf11e9af50bbbb3f18184e0834416d0c645dd",
+      "size_bytes": 3553251,
+      "format": "onnx (SDK companion export)",
+      "structural": {
+        "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.onnx",
+        "format": "onnx",
+        "status": "PASS",
+        "message": "valid ONNX graph (222 nodes, 126 initializers)",
+        "checks": {
+          "exists": true,
+          "non_empty": true,
+          "readable": true,
+          "onnx_load": true,
+          "checker": true,
+          "graph_present": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_nodes": true,
+          "has_initializers": true
+        },
+        "details": {
+          "size_bytes": 3553251,
+          "magic": "08071207",
+          "ir_version": 7,
+          "opset_imports": [
+            13
+          ],
+          "inputs": [
+            {
+              "name": "images",
+              "shape": [
+                "batch_size",
+                3,
+                640,
+                640
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "name": "output",
+              "shape": [
+                "batch_size",
+                144,
+                80,
+                80
+              ]
+            },
+            {
+              "name": "615",
+              "shape": [
+                "Concat615_dim_0",
+                144,
+                40,
+                40
+              ]
+            },
+            {
+              "name": "647",
+              "shape": [
+                "Concat647_dim_0",
+                144,
+                20,
+                20
+              ]
+            }
+          ],
+          "node_count": 222,
+          "initializer_count": 126,
+          "op_type_histogram": {
+            "Conv": 63,
+            "Sigmoid": 57,
+            "Mul": 57,
+            "Constant": 10,
+            "Split": 8,
+            "Add": 6,
+            "Concat": 16,
+            "MaxPool": 3,
+            "Resize": 2
+          }
+        },
+        "defect_category": null
+      },
+      "graph_outputs": [
+        {
+          "name": "output",
+          "shape": [
+            "batch_size",
+            144,
+            80,
+            80
+          ]
+        },
+        {
+          "name": "615",
+          "shape": [
+            "Concat615_dim_0",
+            144,
+            40,
+            40
+          ]
+        },
+        {
+          "name": "647",
+          "shape": [
+            "Concat647_dim_0",
+            144,
+            20,
+            20
+          ]
+        }
+      ]
+    },
+    "sha_matches_execution_record": true,
+    "sdk_model_ids": {
+      "uploaded": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+      "compressed": "491890fb-de7f-4a95-8e4b-a448859c73a7"
+    }
+  },
+  "model_metrics": {
+    "params": {
+      "baseline_full_model_impl": 3157200,
+      "baseline_body_note": "fx body excludes the 16 constant DFL weights (3,157,200 - 16 = 3,157,184)",
+      "baseline_sdk": 3157184,
+      "baseline_independent": 3157184,
+      "candidate_sdk": 882996,
+      "candidate_independent": 882996,
+      "absolute_delta_sdk": 2274188,
+      "reduction_percent_sdk": 72.03,
+      "verification": {
+        "baseline": {
+          "name": "params",
+          "sdk_reported": 3157184,
+          "independently_verified": 3157184,
+          "delta": 0,
+          "delta_percent": 0.0,
+          "tolerance_percent": 0.5,
+          "verification_status": "PASS",
+          "method": "torch parameter numel of the R1 body (trusted full unpickle)",
+          "notes": []
+        },
+        "candidate": {
+          "name": "params",
+          "sdk_reported": 882996,
+          "independently_verified": 882996,
+          "delta": 0,
+          "delta_percent": 0.0,
+          "tolerance_percent": 0.5,
+          "verification_status": "PASS",
+          "method": "torch parameter numel of the compressed body (trusted full unpickle)",
+          "notes": []
+        }
+      }
+    },
+    "flops": {
+      "baseline_full_model_impl_g": 8.855,
+      "baseline_sdk": 8800920000.0,
+      "candidate_sdk": 3874910000.0,
+      "baseline_independent_2x_macs": 8742912000,
+      "candidate_independent_2x_macs": 3832092800,
+      "candidate_sdk_onnx_2x_macs": 3832092800,
+      "absolute_delta_sdk": 4926010000.0,
+      "reduction_percent_sdk": 55.97,
+      "verification": {
+        "baseline": {
+          "name": "flops",
+          "sdk_reported": 8800920000.0,
+          "independently_verified": 8742912000.0,
+          "delta": -58008000.0,
+          "delta_percent": 0.6591,
+          "tolerance_percent": 10.0,
+          "verification_status": "PASS",
+          "method": "ONNX MAC estimate of the locally exported R1 body (Conv/Gemm/MatMul)",
+          "notes": [
+            "closest convention: 2*MACs (MACs=4371456000, 2*MACs=8742912000); SDK does not document its FLOPs convention"
+          ]
+        },
+        "candidate": {
+          "name": "flops",
+          "sdk_reported": 3874910000.0,
+          "independently_verified": 3832092800.0,
+          "delta": -42817200.0,
+          "delta_percent": 1.105,
+          "tolerance_percent": 10.0,
+          "verification_status": "PASS",
+          "method": "ONNX MAC estimate of the locally exported compressed body (Conv/Gemm/MatMul)",
+          "notes": [
+            "closest convention: 2*MACs (MACs=1916046400, 2*MACs=3832092800); SDK does not document its FLOPs convention"
+          ]
+        },
+        "candidate_sdk_onnx": {
+          "name": "flops",
+          "sdk_reported": 3874910000.0,
+          "independently_verified": 3832092800.0,
+          "delta": -42817200.0,
+          "delta_percent": 1.105,
+          "tolerance_percent": 10.0,
+          "verification_status": "PASS",
+          "method": "ONNX MAC estimate of the SDK companion sdk_output.onnx",
+          "notes": [
+            "closest convention: 2*MACs (MACs=1916046400, 2*MACs=3832092800); SDK does not document its FLOPs convention"
+          ]
+        }
+      },
+      "coverage": {
+        "r1_body": {
+          "covered_ops": {
+            "Conv": 63
+          },
+          "uncovered_ops": {
+            "Sigmoid": 57,
+            "Mul": 57,
+            "Constant": 6,
+            "Split": 8,
+            "Add": 6,
+            "Concat": 16,
+            "MaxPool": 3,
+            "Resize": 2
+          },
+          "error": null
+        },
+        "candidate_body": {
+          "covered_ops": {
+            "Conv": 63
+          },
+          "uncovered_ops": {
+            "Sigmoid": 57,
+            "Mul": 57,
+            "Constant": 10,
+            "Split": 8,
+            "Add": 6,
+            "Concat": 16,
+            "MaxPool": 3,
+            "Resize": 2
+          },
+          "error": null
+        },
+        "sdk_onnx": {
+          "covered_ops": {
+            "Conv": 63
+          },
+          "uncovered_ops": {
+            "Sigmoid": 57,
+            "Mul": 57,
+            "Constant": 10,
+            "Split": 8,
+            "Add": 6,
+            "Concat": 16,
+            "MaxPool": 3,
+            "Resize": 2
+          },
+          "error": null
+        }
+      },
+      "convention_note": "SDK 'flops' compared as 2 x MACs (observed convention in Phase 5-B/5-D and here; not claimed as an official documented NetsPresso definition)."
+    },
+    "onnx_exports": {
+      "r1_body": {
+        "status": "PASS",
+        "path": "outputs/e5_1_exports/20261005T040009Z/r1_body.onnx",
+        "sha256": "323a3d2cc49989fa2b2cd4d3abae6189657aa692d4b4118185adca96010544a3",
+        "params_onnx": 3151888,
+        "macs": 4371456000,
+        "covered_ops": {
+          "Conv": 63
+        },
+        "uncovered_ops": {
+          "Sigmoid": 57,
+          "Mul": 57,
+          "Constant": 6,
+          "Split": 8,
+          "Add": 6,
+          "Concat": 16,
+          "MaxPool": 3,
+          "Resize": 2
+        },
+        "error": null
+      },
+      "candidate_body": {
+        "status": "PASS",
+        "path": "outputs/e5_1_exports/20261005T040009Z/candidate_body.onnx",
+        "sha256": "6e8c284af4d6629900fee330f59e5d2d8a7df662338fe77b58f12c6a9823ee75",
+        "params_onnx": 880124,
+        "macs": 1916046400,
+        "covered_ops": {
+          "Conv": 63
+        },
+        "uncovered_ops": {
+          "Sigmoid": 57,
+          "Mul": 57,
+          "Constant": 10,
+          "Split": 8,
+          "Add": 6,
+          "Concat": 16,
+          "MaxPool": 3,
+          "Resize": 2
+        },
+        "error": null
+      }
+    }
+  },
+  "head_reattach": {
+    "status": "PASS",
+    "head_class": "R1DecodeHead (rebuilt from R1 head meta; upstream DFL/make_anchors/dist2bbox)",
+    "expected": [
+      1,
+      84,
+      8400
+    ],
+    "decoded_output_shape": [
+      1,
+      84,
+      8400
+    ],
+    "body_output_shapes": [
+      [
+        1,
+        144,
+        80,
+        80
+      ],
+      [
+        1,
+        144,
+        40,
+        40
+      ],
+      [
+        1,
+        144,
+        20,
+        20
+      ]
+    ],
+    "message": "output schema matches expected [[1, 84, 8400]]",
+    "head_meta_sha256": "6d9043d46c6aa48af87e32cc2cec10cb6a1b80c6ef031154af842bc8bd7ee137",
+    "head_meta": {
+      "nc": 80,
+      "nl": 3,
+      "stride": [
+        8.0,
+        16.0,
+        32.0
+      ],
+      "strides_shape": [
+        1,
+        8400
+      ],
+      "anchors_shape": [
+        2,
+        8400
+      ],
+      "inplace": true,
+      "outputs_per_anchor": 144,
+      "reg_max": 16,
+      "source": "outputs/models/yolov8n_fx_r1/netspresso_head_meta.json"
+    }
+  },
+  "accuracy": {
+    "baseline": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.44369,
+        "mAP50": 0.60111,
+        "mAP75": 0.47223,
+        "precision": 0.6286,
+        "recall": 0.52902
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "yolov8n upstream baseline (official weights)",
+      "is_output_equivalence_proxy": false,
+      "extra": {}
+    },
+    "baseline_source": "reports/yolov8_baseline/20261005T034329Z_r1/r1_result.json",
+    "candidate": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.0,
+        "mAP50": 0.0,
+        "mAP75": 0.0,
+        "precision": 3e-05,
+        "recall": 0.00223
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "E5-1 NetsPresso-compressed body (PR_L2 ratio 0.5, no fine-tuning) + rebuilt head",
+      "is_output_equivalence_proxy": false,
+      "extra": {
+        "speed_ms": {
+          "preprocess": 0.353,
+          "inference": 12.073,
+          "loss": 0.0,
+          "postprocess": 9.512
+        }
+      }
+    },
+    "comparison": {
+      "status": "MEASURED",
+      "metric": "mAP50-95",
+      "baseline_metric": 0.44369,
+      "candidate_metric": 0.0,
+      "absolute_delta": -0.44369,
+      "drop_pp": 44.369,
+      "relative_delta_percent": -100.0,
+      "baseline_label": "yolov8n upstream baseline (official weights)",
+      "candidate_label": "E5-1 NetsPresso-compressed body (PR_L2 ratio 0.5, no fine-tuning) + rebuilt head",
+      "reason": null,
+      "conditions": {
+        "dataset": "coco128.yaml",
+        "split": "val(train2017 subset)",
+        "imgsz": 640,
+        "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+        "conf": 0.001,
+        "iou": 0.7
+      },
+      "secondary": {
+        "mAP50": {
+          "baseline": 0.60111,
+          "candidate": 0.0,
+          "drop_pp": 60.111
+        },
+        "mAP75": {
+          "baseline": 0.47223,
+          "candidate": 0.0,
+          "drop_pp": 47.223
+        },
+        "precision": {
+          "baseline": 0.6286,
+          "candidate": 3e-05,
+          "drop_pp": 62.857
+        },
+        "recall": {
+          "baseline": 0.52902,
+          "candidate": 0.00223,
+          "drop_pp": 52.679
+        }
+      },
+      "is_output_equivalence_proxy": false
+    },
+    "threshold_pp": 1.0,
+    "threshold_basis": "PROJECT-DEFINED EXAMPLE THRESHOLD (configs/quality_gate.yaml release.accuracy); diagnostic use on COCO128 smoke only, not a release decision",
+    "conditions": {
+      "data": "coco128.yaml",
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "rect": true,
+      "batch": 8,
+      "device": "cpu",
+      "half": false,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)"
+    }
+  },
+  "output_equivalence_proxy": {
+    "ort": {
+      "status": "FAIL",
+      "min_cosine_similarity": 0.984289,
+      "max_abs_diff": 449.228973,
+      "mean_abs_diff": 1.269081,
+      "relative_diff": 0.179003,
+      "shape_match": true,
+      "dtype_match": true,
+      "per_output": [
+        {
+          "cosine_similarity": 0.984289,
+          "max_abs_diff": 449.228973,
+          "mean_abs_diff": 1.269081,
+          "relative_diff": 0.179003,
+          "elements": 705600,
+          "index": 0,
+          "shape": [
+            1,
+            84,
+            8400
+          ]
+        }
+      ],
+      "threshold_min_cosine": 0.99,
+      "note": "output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement",
+      "num_outputs": 1
+    },
+    "real_images": {
+      "images": 8,
+      "per_image": [
+        {
+          "image": "000000000009.jpg",
+          "decoded": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9842649076884481,
+            "max_abs_diff": 447.61773681640625,
+            "mean_abs_diff": 1.2860558235862454,
+            "relative_l2_diff": 0.17702231899449156,
+            "bitwise_identical": false
+          },
+          "decoded_boxes": {
+            "status": "COMPUTED",
+            "count": 33600,
+            "cosine": 0.9842649107652645,
+            "max_abs_diff": 447.61773681640625,
+            "mean_abs_diff": 27.005104092409212,
+            "relative_l2_diff": 0.17702230188829793,
+            "bitwise_identical": false
+          },
+          "decoded_scores": {
+            "status": "COMPUTED",
+            "count": 672000,
+            "cosine": 0.012856149308891713,
+            "max_abs_diff": 0.9006847905693576,
+            "mean_abs_diff": 0.00010341014509251948,
+            "relative_l2_diff": 1.0004566830516888,
+            "bitwise_identical": false
+          },
+          "body_maps": [
+            {
+              "status": "COMPUTED",
+              "count": 921600,
+              "cosine": 0.9827244531934168,
+              "max_abs_diff": 15.620258808135986,
+              "mean_abs_diff": 2.361950387855538,
+              "relative_l2_diff": 0.24744009262303596,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 230400,
+              "cosine": 0.9711477856270101,
+              "max_abs_diff": 23.801891803741455,
+              "mean_abs_diff": 2.776244450964304,
+              "relative_l2_diff": 0.31079202241355264,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 57600,
+              "cosine": 0.9564912325536367,
+              "max_abs_diff": 30.633071899414062,
+              "mean_abs_diff": 3.594172769884009,
+              "relative_l2_diff": 0.43828116916419535,
+              "bitwise_identical": false
+            }
+          ]
+        },
+        {
+          "image": "000000000025.jpg",
+          "decoded": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9927116918709727,
+            "max_abs_diff": 308.6474609375,
+            "mean_abs_diff": 0.9186599469054384,
+            "relative_l2_diff": 0.12074031018562337,
+            "bitwise_identical": false
+          },
+          "decoded_boxes": {
+            "status": "COMPUTED",
+            "count": 33600,
+            "cosine": 0.9927116935709026,
+            "max_abs_diff": 308.6474609375,
+            "mean_abs_diff": 19.29064169819866,
+            "relative_l2_diff": 0.12074029620831354,
+            "bitwise_identical": false
+          },
+          "decoded_scores": {
+            "status": "COMPUTED",
+            "count": 672000,
+            "cosine": 0.0014676013207203132,
+            "max_abs_diff": 0.8991522284850362,
+            "mean_abs_diff": 6.085934074773743e-05,
+            "relative_l2_diff": 1.0019176352213077,
+            "bitwise_identical": false
+          },
+          "body_maps": [
+            {
+              "status": "COMPUTED",
+              "count": 921600,
+              "cosine": 0.989386923073279,
+              "max_abs_diff": 13.649120330810547,
+              "mean_abs_diff": 2.214351524805252,
+              "relative_l2_diff": 0.2275455036869434,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 230400,
+              "cosine": 0.9817883898120849,
+              "max_abs_diff": 14.872076988220215,
+              "mean_abs_diff": 2.6453874823283385,
+              "relative_l2_diff": 0.29141029361130655,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 57600,
+              "cosine": 0.9761176188606404,
+              "max_abs_diff": 34.8973331451416,
+              "mean_abs_diff": 3.2880060681648193,
+              "relative_l2_diff": 0.40622016443043035,
+              "bitwise_identical": false
+            }
+          ]
+        },
+        {
+          "image": "000000000030.jpg",
+          "decoded": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9839862412475613,
+            "max_abs_diff": 455.2752227783203,
+            "mean_abs_diff": 1.2824505575685234,
+            "relative_l2_diff": 0.1787200172424956,
+            "bitwise_identical": false
+          },
+          "decoded_boxes": {
+            "status": "COMPUTED",
+            "count": 33600,
+            "cosine": 0.9839862426653033,
+            "max_abs_diff": 455.2752227783203,
+            "mean_abs_diff": 26.930362281295515,
+            "relative_l2_diff": 0.17872000943727523,
+            "bitwise_identical": false
+          },
+          "decoded_scores": {
+            "status": "COMPUTED",
+            "count": 672000,
+            "cosine": 0.022206917585763115,
+            "max_abs_diff": 0.8909790199249983,
+            "mean_abs_diff": 5.497138221193344e-05,
+            "relative_l2_diff": 1.0006510959445643,
+            "bitwise_identical": false
+          },
+          "body_maps": [
+            {
+              "status": "COMPUTED",
+              "count": 921600,
+              "cosine": 0.9880997142668307,
+              "max_abs_diff": 14.86865520477295,
+              "mean_abs_diff": 2.132664779748903,
+              "relative_l2_diff": 0.22236678665632603,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 230400,
+              "cosine": 0.9773415683455614,
+              "max_abs_diff": 33.54116153717041,
+              "mean_abs_diff": 2.7795908615408953,
+              "relative_l2_diff": 0.30415086275209813,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 57600,
+              "cosine": 0.9741692731878167,
+              "max_abs_diff": 38.35176229476929,
+              "mean_abs_diff": 3.270594509331783,
+              "relative_l2_diff": 0.3962144393824105,
+              "bitwise_identical": false
+            }
+          ]
+        },
+        {
+          "image": "000000000034.jpg",
+          "decoded": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9912368261814489,
+            "max_abs_diff": 328.8169250488281,
+            "mean_abs_diff": 1.0042177954765703,
+            "relative_l2_diff": 0.1326051556698834,
+            "bitwise_identical": false
+          },
+          "decoded_boxes": {
+            "status": "COMPUTED",
+            "count": 33600,
+            "cosine": 0.9912368277737416,
+            "max_abs_diff": 328.8169250488281,
+            "mean_abs_diff": 21.087468048036097,
+            "relative_l2_diff": 0.1326051437679848,
+            "bitwise_identical": false
+          },
+          "decoded_scores": {
+            "status": "COMPUTED",
+            "count": 672000,
+            "cosine": 0.0009945310940597284,
+            "max_abs_diff": 0.9285617847854155,
+            "mean_abs_diff": 5.5282848546795326e-05,
+            "relative_l2_diff": 1.0020433582172301,
+            "bitwise_identical": false
+          },
+          "body_maps": [
+            {
+              "status": "COMPUTED",
+              "count": 921600,
+              "cosine": 0.9901918932540156,
+              "max_abs_diff": 11.314598083496094,
+              "mean_abs_diff": 2.281734513619731,
+              "relative_l2_diff": 0.23136477524910298,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 230400,
+              "cosine": 0.9812524029441074,
+              "max_abs_diff": 11.66824722290039,
+              "mean_abs_diff": 2.7698747836647395,
+              "relative_l2_diff": 0.29658752803490457,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 57600,
+              "cosine": 0.9724962566881372,
+              "max_abs_diff": 36.742329597473145,
+              "mean_abs_diff": 3.4675371263932617,
+              "relative_l2_diff": 0.42265868978234256,
+              "bitwise_identical": false
+            }
+          ]
+        },
+        {
+          "image": "000000000036.jpg",
+          "decoded": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9859629575674119,
+            "max_abs_diff": 366.0523681640625,
+            "mean_abs_diff": 1.1745251400725434,
+            "relative_l2_diff": 0.1673636222181128,
+            "bitwise_identical": false
+          },
+          "decoded_boxes": {
+            "status": "COMPUTED",
+            "count": 33600,
+            "cosine": 0.985962959620743,
+            "max_abs_diff": 366.0523681640625,
+            "mean_abs_diff": 24.66375662773138,
+            "relative_l2_diff": 0.16736361012199447,
+            "bitwise_identical": false
+          },
+          "decoded_scores": {
+            "status": "COMPUTED",
+            "count": 672000,
+            "cosine": 0.04621766985406915,
+            "max_abs_diff": 0.8890556329861283,
+            "mean_abs_diff": 6.356568961790025e-05,
+            "relative_l2_diff": 0.9989723415475751,
+            "bitwise_identical": false
+          },
+          "body_maps": [
+            {
+              "status": "COMPUTED",
+              "count": 921600,
+              "cosine": 0.9882519384107448,
+              "max_abs_diff": 13.104815483093262,
+              "mean_abs_diff": 2.175633234696148,
+              "relative_l2_diff": 0.22575774547369076,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 230400,
+              "cosine": 0.9771331572005106,
+              "max_abs_diff": 14.683491230010986,
+              "mean_abs_diff": 2.696039451473042,
+              "relative_l2_diff": 0.29489985813834546,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 57600,
+              "cosine": 0.9630235551785681,
+              "max_abs_diff": 34.33530902862549,
+              "mean_abs_diff": 3.637655006767619,
+              "relative_l2_diff": 0.4385454793670234,
+              "bitwise_identical": false
+            }
+          ]
+        },
+        {
+          "image": "000000000042.jpg",
+          "decoded": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9846579974529697,
+            "max_abs_diff": 444.3389587402344,
+            "mean_abs_diff": 1.3020603885997872,
+            "relative_l2_diff": 0.17487027094303628,
+            "bitwise_identical": false
+          },
+          "decoded_boxes": {
+            "status": "COMPUTED",
+            "count": 33600,
+            "cosine": 0.9846579979040494,
+            "max_abs_diff": 444.3389587402344,
+            "mean_abs_diff": 27.341968439114947,
+            "relative_l2_diff": 0.17487026840285605,
+            "bitwise_identical": false
+          },
+          "decoded_scores": {
+            "status": "COMPUTED",
+            "count": 672000,
+            "cosine": 0.03480371854231929,
+            "max_abs_diff": 0.4464773804793367,
+            "mean_abs_diff": 6.498607398245314e-05,
+            "relative_l2_diff": 1.002926105701246,
+            "bitwise_identical": false
+          },
+          "body_maps": [
+            {
+              "status": "COMPUTED",
+              "count": 921600,
+              "cosine": 0.9853610584876088,
+              "max_abs_diff": 13.632172584533691,
+              "mean_abs_diff": 2.034180732908666,
+              "relative_l2_diff": 0.21900567796697665,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 230400,
+              "cosine": 0.9712354796842173,
+              "max_abs_diff": 16.3792724609375,
+              "mean_abs_diff": 2.455798509581804,
+              "relative_l2_diff": 0.28899514503043994,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 57600,
+              "cosine": 0.9666984355786861,
+              "max_abs_diff": 16.256895065307617,
+              "mean_abs_diff": 2.9826908515627797,
+              "relative_l2_diff": 0.38226779902064734,
+              "bitwise_identical": false
+            }
+          ]
+        },
+        {
+          "image": "000000000049.jpg",
+          "decoded": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9938210579286592,
+            "max_abs_diff": 245.56649780273438,
+            "mean_abs_diff": 0.8480684363666049,
+            "relative_l2_diff": 0.11099628676097852,
+            "bitwise_identical": false
+          },
+          "decoded_boxes": {
+            "status": "COMPUTED",
+            "count": 33600,
+            "cosine": 0.9938210618177089,
+            "max_abs_diff": 245.56649780273438,
+            "mean_abs_diff": 17.807329759541012,
+            "relative_l2_diff": 0.11099625193734845,
+            "bitwise_identical": false
+          },
+          "decoded_scores": {
+            "status": "COMPUTED",
+            "count": 672000,
+            "cosine": 0.031241375247752976,
+            "max_abs_diff": 0.8478017654269934,
+            "mean_abs_diff": 0.00010537020785870146,
+            "relative_l2_diff": 0.999554740989678,
+            "bitwise_identical": false
+          },
+          "body_maps": [
+            {
+              "status": "COMPUTED",
+              "count": 921600,
+              "cosine": 0.9887285968544174,
+              "max_abs_diff": 16.860930919647217,
+              "mean_abs_diff": 2.0923462862190276,
+              "relative_l2_diff": 0.21836141748118287,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 230400,
+              "cosine": 0.9806750457247474,
+              "max_abs_diff": 21.248109340667725,
+              "mean_abs_diff": 2.588060059323272,
+              "relative_l2_diff": 0.28893367689622634,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 57600,
+              "cosine": 0.9798980157152802,
+              "max_abs_diff": 20.661718368530273,
+              "mean_abs_diff": 3.1916306733759585,
+              "relative_l2_diff": 0.39193225116489344,
+              "bitwise_identical": false
+            }
+          ]
+        },
+        {
+          "image": "000000000061.jpg",
+          "decoded": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9918668423881788,
+            "max_abs_diff": 370.49267578125,
+            "mean_abs_diff": 0.8937403707044445,
+            "relative_l2_diff": 0.1274350297510015,
+            "bitwise_identical": false
+          },
+          "decoded_boxes": {
+            "status": "COMPUTED",
+            "count": 33600,
+            "cosine": 0.9918668431806561,
+            "max_abs_diff": 370.49267578125,
+            "mean_abs_diff": 18.767251437001285,
+            "relative_l2_diff": 0.1274350235817223,
+            "bitwise_identical": false
+          },
+          "decoded_scores": {
+            "status": "COMPUTED",
+            "count": 672000,
+            "cosine": 0.02261008339976821,
+            "max_abs_diff": 0.5613406601478346,
+            "mean_abs_diff": 6.481738960500855e-05,
+            "relative_l2_diff": 1.0024864261111273,
+            "bitwise_identical": false
+          },
+          "body_maps": [
+            {
+              "status": "COMPUTED",
+              "count": 921600,
+              "cosine": 0.9886460109385496,
+              "max_abs_diff": 13.680744171142578,
+              "mean_abs_diff": 2.069136362686813,
+              "relative_l2_diff": 0.21677483300954187,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 230400,
+              "cosine": 0.9830117499152767,
+              "max_abs_diff": 18.75033712387085,
+              "mean_abs_diff": 2.475280549209207,
+              "relative_l2_diff": 0.2780475306563237,
+              "bitwise_identical": false
+            },
+            {
+              "status": "COMPUTED",
+              "count": 57600,
+              "cosine": 0.9808542310350391,
+              "max_abs_diff": 17.020872592926025,
+              "mean_abs_diff": 3.090516652035498,
+              "relative_l2_diff": 0.3818843646194071,
+              "bitwise_identical": false
+            }
+          ]
+        }
+      ],
+      "aggregate": {
+        "decoded": {
+          "min_cosine": 0.9839862412475613,
+          "max_abs_diff": 455.2752227783203,
+          "max_relative_l2_diff": 0.1787200172424956
+        },
+        "decoded_boxes": {
+          "min_cosine": 0.9839862426653033,
+          "max_abs_diff": 455.2752227783203,
+          "max_relative_l2_diff": 0.17872000943727523
+        },
+        "decoded_scores": {
+          "min_cosine": 0.0009945310940597284,
+          "max_abs_diff": 0.9285617847854155,
+          "max_relative_l2_diff": 1.002926105701246
+        }
+      }
+    },
+    "disclaimer": "output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement The proxy never replaces the measured detection accuracy above."
+  },
+  "performance": {
+    "baseline": {
+      "latency": {
+        "median_ms": 23.7776,
+        "p95_ms": 58.8408,
+        "min_ms": 11.6238,
+        "max_ms": 67.0594,
+        "mean_ms": 28.9469,
+        "iterations": 100,
+        "warmup": 10,
+        "source": "local_onnxruntime_cpu"
+      },
+      "memory": {
+        "status": "PASS",
+        "rss_before_mb": 20.102,
+        "rss_after_load_mb": 69.852,
+        "rss_peak_mb": 127.184,
+        "delta_mb": 107.082,
+        "method": "psutil process RSS (CPU only; GPU not applicable)"
+      },
+      "output_shapes": [
+        [
+          1,
+          84,
+          8400
+        ]
+      ],
+      "onnx": "outputs/e5_1_exports/20261005T040009Z/r1_body_plus_head.onnx"
+    },
+    "candidate": {
+      "latency": {
+        "median_ms": 16.521,
+        "p95_ms": 36.6576,
+        "min_ms": 9.0514,
+        "max_ms": 92.2576,
+        "mean_ms": 20.0003,
+        "iterations": 100,
+        "warmup": 10,
+        "source": "local_onnxruntime_cpu"
+      },
+      "memory": {
+        "status": "PASS",
+        "rss_before_mb": 20.23,
+        "rss_after_load_mb": 61.34,
+        "rss_peak_mb": 113.59,
+        "delta_mb": 93.359,
+        "method": "psutil process RSS (CPU only; GPU not applicable)"
+      },
+      "output_shapes": [
+        [
+          1,
+          84,
+          8400
+        ]
+      ],
+      "onnx": "outputs/e5_1_exports/20261005T040009Z/candidate_body_plus_head.onnx"
+    },
+    "note": "local onnxruntime CPU, process-isolated per model (fresh interpreter), warm-up/iterations from configs/local_eval.yaml; development machine, not the nominal target device",
+    "onnx_exports": {
+      "baseline": {
+        "status": "PASS",
+        "path": "outputs/e5_1_exports/20261005T040009Z/r1_body_plus_head.onnx",
+        "sha256": "4dcf51aae58d99f21baa3afe2cc46ece3da92552ea953a95af6d1712ba03c968",
+        "structural": {
+          "path": "outputs/e5_1_exports/20261005T040009Z/r1_body_plus_head.onnx",
+          "format": "onnx",
+          "status": "PASS",
+          "message": "valid ONNX graph (309 nodes, 130 initializers)",
+          "checks": {
+            "exists": true,
+            "non_empty": true,
+            "readable": true,
+            "onnx_load": true,
+            "checker": true,
+            "graph_present": true,
+            "has_inputs": true,
+            "has_outputs": true,
+            "has_nodes": true,
+            "has_initializers": true
+          },
+          "details": {
+            "size_bytes": 12656492,
+            "magic": "08071207",
+            "ir_version": 7,
+            "opset_imports": [
+              13
+            ],
+            "inputs": [
+              {
+                "name": "images",
+                "shape": [
+                  1,
+                  3,
+                  640,
+                  640
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "name": "output0",
+                "shape": [
+                  1,
+                  84,
+                  8400
+                ]
+              }
+            ],
+            "node_count": 309,
+            "initializer_count": 130,
+            "op_type_histogram": {
+              "Conv": 64,
+              "Sigmoid": 58,
+              "Mul": 60,
+              "Constant": 41,
+              "Split": 9,
+              "Add": 12,
+              "Concat": 24,
+              "MaxPool": 3,
+              "Resize": 2,
+              "Expand": 6,
+              "Unsqueeze": 7,
+              "Reshape": 8,
+              "ConstantOfShape": 3,
+              "Transpose": 3,
+              "Softmax": 1,
+              "Shape": 1,
+              "Gather": 1,
+              "Div": 2,
+              "Slice": 2,
+              "Sub": 2
+            }
+          },
+          "defect_category": null
+        }
+      },
+      "candidate": {
+        "status": "PASS",
+        "path": "outputs/e5_1_exports/20261005T040009Z/candidate_body_plus_head.onnx",
+        "sha256": "a14de464fe5b7efce1e706d1a13d02ebaf59ace19c630f075f30b7bafac03f5f",
+        "structural": {
+          "path": "outputs/e5_1_exports/20261005T040009Z/candidate_body_plus_head.onnx",
+          "format": "onnx",
+          "status": "PASS",
+          "message": "valid ONNX graph (265 nodes, 127 initializers)",
+          "checks": {
+            "exists": true,
+            "non_empty": true,
+            "readable": true,
+            "onnx_load": true,
+            "checker": true,
+            "graph_present": true,
+            "has_inputs": true,
+            "has_outputs": true,
+            "has_nodes": true,
+            "has_initializers": true
+          },
+          "details": {
+            "size_bytes": 3733173,
+            "magic": "08071207",
+            "ir_version": 7,
+            "opset_imports": [
+              13
+            ],
+            "inputs": [
+              {
+                "name": "images",
+                "shape": [
+                  1,
+                  3,
+                  640,
+                  640
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "name": "output0",
+                "shape": [
+                  1,
+                  84,
+                  8400
+                ]
+              }
+            ],
+            "node_count": 265,
+            "initializer_count": 127,
+            "op_type_histogram": {
+              "Conv": 64,
+              "Sigmoid": 58,
+              "Mul": 60,
+              "Constant": 26,
+              "Split": 9,
+              "Add": 9,
+              "Concat": 19,
+              "MaxPool": 3,
+              "Resize": 2,
+              "Reshape": 5,
+              "Transpose": 1,
+              "Softmax": 1,
+              "Shape": 1,
+              "Gather": 1,
+              "Div": 2,
+              "Slice": 2,
+              "Sub": 2
+            }
+          },
+          "defect_category": null
+        }
+      }
+    }
+  },
+  "quality_gate": {
+    "compression": {
+      "overall": "PASS",
+      "profile": "compression",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "WARN",
+          "observed": 44.369,
+          "threshold": 1.0,
+          "message": "accuracy drop 44.37 pp exceeds threshold 1.00 pp",
+          "required": false
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -30.519,
+          "threshold": 10.0,
+          "message": "latency 23.778 -> 16.521 ms (-30.52%) within +10.0%",
+          "required": false
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -12.815,
+          "threshold": 15.0,
+          "message": "memory 107.082 -> 93.359 MB (-12.81%) within +15.0%",
+          "required": false
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.246,
+          "threshold": 0.0,
+          "message": "model_size 12.847 -> 3.694 MB (-71.25%) within +0.0%",
+          "required": true
+        },
+        {
+          "name": "artifact",
+          "status": "PASS",
+          "observed": "exists, non-empty, checksum recorded (reference not yet promoted)",
+          "threshold": "required (checksum optional)",
+          "message": "artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        }
+      ],
+      "reasons": []
+    },
+    "local_eval": {
+      "overall": "FAIL",
+      "profile": "local_eval",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "WARN",
+          "observed": 44.369,
+          "threshold": 1.0,
+          "message": "accuracy drop 44.37 pp exceeds threshold 1.00 pp",
+          "required": false
+        },
+        {
+          "name": "output_equivalence_proxy",
+          "status": "FAIL",
+          "observed": 0.984289,
+          "threshold": 0.99,
+          "message": "proxy (not accuracy): min cosine 0.9843 < 0.99",
+          "required": true
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -30.519,
+          "threshold": 10.0,
+          "message": "latency 23.778 -> 16.521 ms (-30.52%) within +10.0%",
+          "required": true
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -12.815,
+          "threshold": 15.0,
+          "message": "memory 107.082 -> 93.359 MB (-12.81%) within +15.0%",
+          "required": true
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.246,
+          "threshold": 0.0,
+          "message": "model_size 12.847 -> 3.694 MB (-71.25%) within +0.0%",
+          "required": true
+        },
+        {
+          "name": "artifact",
+          "status": "PASS",
+          "observed": "exists, non-empty, checksum recorded (reference not yet promoted)",
+          "threshold": "required (checksum optional)",
+          "message": "artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        }
+      ],
+      "reasons": [
+        "Output Equiv. Proxy: proxy (not accuracy): min cosine 0.9843 < 0.99"
+      ]
+    },
+    "release": {
+      "overall": "FAIL",
+      "profile": "release",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "FAIL",
+          "observed": 44.369,
+          "threshold": 1.0,
+          "message": "accuracy drop 44.37 pp exceeds threshold 1.00 pp",
+          "required": true
+        },
+        {
+          "name": "output_equivalence_proxy",
+          "status": "WARN",
+          "observed": 0.984289,
+          "threshold": 0.99,
+          "message": "proxy (not accuracy): min cosine 0.9843 < 0.99",
+          "required": false
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -30.519,
+          "threshold": 10.0,
+          "message": "latency 23.778 -> 16.521 ms (-30.52%) within +10.0%",
+          "required": true
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -12.815,
+          "threshold": 15.0,
+          "message": "memory 107.082 -> 93.359 MB (-12.81%) within +15.0%",
+          "required": true
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.246,
+          "threshold": 10.0,
+          "message": "model_size 12.847 -> 3.694 MB (-71.25%) within +10.0%",
+          "required": false
+        },
+        {
+          "name": "artifact",
+          "status": "NOT_APPLICABLE",
+          "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+          "threshold": "required",
+          "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        },
+        {
+          "name": "reproducibility",
+          "status": "NOT_APPLICABLE",
+          "observed": "NOT_VERIFIED",
+          "threshold": "required",
+          "message": "reproducibility not verified (fewer than two runs)",
+          "required": true
+        }
+      ],
+      "reasons": [
+        "Accuracy: accuracy drop 44.37 pp exceeds threshold 1.00 pp",
+        "Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+        "Reproducibility: reproducibility not verified (fewer than two runs)"
+      ]
+    }
+  },
+  "defects": {
+    "by_profile": {
+      "compression": null,
+      "local_eval": {
+        "defect_id": "E5-1-local_eval-ACCURACY_REGRESSION",
+        "category": "ACCURACY_REGRESSION",
+        "severity": "MEDIUM",
+        "message": "proxy (not accuracy): min cosine 0.9843 < 0.99",
+        "evidence": [
+          "output_equivalence_proxy: proxy (not accuracy): min cosine 0.9843 < 0.99 (observed=0.984289, threshold=0.99)"
+        ],
+        "suspected_cause": "pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)",
+        "reproducibility": "unknown",
+        "affected_configuration": {
+          "model": "yolov8n",
+          "device": "intel_xeon_w2233",
+          "runtime": "onnxruntime",
+          "backend": "default",
+          "optimization": "automatic_compression"
+        },
+        "secondary_categories": []
+      },
+      "release": {
+        "defect_id": "E5-1-release-ACCURACY_REGRESSION",
+        "category": "ACCURACY_REGRESSION",
+        "severity": "HIGH",
+        "message": "accuracy drop 44.37 pp exceeds threshold 1.00 pp",
+        "evidence": [
+          "accuracy: accuracy drop 44.37 pp exceeds threshold 1.00 pp (observed=44.369, threshold=1.0)"
+        ],
+        "suspected_cause": "pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)",
+        "reproducibility": "unknown",
+        "affected_configuration": {
+          "model": "yolov8n",
+          "device": "intel_xeon_w2233",
+          "runtime": "onnxruntime",
+          "backend": "default",
+          "optimization": "automatic_compression"
+        },
+        "secondary_categories": []
+      }
+    },
+    "root_cause_assessment": {
+      "suspected_root_cause": "structured pruning (SDK method PR_L2, ratio 0.5) applied WITHOUT the fine-tuning step the official ModelZoo-YOLOv8 workflow prescribes after compression; accuracy collapse before retraining is the expected behaviour of pruning",
+      "confidence": "MEDIUM",
+      "verified": false,
+      "evidence": "params -72.03 %, FLOPs -55.97 %, mAP50-95 drop 44.369 pp on COCO128 (smoke); output proxy cosine 0.9839862412475613. Verification would require fine-tuning the candidate and re-evaluating (not done in this phase; 0 credits but training time)."
+    }
+  },
+  "reproducibility": {
+    "execution_runs": 1,
+    "level": "NOT_VERIFIED",
+    "registry_entry": {
+      "artifact_id": "automatic_compression:21d8cbd1361c",
+      "model_name": "yolov8n",
+      "source_artifact": "yolov8n_fx_r1/model_fx.pt sha256=d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "file_size": 3693813,
+      "format": "pt",
+      "sdk_version": "1.17.0",
+      "operation": "automatic_compression",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": 0.5,
+      "environment_fingerprint": {
+        "adapter": "netspresso",
+        "adapter_version": "0.2.0",
+        "sdk_name": "netspresso",
+        "sdk_version": "1.17.0",
+        "python_version": "3.11.9",
+        "platform": "Windows-10-10.0.26200-SP0",
+        "extra": {
+          "execution_mode": "REAL_RUN_AUTHORIZED",
+          "sdk_loaded": true,
+          "sdk_version_researched": "1.17.0",
+          "api_calls_executed": 1,
+          "operations_executed": 1,
+          "api_key_env": "NETSPRESSO_API_KEY",
+          "api_key_present": true
+        }
+      },
+      "created_at": "2026-10-05T04:00:15+00:00",
+      "status": "candidate",
+      "provenance": {
+        "run_dir": "reports/real_runs/20261005T040009Z_automatic_compression",
+        "adapter": "netspresso",
+        "sdk_model_id_uploaded": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+        "sdk_model_id_compressed": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+        "companion_onnx_sha256": "925a818c138368f4b9a2671724aaf11e9af50bbbb3f18184e0834416d0c645dd",
+        "e5_1_record": "reports/yolov8_e5_1/20261005T040009Z/e5_1_result.json",
+        "registered_by": "scripts/yolov8_e5_1_local_validation.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "candidate only (execution_runs=1): promotion requires Level 3/4 reproducibility evidence from a second authorized run; never becomes the expected checksum from this single run"
+      ]
+    },
+    "note": "candidate registered, NOT promoted; no second real run was performed (by design)"
+  },
+  "traceability": {
+    "source_model": "yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36 (ultralytics checkpoint 8.0.0.dev0)",
+    "r1_fx_artifact": "outputs/models/yolov8n_fx_r1/model_fx.pt (patch r1-upstream-body-wrapper-v1, reports/yolov8_baseline/20261005T034329Z_r1/r1_result.json)",
+    "r1_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "netspresso_execution": "20261005T040009Z_automatic_compression: automatic_compression ratio 0.5 sdk 1.17.0 status COMPLETED model_id 491890fb-de7f-4a95-8e4b-a448859c73a7 -> compressed 491890fb-de7f-4a95-8e4b-a448859c73a7",
+    "candidate_artifact": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+    "candidate_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+    "local_validation": "reports/yolov8_e5_1/20261005T040009Z/e5_1_result.json",
+    "accuracy_result": "COCO128 mAP50-95 baseline 0.44369 -> candidate 0.0 (drop_pp 44.369, MEASURED)",
+    "quality_gate": {
+      "compression": "PASS",
+      "local_eval": "FAIL",
+      "release": "FAIL"
+    },
+    "credit_record": "reports/credit_usage.json entry #2: account 475 -> 450 (MATCH)",
+    "complete": true,
+    "missing_links": [],
+    "question_answered": "Exactly which input artifact produced this candidate artifact? -> see r1_fx_artifact / r1_sha256 -> netspresso_execution -> candidate_sha256"
+  },
+  "statuses": {
+    "execution_status": "COMPLETED",
+    "artifact_status": "PASS",
+    "validation_status": "PASS",
+    "quality_gate_status": {
+      "compression": "PASS",
+      "local_eval": "FAIL",
+      "release": "FAIL"
+    },
+    "release_status": "FAIL"
+  },
+  "recommendation": {
+    "decision": "HOLD",
+    "rationale": [
+      "COCO128 smoke mAP50-95 0.44369 -> 0.0 (drop 44.369 pp vs example threshold 1.0 pp)",
+      "SDK-reported reduction: params -72.03 %, FLOPs -55.97 %",
+      "local ORT median latency 23.7776 -> 16.521 ms (development machine)",
+      "substantial accuracy regression: the official YOLOv8 workflow fine-tunes after compression; conversion/profiling of an un-retrained candidate is premature",
+      "options: (a) fine-tune the candidate locally (0 credits, CPU time) and re-evaluate; (b) a lower compression ratio would cost another 25 credits and still needs fine-tuning; (c) keep YOLOv8n - the model is not the problem, the missing retraining step is"
+    ]
+  },
+  "case_result": {
+    "case_id": "TC-3cb57ccb",
+    "status": "FAIL",
+    "support": "SUPPORTED",
+    "support_reason": null,
+    "selected": true,
+    "selection_reason": "Phase 5-E E5-1 single real experiment",
+    "risk": null,
+    "operation": "e5_1_local_validation",
+    "model": "yolov8n",
+    "device": "intel_xeon_w2233",
+    "runtime": "onnxruntime",
+    "backend": "default",
+    "optimization": "automatic_compression",
+    "execution_time_s": 0.0,
+    "metrics": {
+      "accuracy": 0.0,
+      "latency_ms": 16.521,
+      "memory_mb": 93.359,
+      "model_size_mb": 3.694,
+      "extra": {
+        "sdk_compressed_number_of_parameters": 882996.0,
+        "sdk_compressed_flops": 3874910000.0,
+        "params_torch": 882996.0,
+        "macs_estimate": 1916046400.0,
+        "latency_p95_ms": 36.6576,
+        "latency_min_ms": 9.0514,
+        "latency_max_ms": 92.2576,
+        "proxy_min_cosine_similarity": 0.984289,
+        "proxy_max_abs_diff": 449.228973,
+        "proxy_relative_diff": 0.179003,
+        "proxy_shape_match": 1.0,
+        "proxy_dtype_match": 1.0
+      }
+    },
+    "baseline_metrics": {
+      "accuracy": 0.44369,
+      "latency_ms": 23.7776,
+      "memory_mb": 107.082,
+      "model_size_mb": 12.847,
+      "extra": {
+        "sdk_original_number_of_parameters": 3157184.0,
+        "sdk_original_flops": 8800920000.0,
+        "params_torch": 3157184.0,
+        "macs_estimate": 4371456000.0,
+        "latency_p95_ms": 58.8408,
+        "latency_min_ms": 11.6238,
+        "latency_max_ms": 67.0594
+      }
+    },
+    "artifact": {
+      "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+      "exists": true,
+      "size_bytes": 3693813,
+      "format": "pt",
+      "checksum_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "expected_checksum_sha256": null,
+      "checksum_valid": null,
+      "metadata": {
+        "source_model": "yolov8n_fx_r1/model_fx.pt",
+        "source_model_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "operation": "automatic_compression",
+        "sdk_version": "1.17.0",
+        "sdk_model_id": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+        "structural_validation": {
+          "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+          "format": "pt",
+          "status": "PASS",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "checks": {
+            "exists": true,
+            "non_empty": true,
+            "readable": true,
+            "zip_container": true,
+            "safe_load": false,
+            "full_load": true,
+            "recognised_structure": true,
+            "has_parameters": true
+          },
+          "details": {
+            "size_bytes": 3693813,
+            "magic": "504b0304",
+            "safe_load_error": "UnpicklingError",
+            "load_mode": "full_unpickle (trusted)",
+            "class_name": "GraphModule",
+            "parameter_count": 882996,
+            "parameter_tensors": 183,
+            "object_kind": "graph_module"
+          },
+          "defect_category": null
+        },
+        "companion_onnx": {
+          "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.onnx",
+          "format": "onnx",
+          "status": "PASS",
+          "message": "valid ONNX graph (222 nodes, 126 initializers)",
+          "checks": {
+            "exists": true,
+            "non_empty": true,
+            "readable": true,
+            "onnx_load": true,
+            "checker": true,
+            "graph_present": true,
+            "has_inputs": true,
+            "has_outputs": true,
+            "has_nodes": true,
+            "has_initializers": true
+          },
+          "details": {
+            "size_bytes": 3553251,
+            "magic": "08071207",
+            "ir_version": 7,
+            "opset_imports": [
+              13
+            ],
+            "inputs": [
+              {
+                "name": "images",
+                "shape": [
+                  "batch_size",
+                  3,
+                  640,
+                  640
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  "batch_size",
+                  144,
+                  80,
+                  80
+                ]
+              },
+              {
+                "name": "615",
+                "shape": [
+                  "Concat615_dim_0",
+                  144,
+                  40,
+                  40
+                ]
+              },
+              {
+                "name": "647",
+                "shape": [
+                  "Concat647_dim_0",
+                  144,
+                  20,
+                  20
+                ]
+              }
+            ],
+            "node_count": 222,
+            "initializer_count": 126,
+            "op_type_histogram": {
+              "Conv": 63,
+              "Sigmoid": 57,
+              "Mul": 57,
+              "Constant": 10,
+              "Split": 8,
+              "Add": 6,
+              "Concat": 16,
+              "MaxPool": 3,
+              "Resize": 2
+            }
+          },
+          "defect_category": null
+        },
+        "configuration_key": "yolov8n|intel_xeon_w2233|onnxruntime|default|automatic_compression",
+        "evaluation": "local_e5_1",
+        "generated_by": "scripts/yolov8_e5_1_local_validation.py"
+      }
+    },
+    "logs": [
+      "E5-1 local validation of the NetsPresso-compressed artifact. No NetsPresso API call was made in this step. Local measurements are development-machine evidence, not NetsPresso server-side measurements.",
+      "source real run: 20261005T040009Z_automatic_compression",
+      "input artifact: yolov8n_fx_r1/model_fx.pt sha256=d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b"
+    ],
+    "error": null,
+    "defect_category": "ACCURACY_REGRESSION",
+    "environment": {
+      "adapter": "local_e5_1_validation",
+      "adapter_version": "0.1.0",
+      "sdk_name": "onnxruntime+ultralytics",
+      "sdk_version": "1.30.0",
+      "python_version": "3.11.9",
+      "platform": "Windows 10 AMD64",
+      "extra": {
+        "credit_consuming": false,
+        "netspresso_api_calls": 0,
+        "evaluation_type": "local_e5_1",
+        "os": "Windows",
+        "os_release": "10",
+        "os_version": "10.0.26200",
+        "architecture": "AMD64",
+        "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+        "cpu_count": 20,
+        "python": "3.11.9",
+        "python_implementation": "CPython",
+        "execution_provider": "CPUExecutionProvider",
+        "intra_op_threads": null,
+        "thread_env": {
+          "OMP_NUM_THREADS": "1"
+        },
+        "packages": {
+          "ultralytics": "8.4.173",
+          "torch": "2.14.1",
+          "onnx": "1.23.1",
+          "onnxruntime": "1.30.0",
+          "numpy": "2.4.6",
+          "psutil": "7.2.2"
+        }
+      }
+    },
+    "reproducibility": {
+      "level": "NOT_VERIFIED",
+      "runs": 1,
+      "checksums": [
+        "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1"
+      ],
+      "notes": "single authorized real run (execution_runs=1); a second run was NOT performed by design"
+    },
+    "timestamp": "2026-10-05T04:09:47+00:00",
+    "execution": {
+      "operation": "e5_1_local_validation",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "execution_status": "COMPLETED",
+      "execution_time_s": 0.0,
+      "baseline_metrics": {
+        "accuracy": 0.44369,
+        "latency_ms": 23.7776,
+        "memory_mb": 107.082,
+        "model_size_mb": 12.847,
+        "extra": {
+          "sdk_original_number_of_parameters": 3157184.0,
+          "sdk_original_flops": 8800920000.0,
+          "params_torch": 3157184.0,
+          "macs_estimate": 4371456000.0,
+          "latency_p95_ms": 58.8408,
+          "latency_min_ms": 11.6238,
+          "latency_max_ms": 67.0594
+        }
+      },
+      "metrics": {
+        "accuracy": 0.0,
+        "latency_ms": 16.521,
+        "memory_mb": 93.359,
+        "model_size_mb": 3.694,
+        "extra": {
+          "sdk_compressed_number_of_parameters": 882996.0,
+          "sdk_compressed_flops": 3874910000.0,
+          "params_torch": 882996.0,
+          "macs_estimate": 1916046400.0,
+          "latency_p95_ms": 36.6576,
+          "latency_min_ms": 9.0514,
+          "latency_max_ms": 92.2576,
+          "proxy_min_cosine_similarity": 0.984289,
+          "proxy_max_abs_diff": 449.228973,
+          "proxy_relative_diff": 0.179003,
+          "proxy_shape_match": 1.0,
+          "proxy_dtype_match": 1.0
+        }
+      },
+      "artifact": {
+        "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+        "exists": true,
+        "size_bytes": 3693813,
+        "format": "pt",
+        "checksum_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "expected_checksum_sha256": null,
+        "checksum_valid": null,
+        "metadata": {
+          "source_model": "yolov8n_fx_r1/model_fx.pt",
+          "source_model_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+          "operation": "automatic_compression",
+          "sdk_version": "1.17.0",
+          "sdk_model_id": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+          "structural_validation": {
+            "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+            "format": "pt",
+            "status": "PASS",
+            "message": "loaded as graph_module via full_unpickle (trusted)",
+            "checks": {
+              "exists": true,
+              "non_empty": true,
+              "readable": true,
+              "zip_container": true,
+              "safe_load": false,
+              "full_load": true,
+              "recognised_structure": true,
+              "has_parameters": true
+            },
+            "details": {
+              "size_bytes": 3693813,
+              "magic": "504b0304",
+              "safe_load_error": "UnpicklingError",
+              "load_mode": "full_unpickle (trusted)",
+              "class_name": "GraphModule",
+              "parameter_count": 882996,
+              "parameter_tensors": 183,
+              "object_kind": "graph_module"
+            },
+            "defect_category": null
+          },
+          "companion_onnx": {
+            "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.onnx",
+            "format": "onnx",
+            "status": "PASS",
+            "message": "valid ONNX graph (222 nodes, 126 initializers)",
+            "checks": {
+              "exists": true,
+              "non_empty": true,
+              "readable": true,
+              "onnx_load": true,
+              "checker": true,
+              "graph_present": true,
+              "has_inputs": true,
+              "has_outputs": true,
+              "has_nodes": true,
+              "has_initializers": true
+            },
+            "details": {
+              "size_bytes": 3553251,
+              "magic": "08071207",
+              "ir_version": 7,
+              "opset_imports": [
+                13
+              ],
+              "inputs": [
+                {
+                  "name": "images",
+                  "shape": [
+                    "batch_size",
+                    3,
+                    640,
+                    640
+                  ]
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output",
+                  "shape": [
+                    "batch_size",
+                    144,
+                    80,
+                    80
+                  ]
+                },
+                {
+                  "name": "615",
+                  "shape": [
+                    "Concat615_dim_0",
+                    144,
+                    40,
+                    40
+                  ]
+                },
+                {
+                  "name": "647",
+                  "shape": [
+                    "Concat647_dim_0",
+                    144,
+                    20,
+                    20
+                  ]
+                }
+              ],
+              "node_count": 222,
+              "initializer_count": 126,
+              "op_type_histogram": {
+                "Conv": 63,
+                "Sigmoid": 57,
+                "Mul": 57,
+                "Constant": 10,
+                "Split": 8,
+                "Add": 6,
+                "Concat": 16,
+                "MaxPool": 3,
+                "Resize": 2
+              }
+            },
+            "defect_category": null
+          },
+          "configuration_key": "yolov8n|intel_xeon_w2233|onnxruntime|default|automatic_compression",
+          "evaluation": "local_e5_1",
+          "generated_by": "scripts/yolov8_e5_1_local_validation.py"
+        }
+      },
+      "logs": [
+        "E5-1 local validation of the NetsPresso-compressed artifact. No NetsPresso API call was made in this step. Local measurements are development-machine evidence, not NetsPresso server-side measurements.",
+        "source real run: 20261005T040009Z_automatic_compression",
+        "input artifact: yolov8n_fx_r1/model_fx.pt sha256=d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b"
+      ],
+      "error": null,
+      "environment": {
+        "adapter": "local_e5_1_validation",
+        "adapter_version": "0.1.0",
+        "sdk_name": "onnxruntime+ultralytics",
+        "sdk_version": "1.30.0",
+        "python_version": "3.11.9",
+        "platform": "Windows 10 AMD64",
+        "extra": {
+          "credit_consuming": false,
+          "netspresso_api_calls": 0,
+          "evaluation_type": "local_e5_1",
+          "os": "Windows",
+          "os_release": "10",
+          "os_version": "10.0.26200",
+          "architecture": "AMD64",
+          "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+          "cpu_count": 20,
+          "python": "3.11.9",
+          "python_implementation": "CPython",
+          "execution_provider": "CPUExecutionProvider",
+          "intra_op_threads": null,
+          "thread_env": {
+            "OMP_NUM_THREADS": "1"
+          },
+          "packages": {
+            "ultralytics": "8.4.173",
+            "torch": "2.14.1",
+            "onnx": "1.23.1",
+            "onnxruntime": "1.30.0",
+            "numpy": "2.4.6",
+            "psutil": "7.2.2"
+          }
+        }
+      },
+      "reproducibility": {
+        "level": "NOT_VERIFIED",
+        "runs": 1,
+        "checksums": [
+          "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1"
+        ],
+        "notes": "single authorized real run (execution_runs=1); a second run was NOT performed by design"
+      },
+      "timestamp": "2026-10-05T04:09:47+00:00",
+      "credit": {
+        "usage_type": "none",
+        "estimated": 0,
+        "actual": null,
+        "note": "local validation step: 0 credits, no API call"
+      },
+      "scenario_id": null
+    },
+    "quality_gate": {
+      "overall": "FAIL",
+      "profile": "release",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "FAIL",
+          "observed": 44.369,
+          "threshold": 1.0,
+          "message": "accuracy drop 44.37 pp exceeds threshold 1.00 pp",
+          "required": true
+        },
+        {
+          "name": "output_equivalence_proxy",
+          "status": "WARN",
+          "observed": 0.984289,
+          "threshold": 0.99,
+          "message": "proxy (not accuracy): min cosine 0.9843 < 0.99",
+          "required": false
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -30.519,
+          "threshold": 10.0,
+          "message": "latency 23.778 -> 16.521 ms (-30.52%) within +10.0%",
+          "required": true
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -12.815,
+          "threshold": 15.0,
+          "message": "memory 107.082 -> 93.359 MB (-12.81%) within +15.0%",
+          "required": true
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.246,
+          "threshold": 10.0,
+          "message": "model_size 12.847 -> 3.694 MB (-71.25%) within +10.0%",
+          "required": false
+        },
+        {
+          "name": "artifact",
+          "status": "NOT_APPLICABLE",
+          "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+          "threshold": "required",
+          "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        },
+        {
+          "name": "reproducibility",
+          "status": "NOT_APPLICABLE",
+          "observed": "NOT_VERIFIED",
+          "threshold": "required",
+          "message": "reproducibility not verified (fewer than two runs)",
+          "required": true
+        }
+      ],
+      "reasons": [
+        "Accuracy: accuracy drop 44.37 pp exceeds threshold 1.00 pp",
+        "Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+        "Reproducibility: reproducibility not verified (fewer than two runs)"
+      ]
+    },
+    "defect": {
+      "category": "ACCURACY_REGRESSION",
+      "severity": "HIGH",
+      "message": "accuracy drop 44.37 pp exceeds threshold 1.00 pp",
+      "evidence": [
+        "accuracy: accuracy drop 44.37 pp exceeds threshold 1.00 pp (observed=44.369, threshold=1.0)"
+      ],
+      "suspected_cause": "pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)",
+      "reproducibility": "unknown",
+      "affected_configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "secondary_categories": []
+    }
+  },
+  "environment": {
+    "adapter": "local_e5_1_validation",
+    "adapter_version": "0.1.0",
+    "sdk_name": "onnxruntime+ultralytics",
+    "sdk_version": "1.30.0",
+    "python_version": "3.11.9",
+    "platform": "Windows 10 AMD64",
+    "extra": {
+      "credit_consuming": false,
+      "netspresso_api_calls": 0,
+      "evaluation_type": "local_e5_1",
+      "os": "Windows",
+      "os_release": "10",
+      "os_version": "10.0.26200",
+      "architecture": "AMD64",
+      "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+      "cpu_count": 20,
+      "python": "3.11.9",
+      "python_implementation": "CPython",
+      "execution_provider": "CPUExecutionProvider",
+      "intra_op_threads": null,
+      "thread_env": {
+        "OMP_NUM_THREADS": "1"
+      },
+      "packages": {
+        "ultralytics": "8.4.173",
+        "torch": "2.14.1",
+        "onnx": "1.23.1",
+        "onnxruntime": "1.30.0",
+        "numpy": "2.4.6",
+        "psutil": "7.2.2"
+      }
+    }
+  }
+}

@@ -8,6 +8,9 @@ netspresso.env
 # --- virtual environments ---
 .venv/
 .venv-netspresso/
+.venv-yolo/
+.venv-yolo-nota/
+.venv-*/
 venv/
 
 # --- python ---
@@ -24,6 +27,7 @@ coverage/
 
 # --- real experiment outputs (models can be large) ---
 outputs/
+datasets/
 *.onnx
 *.pt
 *.pth

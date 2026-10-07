@@ -1,0 +1,606 @@
+{
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "disclaimer": "R1 cross-check ran locally. No NetsPresso API call was made. A successful torch 2.0.1 load means the artifact is loadable in a target-side torch 2.0.1 environment; it does not prove NetsPresso server acceptance.",
+  "mode": "fork",
+  "torch_version": "2.0.1+cpu",
+  "python": "3.11.9",
+  "r1_body": {
+    "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+    "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "size_bytes": 12846691,
+    "matches_dump": true,
+    "full_unpickle_allowed": true,
+    "trust_basis": "trust list"
+  },
+  "reference": {
+    "image": "000000000009.jpg",
+    "input_shape": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "weights_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36"
+  },
+  "torch_load": {
+    "status": "PASS",
+    "object": "GraphModule",
+    "is_graph_module": true,
+    "parameter_count": 3157184,
+    "output_shapes": [
+      [
+        1,
+        144,
+        80,
+        80
+      ],
+      [
+        1,
+        144,
+        40,
+        40
+      ],
+      [
+        1,
+        144,
+        20,
+        20
+      ]
+    ],
+    "body_outputs_vs_upstream_torch214": [
+      {
+        "status": "COMPUTED",
+        "count": 921600,
+        "cosine": 0.9999999999998533,
+        "max_abs_diff": 2.2411346435546875e-05,
+        "mean_abs_diff": 1.6846085806952893e-06,
+        "relative_l2_diff": 1.940715908335908e-07,
+        "bitwise_identical": false
+      },
+      {
+        "status": "COMPUTED",
+        "count": 230400,
+        "cosine": 0.9999999999998879,
+        "max_abs_diff": 5.030632019042969e-05,
+        "mean_abs_diff": 1.987359094369386e-06,
+        "relative_l2_diff": 2.6794213992305874e-07,
+        "bitwise_identical": false
+      },
+      {
+        "status": "COMPUTED",
+        "count": 57600,
+        "cosine": 0.9999999999999071,
+        "max_abs_diff": 6.866455078125e-05,
+        "mean_abs_diff": 2.297356664371364e-06,
+        "relative_l2_diff": 3.6014228171813747e-07,
+        "bitwise_identical": false
+      }
+    ],
+    "max_abs_diff": 6.866455078125e-05,
+    "bitwise_identical": false,
+    "meaning": "artifact loads and runs under torch 2.0.1 (target-side dependency of netspresso-trainer); not a server-acceptance claim"
+  },
+  "fork": {
+    "package": "ultralytics_nota",
+    "version": "8.0.108"
+  },
+  "fork_reattach_r1_body": {
+    "status": "PASS",
+    "class": "DetectionModel_netspresso",
+    "decoded_shape": [
+      1,
+      84,
+      8400
+    ],
+    "decoded_vs_upstream_pre_nms": {
+      "status": "COMPUTED",
+      "count": 705600,
+      "cosine": 0.9999999999999651,
+      "max_abs_diff": 0.00128173828125,
+      "mean_abs_diff": 9.48769258618587e-07,
+      "relative_l2_diff": 1.5293879342592303e-07,
+      "bitwise_identical": false
+    },
+    "boxes_vs_upstream": {
+      "status": "COMPUTED",
+      "count": 33600,
+      "cosine": 0.9999999999999647,
+      "max_abs_diff": 0.00128173828125,
+      "mean_abs_diff": 1.9922185511816117e-05,
+      "relative_l2_diff": 1.529387666787119e-07,
+      "bitwise_identical": false
+    },
+    "scores_vs_upstream": {
+      "status": "COMPUTED",
+      "count": 672000,
+      "cosine": 0.9999999999993311,
+      "max_abs_diff": 1.3709068298339844e-06,
+      "mean_abs_diff": 9.844595871221857e-11,
+      "relative_l2_diff": 1.1546244985326713e-06,
+      "bitwise_identical": false
+    }
+  },
+  "parameter_signature": {
+    "identical": true,
+    "mismatched": [],
+    "upstream_count": 184,
+    "fork_count": 184
+  },
+  "fork_model_layer_diff": {
+    "tolerance_relative_l2": 0.0001,
+    "layers": [
+      {
+        "index": 0,
+        "layer": "layer_00",
+        "layer_type": "Conv",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 1638400,
+          "cosine": 0.9999999999974024,
+          "max_abs_diff": 9.5367431640625e-07,
+          "mean_abs_diff": 1.2274201234028442e-09,
+          "relative_l2_diff": 3.102552482226845e-09,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 1,
+        "layer": "layer_01",
+        "layer_type": "Conv",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 819200,
+          "cosine": 0.9999999999997342,
+          "max_abs_diff": 7.62939453125e-06,
+          "mean_abs_diff": 1.1514126500092023e-08,
+          "relative_l2_diff": 1.562690259782413e-08,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 2,
+        "layer": "layer_02",
+        "layer_type": "C2f",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 819200,
+          "cosine": 1.0000000000014206,
+          "max_abs_diff": 2.1457672119140625e-06,
+          "mean_abs_diff": 6.030141879560043e-08,
+          "relative_l2_diff": 1.0401769462051737e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 3,
+        "layer": "layer_03",
+        "layer_type": "Conv",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 409600,
+          "cosine": 0.9999999999999425,
+          "max_abs_diff": 1.9073486328125e-06,
+          "mean_abs_diff": 9.217132979383314e-08,
+          "relative_l2_diff": 1.714552652358801e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 4,
+        "layer": "layer_04",
+        "layer_type": "C2f",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 409600,
+          "cosine": 0.8576888434657194,
+          "max_abs_diff": 3.6714375019073486,
+          "mean_abs_diff": 0.2625085459108762,
+          "relative_l2_diff": 0.7211860572932569,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 5,
+        "layer": "layer_05",
+        "layer_type": "Conv",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 204800,
+          "cosine": 0.7781614614986931,
+          "max_abs_diff": 3.49962842464447,
+          "mean_abs_diff": 0.23184913412025515,
+          "relative_l2_diff": 0.7546167725717972,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 6,
+        "layer": "layer_06",
+        "layer_type": "C2f",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 204800,
+          "cosine": 0.7119426467194937,
+          "max_abs_diff": 3.121943950653076,
+          "mean_abs_diff": 0.17145660567497667,
+          "relative_l2_diff": 0.7981306391119819,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 7,
+        "layer": "layer_07",
+        "layer_type": "Conv",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 102400,
+          "cosine": 0.5563001805097778,
+          "max_abs_diff": 6.453730523586273,
+          "mean_abs_diff": 0.21415205387415306,
+          "relative_l2_diff": 1.0782790225757408,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 8,
+        "layer": "layer_08",
+        "layer_type": "C2f",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 102400,
+          "cosine": 0.5380687549005926,
+          "max_abs_diff": 5.7594696413725615,
+          "mean_abs_diff": 0.28042972808170374,
+          "relative_l2_diff": 0.9803791432015792,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 9,
+        "layer": "layer_09",
+        "layer_type": "SPPF",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 102400,
+          "cosine": 0.5382420795651375,
+          "max_abs_diff": 4.252871997654438,
+          "mean_abs_diff": 0.1542939227962733,
+          "relative_l2_diff": 0.9711237974994764,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 10,
+        "layer": "layer_10",
+        "layer_type": "Upsample",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 409600,
+          "cosine": 0.5382420795651485,
+          "max_abs_diff": 4.252871997654438,
+          "mean_abs_diff": 0.1542939227962733,
+          "relative_l2_diff": 0.9711237974994585,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 11,
+        "layer": "layer_11",
+        "layer_type": "Concat",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 614400,
+          "cosine": 0.6110065843428949,
+          "max_abs_diff": 4.252871997654438,
+          "mean_abs_diff": 0.16001481708917442,
+          "relative_l2_diff": 0.9051172746217016,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 12,
+        "layer": "layer_12",
+        "layer_type": "C2f",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 204800,
+          "cosine": 0.7427885784657359,
+          "max_abs_diff": 3.5580197870731354,
+          "mean_abs_diff": 0.21013143248427418,
+          "relative_l2_diff": 0.712564183078599,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 13,
+        "layer": "layer_13",
+        "layer_type": "Upsample",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 819200,
+          "cosine": 0.742788578465664,
+          "max_abs_diff": 3.5580197870731354,
+          "mean_abs_diff": 0.21013143248427454,
+          "relative_l2_diff": 0.7125641830785823,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 14,
+        "layer": "layer_14",
+        "layer_type": "Concat",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 1228800,
+          "cosine": 0.7872373510783712,
+          "max_abs_diff": 3.6714375019073486,
+          "mean_abs_diff": 0.2275904702931416,
+          "relative_l2_diff": 0.7159998264535499,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 15,
+        "layer": "layer_15",
+        "layer_type": "C2f",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 409600,
+          "cosine": 0.9219966404206799,
+          "max_abs_diff": 3.0983469635248184,
+          "mean_abs_diff": 0.17316456640307293,
+          "relative_l2_diff": 0.39427470923307467,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 16,
+        "layer": "layer_16",
+        "layer_type": "Conv",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 102400,
+          "cosine": 0.8043952967975628,
+          "max_abs_diff": 3.046559438109398,
+          "mean_abs_diff": 0.17242427930356893,
+          "relative_l2_diff": 0.5997519931914191,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 17,
+        "layer": "layer_17",
+        "layer_type": "Concat",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 307200,
+          "cosine": 0.7626760639609248,
+          "max_abs_diff": 3.5580197870731354,
+          "mean_abs_diff": 0.19756238142403912,
+          "relative_l2_diff": 0.6737961834168498,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 18,
+        "layer": "layer_18",
+        "layer_type": "C2f",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 204800,
+          "cosine": 0.8162101699452703,
+          "max_abs_diff": 4.608642935752869,
+          "mean_abs_diff": 0.15720256889379963,
+          "relative_l2_diff": 0.5925470680966901,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 19,
+        "layer": "layer_19",
+        "layer_type": "Conv",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 51200,
+          "cosine": 0.6853062959222628,
+          "max_abs_diff": 4.208390101790428,
+          "mean_abs_diff": 0.17415933532831737,
+          "relative_l2_diff": 0.7526708400083543,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 20,
+        "layer": "layer_20",
+        "layer_type": "Concat",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 153600,
+          "cosine": 0.6024548290064675,
+          "max_abs_diff": 4.252871997654438,
+          "mean_abs_diff": 0.16091572697362136,
+          "relative_l2_diff": 0.8716518085852241,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 21,
+        "layer": "layer_21",
+        "layer_type": "C2f",
+        "stats": {
+          "status": "COMPUTED",
+          "count": 102400,
+          "cosine": 0.5917574907025754,
+          "max_abs_diff": 7.304003745317459,
+          "mean_abs_diff": 0.18147799777943718,
+          "relative_l2_diff": 0.850057611078783,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "index": 22,
+        "layer": "detect_cv2_cv3_maps",
+        "layer_type": "Detect",
+        "stats": {
+          "status": "COMPUTED",
+          "cosine": 0.9658569811669132,
+          "max_abs_diff": 27.018290519714355,
+          "mean_abs_diff": 1.7256745957158217,
+          "relative_l2_diff": 0.26485374508294823,
+          "bitwise_identical": false,
+          "count": 1209600
+        }
+      }
+    ],
+    "decoded_eval_vs_upstream": {
+      "status": "COMPUTED",
+      "count": 705600,
+      "cosine": 0.9941864052772,
+      "max_abs_diff": 334.2915344238281,
+      "mean_abs_diff": 0.7587224677690411,
+      "relative_l2_diff": 0.10767396959715247,
+      "bitwise_identical": false
+    },
+    "first_divergence": {
+      "layer": "layer_04",
+      "index": 4,
+      "layer_type": "C2f",
+      "relative_l2_diff": 0.7211860572932569,
+      "max_abs_diff": 3.6714375019073486,
+      "cosine": 0.8576888434657194
+    },
+    "classification": {
+      "category": "version difference",
+      "confidence": "HIGH",
+      "verified": true,
+      "mechanism": "fork C2f.forward applies each Bottleneck to the same split half instead of chaining them; identical to upstream only when n == 1. yolov8n has C2f blocks with n >= 2 at layers [4, 6] -> body outputs diverge from there; binding the chained forward in-memory removes the divergence"
+    },
+    "model_source": "fork YOLO(yolov8n.pt).model (same checkpoint bytes as upstream)"
+  },
+  "fork_c2f_root_cause_probe": {
+    "description": "fork C2f.forward (every Bottleneck on the same split half) replaced in-memory by the upstream chained semantics",
+    "c2f_layers": [
+      {
+        "index": 2,
+        "bottlenecks": 1
+      },
+      {
+        "index": 4,
+        "bottlenecks": 2
+      },
+      {
+        "index": 6,
+        "bottlenecks": 2
+      },
+      {
+        "index": 8,
+        "bottlenecks": 1
+      },
+      {
+        "index": 12,
+        "bottlenecks": 1
+      },
+      {
+        "index": 15,
+        "bottlenecks": 1
+      },
+      {
+        "index": 18,
+        "bottlenecks": 1
+      },
+      {
+        "index": 21,
+        "bottlenecks": 1
+      }
+    ],
+    "affected_layers_n_ge_2": [
+      {
+        "index": 4,
+        "bottlenecks": 2
+      },
+      {
+        "index": 6,
+        "bottlenecks": 2
+      }
+    ],
+    "first_divergence_before": {
+      "layer": "layer_04",
+      "index": 4,
+      "layer_type": "C2f",
+      "relative_l2_diff": 0.7211860572932569,
+      "max_abs_diff": 3.6714375019073486,
+      "cosine": 0.8576888434657194
+    },
+    "first_divergence_after": null,
+    "decoded_vs_upstream_after": {
+      "status": "COMPUTED",
+      "count": 705600,
+      "cosine": 0.9999999999999651,
+      "max_abs_diff": 0.00128173828125,
+      "mean_abs_diff": 9.48769258618587e-07,
+      "relative_l2_diff": 1.5293879342592303e-07,
+      "bitwise_identical": false
+    },
+    "root_cause_verified": true,
+    "fork_source": "ultralytics_nota/nn/modules/block.py C2f.forward: out = cv1(x).split(...); y = [m(out[-1]) for m in self.m]",
+    "upstream_source": "ultralytics/nn/modules/block.py C2f.forward: y = list(cv1(x).chunk(2, 1)); y.extend(m(y[-1]) for m in self.m)"
+  },
+  "old_fork_body_vs_upstream": {
+    "path": "outputs/models/yolov8n_fx/model_fx.pt",
+    "sha256": "457d8c3a63d85cf9236815a1f56703170af98b2a4b854868edf7b5a3178f0a3f",
+    "per_level": [
+      {
+        "status": "COMPUTED",
+        "count": 921600,
+        "cosine": 0.9922338390969813,
+        "max_abs_diff": 14.813623905181885,
+        "mean_abs_diff": 1.1186108976125928,
+        "relative_l2_diff": 0.12632537333682045,
+        "bitwise_identical": false
+      },
+      {
+        "status": "COMPUTED",
+        "count": 230400,
+        "cosine": 0.9866955789873293,
+        "max_abs_diff": 17.785907745361328,
+        "mean_abs_diff": 1.2635553964774224,
+        "relative_l2_diff": 0.16269757714138308,
+        "bitwise_identical": false
+      },
+      {
+        "status": "COMPUTED",
+        "count": 57600,
+        "cosine": 0.9658569811669132,
+        "max_abs_diff": 27.018290519714355,
+        "mean_abs_diff": 1.7256745957158217,
+        "relative_l2_diff": 0.26485374508294823,
+        "bitwise_identical": false
+      }
+    ],
+    "max_relative_l2_diff": 0.26485374508294823,
+    "min_cosine": 0.9658569811669132
+  },
+  "environment": {
+    "os": "Windows",
+    "os_release": "10",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "python": "3.11.9",
+    "python_implementation": "CPython",
+    "execution_provider": null,
+    "intra_op_threads": null,
+    "thread_env": {},
+    "packages": {
+      "ultralytics": "8.0.108",
+      "torch": "2.0.1",
+      "torchvision": "0.15.2",
+      "numpy": "1.26.4",
+      "psutil": "7.2.2"
+    }
+  },
+  "timestamp": "2026-10-05T03:44:23+00:00",
+  "ledger_unchanged": true
+}

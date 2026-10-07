@@ -1,0 +1,217 @@
+{
+  "experiment_id": "E5-1",
+  "phase": "5-E",
+  "timestamp_start": "2026-10-05T04:00:11+00:00",
+  "planned_operation": {
+    "operation": "automatic_compression",
+    "model": "yolov8n",
+    "input_shape": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "compression_ratio": 0.5,
+    "framework": "pytorch",
+    "expected_client_side_credit": 25,
+    "estimate_basis": "CLIENT_SIDE_PRE_CHECK_CONSTANT (netspresso 1.17.0); actual deduction observed via account balance",
+    "max_real_operations": 1,
+    "retry_policy": "none"
+  },
+  "input": {
+    "artifact": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+    "head_meta": "outputs/models/yolov8n_fx_r1/netspresso_head_meta.json",
+    "identity": {
+      "status": "PASS",
+      "checks": {
+        "exists": true,
+        "not_forbidden_path": true,
+        "sha256_matches": true,
+        "size_matches": true
+      },
+      "details": {
+        "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+        "expected_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "size_bytes": 12846691
+      },
+      "message": "input artifact identity verified"
+    },
+    "structural": {
+      "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+      "format": "pt",
+      "status": "PASS",
+      "message": "loaded as graph_module via full_unpickle (trusted)",
+      "checks": {
+        "exists": true,
+        "non_empty": true,
+        "readable": true,
+        "zip_container": true,
+        "safe_load": false,
+        "full_load": true,
+        "recognised_structure": true,
+        "has_parameters": true
+      },
+      "details": {
+        "size_bytes": 12846691,
+        "magic": "504b0304",
+        "safe_load_error": "UnpicklingError",
+        "load_mode": "full_unpickle (trusted)",
+        "class_name": "GraphModule",
+        "parameter_count": 3157184,
+        "parameter_tensors": 183,
+        "object_kind": "graph_module"
+      },
+      "defect_category": null,
+      "trusted_for_full_unpickle": true,
+      "precheck": {
+        "status": "READY",
+        "message": "known contract checks passed (format, GraphModule, head metadata, input shape, output schema)",
+        "checks": {
+          "fx_exists": true,
+          "fx_extension_pt": true,
+          "head_meta_exists": true,
+          "head_meta_valid": true,
+          "nc_matches_expected": true,
+          "input_shape_compatible": true,
+          "fx_is_graph_module": true,
+          "output_schema": true
+        },
+        "details": {
+          "task": "detect",
+          "input_shape": [
+            1,
+            3,
+            640,
+            640
+          ],
+          "head_meta": {
+            "nc": 80,
+            "nl": 3,
+            "stride": [
+              8.0,
+              16.0,
+              32.0
+            ],
+            "strides_shape": [
+              1,
+              8400
+            ],
+            "anchors_shape": [
+              2,
+              8400
+            ],
+            "inplace": true,
+            "outputs_per_anchor": 144,
+            "reg_max": 16,
+            "source": "outputs/models/yolov8n_fx_r1/netspresso_head_meta.json"
+          },
+          "input_shape_message": "input [N=1,C=3,H=640,W=640] compatible with strides [8.0, 16.0, 32.0]",
+          "structural_validation": {
+            "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+            "format": "pt",
+            "status": "PASS",
+            "message": "loaded as graph_module via full_unpickle (trusted)",
+            "checks": {
+              "exists": true,
+              "non_empty": true,
+              "readable": true,
+              "zip_container": true,
+              "safe_load": false,
+              "full_load": true,
+              "recognised_structure": true,
+              "has_parameters": true
+            },
+            "details": {
+              "size_bytes": 12846691,
+              "magic": "504b0304",
+              "safe_load_error": "UnpicklingError",
+              "load_mode": "full_unpickle (trusted)",
+              "class_name": "GraphModule",
+              "parameter_count": 3157184,
+              "parameter_tensors": 183,
+              "object_kind": "graph_module"
+            },
+            "defect_category": null
+          },
+          "expected_body_output_shapes": [
+            [
+              1,
+              144,
+              80,
+              80
+            ],
+            [
+              1,
+              144,
+              40,
+              40
+            ],
+            [
+              1,
+              144,
+              20,
+              20
+            ]
+          ],
+          "observed_body_output_shapes": [
+            [
+              1,
+              144,
+              80,
+              80
+            ],
+            [
+              1,
+              144,
+              40,
+              40
+            ],
+            [
+              1,
+              144,
+              20,
+              20
+            ]
+          ],
+          "output_schema_message": "output schema matches expected [[1, 144, 80, 80], [1, 144, 40, 40], [1, 144, 20, 20]]"
+        },
+        "meaning": "READY = known contract checks passed; it does NOT assert that the NetsPresso server will accept the upload"
+      }
+    },
+    "precheck_status": "READY",
+    "expected_body_output_shapes": [
+      [
+        1,
+        144,
+        80,
+        80
+      ],
+      [
+        1,
+        144,
+        40,
+        40
+      ],
+      [
+        1,
+        144,
+        20,
+        20
+      ]
+    ],
+    "generation": "scripts/yolov8_r1_traceable_export.py (upstream ultralytics 8.4.173, patch r1-upstream-body-wrapper-v1)",
+    "r1_validation_reference": "reports/yolov8_baseline/20261005T034329Z_r1/r1_result.json"
+  },
+  "ledger_before": {
+    "sha256": "2565dc0377796865f6c454fe74eb4f1fb5411220e09c11b90df3a6977ce4e497",
+    "used_credit": 25,
+    "remaining_estimate": 475,
+    "operations": 1
+  },
+  "authorization": {
+    "authorized": true,
+    "reasons": [],
+    "max_operations": 1
+  }
+}

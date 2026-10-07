@@ -148,6 +148,18 @@ def _describe_torch_object(obj: Any, torch: Any) -> tuple[str, dict[str, Any]]:
         tensors = [v for v in obj.values() if tensor_t is not None and isinstance(v, tensor_t)]
         if tensors and len(tensors) == len(obj):
             return "state_dict", {"tensor_count": len(tensors), "parameter_count": int(sum(int(t.numel()) for t in tensors))}
+        # training checkpoint: a dict wrapping a module under a conventional key (e.g. ultralytics 'model' / 'ema')
+        for key in ("model", "ema", "net", "module"):
+            inner = obj.get(key)
+            if nn_module is not None and isinstance(inner, nn_module):
+                params = list(inner.parameters()) if hasattr(inner, "parameters") else []
+                return "checkpoint", {
+                    "checkpoint_key": key,
+                    "keys": sorted(str(k) for k in obj)[:20],
+                    "class_name": type(inner).__name__,
+                    "parameter_count": int(sum(int(p.numel()) for p in params)),
+                    "parameter_tensors": len(params),
+                }
         return "dict", {"keys": len(obj), "tensor_count": len(tensors)}
     if tensor_t is not None and isinstance(obj, tensor_t):
         return "tensor", {"tensor_count": 1, "parameter_count": int(obj.numel())}

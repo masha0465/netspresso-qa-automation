@@ -1,0 +1,72 @@
+{
+  "credit_consuming": false,
+  "baseline": {
+    "before": {
+      "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+      "exists": true,
+      "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "expected_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "size_bytes": 12846691,
+      "expected_size": 12846691,
+      "match": true,
+      "kind": "upstream YOLOv8n R1 fx body (untouched baseline)"
+    },
+    "after": {
+      "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+      "exists": true,
+      "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "expected_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "size_bytes": 12846691,
+      "expected_size": 12846691,
+      "match": true,
+      "kind": "upstream YOLOv8n R1 fx body (untouched baseline)"
+    },
+    "immutable_across_evaluations": true
+  },
+  "e5_1": {
+    "before": {
+      "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+      "exists": true,
+      "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "expected_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "size_bytes": 3693813,
+      "expected_size": 3693813,
+      "match": true,
+      "kind": "NetsPresso-generated E5-1 compressed candidate"
+    },
+    "after": {
+      "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+      "exists": true,
+      "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "expected_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "size_bytes": 3693813,
+      "expected_size": 3693813,
+      "match": true,
+      "kind": "NetsPresso-generated E5-1 compressed candidate"
+    },
+    "immutable_across_evaluations": true
+  },
+  "phase_c": {
+    "before": {
+      "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+      "exists": true,
+      "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+      "expected_sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+      "size_bytes": 3714299,
+      "expected_size": 3714299,
+      "match": true,
+      "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate"
+    },
+    "after": {
+      "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+      "exists": true,
+      "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+      "expected_sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+      "size_bytes": 3714299,
+      "expected_size": 3714299,
+      "match": true,
+      "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate"
+    },
+    "immutable_across_evaluations": true
+  }
+}

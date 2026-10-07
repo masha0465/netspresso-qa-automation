@@ -439,3 +439,15 @@ def test_mock_adapter_and_runner_unaffected_by_profiles(config):
     assert all(c.gate.profile == "release" for c in report.cases if c.gate)
     data = json.dumps(report.to_dict())
     assert '"profile": "release"' in data and Status.PASS.value in data
+
+
+def test_pt_validation_recognises_training_checkpoint_dicts(tmp_path):
+    """ultralytics-style checkpoints wrap the module under 'model'; they must not be reported as unknown dicts."""
+    f = tmp_path / "ckpt.pt"
+    f.write_bytes(b"PK\x03\x04" + b"x" * 64)
+    ckpt = {"epoch": -1, "model": _Module([100, 24]), "optimizer": None, "train_args": {"imgsz": 640}}
+    sv = validate_pt(f, allow_full_unpickle=True, torch_module=_fake_torch(full_obj=ckpt))
+    assert sv.status == "PASS" and sv.details["object_kind"] == "checkpoint"
+    assert sv.details["checkpoint_key"] == "model" and sv.details["parameter_count"] == 124
+    plain = validate_pt(f, allow_full_unpickle=True, torch_module=_fake_torch(full_obj={"a": 1, "b": "x"}))
+    assert plain.status == "FAIL" and plain.details["object_kind"] == "dict"

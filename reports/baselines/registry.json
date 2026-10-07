@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "policy": "project-defined: candidate -> baseline requires Level 3/4 reproducibility evidence, integrity PASS, configuration match",
-  "updated_at": "2026-10-05T01:46:55+00:00",
+  "updated_at": "2026-10-05T05:18:47+00:00",
   "entries": [
     {
       "artifact_id": "automatic_compression:bcb3162d792f",
@@ -55,6 +55,462 @@
       "promotion_evidence": null,
       "notes": [
         "candidate only: promotion requires Level 3/4 reproducibility evidence from a second real run"
+      ]
+    },
+    {
+      "artifact_id": "yolov8n_baseline_onnx_export:4490e9372595",
+      "model_name": "yolov8n",
+      "source_artifact": "yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "sha256": "4490e9372595da1f6b95634e52b60bceab54768da6fd105359df5222091d531b",
+      "file_size": 12824019,
+      "format": "onnx",
+      "sdk_version": null,
+      "operation": "yolov8n_baseline_onnx_export",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "none_baseline"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": null,
+      "environment_fingerprint": {
+        "os": "Windows",
+        "os_release": "10",
+        "os_version": "10.0.26200",
+        "architecture": "AMD64",
+        "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+        "cpu_count": 20,
+        "python": "3.11.9",
+        "python_implementation": "CPython",
+        "execution_provider": "CPUExecutionProvider",
+        "intra_op_threads": null,
+        "thread_env": {
+          "OMP_NUM_THREADS": "1"
+        },
+        "packages": {
+          "ultralytics": "8.4.173",
+          "torch": "2.14.1",
+          "torchvision": "0.29.1",
+          "onnx": "1.23.1",
+          "onnxruntime": "1.30.0",
+          "onnxslim": "0.1.97",
+          "numpy": "2.4.6",
+          "opencv-python": "5.0.0.93",
+          "psutil": "7.2.2"
+        }
+      },
+      "created_at": "2026-10-05T02:16:54+00:00",
+      "status": "retired",
+      "provenance": {
+        "exporter": "ultralytics 8.4.173",
+        "opset": 13,
+        "weights_source": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt",
+        "registered_by": "scripts/yolov8_baseline_prep.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "baseline (un-optimized) reference artifact; candidate until a second identical export confirms reproducibility",
+        "retired: artifact overwritten by a repeated export; ONNX export is not bit-identical across runs (see reproducibility probe)"
+      ]
+    },
+    {
+      "artifact_id": "yolov8n_baseline_onnx_export:185840476208",
+      "model_name": "yolov8n",
+      "source_artifact": "yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "sha256": "185840476208ca503678ef374cbd30f8895c008b8134da6286f05ce32da080c8",
+      "file_size": 12824019,
+      "format": "onnx",
+      "sdk_version": null,
+      "operation": "yolov8n_baseline_onnx_export",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "none_baseline"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": null,
+      "environment_fingerprint": {
+        "os": "Windows",
+        "os_release": "10",
+        "os_version": "10.0.26200",
+        "architecture": "AMD64",
+        "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+        "cpu_count": 20,
+        "python": "3.11.9",
+        "python_implementation": "CPython",
+        "execution_provider": "CPUExecutionProvider",
+        "intra_op_threads": null,
+        "thread_env": {
+          "OMP_NUM_THREADS": "1"
+        },
+        "packages": {
+          "ultralytics": "8.4.173",
+          "torch": "2.14.1",
+          "torchvision": "0.29.1",
+          "onnx": "1.23.1",
+          "onnxruntime": "1.30.0",
+          "onnxslim": "0.1.97",
+          "numpy": "2.4.6",
+          "opencv-python": "5.0.0.93",
+          "psutil": "7.2.2"
+        }
+      },
+      "created_at": "2026-10-05T02:20:33+00:00",
+      "status": "retired",
+      "provenance": {
+        "exporter": "ultralytics 8.4.173",
+        "opset": 13,
+        "weights_source": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt",
+        "registered_by": "scripts/yolov8_baseline_prep.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "baseline (un-optimized) reference artifact; candidate until a second identical export confirms reproducibility",
+        "retired: superseded by re-export; raw SHA differs only in ONNX metadata_props.date (normalized checksum identical, policy onnx-metadata-v1)"
+      ]
+    },
+    {
+      "artifact_id": "yolov8n_baseline_onnx_export:7bf62b34a420",
+      "model_name": "yolov8n",
+      "source_artifact": "yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "sha256": "7bf62b34a420a12ba685e779f8ca32c859d88eb3ad9e5a7a31f9ad3d1d5697be",
+      "file_size": 12824019,
+      "format": "onnx",
+      "sdk_version": null,
+      "operation": "yolov8n_baseline_onnx_export",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "none_baseline"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": null,
+      "environment_fingerprint": {
+        "os": "Windows",
+        "os_release": "10",
+        "os_version": "10.0.26200",
+        "architecture": "AMD64",
+        "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+        "cpu_count": 20,
+        "python": "3.11.9",
+        "python_implementation": "CPython",
+        "execution_provider": "CPUExecutionProvider",
+        "intra_op_threads": null,
+        "thread_env": {
+          "OMP_NUM_THREADS": "1"
+        },
+        "packages": {
+          "ultralytics": "8.4.173",
+          "torch": "2.14.1",
+          "torchvision": "0.29.1",
+          "onnx": "1.23.1",
+          "onnxruntime": "1.30.0",
+          "onnxslim": "0.1.97",
+          "numpy": "2.4.6",
+          "opencv-python": "5.0.0.93",
+          "psutil": "7.2.2"
+        }
+      },
+      "created_at": "2026-10-05T02:50:00+00:00",
+      "status": "candidate",
+      "provenance": {
+        "exporter": "ultralytics 8.4.173",
+        "opset": 13,
+        "weights_source": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt",
+        "normalized_sha256": "6f180ff2e65fba4272c2eb57bf49fadbabc02ca6031e8df5f7c61546ea0de598",
+        "normalization_policy": "onnx-metadata-v1: drop all metadata_props; clear model.doc_string; graph/initializers/opsets/producer untouched",
+        "registered_by": "scripts/yolov8_baseline_prep.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "baseline (un-optimized) reference artifact; candidate until a second identical export confirms reproducibility"
+      ]
+    },
+    {
+      "artifact_id": "automatic_compression:21d8cbd1361c",
+      "model_name": "yolov8n",
+      "source_artifact": "yolov8n_fx_r1/model_fx.pt sha256=d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "file_size": 3693813,
+      "format": "pt",
+      "sdk_version": "1.17.0",
+      "operation": "automatic_compression",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": 0.5,
+      "environment_fingerprint": {
+        "adapter": "netspresso",
+        "adapter_version": "0.2.0",
+        "sdk_name": "netspresso",
+        "sdk_version": "1.17.0",
+        "python_version": "3.11.9",
+        "platform": "Windows-10-10.0.26200-SP0",
+        "extra": {
+          "execution_mode": "REAL_RUN_AUTHORIZED",
+          "sdk_loaded": true,
+          "sdk_version_researched": "1.17.0",
+          "api_calls_executed": 1,
+          "operations_executed": 1,
+          "api_key_env": "NETSPRESSO_API_KEY",
+          "api_key_present": true
+        }
+      },
+      "created_at": "2026-10-05T04:00:15+00:00",
+      "status": "candidate",
+      "provenance": {
+        "run_dir": "reports/real_runs/20261005T040009Z_automatic_compression",
+        "adapter": "netspresso",
+        "sdk_model_id_uploaded": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+        "sdk_model_id_compressed": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+        "companion_onnx_sha256": "925a818c138368f4b9a2671724aaf11e9af50bbbb3f18184e0834416d0c645dd",
+        "e5_1_record": "reports/yolov8_e5_1/20261005T040009Z/e5_1_result.json",
+        "registered_by": "scripts/yolov8_e5_1_local_validation.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "candidate only (execution_runs=1): promotion requires Level 3/4 reproducibility evidence from a second authorized run; never becomes the expected checksum from this single run"
+      ]
+    },
+    {
+      "artifact_id": "local_finetune:0a2038725d65",
+      "model_name": "yolov8n",
+      "source_artifact": "E5-1 sdk_output.pt sha256=21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1 (via reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt sha256=21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1)",
+      "sha256": "0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a",
+      "file_size": 3713403,
+      "format": "pt",
+      "sdk_version": null,
+      "operation": "local_finetune",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": 0.5,
+      "environment_fingerprint": {
+        "adapter": "local_e5_1_finetune",
+        "adapter_version": "0.1.0",
+        "sdk_name": "ultralytics+torch (local training)",
+        "sdk_version": "8.4.173",
+        "python_version": "3.11.9",
+        "platform": "Windows 10 AMD64",
+        "extra": {
+          "credit_consuming": false,
+          "netspresso_api_calls": 0,
+          "evaluation_type": "local_finetune",
+          "os": "Windows",
+          "os_release": "10",
+          "os_version": "10.0.26200",
+          "architecture": "AMD64",
+          "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+          "cpu_count": 20,
+          "python": "3.11.9",
+          "python_implementation": "CPython",
+          "execution_provider": "CPUExecutionProvider",
+          "intra_op_threads": null,
+          "thread_env": {
+            "OMP_NUM_THREADS": "1"
+          },
+          "packages": {
+            "ultralytics": "8.4.173",
+            "torch": "2.14.1",
+            "onnx": "1.23.1",
+            "onnxruntime": "1.30.0",
+            "numpy": "2.4.6",
+            "psutil": "7.2.2"
+          }
+        }
+      },
+      "created_at": "2026-10-05T04:33:04+00:00",
+      "status": "candidate",
+      "provenance": {
+        "kind": "LOCAL fine-tuned derivative (not a NetsPresso artifact)",
+        "phase": "A",
+        "config": "reports/yolov8_e5_1_finetune/20261005T042904Z_phaseA/finetune_config.json",
+        "registered_by": "scripts/yolov8_e5_1_finetune.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "candidate only; single local run; not a NetsPresso output"
+      ]
+    },
+    {
+      "artifact_id": "local_finetune:73a8f76f4c88",
+      "model_name": "yolov8n",
+      "source_artifact": "E5-1 sdk_output.pt sha256=21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1 (via outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseA.pt sha256=0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a)",
+      "sha256": "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6",
+      "file_size": 3714299,
+      "format": "pt",
+      "sdk_version": null,
+      "operation": "local_finetune",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": 0.5,
+      "environment_fingerprint": {
+        "adapter": "local_e5_1_finetune",
+        "adapter_version": "0.1.0",
+        "sdk_name": "ultralytics+torch (local training)",
+        "sdk_version": "8.4.173",
+        "python_version": "3.11.9",
+        "platform": "Windows 10 AMD64",
+        "extra": {
+          "credit_consuming": false,
+          "netspresso_api_calls": 0,
+          "evaluation_type": "local_finetune",
+          "os": "Windows",
+          "os_release": "10",
+          "os_version": "10.0.26200",
+          "architecture": "AMD64",
+          "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+          "cpu_count": 20,
+          "python": "3.11.9",
+          "python_implementation": "CPython",
+          "execution_provider": "CPUExecutionProvider",
+          "intra_op_threads": null,
+          "thread_env": {
+            "OMP_NUM_THREADS": "1"
+          },
+          "packages": {
+            "ultralytics": "8.4.173",
+            "torch": "2.14.1",
+            "onnx": "1.23.1",
+            "onnxruntime": "1.30.0",
+            "numpy": "2.4.6",
+            "psutil": "7.2.2"
+          }
+        }
+      },
+      "created_at": "2026-10-05T04:42:27+00:00",
+      "status": "candidate",
+      "provenance": {
+        "kind": "LOCAL fine-tuned derivative (not a NetsPresso artifact)",
+        "phase": "B",
+        "config": "reports/yolov8_e5_1_finetune/20261005T043342Z_phaseB/finetune_config.json",
+        "registered_by": "scripts/yolov8_e5_1_finetune.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "candidate only; single local run; not a NetsPresso output"
+      ]
+    },
+    {
+      "artifact_id": "local_finetune:dba5cd214f0f",
+      "model_name": "yolov8n",
+      "source_artifact": "E5-1 sdk_output.pt sha256=21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1 (via outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseB.pt sha256=73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6)",
+      "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+      "file_size": 3714299,
+      "format": "pt",
+      "sdk_version": null,
+      "operation": "local_finetune",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": 0.5,
+      "environment_fingerprint": {
+        "adapter": "local_e5_1_finetune",
+        "adapter_version": "0.1.0",
+        "sdk_name": "ultralytics+torch (local training)",
+        "sdk_version": "8.4.173",
+        "python_version": "3.11.9",
+        "platform": "Windows 10 AMD64",
+        "extra": {
+          "credit_consuming": false,
+          "netspresso_api_calls": 0,
+          "evaluation_type": "local_finetune",
+          "os": "Windows",
+          "os_release": "10",
+          "os_version": "10.0.26200",
+          "architecture": "AMD64",
+          "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+          "cpu_count": 20,
+          "python": "3.11.9",
+          "python_implementation": "CPython",
+          "execution_provider": "CPUExecutionProvider",
+          "intra_op_threads": null,
+          "thread_env": {
+            "OMP_NUM_THREADS": "1"
+          },
+          "packages": {
+            "ultralytics": "8.4.173",
+            "torch": "2.14.1",
+            "onnx": "1.23.1",
+            "onnxruntime": "1.30.0",
+            "numpy": "2.4.6",
+            "psutil": "7.2.2"
+          }
+        }
+      },
+      "created_at": "2026-10-05T05:18:47+00:00",
+      "status": "candidate",
+      "provenance": {
+        "kind": "LOCAL fine-tuned derivative (not a NetsPresso artifact)",
+        "phase": "C",
+        "config": "reports/yolov8_e5_1_finetune/20261005T051007Z_phaseC/finetune_config.json",
+        "registered_by": "scripts/yolov8_e5_1_finetune.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "candidate only; single local run; not a NetsPresso output"
       ]
     }
   ]

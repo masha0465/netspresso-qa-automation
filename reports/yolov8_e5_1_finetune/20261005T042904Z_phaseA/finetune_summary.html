@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>E5-1 Fine-tuning Recovery — phase A</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1100px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; } th { background: #f5f7fa; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS, .MEASURED, .RECOVERY_SUCCESS { background: #e3f6ec; color: #0f5132; } .FAIL, .RECOVERY_FAILED, .BLOCKED { background: #fbe3e4; color: #7a1e26; } .WARN, .PARTIAL_RECOVERY { background: #fff1cc; color: #6b4e00; }
+  .NOT_APPLICABLE, .NOT_VERIFIED, .N\/A { background: #eef0f3; color: #3e4c59; }
+  .note { background: #fff8e6; border-left: 3px solid #d4a72c; padding: .5rem .75rem; margin: 1rem 0; font-size: .9rem; }
+  .muted { color: #616e7c; font-size: .9rem; } code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>Phase 5-E — local fine-tuning recovery of the E5-1 compressed YOLOv8n (phase A)</h1>
+<p class="muted">2026-10-05T04:33:04+00:00 · report <code>reports/yolov8_e5_1_finetune/20261005T042904Z_phaseA</code> · E5-1 record <code>reports/yolov8_e5_1/20261005T040009Z/e5_1_result.json</code> · credit_consuming False · API calls 0</p>
+<div class="note"><strong>Local fine-tuning recovery experiment. No NetsPresso API call was made. The fine-tuned artifact is a LOCAL derivative of the E5-1 NetsPresso candidate, not a NetsPresso output. COCO128 train == val (128 images): smoke/diagnostic only, never release evidence.</strong><br>The fine-tuned artifact is a LOCAL derivative; the NetsPresso-generated artifact is the E5-1 candidate (sha 21d8cbd1…). Thresholds are PROJECT-DEFINED EXAMPLES. Latency/memory: development machine, CPUExecutionProvider.</div>
+
+<h2>0. Decision</h2>
+<p><span class="status RECOVERY_FAILED">RECOVERY_FAILED</span> gain 3.48 pp, fine-tuned 0.0348: near-zero or immaterial · next step <strong>E. NO-GO - ABANDON THIS COMPRESSION PATH</strong></p>
+<table><tr><th>Ledger before</th><th>Ledger after</th><th>Unchanged</th><th>E5-1 files immutable</th><th>Artifact validation</th><th>Gate compression</th><th>Gate local_eval</th><th>Gate release</th></tr>
+<tr><td>50 / 450 / 2</td><td>50 / 450 / 2</td>
+<td>True</td><td>True</td><td><span class="status PASS">PASS</span></td>
+<td><span class="status PASS">PASS</span></td><td><span class="status FAIL">FAIL</span></td><td><span class="status FAIL">FAIL</span></td></tr></table>
+
+<h2>1. Three-way accuracy (COCO128 smoke, imgsz 640, conf 0.001, IoU 0.7, rect=True, same evaluator)</h2>
+<table><tr><th>Model</th><th>Kind</th><th>mAP50-95</th><th>mAP50</th><th>mAP75</th><th>Precision</th><th>Recall</th></tr>
+<tr><td>baseline</td><td>upstream YOLOv8n (untouched)</td><td><strong>0.44369</strong></td><td>0.60111</td><td>0.47223</td><td>0.6286</td><td>0.52902</td></tr>
+<tr><td>compressed</td><td>E5-1 NetsPresso-generated candidate</td><td><strong>0.0</strong></td><td>0.0</td><td>0.0</td><td>3e-05</td><td>0.00223</td></tr>
+<tr><td>fine_tuned</td><td>LOCAL fine-tuned derivative</td><td><strong>0.0348</strong></td><td>0.05939</td><td>0.03153</td><td>0.62838</td><td>0.0452</td></tr>
+</table>
+<p>baseline → compressed -44.369 pp · baseline → fine-tuned -40.889 pp · compressed → fine-tuned +3.48 pp · <strong>recovery 7.84 %</strong> · remaining drop 40.889 pp vs example threshold 1.0 pp</p>
+<p class="muted">PROJECT-DEFINED EXAMPLE THRESHOLD (configs/quality_gate.yaml release.accuracy); COCO128 smoke -&gt; diagnostic only, Release PASS is never declared from it · train == val: True</p>
+
+<h2>2. Fine-tuning configuration and training</h2>
+<table><tr><th>phase</th><th>epochs</th><th>batch</th><th>imgsz</th><th>optimizer</th><th>lr</th><th>weight decay</th><th>freeze</th><th>seed</th><th>seconds</th><th>torch / ultralytics</th></tr>
+<tr><td>A</td><td>30</td><td>16</td><td>640</td><td>AdamW(betas=0.9/0.999)<br><span class="muted">linear warm-up 1 epoch, cosine decay to 10 %</span></td><td>0.001</td><td>0.0005</td>
+<td>trainable prefixes [&#39;cv2&#39;, &#39;cv3&#39;]<br>48 trainable / 135 frozen tensors</td><td>0</td><td>222.8</td><td>2.14.1+cpu / 8.4.173</td></tr></table>
+<p class="muted">augmentation: {&#39;mosaic&#39;: 1.0, &#39;mixup&#39;: 0.0, &#39;cutmix&#39;: 0.0, &#39;copy_paste&#39;: 0.0, &#39;hsv_h&#39;: 0.015, &#39;hsv_s&#39;: 0.7, &#39;hsv_v&#39;: 0.4, &#39;degrees&#39;: 0.0, &#39;translate&#39;: 0.1, &#39;scale&#39;: 0.5, &#39;shear&#39;: 0.0, &#39;perspective&#39;: 0.0, &#39;flipud&#39;: 0.0, &#39;fliplr&#39;: 0.5, &#39;erasing&#39;: 0.4, &#39;auto_augment&#39;: &#39;randaugment&#39;} · dataset: coco128.yaml (128 train images, source ultralytics coco128.zip (COCO 2017 train subset))</p>
+<table><tr><th>epoch</th><th>box</th><th>cls</th><th>dfl</th><th>lr end</th><th>s</th><th>mAP50-95</th><th>mAP50</th></tr>
+<tr><td>1</td><td>3.0507</td><td>5.1278</td><td>2.6469</td><td>1.00e-03</td><td>6.4</td><td></td><td></td></tr><tr><td>2</td><td>2.8639</td><td>4.508</td><td>2.5132</td><td>9.98e-04</td><td>6.7</td><td></td><td></td></tr><tr><td>3</td><td>2.7268</td><td>4.3764</td><td>2.5006</td><td>9.91e-04</td><td>6.2</td><td></td><td></td></tr><tr><td>4</td><td>2.6708</td><td>4.2487</td><td>2.4569</td><td>9.78e-04</td><td>6.5</td><td></td><td></td></tr><tr><td>5</td><td>2.667</td><td>4.3611</td><td>2.4306</td><td>9.61e-04</td><td>6.2</td><td>0.00274</td><td>0.00636</td></tr><tr><td>6</td><td>2.5693</td><td>4.1935</td><td>2.3796</td><td>9.39e-04</td><td>5.4</td><td></td><td></td></tr><tr><td>7</td><td>2.5416</td><td>4.1651</td><td>2.3876</td><td>9.12e-04</td><td>5.4</td><td></td><td></td></tr><tr><td>8</td><td>2.5119</td><td>4.1244</td><td>2.3688</td><td>8.81e-04</td><td>6.0</td><td></td><td></td></tr><tr><td>9</td><td>2.5183</td><td>4.0918</td><td>2.3753</td><td>8.46e-04</td><td>5.9</td><td></td><td></td></tr><tr><td>10</td><td>2.4846</td><td>3.985</td><td>2.2839</td><td>8.08e-04</td><td>5.8</td><td>0.01165</td><td>0.02182</td></tr><tr><td>11</td><td>2.482</td><td>4.0759</td><td>2.369</td><td>7.66e-04</td><td>5.2</td><td></td><td></td></tr><tr><td>12</td><td>2.4157</td><td>3.9571</td><td>2.2785</td><td>7.22e-04</td><td>5.3</td><td></td><td></td></tr><tr><td>13</td><td>2.4409</td><td>4.0212</td><td>2.3554</td><td>6.76e-04</td><td>5.2</td><td></td><td></td></tr><tr><td>14</td><td>2.449</td><td>3.9463</td><td>2.314</td><td>6.29e-04</td><td>5.2</td><td></td><td></td></tr><tr><td>15</td><td>2.4121</td><td>3.8744</td><td>2.3216</td><td>5.80e-04</td><td>5.1</td><td>0.0177</td><td>0.03459</td></tr><tr><td>16</td><td>2.3561</td><td>3.9446</td><td>2.3075</td><td>5.32e-04</td><td>5.1</td><td></td><td></td></tr><tr><td>17</td><td>2.3985</td><td>3.859</td><td>2.2515</td><td>4.83e-04</td><td>5.1</td><td></td><td></td></tr><tr><td>18</td><td>2.3936</td><td>3.9604</td><td>2.3094</td><td>4.35e-04</td><td>5.7</td><td></td><td></td></tr><tr><td>19</td><td>2.3631</td><td>3.8157</td><td>2.3072</td><td>3.89e-04</td><td>5.5</td><td></td><td></td></tr><tr><td>20</td><td>2.3708</td><td>3.8055</td><td>2.2786</td><td>3.45e-04</td><td>5.0</td><td>0.01988</td><td>0.03802</td></tr><tr><td>21</td><td>2.3873</td><td>3.7477</td><td>2.2731</td><td>3.03e-04</td><td>5.1</td><td></td><td></td></tr><tr><td>22</td><td>2.3954</td><td>3.8516</td><td>2.2939</td><td>2.63e-04</td><td>5.1</td><td></td><td></td></tr><tr><td>23</td><td>2.3477</td><td>3.8726</td><td>2.2735</td><td>2.28e-04</td><td>5.0</td><td></td><td></td></tr><tr><td>24</td><td>2.3524</td><td>3.6768</td><td>2.2298</td><td>1.95e-04</td><td>5.1</td><td></td><td></td></tr><tr><td>25</td><td>2.3817</td><td>3.7921</td><td>2.2892</td><td>1.68e-04</td><td>5.0</td><td>0.02691</td><td>0.04398</td></tr><tr><td>26</td><td>2.3313</td><td>3.7201</td><td>2.2205</td><td>1.44e-04</td><td>4.9</td><td></td><td></td></tr><tr><td>27</td><td>2.397</td><td>3.7188</td><td>2.2406</td><td>1.26e-04</td><td>5.6</td><td></td><td></td></tr><tr><td>28</td><td>2.3075</td><td>3.7864</td><td>2.2442</td><td>1.12e-04</td><td>5.7</td><td></td><td></td></tr><tr><td>29</td><td>2.3736</td><td>3.6868</td><td>2.25</td><td>1.03e-04</td><td>5.8</td><td></td><td></td></tr><tr><td>30</td><td>2.2981</td><td>3.708</td><td>2.2283</td><td>1.00e-04</td><td>5.8</td><td>0.0348</td><td>0.05939</td></tr></table>
+
+<h2>3. Artifact, params, FLOPs</h2>
+<table><tr><th>Artifact</th><th>SHA-256</th><th>Size</th><th>Structural</th><th>Forward</th><th>Decoded</th><th>params</th><th>FLOPs (2×MACs)</th><th>Architecture unchanged</th></tr>
+<tr><td><code>outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseA.pt</code><br><span class="muted">LOCAL fine-tuned derivative</span></td><td><code>0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a</code></td><td>3713403</td><td><span class="status PASS">PASS</span></td>
+<td>[[1, 144, 80, 80], [1, 144, 40, 40], [1, 144, 20, 20]]</td><td>[1, 84, 8400]</td><td>882996 (E5-1 882996)</td><td>3832092800 (E5-1 3832092800; SDK 3874910000.0)</td>
+<td><span class="status PASS">PASS</span></td></tr></table>
+
+<h2>4. Output equivalence proxy (NOT accuracy)</h2>
+<table><tr><th>Comparison</th><th>min cosine</th><th>max |Δ|</th><th>relative diff</th></tr>
+<tr><td>ORT identical input: baseline vs fine-tuned</td><td>0.989936</td><td>479.078705</td><td>0.141518</td></tr>
+<tr><td>real images (8): baseline_vs_fine_tuned</td><td>0.9899878475731482</td><td>524.6797790527344</td><td>0.14373942282098887</td></tr><tr><td>real images (8): compressed_vs_fine_tuned</td><td>0.9847965756963958</td><td>329.45245361328125</td><td>0.18036474017446105</td></tr><tr><td>real images (8): baseline_vs_compressed</td><td>0.9839862412475613</td><td>455.2752227783203</td><td>0.1787200172424956</td></tr></table>
+<p class="muted">output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement Proxy values never replace the measured mAP above.</p>
+
+<h2>5. Local ORT latency / memory</h2>
+<table><tr><th></th><th>median (ms)</th><th>p95 (ms)</th><th>peak RSS Δ (MB)</th></tr>
+<tr><td>baseline</td><td>19.4043</td><td>38.9752</td><td>107.355</td></tr><tr><td>fine_tuned</td><td>15.1058</td><td>31.943</td><td>93.305</td></tr></table>
+<p class="muted">local onnxruntime CPUExecutionProvider, development machine, process-isolated per model (fresh interpreter), same session for both models; not target-device performance</p>
+
+<h2>6. Quality Gate</h2>
+<table><tr><th>Profile</th><th>Overall</th><th>Criteria</th><th>Reasons</th></tr>
+<tr><td><code>compression</code></td><td><span class="status PASS">PASS</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status WARN">WARN</span></td><td>40.889</td><td>1.0</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-22.152</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-13.087</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.098</td><td>0.0</td></tr><tr><td>artifact</td><td><span class="status PASS">PASS</span></td><td>exists, non-empty, checksum recorded (reference not yet promoted)</td><td>required (checksum optional)</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr></table></td>
+<td>-</td></tr><tr><td><code>local_eval</code></td><td><span class="status FAIL">FAIL</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status WARN">WARN</span></td><td>40.889</td><td>1.0</td></tr><tr><td>output_equivalence_proxy</td><td><span class="status FAIL">FAIL</span></td><td>0.989936</td><td>0.99</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-22.152</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-13.087</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.098</td><td>0.0</td></tr><tr><td>artifact</td><td><span class="status PASS">PASS</span></td><td>exists, non-empty, checksum recorded (reference not yet promoted)</td><td>required (checksum optional)</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr></table></td>
+<td><ul><li>Output Equiv. Proxy: proxy (not accuracy): min cosine 0.9899 &lt; 0.99</li></ul></td></tr><tr><td><code>release</code></td><td><span class="status FAIL">FAIL</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status FAIL">FAIL</span></td><td>40.889</td><td>1.0</td></tr><tr><td>output_equivalence_proxy</td><td><span class="status WARN">WARN</span></td><td>0.989936</td><td>0.99</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-22.152</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-13.087</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.098</td><td>10.0</td></tr><tr><td>artifact</td><td><span class="status NOT_APPLICABLE">NOT_APPLICABLE</span></td><td>exists, non-empty, checksum not verifiable (no expected checksum)</td><td>required</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr><tr><td>reproducibility</td><td><span class="status NOT_APPLICABLE">NOT_APPLICABLE</span></td><td>NOT_VERIFIED</td><td>required</td></tr></table></td>
+<td><ul><li>Accuracy: accuracy drop 40.89 pp exceeds threshold 1.00 pp</li><li>Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet</li><li>Reproducibility: reproducibility not verified (fewer than two runs)</li></ul></td></tr></table>
+
+<h2>7. Defects and recovery assessment</h2>
+<table><tr><th>Profile</th><th>Defect</th></tr><tr><td><code>compression</code></td><td>none</td></tr><tr><td><code>local_eval</code></td><td><code>E5-1-FT-A-local_eval-ACCURACY_REGRESSION</code> ACCURACY_REGRESSION [MEDIUM] proxy (not accuracy): min cosine 0.9899 &lt; 0.99</td></tr><tr><td><code>release</code></td><td><code>E5-1-FT-A-release-ACCURACY_REGRESSION</code> ACCURACY_REGRESSION [HIGH] accuracy drop 40.89 pp exceeds threshold 1.00 pp</td></tr></table>
+<p>Historical E5-1 defects (unchanged): {&#39;compression&#39;: None, &#39;local_eval&#39;: &#39;E5-1-local_eval-ACCURACY_REGRESSION&#39;, &#39;release&#39;: &#39;E5-1-release-ACCURACY_REGRESSION&#39;}<br><strong>E5-1 ACCURACY_REGRESSION NOT recovered by this local fine-tuning run</strong> · pruning-without-fine-tuning hypothesis NOT supported by this run</p>
+
+<h2>8. Traceability</h2>
+<table><tr><th style="width:14rem">source_model</th><td><code>yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36</code></td></tr><tr><th style="width:14rem">r1_fx_artifact</th><td><code>outputs/models/yolov8n_fx_r1/model_fx.pt (patch r1-upstream-body-wrapper-v1)</code></td></tr><tr><th style="width:14rem">r1_sha256</th><td><code>d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b</code></td></tr><tr><th style="width:14rem">netspresso_execution</th><td><code>20261005T040009Z_automatic_compression: automatic_compression ratio 0.5 (E5-1, NetsPresso-generated)</code></td></tr><tr><th style="width:14rem">candidate_artifact</th><td><code>reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt</code></td></tr><tr><th style="width:14rem">candidate_sha256</th><td><code>21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1</code></td></tr><tr><th style="width:14rem">local_validation</th><td><code>LOCAL fine-tuning phase A (30 epochs, seed 0) -&gt; outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseA.pt sha256=0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a</code></td></tr><tr><th style="width:14rem">accuracy_result</th><td><code>COCO128 mAP50-95 baseline 0.44369 / compressed 0.0 / fine-tuned 0.0348 (recovery 7.84 %)</code></td></tr><tr><th style="width:14rem">quality_gate</th><td><code>{&#39;compression&#39;: &#39;PASS&#39;, &#39;local_eval&#39;: &#39;FAIL&#39;, &#39;release&#39;: &#39;FAIL&#39;}</code></td></tr><tr><th style="width:14rem">credit_record</th><td><code>ledger unchanged: (50, 450, 2) sha 4b700de201d359cf (0 credits)</code></td></tr><tr><th>complete</th><td>True</td></tr></table>
+
+<h2>9. Reproducibility</h2>
+<p>training runs 1 · seed 0 · level <code>NOT_VERIFIED</code> · source sha <code>21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1</code> → output sha <code>0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a</code> · registry <code>local_finetune:0a2038725d65</code> (candidate). one seeded local run; bitwise reproducibility of CPU training was not verified (would need a second run)</p>
+
+<h2>10. Next step</h2>
+<p><strong>E. NO-GO - ABANDON THIS COMPRESSION PATH</strong></p><ul><li>accuracy stays unusable after fine-tuning; do not spend credits on this path</li><li>re-evaluate the compression strategy (ratio/method) before any further operation</li></ul>
+</body>
+</html>

@@ -1,5 +1,7 @@
 # NetsPresso SDK Technical Research (Phase 1)
 
+> **최종 상태(2026-10-07, Phase 6)**: 이 문서는 설치된 `netspresso` 1.17.0 패키지의 소스 introspection과 공개 GitHub 저장소 열람에 기반한 **개인 조사 기록**이며, 공식 API 문서가 아닙니다. 프로젝트 전체에서 실제로 실행한 NetsPresso 작업은 `automatic_compression` **2회**(2026-10-05, 각 25 Credit, 합계 50 / 잔여 450)뿐이며(§11, `reports/real_runs/`), 그 외 서비스(quantize/convert/profile/graph optimize)와 서버 측 지원 조합·Credit 규칙은 **NOT VERIFIED**입니다. 최종 품질 판정은 `README.md` §10 및 `docs/phase5e_finetune_recovery.md` §13(COCO val2017 독립 평가 → VAL2017_OVERFIT, Release FAIL)을 참조하십시오.
+
 > Personal portfolio project using publicly available NetsPresso APIs/SDKs and technical resources.
 > 본 문서는 Nota 내부 시스템과 무관한 개인 조사 기록이며, **설치된 패키지의 소스 코드와 공식 GitHub 저장소를 직접 inspect하여 확인한 사실만** 기술한다.
 > 확인하지 못한 항목은 명시적으로 "미검증(NOT VERIFIED)"으로 표기한다.

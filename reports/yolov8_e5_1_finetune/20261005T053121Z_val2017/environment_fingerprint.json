@@ -1,0 +1,35 @@
+{
+  "credit_consuming": false,
+  "adapter": "local_val2017_eval",
+  "adapter_version": "0.1.0",
+  "sdk_name": "ultralytics (inference only)",
+  "sdk_version": "8.4.173",
+  "python_version": "3.11.9",
+  "platform": "Windows 10 AMD64",
+  "extra": {
+    "credit_consuming": false,
+    "netspresso_api_calls": 0,
+    "evaluation_type": "unseen_val2017",
+    "os": "Windows",
+    "os_release": "10",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "python": "3.11.9",
+    "python_implementation": "CPython",
+    "execution_provider": null,
+    "intra_op_threads": null,
+    "thread_env": {
+      "OMP_NUM_THREADS": "1"
+    },
+    "packages": {
+      "ultralytics": "8.4.173",
+      "torch": "2.14.1",
+      "onnx": "1.23.1",
+      "onnxruntime": "1.30.0",
+      "numpy": "2.4.6",
+      "psutil": "7.2.2"
+    }
+  }
+}

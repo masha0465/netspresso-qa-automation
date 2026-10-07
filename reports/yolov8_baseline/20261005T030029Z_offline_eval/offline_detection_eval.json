@@ -1,0 +1,371 @@
+{
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "disclaimer": "Offline detection evaluation path validated locally. No NetsPresso API call was made. Fixture results are NOT NetsPresso compression results.",
+  "fixture_label": "identity fixture (pre-compression baseline fx body)",
+  "body": {
+    "path": "outputs/models/yolov8n_fx/model_fx.pt",
+    "sha256": "457d8c3a63d85cf9236815a1f56703170af98b2a4b854868edf7b5a3178f0a3f",
+    "size_bytes": 12846561,
+    "full_unpickle_allowed": true,
+    "trust_basis": "trust list"
+  },
+  "head_meta": {
+    "path": "outputs/models/yolov8n_fx/netspresso_head_meta.json",
+    "sha256": "83cb48f71190253eb2f2620427f078f68801913744d4530a8e4745b655de37e8"
+  },
+  "evaluator": "ultralytics_nota 8.0.108 DetectionValidator (torch 2.0.1+cpu)",
+  "precheck": {
+    "status": "READY",
+    "message": "known contract checks passed (format, GraphModule, head metadata, input shape, output schema)",
+    "checks": {
+      "fx_exists": true,
+      "fx_extension_pt": true,
+      "head_meta_exists": true,
+      "head_meta_valid": true,
+      "nc_matches_expected": true,
+      "input_shape_compatible": true,
+      "fx_is_graph_module": true,
+      "output_schema": true
+    },
+    "details": {
+      "task": "detect",
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "head_meta": {
+        "nc": 80,
+        "nl": 3,
+        "stride": [
+          8.0,
+          16.0,
+          32.0
+        ],
+        "strides_shape": [
+          1,
+          8400
+        ],
+        "anchors_shape": [
+          2,
+          8400
+        ],
+        "inplace": true,
+        "outputs_per_anchor": 144,
+        "reg_max": 16,
+        "source": "outputs/models/yolov8n_fx/netspresso_head_meta.json"
+      },
+      "input_shape_message": "input [N=1,C=3,H=640,W=640] compatible with strides [8.0, 16.0, 32.0]",
+      "structural_validation": {
+        "path": "outputs/models/yolov8n_fx/model_fx.pt",
+        "format": "pt",
+        "status": "PASS",
+        "message": "loaded as graph_module via full_unpickle (trusted)",
+        "checks": {
+          "exists": true,
+          "non_empty": true,
+          "readable": true,
+          "zip_container": true,
+          "safe_load": false,
+          "full_load": true,
+          "recognised_structure": true,
+          "has_parameters": true
+        },
+        "details": {
+          "size_bytes": 12846561,
+          "magic": "504b0304",
+          "safe_load_error": "UnpicklingError",
+          "load_mode": "full_unpickle (trusted)",
+          "class_name": "GraphModule",
+          "parameter_count": 3157184,
+          "parameter_tensors": 183,
+          "object_kind": "graph_module"
+        },
+        "defect_category": null
+      },
+      "expected_body_output_shapes": [
+        [
+          1,
+          144,
+          80,
+          80
+        ],
+        [
+          1,
+          144,
+          40,
+          40
+        ],
+        [
+          1,
+          144,
+          20,
+          20
+        ]
+      ],
+      "observed_body_output_shapes": [
+        [
+          1,
+          144,
+          80,
+          80
+        ],
+        [
+          1,
+          144,
+          40,
+          40
+        ],
+        [
+          1,
+          144,
+          20,
+          20
+        ]
+      ],
+      "output_schema_message": "output schema matches expected [[1, 144, 80, 80], [1, 144, 40, 40], [1, 144, 20, 20]]"
+    },
+    "meaning": "READY = known contract checks passed; it does NOT assert that the NetsPresso server will accept the upload"
+  },
+  "reattach": {
+    "status": "PASS",
+    "class": "DetectionModel_netspresso",
+    "decoded_output_shape": [
+      1,
+      84,
+      8400
+    ],
+    "expected": [
+      1,
+      84,
+      8400
+    ],
+    "message": "output schema matches expected [[1, 84, 8400]]",
+    "names_count": 80,
+    "stride": [
+      8.0,
+      16.0,
+      32.0
+    ]
+  },
+  "cross_evaluator_reference": {
+    "upstream_baseline": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.44369,
+        "mAP50": 0.60111,
+        "mAP75": 0.47223,
+        "precision": 0.6286,
+        "recall": 0.52902
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": null,
+      "split": "val(train2017 subset)",
+      "images": null,
+      "instances": null,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 (torch 2.14.1)",
+      "model_label": "yolov8n baseline (upstream evaluator, reports/yolov8_baseline)",
+      "is_output_equivalence_proxy": false,
+      "extra": {}
+    },
+    "comparison_vs_fork_baseline": {
+      "status": "NOT_COMPARABLE",
+      "metric": "mAP50-95",
+      "baseline_metric": 0.44369,
+      "candidate_metric": 0.13505,
+      "absolute_delta": null,
+      "drop_pp": null,
+      "relative_delta_percent": null,
+      "baseline_label": "yolov8n baseline (upstream evaluator, reports/yolov8_baseline)",
+      "candidate_label": "yolov8n baseline (official weights, same evaluator)",
+      "reason": "evaluation conditions differ: evaluator 'ultralytics 8.4.173 (torch 2.14.1)' vs 'ultralytics_nota 8.0.108 DetectionValidator (torch 2.0.1+cpu)'",
+      "conditions": {
+        "baseline": {
+          "dataset": "coco128.yaml",
+          "split": "val(train2017 subset)",
+          "imgsz": 640,
+          "evaluator": "ultralytics 8.4.173 (torch 2.14.1)",
+          "conf": 0.001,
+          "iou": 0.7
+        },
+        "candidate": {
+          "dataset": "coco128.yaml",
+          "split": "val(train2017 subset)",
+          "imgsz": 640,
+          "evaluator": "ultralytics_nota 8.0.108 DetectionValidator (torch 2.0.1+cpu)",
+          "conf": 0.001,
+          "iou": 0.7
+        }
+      },
+      "secondary": {},
+      "is_output_equivalence_proxy": false
+    },
+    "note": "same weights, same images; evaluator differs -> NOT_COMPARABLE by policy. A large gap is an evaluator-drift finding, not a model result."
+  },
+  "fixture_accuracy": {
+    "status": "MEASURED",
+    "reason": null,
+    "primary_metric": "mAP50-95",
+    "metrics": {
+      "mAP50-95": 0.13506,
+      "mAP50": 0.19867,
+      "mAP75": 0.15257,
+      "precision": 0.56956,
+      "recall": 0.15895
+    },
+    "dataset": "coco128.yaml",
+    "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+    "split": "val(train2017 subset)",
+    "images": null,
+    "instances": null,
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "evaluator": "ultralytics_nota 8.0.108 DetectionValidator (torch 2.0.1+cpu)",
+    "model_label": "identity fixture (pre-compression baseline fx body)",
+    "is_output_equivalence_proxy": false,
+    "extra": {
+      "speed_ms": {
+        "preprocess": 0.718,
+        "inference": 53.294,
+        "loss": 0.0,
+        "postprocess": 1.293
+      }
+    }
+  },
+  "baseline_accuracy_same_evaluator": {
+    "status": "MEASURED",
+    "reason": null,
+    "primary_metric": "mAP50-95",
+    "metrics": {
+      "mAP50-95": 0.13505,
+      "mAP50": 0.19866,
+      "mAP75": 0.15257,
+      "precision": 0.56956,
+      "recall": 0.15895
+    },
+    "dataset": "coco128.yaml",
+    "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+    "split": "val(train2017 subset)",
+    "images": null,
+    "instances": null,
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "evaluator": "ultralytics_nota 8.0.108 DetectionValidator (torch 2.0.1+cpu)",
+    "model_label": "yolov8n baseline (official weights, same evaluator)",
+    "is_output_equivalence_proxy": false,
+    "extra": {
+      "speed_ms": {
+        "preprocess": 0.773,
+        "inference": 45.951,
+        "loss": 0.0,
+        "postprocess": 1.22
+      }
+    }
+  },
+  "comparison": {
+    "status": "MEASURED",
+    "metric": "mAP50-95",
+    "baseline_metric": 0.13505,
+    "candidate_metric": 0.13506,
+    "absolute_delta": 1e-05,
+    "drop_pp": -0.001,
+    "relative_delta_percent": 0.0074,
+    "baseline_label": "yolov8n baseline (official weights, same evaluator)",
+    "candidate_label": "identity fixture (pre-compression baseline fx body)",
+    "reason": null,
+    "conditions": {
+      "dataset": "coco128.yaml",
+      "split": "val(train2017 subset)",
+      "imgsz": 640,
+      "evaluator": "ultralytics_nota 8.0.108 DetectionValidator (torch 2.0.1+cpu)",
+      "conf": 0.001,
+      "iou": 0.7
+    },
+    "secondary": {
+      "mAP50": {
+        "baseline": 0.19866,
+        "candidate": 0.19867,
+        "drop_pp": -0.001
+      },
+      "mAP75": {
+        "baseline": 0.15257,
+        "candidate": 0.15257,
+        "drop_pp": 0.0
+      },
+      "precision": {
+        "baseline": 0.56956,
+        "candidate": 0.56956,
+        "drop_pp": 0.0
+      },
+      "recall": {
+        "baseline": 0.15895,
+        "candidate": 0.15895,
+        "drop_pp": 0.0
+      }
+    },
+    "is_output_equivalence_proxy": false
+  },
+  "accuracy_criterion_demo": {
+    "threshold_pp": 1.0,
+    "threshold_basis": "PROJECT-DEFINED EXAMPLE THRESHOLD (configs/quality_gate.yaml release.accuracy)",
+    "fixture_vs_baseline": {
+      "name": "accuracy",
+      "status": "PASS",
+      "observed": -0.001,
+      "threshold": 1.0,
+      "message": "accuracy drop -0.00 pp <= 1.00 pp",
+      "required": true
+    },
+    "missing_candidate": {
+      "name": "accuracy",
+      "status": "NOT_APPLICABLE",
+      "observed": null,
+      "threshold": 1.0,
+      "message": "accuracy not available for baseline and/or current metrics",
+      "required": true
+    },
+    "note": "identity fixture is expected to match its baseline; this validates the pipeline, not a compression result"
+  },
+  "evaluation_conditions": {
+    "data": "coco128.yaml",
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "device": "cpu",
+    "batch": 8,
+    "rect": true,
+    "half": false
+  },
+  "environment": {
+    "os": "Windows",
+    "os_release": "10",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "python": "3.11.9",
+    "python_implementation": "CPython",
+    "execution_provider": null,
+    "intra_op_threads": null,
+    "thread_env": {},
+    "packages": {
+      "ultralytics": "8.0.108",
+      "torch": "2.0.1",
+      "torchvision": "0.15.2",
+      "numpy": "1.26.4",
+      "onnx": null,
+      "psutil": "7.2.2"
+    }
+  },
+  "timestamp": "2026-10-05T03:00:46+00:00",
+  "ledger_unchanged": true
+}

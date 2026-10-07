@@ -29,3 +29,15 @@ local_eval:
     - sha256: bcb3162d792f2c78350ae82dd91f97fbda3e5e00849512c25cd705560f339da5
       name: sdk_output.pt
       trust_basis: "produced by NetsPresso automatic_compression run 20261005T010356Z; SDK itself loaded it for ONNX export"
+    - sha256: f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36
+      name: yolov8n.pt
+      trust_basis: "official ultralytics/assets release v8.4.0 (6,549,796 bytes); ultralytics checkpoint dict with pickled model objects, cannot be loaded with weights_only=True"
+    - sha256: 457d8c3a63d85cf9236815a1f56703170af98b2a4b854868edf7b5a3178f0a3f
+      name: yolov8n_fx/model_fx.pt
+      trust_basis: "generated locally by ultralytics_nota 8.0.108 export_netspresso() from the trusted yolov8n.pt (f59b3d83...); torch.fx GraphModule, see reports/yolov8_baseline/*_fx_precheck"
+    - sha256: d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b
+      name: yolov8n_fx_r1/model_fx.pt
+      trust_basis: "generated locally by scripts/yolov8_r1_traceable_export.py (upstream ultralytics 8.4.173, patch r1-upstream-body-wrapper-v1) from the trusted yolov8n.pt (f59b3d83...); bit-reproducible across two exports, see reports/yolov8_baseline/*_r1"
+    - sha256: 21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1
+      name: real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt
+      trust_basis: "NetsPresso SDK 1.17.0 output of the recorded E5-1 real run (automatic_compression ratio 0.5 of yolov8n_fx_r1/model_fx.pt sha d8e761da...); SHA recorded in execution_result.json before trusting"

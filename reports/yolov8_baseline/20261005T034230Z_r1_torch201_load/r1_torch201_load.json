@@ -1,0 +1,103 @@
+{
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "disclaimer": "R1 cross-check ran locally. No NetsPresso API call was made. A successful torch 2.0.1 load means the artifact is loadable in a target-side torch 2.0.1 environment; it does not prove NetsPresso server acceptance.",
+  "mode": "torch-only",
+  "torch_version": "2.0.1+cpu",
+  "python": "3.11.9",
+  "r1_body": {
+    "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+    "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "size_bytes": 12846691,
+    "matches_dump": true,
+    "full_unpickle_allowed": true,
+    "trust_basis": "trust list"
+  },
+  "reference": {
+    "image": "000000000009.jpg",
+    "input_shape": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "weights_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36"
+  },
+  "torch_load": {
+    "status": "PASS",
+    "object": "GraphModule",
+    "is_graph_module": true,
+    "parameter_count": 3157184,
+    "output_shapes": [
+      [
+        1,
+        144,
+        80,
+        80
+      ],
+      [
+        1,
+        144,
+        40,
+        40
+      ],
+      [
+        1,
+        144,
+        20,
+        20
+      ]
+    ],
+    "body_outputs_vs_upstream_torch214": [
+      {
+        "status": "COMPUTED",
+        "count": 921600,
+        "cosine": 0.9999999999998533,
+        "max_abs_diff": 2.2411346435546875e-05,
+        "mean_abs_diff": 1.6846085806952893e-06,
+        "relative_l2_diff": 1.940715908335908e-07,
+        "bitwise_identical": false
+      },
+      {
+        "status": "COMPUTED",
+        "count": 230400,
+        "cosine": 0.9999999999998879,
+        "max_abs_diff": 5.030632019042969e-05,
+        "mean_abs_diff": 1.987359094369386e-06,
+        "relative_l2_diff": 2.6794213992305874e-07,
+        "bitwise_identical": false
+      },
+      {
+        "status": "COMPUTED",
+        "count": 57600,
+        "cosine": 0.9999999999999071,
+        "max_abs_diff": 6.866455078125e-05,
+        "mean_abs_diff": 2.297356664371364e-06,
+        "relative_l2_diff": 3.6014228171813747e-07,
+        "bitwise_identical": false
+      }
+    ],
+    "max_abs_diff": 6.866455078125e-05,
+    "bitwise_identical": false,
+    "meaning": "artifact loads and runs under torch 2.0.1 (target-side dependency of netspresso-trainer); not a server-acceptance claim"
+  },
+  "environment": {
+    "os": "Windows",
+    "os_release": "10",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "python": "3.11.9",
+    "python_implementation": "CPython",
+    "execution_provider": null,
+    "intra_op_threads": null,
+    "thread_env": {},
+    "packages": {
+      "torch": "2.0.1",
+      "numpy": "1.26.4"
+    }
+  },
+  "timestamp": "2026-10-05T03:42:32+00:00",
+  "ledger_unchanged": true
+}

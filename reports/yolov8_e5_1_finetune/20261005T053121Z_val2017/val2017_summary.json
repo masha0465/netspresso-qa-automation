@@ -1,0 +1,941 @@
+{
+  "experiment": {
+    "phase": "5-E unseen validation (COCO val2017)",
+    "timestamp": "2026-10-05T05:43:51+00:00",
+    "report_dir": "reports/yolov8_e5_1_finetune/20261005T053121Z_val2017",
+    "phase_c_record": "reports/yolov8_e5_1_finetune/20261005T051007Z_phaseC"
+  },
+  "disclaimer": "COCO val2017 independent evaluation: inference only, no training, no NetsPresso API call, 0 credits. COCO128 (train == val) numbers are smoke evidence; val2017 is the unseen-data evidence. Thresholds are PROJECT-DEFINED EXAMPLES; no Release PASS is declared here.",
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "training_performed": false,
+  "decision": "VAL2017_OVERFIT",
+  "classification": {
+    "drop_pp": 35.887,
+    "recovery_pp": 0.917,
+    "candidate_smoke_gap_pp": 45.771,
+    "baseline_smoke_gap_pp": 7.565,
+    "excess_gap_vs_baseline_pp": 38.206,
+    "thresholds": {
+      "pass_pp": 1.0,
+      "near_pp": 3.0,
+      "material_pp": 5.0,
+      "overfit_gap_pp": 10.0,
+      "basis": "PROJECT-DEFINED EXAMPLE (unseen validation)"
+    },
+    "case": "C",
+    "decision": "VAL2017_OVERFIT",
+    "reason": "unseen drop 35.887 pp > 3.0 pp and the candidate's smoke-vs-unseen gap exceeds the baseline's by 38.206 pp (> 10.0): COCO128 overfitting"
+  },
+  "next_step": {
+    "label": "HOLD",
+    "netspresso_additional_execution": "HOLD",
+    "rationale": "smoke gains did not transfer to unseen data (COCO128 memorization); hold all credit decisions, change the training data strategy"
+  },
+  "netspresso_additional_execution": "HOLD",
+  "dataset": {
+    "name": "COCO val2017",
+    "images": 5000,
+    "annotations": 36781,
+    "label_files": 4952,
+    "contamination_check": {
+      "coco128_images": 128,
+      "coco128_source_split": "train2017 (ultralytics coco128.zip)",
+      "val2017_images": 5000,
+      "filename_overlap": 0,
+      "coco_image_id_overlap": 0,
+      "content_sha256_overlap": 0,
+      "overlap_ratio_of_coco128": 0.0,
+      "hashing_seconds": 22.6,
+      "coco128_train_equals_val": true,
+      "conclusion": "val2017 is disjoint from the COCO128 training images"
+    },
+    "coco128_train_equals_val": true,
+    "manifest": "reports/yolov8_e5_1_finetune/20261005T053121Z_val2017/dataset_manifest.json"
+  },
+  "evaluation_config": {
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "rect": true,
+    "batch": 8,
+    "device": "cpu",
+    "half": false,
+    "workers": 0,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "independent_processes": true,
+    "order": [
+      "baseline",
+      "e5_1",
+      "phase_c"
+    ]
+  },
+  "accuracy": {
+    "val2017": [
+      {
+        "model": "baseline",
+        "kind": "upstream YOLOv8n R1 fx body (untouched baseline)",
+        "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "mAP50-95": 0.36804,
+        "mAP50": 0.51861,
+        "mAP75": 0.40003,
+        "precision": 0.63496,
+        "recall": 0.47375,
+        "delta_vs_baseline_pp": 0.0,
+        "recovery_vs_e5_1_pp": 36.804,
+        "duration_seconds": 142.8
+      },
+      {
+        "model": "e5_1",
+        "kind": "NetsPresso-generated E5-1 compressed candidate",
+        "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "mAP50-95": 0.0,
+        "mAP50": 0.0,
+        "mAP75": 0.0,
+        "precision": 2e-05,
+        "recall": 0.00186,
+        "delta_vs_baseline_pp": -36.804,
+        "recovery_vs_e5_1_pp": 0.0,
+        "duration_seconds": 154.2
+      },
+      {
+        "model": "phase_c",
+        "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate",
+        "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+        "mAP50-95": 0.00917,
+        "mAP50": 0.02101,
+        "mAP75": 0.00692,
+        "precision": 0.04391,
+        "recall": 0.04623,
+        "delta_vs_baseline_pp": -35.887,
+        "recovery_vs_e5_1_pp": 0.917,
+        "duration_seconds": 97.7
+      }
+    ],
+    "coco128_smoke": {
+      "baseline": 0.44369,
+      "e5_1": 0.0,
+      "phase_b": 0.28965,
+      "phase_c": 0.46688
+    },
+    "phase_c_vs_baseline_unseen": {
+      "status": "MEASURED",
+      "metric": "mAP50-95",
+      "baseline_metric": 0.36804,
+      "candidate_metric": 0.00917,
+      "absolute_delta": -0.35887,
+      "drop_pp": 35.887,
+      "relative_delta_percent": -97.5084,
+      "baseline_label": "upstream YOLOv8n R1 fx body (untouched baseline)",
+      "candidate_label": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate",
+      "reason": null,
+      "conditions": {
+        "dataset": "coco_val2017_eval.yaml",
+        "split": "val2017",
+        "imgsz": 640,
+        "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+        "conf": 0.001,
+        "iou": 0.7
+      },
+      "secondary": {
+        "mAP50": {
+          "baseline": 0.51861,
+          "candidate": 0.02101,
+          "drop_pp": 49.76
+        },
+        "mAP75": {
+          "baseline": 0.40003,
+          "candidate": 0.00692,
+          "drop_pp": 39.311
+        },
+        "precision": {
+          "baseline": 0.63496,
+          "candidate": 0.04391,
+          "drop_pp": 59.105
+        },
+        "recall": {
+          "baseline": 0.47375,
+          "candidate": 0.04623,
+          "drop_pp": 42.752
+        }
+      },
+      "is_output_equivalence_proxy": false
+    },
+    "threshold_pp": 1.0,
+    "threshold_basis": "PROJECT-DEFINED EXAMPLE THRESHOLD; unseen-data result judged separately from COCO128"
+  },
+  "generalization": {
+    "baseline": {
+      "status": "MEASURED",
+      "smoke": 0.44369,
+      "unseen": 0.36804,
+      "gap": 0.07565,
+      "gap_pp": 7.565,
+      "unseen_over_smoke_percent": 82.95
+    },
+    "e5_1": {
+      "status": "MEASURED",
+      "smoke": 0.0,
+      "unseen": 0.0,
+      "gap": 0.0,
+      "gap_pp": 0.0,
+      "unseen_over_smoke_percent": null
+    },
+    "phase_b": {
+      "status": "smoke only",
+      "smoke": 0.28965,
+      "unseen": null,
+      "note": "not required by the plan"
+    },
+    "phase_c": {
+      "status": "MEASURED",
+      "smoke": 0.46688,
+      "unseen": 0.00917,
+      "gap": 0.45771,
+      "gap_pp": 45.771,
+      "unseen_over_smoke_percent": 1.96,
+      "overfit_indicator": {
+        "smoke_above_baseline_smoke": true,
+        "unseen_vs_baseline_unseen_pp": -35.887,
+        "excess_gap_vs_baseline_pp": 38.206,
+        "reading": "smoke (train==val) advantage that disappears on unseen data = memorization; the excess gap over the baseline's own COCO128/val2017 gap quantifies it"
+      }
+    }
+  },
+  "recovery": {
+    "e5_1_to_phase_c_pp": 0.917,
+    "phase_c_to_baseline_pp": -35.887,
+    "remaining_drop_pp": 35.887,
+    "recovery_rate_percent": 2.49,
+    "classification": {
+      "drop_pp": 35.887,
+      "recovery_pp": 0.917,
+      "candidate_smoke_gap_pp": 45.771,
+      "baseline_smoke_gap_pp": 7.565,
+      "excess_gap_vs_baseline_pp": 38.206,
+      "thresholds": {
+        "pass_pp": 1.0,
+        "near_pp": 3.0,
+        "material_pp": 5.0,
+        "overfit_gap_pp": 10.0,
+        "basis": "PROJECT-DEFINED EXAMPLE (unseen validation)"
+      },
+      "case": "C",
+      "decision": "VAL2017_OVERFIT",
+      "reason": "unseen drop 35.887 pp > 3.0 pp and the candidate's smoke-vs-unseen gap exceeds the baseline's by 38.206 pp (> 10.0): COCO128 overfitting"
+    }
+  },
+  "output_equivalence_proxy": {
+    "images": 8,
+    "source": "first val2017 images (unseen), decoded pre-NMS [1,84,8400]",
+    "aggregate": {
+      "baseline_vs_phase_c": {
+        "min_cosine": 0.9900910857870556,
+        "max_abs_diff": 463.2796630859375,
+        "max_relative_l2_diff": 0.1437334460145682
+      },
+      "e5_1_vs_phase_c": {
+        "min_cosine": 0.9727042274188384,
+        "max_abs_diff": 426.4869079589844,
+        "max_relative_l2_diff": 0.24511663211352036
+      },
+      "baseline_vs_e5_1": {
+        "min_cosine": 0.9800671556350202,
+        "max_abs_diff": 384.67523193359375,
+        "max_relative_l2_diff": 0.19962927961270324
+      }
+    },
+    "per_image": [
+      {
+        "image": "000000000139.jpg",
+        "baseline_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9935029391649384,
+          "max_abs_diff": 392.8470916748047,
+          "mean_abs_diff": 0.7983460749128485,
+          "relative_l2_diff": 0.11543212788863687,
+          "bitwise_identical": false
+        },
+        "e5_1_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.985562115056404,
+          "max_abs_diff": 397.71958923339844,
+          "mean_abs_diff": 1.226927531473999,
+          "relative_l2_diff": 0.17368665189593913,
+          "bitwise_identical": false
+        },
+        "baseline_vs_e5_1": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.99172032269198,
+          "max_abs_diff": 336.9085693359375,
+          "mean_abs_diff": 0.9714411324356591,
+          "relative_l2_diff": 0.12844991722672858,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000285.jpg",
+        "baseline_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9915425463685472,
+          "max_abs_diff": 427.3257751464844,
+          "mean_abs_diff": 0.9924296484156315,
+          "relative_l2_diff": 0.13110397089061324,
+          "bitwise_identical": false
+        },
+        "e5_1_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9727042274188384,
+          "max_abs_diff": 426.4869079589844,
+          "mean_abs_diff": 1.6264613196584394,
+          "relative_l2_diff": 0.24511663211352036,
+          "bitwise_identical": false
+        },
+        "baseline_vs_e5_1": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9800671556350202,
+          "max_abs_diff": 384.67523193359375,
+          "mean_abs_diff": 1.4254935095828059,
+          "relative_l2_diff": 0.19962927961270324,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000632.jpg",
+        "baseline_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9928895930445184,
+          "max_abs_diff": 463.2796630859375,
+          "mean_abs_diff": 0.7604501771900729,
+          "relative_l2_diff": 0.12026024055587964,
+          "bitwise_identical": false
+        },
+        "e5_1_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9849362484507093,
+          "max_abs_diff": 347.2030334472656,
+          "mean_abs_diff": 1.2272242610695654,
+          "relative_l2_diff": 0.17814263739522831,
+          "bitwise_identical": false
+        },
+        "baseline_vs_e5_1": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9888588337708045,
+          "max_abs_diff": 362.3896179199219,
+          "mean_abs_diff": 1.0803615193417786,
+          "relative_l2_diff": 0.14898361002465926,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000724.jpg",
+        "baseline_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9919935580235935,
+          "max_abs_diff": 373.1702575683594,
+          "mean_abs_diff": 0.8285216292413993,
+          "relative_l2_diff": 0.12815636229341437,
+          "bitwise_identical": false
+        },
+        "e5_1_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9860957035418321,
+          "max_abs_diff": 395.62542724609375,
+          "mean_abs_diff": 1.176647892826691,
+          "relative_l2_diff": 0.17004411565817482,
+          "bitwise_identical": false
+        },
+        "baseline_vs_e5_1": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9934179010804915,
+          "max_abs_diff": 283.5489196777344,
+          "mean_abs_diff": 0.864275896486605,
+          "relative_l2_diff": 0.11455742010538307,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000776.jpg",
+        "baseline_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9937533357123872,
+          "max_abs_diff": 304.10186767578125,
+          "mean_abs_diff": 0.821251819897982,
+          "relative_l2_diff": 0.1119022039589724,
+          "bitwise_identical": false
+        },
+        "e5_1_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9798290186702778,
+          "max_abs_diff": 323.7447204589844,
+          "mean_abs_diff": 1.3838935587139467,
+          "relative_l2_diff": 0.20732175604946831,
+          "bitwise_identical": false
+        },
+        "baseline_vs_e5_1": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9831938922848851,
+          "max_abs_diff": 366.15625,
+          "mean_abs_diff": 1.3116969846806275,
+          "relative_l2_diff": 0.18318939589131275,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000785.jpg",
+        "baseline_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9915867304986066,
+          "max_abs_diff": 417.9812316894531,
+          "mean_abs_diff": 0.8979376124131629,
+          "relative_l2_diff": 0.13205322968441638,
+          "bitwise_identical": false
+        },
+        "e5_1_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9829750660368319,
+          "max_abs_diff": 419.3822021484375,
+          "mean_abs_diff": 1.2964415250489276,
+          "relative_l2_diff": 0.19077182765011994,
+          "bitwise_identical": false
+        },
+        "baseline_vs_e5_1": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9906042486318611,
+          "max_abs_diff": 307.3123321533203,
+          "mean_abs_diff": 1.0488861455745373,
+          "relative_l2_diff": 0.13692096532902967,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000802.jpg",
+        "baseline_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9926918096066011,
+          "max_abs_diff": 382.24940490722656,
+          "mean_abs_diff": 0.7385966251511932,
+          "relative_l2_diff": 0.12167607753250353,
+          "bitwise_identical": false
+        },
+        "e5_1_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9837053749586231,
+          "max_abs_diff": 332.154541015625,
+          "mean_abs_diff": 1.1581631406633854,
+          "relative_l2_diff": 0.18425323460654075,
+          "bitwise_identical": false
+        },
+        "baseline_vs_e5_1": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9888281298948326,
+          "max_abs_diff": 373.83447265625,
+          "mean_abs_diff": 1.0292237889731919,
+          "relative_l2_diff": 0.14912016008366138,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000872.jpg",
+        "baseline_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9900910857870556,
+          "max_abs_diff": 447.01129150390625,
+          "mean_abs_diff": 0.9361248369595393,
+          "relative_l2_diff": 0.1437334460145682,
+          "bitwise_identical": false
+        },
+        "e5_1_vs_phase_c": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9825529712038841,
+          "max_abs_diff": 413.77293395996094,
+          "mean_abs_diff": 1.2867747463019856,
+          "relative_l2_diff": 0.1930307075677094,
+          "bitwise_identical": false
+        },
+        "baseline_vs_e5_1": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9919104074185723,
+          "max_abs_diff": 347.09288024902344,
+          "mean_abs_diff": 0.9506803965749847,
+          "relative_l2_diff": 0.12703660686453816,
+          "bitwise_identical": false
+        }
+      }
+    ],
+    "disclaimer": "output equivalence PROXY, not accuracy; proxy PASS never implies accuracy PASS (E5-1: cosine 0.984 with mAP 0.0)"
+  },
+  "performance": {
+    "source": "phase C record (already measured, not re-measured)",
+    "baseline": {
+      "latency": {
+        "median_ms": 18.6539,
+        "p95_ms": 80.3564,
+        "min_ms": 11.9191,
+        "max_ms": 125.4406,
+        "mean_ms": 26.7901,
+        "iterations": 100,
+        "warmup": 10,
+        "source": "local_onnxruntime_cpu"
+      },
+      "memory": {
+        "status": "PASS",
+        "rss_before_mb": 20.23,
+        "rss_after_load_mb": 69.781,
+        "rss_peak_mb": 127.281,
+        "delta_mb": 107.051,
+        "method": "psutil process RSS (CPU only; GPU not applicable)"
+      },
+      "output_shapes": [
+        [
+          1,
+          84,
+          8400
+        ]
+      ]
+    },
+    "e5_1": {
+      "latency": {
+        "median_ms": 11.4865,
+        "p95_ms": 37.0052,
+        "min_ms": 9.2257,
+        "max_ms": 68.9984,
+        "mean_ms": 14.7715,
+        "iterations": 100,
+        "warmup": 10,
+        "source": "local_onnxruntime_cpu"
+      },
+      "memory": {
+        "status": "PASS",
+        "rss_before_mb": 20.164,
+        "rss_after_load_mb": 61.129,
+        "rss_peak_mb": 113.406,
+        "delta_mb": 93.242,
+        "method": "psutil process RSS (CPU only; GPU not applicable)"
+      },
+      "output_shapes": [
+        [
+          1,
+          84,
+          8400
+        ]
+      ]
+    },
+    "phase_c": {
+      "latency": {
+        "median_ms": 14.3955,
+        "p95_ms": 31.158,
+        "min_ms": 9.1921,
+        "max_ms": 37.0928,
+        "mean_ms": 16.6875,
+        "iterations": 100,
+        "warmup": 10,
+        "source": "local_onnxruntime_cpu"
+      },
+      "memory": {
+        "status": "PASS",
+        "rss_before_mb": 20.23,
+        "rss_after_load_mb": 61.09,
+        "rss_peak_mb": 113.469,
+        "delta_mb": 93.238,
+        "method": "psutil process RSS (CPU only; GPU not applicable)"
+      },
+      "output_shapes": [
+        [
+          1,
+          84,
+          8400
+        ]
+      ]
+    }
+  },
+  "quality_gate": {
+    "compression": {
+      "overall": "PASS",
+      "profile": "compression",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "WARN",
+          "observed": 35.887,
+          "threshold": 1.0,
+          "message": "accuracy drop 35.89 pp exceeds threshold 1.00 pp",
+          "required": false
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -22.828,
+          "threshold": 10.0,
+          "message": "latency 18.654 -> 14.396 ms (-22.83%) within +10.0%",
+          "required": false
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -12.903,
+          "threshold": 15.0,
+          "message": "memory 107.051 -> 93.238 MB (-12.90%) within +15.0%",
+          "required": false
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.091,
+          "threshold": 0.0,
+          "message": "model_size 12.847 -> 3.714 MB (-71.09%) within +0.0%",
+          "required": true
+        },
+        {
+          "name": "artifact",
+          "status": "PASS",
+          "observed": "exists, non-empty, checksum recorded (reference not yet promoted)",
+          "threshold": "required (checksum optional)",
+          "message": "artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        }
+      ],
+      "reasons": []
+    },
+    "local_eval": {
+      "overall": "PASS",
+      "profile": "local_eval",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "WARN",
+          "observed": 35.887,
+          "threshold": 1.0,
+          "message": "accuracy drop 35.89 pp exceeds threshold 1.00 pp",
+          "required": false
+        },
+        {
+          "name": "output_equivalence_proxy",
+          "status": "PASS",
+          "observed": 0.990331,
+          "threshold": 0.99,
+          "message": "proxy: min cosine 0.9903 >= 0.99 on identical inputs (not accuracy)",
+          "required": true
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -22.828,
+          "threshold": 10.0,
+          "message": "latency 18.654 -> 14.396 ms (-22.83%) within +10.0%",
+          "required": true
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -12.903,
+          "threshold": 15.0,
+          "message": "memory 107.051 -> 93.238 MB (-12.90%) within +15.0%",
+          "required": true
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.091,
+          "threshold": 0.0,
+          "message": "model_size 12.847 -> 3.714 MB (-71.09%) within +0.0%",
+          "required": true
+        },
+        {
+          "name": "artifact",
+          "status": "PASS",
+          "observed": "exists, non-empty, checksum recorded (reference not yet promoted)",
+          "threshold": "required (checksum optional)",
+          "message": "artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        }
+      ],
+      "reasons": []
+    },
+    "release": {
+      "overall": "FAIL",
+      "profile": "release",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "FAIL",
+          "observed": 35.887,
+          "threshold": 1.0,
+          "message": "accuracy drop 35.89 pp exceeds threshold 1.00 pp",
+          "required": true
+        },
+        {
+          "name": "output_equivalence_proxy",
+          "status": "PASS",
+          "observed": 0.990331,
+          "threshold": 0.99,
+          "message": "proxy: min cosine 0.9903 >= 0.99 on identical inputs (not accuracy)",
+          "required": false
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -22.828,
+          "threshold": 10.0,
+          "message": "latency 18.654 -> 14.396 ms (-22.83%) within +10.0%",
+          "required": true
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -12.903,
+          "threshold": 15.0,
+          "message": "memory 107.051 -> 93.238 MB (-12.90%) within +15.0%",
+          "required": true
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.091,
+          "threshold": 10.0,
+          "message": "model_size 12.847 -> 3.714 MB (-71.09%) within +10.0%",
+          "required": false
+        },
+        {
+          "name": "artifact",
+          "status": "NOT_APPLICABLE",
+          "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+          "threshold": "required",
+          "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        },
+        {
+          "name": "reproducibility",
+          "status": "NOT_APPLICABLE",
+          "observed": "NOT_VERIFIED",
+          "threshold": "required",
+          "message": "reproducibility not verified (fewer than two runs)",
+          "required": true
+        }
+      ],
+      "reasons": [
+        "Accuracy: accuracy drop 35.89 pp exceeds threshold 1.00 pp",
+        "Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+        "Reproducibility: reproducibility not verified (fewer than two runs)"
+      ]
+    }
+  },
+  "defects": {
+    "compression": null,
+    "local_eval": null,
+    "release": {
+      "defect_id": "VAL2017-release-ACCURACY_REGRESSION",
+      "category": "ACCURACY_REGRESSION",
+      "severity": "HIGH",
+      "message": "accuracy drop 35.89 pp exceeds threshold 1.00 pp",
+      "evidence": [
+        "accuracy: accuracy drop 35.89 pp exceeds threshold 1.00 pp (observed=35.887, threshold=1.0)"
+      ],
+      "suspected_cause": "pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)",
+      "reproducibility": "unknown",
+      "affected_configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "secondary_categories": []
+    }
+  },
+  "model_integrity": {
+    "baseline": {
+      "before": {
+        "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+        "exists": true,
+        "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "expected_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "size_bytes": 12846691,
+        "expected_size": 12846691,
+        "match": true,
+        "kind": "upstream YOLOv8n R1 fx body (untouched baseline)"
+      },
+      "after": {
+        "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+        "exists": true,
+        "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "expected_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "size_bytes": 12846691,
+        "expected_size": 12846691,
+        "match": true,
+        "kind": "upstream YOLOv8n R1 fx body (untouched baseline)"
+      },
+      "immutable_across_evaluations": true
+    },
+    "e5_1": {
+      "before": {
+        "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+        "exists": true,
+        "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "expected_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "size_bytes": 3693813,
+        "expected_size": 3693813,
+        "match": true,
+        "kind": "NetsPresso-generated E5-1 compressed candidate"
+      },
+      "after": {
+        "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+        "exists": true,
+        "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "expected_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "size_bytes": 3693813,
+        "expected_size": 3693813,
+        "match": true,
+        "kind": "NetsPresso-generated E5-1 compressed candidate"
+      },
+      "immutable_across_evaluations": true
+    },
+    "phase_c": {
+      "before": {
+        "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+        "exists": true,
+        "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+        "expected_sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+        "size_bytes": 3714299,
+        "expected_size": 3714299,
+        "match": true,
+        "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate"
+      },
+      "after": {
+        "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+        "exists": true,
+        "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+        "expected_sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+        "size_bytes": 3714299,
+        "expected_size": 3714299,
+        "match": true,
+        "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate"
+      },
+      "immutable_across_evaluations": true
+    }
+  },
+  "baseline_promotion": "NOT performed (explicit separate decision)",
+  "reproducibility": {
+    "evaluation_runs_per_model": 1,
+    "training_runs": 1,
+    "level": "NOT_VERIFIED"
+  },
+  "traceability": {
+    "source_model": "yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "r1_fx_artifact": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+    "r1_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "netspresso_execution": "20261005T040009Z_automatic_compression: automatic_compression ratio 0.5 (E5-1)",
+    "candidate_artifact": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+    "candidate_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+    "local_validation": "phase A 0a203872 -> phase B 73a8f76f -> phase C dba5cd214f0f4098 (reports/yolov8_e5_1_finetune/20261005T051007Z_phaseC) -> val2017 evaluation reports/yolov8_e5_1_finetune/20261005T053121Z_val2017",
+    "accuracy_result": "val2017 mAP50-95 baseline 0.36804 / E5-1 0.0 / phase C 0.00917 (COCO128 smoke 0.44369 / 0.0 / 0.46688)",
+    "quality_gate": {
+      "compression": "PASS",
+      "local_eval": "PASS",
+      "release": "FAIL"
+    },
+    "credit_record": "ledger unchanged (50, 450, 2) (0 credits)",
+    "complete": true,
+    "missing_links": [],
+    "question_answered": "Exactly which input artifact produced this candidate artifact? -> see r1_fx_artifact / r1_sha256 -> netspresso_execution -> candidate_sha256"
+  },
+  "credit_safety": {
+    "ledger_before": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "ledger_after": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "ledger_unchanged": true,
+    "api_calls": 0,
+    "sdk_execution": 0
+  },
+  "environment": {
+    "adapter": "local_val2017_eval",
+    "adapter_version": "0.1.0",
+    "sdk_name": "ultralytics (inference only)",
+    "sdk_version": "8.4.173",
+    "python_version": "3.11.9",
+    "platform": "Windows 10 AMD64",
+    "extra": {
+      "credit_consuming": false,
+      "netspresso_api_calls": 0,
+      "evaluation_type": "unseen_val2017",
+      "os": "Windows",
+      "os_release": "10",
+      "os_version": "10.0.26200",
+      "architecture": "AMD64",
+      "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+      "cpu_count": 20,
+      "python": "3.11.9",
+      "python_implementation": "CPython",
+      "execution_provider": null,
+      "intra_op_threads": null,
+      "thread_env": {
+        "OMP_NUM_THREADS": "1"
+      },
+      "packages": {
+        "ultralytics": "8.4.173",
+        "torch": "2.14.1",
+        "onnx": "1.23.1",
+        "onnxruntime": "1.30.0",
+        "numpy": "2.4.6",
+        "psutil": "7.2.2"
+      }
+    }
+  }
+}

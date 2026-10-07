@@ -1,0 +1,255 @@
+{
+  "credit_consuming": false,
+  "conditions": {
+    "data": "coco128.yaml",
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "rect": true,
+    "batch": 8,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "train_equals_val": true
+  },
+  "validation_points": [
+    {
+      "epoch": 5,
+      "global_epoch": 45,
+      "map50_95": 0.094,
+      "map50": 0.1712,
+      "map75": 0.09377,
+      "precision": 0.3136,
+      "recall": 0.20136,
+      "box_loss": 1.6979,
+      "cls_loss": 2.6367,
+      "dfl_loss": 1.7351,
+      "continuation": {
+        "status": "MEASURED",
+        "current": 0.094,
+        "previous_best": 0.28965,
+        "delta_from_previous_best": -0.19565,
+        "delta_from_baseline": -0.34969,
+        "recovery_rate": 0.2119,
+        "remaining_gap": 0.34969,
+        "milestones": {
+          "M1": false,
+          "M2": false,
+          "M3": false
+        }
+      },
+      "is_best": true
+    },
+    {
+      "epoch": 10,
+      "global_epoch": 50,
+      "map50_95": 0.15224,
+      "map50": 0.29208,
+      "map75": 0.14207,
+      "precision": 0.54413,
+      "recall": 0.25974,
+      "box_loss": 1.6217,
+      "cls_loss": 2.2489,
+      "dfl_loss": 1.6295,
+      "continuation": {
+        "status": "MEASURED",
+        "current": 0.15224,
+        "previous_best": 0.28965,
+        "delta_from_previous_best": -0.13741,
+        "delta_from_baseline": -0.29145,
+        "recovery_rate": 0.3431,
+        "remaining_gap": 0.29145,
+        "milestones": {
+          "M1": false,
+          "M2": false,
+          "M3": false
+        }
+      },
+      "is_best": true
+    },
+    {
+      "epoch": 15,
+      "global_epoch": 55,
+      "map50_95": 0.19526,
+      "map50": 0.34035,
+      "map75": 0.20091,
+      "precision": 0.38753,
+      "recall": 0.3336,
+      "box_loss": 1.5423,
+      "cls_loss": 2.1133,
+      "dfl_loss": 1.628,
+      "continuation": {
+        "status": "MEASURED",
+        "current": 0.19526,
+        "previous_best": 0.28965,
+        "delta_from_previous_best": -0.09439,
+        "delta_from_baseline": -0.24843,
+        "recovery_rate": 0.4401,
+        "remaining_gap": 0.24843,
+        "milestones": {
+          "M1": false,
+          "M2": false,
+          "M3": false
+        }
+      },
+      "is_best": true
+    },
+    {
+      "epoch": 20,
+      "global_epoch": 60,
+      "map50_95": 0.26627,
+      "map50": 0.45712,
+      "map75": 0.26047,
+      "precision": 0.47201,
+      "recall": 0.44611,
+      "box_loss": 1.4496,
+      "cls_loss": 2.0185,
+      "dfl_loss": 1.5408,
+      "continuation": {
+        "status": "MEASURED",
+        "current": 0.26627,
+        "previous_best": 0.28965,
+        "delta_from_previous_best": -0.02338,
+        "delta_from_baseline": -0.17742,
+        "recovery_rate": 0.6001,
+        "remaining_gap": 0.17742,
+        "milestones": {
+          "M1": false,
+          "M2": false,
+          "M3": false
+        }
+      },
+      "is_best": true
+    },
+    {
+      "epoch": 25,
+      "global_epoch": 65,
+      "map50_95": 0.32539,
+      "map50": 0.51701,
+      "map75": 0.36001,
+      "precision": 0.5225,
+      "recall": 0.51218,
+      "box_loss": 1.4561,
+      "cls_loss": 1.9104,
+      "dfl_loss": 1.5592,
+      "continuation": {
+        "status": "MEASURED",
+        "current": 0.32539,
+        "previous_best": 0.28965,
+        "delta_from_previous_best": 0.03574,
+        "delta_from_baseline": -0.1183,
+        "recovery_rate": 0.7334,
+        "remaining_gap": 0.1183,
+        "milestones": {
+          "M1": false,
+          "M2": false,
+          "M3": false
+        }
+      },
+      "is_best": true
+    },
+    {
+      "epoch": 30,
+      "global_epoch": 70,
+      "map50_95": 0.39905,
+      "map50": 0.62118,
+      "map75": 0.44239,
+      "precision": 0.58038,
+      "recall": 0.56449,
+      "box_loss": 1.2989,
+      "cls_loss": 1.7239,
+      "dfl_loss": 1.4625,
+      "continuation": {
+        "status": "MEASURED",
+        "current": 0.39905,
+        "previous_best": 0.28965,
+        "delta_from_previous_best": 0.1094,
+        "delta_from_baseline": -0.04464,
+        "recovery_rate": 0.8994,
+        "remaining_gap": 0.04464,
+        "milestones": {
+          "M1": true,
+          "M2": false,
+          "M3": false
+        }
+      },
+      "is_best": true
+    },
+    {
+      "epoch": 35,
+      "global_epoch": 75,
+      "map50_95": 0.43044,
+      "map50": 0.64981,
+      "map75": 0.47354,
+      "precision": 0.66101,
+      "recall": 0.53538,
+      "box_loss": 1.3107,
+      "cls_loss": 1.6654,
+      "dfl_loss": 1.4654,
+      "continuation": {
+        "status": "MEASURED",
+        "current": 0.43044,
+        "previous_best": 0.28965,
+        "delta_from_previous_best": 0.14079,
+        "delta_from_baseline": -0.01325,
+        "recovery_rate": 0.9701,
+        "remaining_gap": 0.01325,
+        "milestones": {
+          "M1": true,
+          "M2": true,
+          "M3": false
+        }
+      },
+      "is_best": true
+    },
+    {
+      "epoch": 40,
+      "global_epoch": 80,
+      "map50_95": 0.46688,
+      "map50": 0.67827,
+      "map75": 0.53599,
+      "precision": 0.67678,
+      "recall": 0.63216,
+      "box_loss": 1.2718,
+      "cls_loss": 1.6292,
+      "dfl_loss": 1.4486,
+      "continuation": {
+        "status": "MEASURED",
+        "current": 0.46688,
+        "previous_best": 0.28965,
+        "delta_from_previous_best": 0.17723,
+        "delta_from_baseline": 0.02319,
+        "recovery_rate": 1.0523,
+        "remaining_gap": -0.02319,
+        "milestones": {
+          "M1": true,
+          "M2": true,
+          "M3": true
+        }
+      },
+      "is_best": true
+    }
+  ],
+  "final": {
+    "status": "MEASURED",
+    "reason": null,
+    "primary_metric": "mAP50-95",
+    "metrics": {
+      "mAP50-95": 0.46688,
+      "mAP50": 0.67827,
+      "mAP75": 0.53599,
+      "precision": 0.67678,
+      "recall": 0.63216
+    },
+    "dataset": "coco128.yaml",
+    "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+    "split": "val(train2017 subset)",
+    "images": 128,
+    "instances": 929,
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "model_label": "LOCALLY fine-tuned E5-1 candidate (phase C, 40 epochs)",
+    "is_output_equivalence_proxy": false,
+    "extra": {}
+  }
+}

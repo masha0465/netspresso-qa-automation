@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>COCO val2017 independent evaluation — VAL2017_OVERFIT</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1100px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; } th { background: #f5f7fa; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS, .VAL2017_PASS_CANDIDATE, .MEASURED { background: #e3f6ec; color: #0f5132; } .FAIL, .VAL2017_ACCURACY_REGRESSION, .VAL2017_OVERFIT { background: #fbe3e4; color: #7a1e26; }
+  .WARN, .VAL2017_PARTIAL_RECOVERY { background: #fff1cc; color: #6b4e00; } .NOT_APPLICABLE, .NOT_VERIFIED, .VAL2017_INCONCLUSIVE { background: #eef0f3; color: #3e4c59; }
+  .note { background: #fff8e6; border-left: 3px solid #d4a72c; padding: .5rem .75rem; margin: 1rem 0; font-size: .9rem; }
+  .muted { color: #616e7c; font-size: .9rem; } code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>Phase 5-E — COCO val2017 independent (unseen) evaluation</h1>
+<p class="muted">2026-10-05T05:43:51+00:00 · report <code>reports/yolov8_e5_1_finetune/20261005T053121Z_val2017</code> · phase C record <code>reports/yolov8_e5_1_finetune/20261005T051007Z_phaseC</code> · training_performed False · API calls 0</p>
+<div class="note"><strong>COCO val2017 independent evaluation: inference only, no training, no NetsPresso API call, 0 credits. COCO128 (train == val) numbers are smoke evidence; val2017 is the unseen-data evidence. Thresholds are PROJECT-DEFINED EXAMPLES; no Release PASS is declared here.</strong></div>
+
+<h2>0. Decision</h2>
+<p><span class="status VAL2017_OVERFIT">VAL2017_OVERFIT</span> (case C) — unseen drop 35.887 pp &gt; 3.0 pp and the candidate&#39;s smoke-vs-unseen gap exceeds the baseline&#39;s by 38.206 pp (&gt; 10.0): COCO128 overfitting<br>Next step: <strong>HOLD</strong> · NetsPresso additional execution: <strong>HOLD</strong> · smoke gains did not transfer to unseen data (COCO128 memorization); hold all credit decisions, change the training data strategy</p>
+
+<h2>1. Dataset</h2>
+<p>COCO val2017 · images 5000 · annotations 36781 · label files 4952 · contamination vs COCO128 training images: filename overlap 0, image-id overlap 0, content-SHA overlap 0 → <strong>val2017 is disjoint from the COCO128 training images</strong> · COCO128 train == val: True</p>
+
+<h2>2. Accuracy on val2017 (unseen) — imgsz 640, conf 0.001, IoU 0.7, rect True, batch 8</h2>
+<table><tr><th>Model</th><th>Kind</th><th>mAP50-95</th><th>mAP50</th><th>mAP75</th><th>Precision</th><th>Recall</th><th>Δ vs baseline (pp)</th><th>recovery vs E5-1 (pp)</th><th>duration (s)</th><th>SHA</th></tr>
+<tr><td>baseline</td><td>upstream YOLOv8n R1 fx body (untouched baseline)</td><td><strong>0.36804</strong></td><td>0.51861</td><td>0.40003</td><td>0.63496</td><td>0.47375</td><td>0.0</td><td>36.804</td><td>142.8</td><td><code>d8e761dae29301ef…</code></td></tr><tr><td>e5_1</td><td>NetsPresso-generated E5-1 compressed candidate</td><td><strong>0.0</strong></td><td>0.0</td><td>0.0</td><td>2e-05</td><td>0.00186</td><td>-36.804</td><td>0.0</td><td>154.2</td><td><code>21d8cbd1361cfd3e…</code></td></tr><tr><td>phase_c</td><td>LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate</td><td><strong>0.00917</strong></td><td>0.02101</td><td>0.00692</td><td>0.04391</td><td>0.04623</td><td>-35.887</td><td>0.917</td><td>97.7</td><td><code>dba5cd214f0f4098…</code></td></tr></table>
+
+<h2>3. Generalization: COCO128 (train == val) vs val2017</h2>
+<table><tr><th>Model</th><th>COCO128 mAP50-95</th><th>val2017 mAP50-95</th><th>gap (pp)</th><th>unseen / smoke</th></tr>
+<tr><td>baseline</td><td>0.44369</td><td>0.36804</td><td>7.565</td><td>82.95 %</td></tr><tr><td>e5_1</td><td>0.0</td><td>0.0</td><td>0.0</td><td>None %</td></tr><tr><td>phase_b</td><td>0.28965</td><td>not required</td><td>-</td><td>- %</td></tr><tr><td>phase_c</td><td>0.46688</td><td>0.00917</td><td>45.771</td><td>1.96 %</td></tr></table>
+<p>Phase C overfit indicator: smoke above baseline smoke = True · unseen vs baseline unseen = -35.887 pp · excess gap vs baseline's own gap = <strong>38.206 pp</strong>. smoke (train==val) advantage that disappears on unseen data = memorization; the excess gap over the baseline&#39;s own COCO128/val2017 gap quantifies it</p>
+
+<h2>4. Recovery (unseen)</h2>
+<p>E5-1 → Phase C <strong>+0.917 pp</strong> · Phase C → baseline -35.887 pp · remaining drop <strong>35.887 pp</strong> · recovery rate 2.49 % · thresholds {&#39;pass_pp&#39;: 1.0, &#39;near_pp&#39;: 3.0, &#39;material_pp&#39;: 5.0, &#39;overfit_gap_pp&#39;: 10.0, &#39;basis&#39;: &#39;PROJECT-DEFINED EXAMPLE (unseen validation)&#39;}</p>
+
+<h2>5. Output equivalence proxy (unseen images; NOT accuracy)</h2>
+<table><tr><th>Comparison</th><th>min cosine</th><th>max |Δ|</th><th>relative</th></tr><tr><td>baseline_vs_phase_c</td><td>0.9900910857870556</td><td>463.2796630859375</td><td>0.1437334460145682</td></tr><tr><td>e5_1_vs_phase_c</td><td>0.9727042274188384</td><td>426.4869079589844</td><td>0.24511663211352036</td></tr><tr><td>baseline_vs_e5_1</td><td>0.9800671556350202</td><td>384.67523193359375</td><td>0.19962927961270324</td></tr></table>
+<p class="muted">output equivalence PROXY, not accuracy; proxy PASS never implies accuracy PASS (E5-1: cosine 0.984 with mAP 0.0)</p>
+
+<h2>6. Quality Gate (accuracy = val2017; latency/memory/proxy referenced from the phase C measurement)</h2>
+<table><tr><th>Profile</th><th>Overall</th><th>Criteria</th><th>Reasons</th></tr>
+<tr><td><code>compression</code></td><td><span class="status PASS">PASS</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status WARN">WARN</span></td><td>35.887</td><td>1.0</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-22.828</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-12.903</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.091</td><td>0.0</td></tr><tr><td>artifact</td><td><span class="status PASS">PASS</span></td><td>exists, non-empty, checksum recorded (reference not yet promoted)</td><td>required (checksum optional)</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr></table></td>
+<td>-</td></tr><tr><td><code>local_eval</code></td><td><span class="status PASS">PASS</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status WARN">WARN</span></td><td>35.887</td><td>1.0</td></tr><tr><td>output_equivalence_proxy</td><td><span class="status PASS">PASS</span></td><td>0.990331</td><td>0.99</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-22.828</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-12.903</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.091</td><td>0.0</td></tr><tr><td>artifact</td><td><span class="status PASS">PASS</span></td><td>exists, non-empty, checksum recorded (reference not yet promoted)</td><td>required (checksum optional)</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr></table></td>
+<td>-</td></tr><tr><td><code>release</code></td><td><span class="status FAIL">FAIL</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status FAIL">FAIL</span></td><td>35.887</td><td>1.0</td></tr><tr><td>output_equivalence_proxy</td><td><span class="status PASS">PASS</span></td><td>0.990331</td><td>0.99</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-22.828</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-12.903</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.091</td><td>10.0</td></tr><tr><td>artifact</td><td><span class="status NOT_APPLICABLE">NOT_APPLICABLE</span></td><td>exists, non-empty, checksum not verifiable (no expected checksum)</td><td>required</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr><tr><td>reproducibility</td><td><span class="status NOT_APPLICABLE">NOT_APPLICABLE</span></td><td>NOT_VERIFIED</td><td>required</td></tr></table></td>
+<td><ul><li>Accuracy: accuracy drop 35.89 pp exceeds threshold 1.00 pp</li><li>Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet</li><li>Reproducibility: reproducibility not verified (fewer than two runs)</li></ul></td></tr></table>
+<p class="muted">phase C record (already measured, not re-measured) · baseline promotion: NOT performed (explicit separate decision) · reproducibility NOT_VERIFIED</p>
+
+<h2>7. Model integrity (before / after all evaluations)</h2>
+<table><tr><th>Model</th><th>SHA-256</th><th>size (B)</th><th>immutable</th></tr><tr><td>baseline</td><td><code>d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b</code></td><td>12846691</td><td>True</td></tr><tr><td>e5_1</td><td><code>21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1</code></td><td>3693813</td><td>True</td></tr><tr><td>phase_c</td><td><code>dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee</code></td><td>3714299</td><td>True</td></tr></table>
+
+<h2>8. Credit safety and traceability</h2>
+<p>ledger 50/450/2 → 50/450/2 (unchanged True) · API calls 0 · SDK execution 0</p>
+<table><tr><th style="width:14rem">source_model</th><td><code>yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36</code></td></tr><tr><th style="width:14rem">r1_fx_artifact</th><td><code>outputs/models/yolov8n_fx_r1/model_fx.pt</code></td></tr><tr><th style="width:14rem">r1_sha256</th><td><code>d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b</code></td></tr><tr><th style="width:14rem">netspresso_execution</th><td><code>20261005T040009Z_automatic_compression: automatic_compression ratio 0.5 (E5-1)</code></td></tr><tr><th style="width:14rem">candidate_artifact</th><td><code>reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt</code></td></tr><tr><th style="width:14rem">candidate_sha256</th><td><code>21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1</code></td></tr><tr><th style="width:14rem">local_validation</th><td><code>phase A 0a203872 -&gt; phase B 73a8f76f -&gt; phase C dba5cd214f0f4098 (reports/yolov8_e5_1_finetune/20261005T051007Z_phaseC) -&gt; val2017 evaluation reports/yolov8_e5_1_finetune/20261005T053121Z_val2017</code></td></tr><tr><th style="width:14rem">accuracy_result</th><td><code>val2017 mAP50-95 baseline 0.36804 / E5-1 0.0 / phase C 0.00917 (COCO128 smoke 0.44369 / 0.0 / 0.46688)</code></td></tr><tr><th style="width:14rem">quality_gate</th><td><code>{&#39;compression&#39;: &#39;PASS&#39;, &#39;local_eval&#39;: &#39;PASS&#39;, &#39;release&#39;: &#39;FAIL&#39;}</code></td></tr><tr><th style="width:14rem">credit_record</th><td><code>ledger unchanged (50, 450, 2) (0 credits)</code></td></tr></table>
+</body>
+</html>

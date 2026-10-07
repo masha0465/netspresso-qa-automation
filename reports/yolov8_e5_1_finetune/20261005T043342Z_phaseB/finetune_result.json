@@ -1,0 +1,2549 @@
+{
+  "experiment": {
+    "phase": "5-E fine-tuning recovery",
+    "finetune_phase": "B",
+    "timestamp": "2026-10-05T04:42:27+00:00",
+    "model": "yolov8n",
+    "report_dir": "reports/yolov8_e5_1_finetune/20261005T043342Z_phaseB",
+    "e5_1_record": "reports/yolov8_e5_1/20261005T040009Z/e5_1_result.json",
+    "e5_1_run_dir": "reports/real_runs/20261005T040009Z_automatic_compression",
+    "phase_a_reference": {
+      "record": "reports/yolov8_e5_1_finetune/20261005T042904Z_phaseA/finetune_result.json",
+      "fine_tuned_sha256": "0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a",
+      "map50_95": 0.0348,
+      "epochs": 30
+    }
+  },
+  "disclaimer": "Local fine-tuning recovery experiment. No NetsPresso API call was made. The fine-tuned artifact is a LOCAL derivative of the E5-1 NetsPresso candidate, not a NetsPresso output. COCO128 train == val (128 images): smoke/diagnostic only, never release evidence.",
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "credit_safety": {
+    "ledger_before": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "ledger_after": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "ledger_unchanged": true,
+    "api_calls": 0,
+    "sdk_execution": 0
+  },
+  "e5_1_verification": {
+    "checks": {
+      "operation": true,
+      "ratio": true,
+      "status": true,
+      "candidate_sha": true,
+      "params": true,
+      "map50_95_zero": true,
+      "source_sha": true
+    },
+    "candidate_identity": {
+      "status": "PASS",
+      "checks": {
+        "exists": true,
+        "not_forbidden_path": true,
+        "sha256_matches": true,
+        "size_matches": true
+      },
+      "details": {
+        "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+        "expected_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "size_bytes": 3693813
+      },
+      "message": "input artifact identity verified"
+    },
+    "e5_1_files_immutable": true,
+    "files_sha256": {
+      "e5_1_result.json": "3639f8bcb0a66b84fa41705f579106b8b9b4fa46e2c6ab18d953e940162d14e2",
+      "execution_result.json": "17e9a87f7cd251afdda940f02b16801a3ebd1c56e97e1cdcb42774b5782737ac",
+      "sdk_output.pt": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1"
+    },
+    "e5_1_baseline": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.44369,
+        "mAP50": 0.60111,
+        "mAP75": 0.47223,
+        "precision": 0.6286,
+        "recall": 0.52902
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "yolov8n upstream baseline (official weights)",
+      "is_output_equivalence_proxy": false,
+      "extra": {}
+    },
+    "e5_1_candidate": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.0,
+        "mAP50": 0.0,
+        "mAP75": 0.0,
+        "precision": 3e-05,
+        "recall": 0.00223
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "E5-1 NetsPresso-compressed body (PR_L2 ratio 0.5, no fine-tuning) + rebuilt head",
+      "is_output_equivalence_proxy": false,
+      "extra": {
+        "speed_ms": {
+          "preprocess": 0.353,
+          "inference": 12.073,
+          "loss": 0.0,
+          "postprocess": 9.512
+        }
+      }
+    },
+    "e5_1_candidate_params": 882996
+  },
+  "trainability": {
+    "total_parameter_tensors": 183,
+    "total_params": 882996,
+    "sdk_requires_grad_false_tensors": [
+      "layers.0.conv.weight",
+      "layers.0.bn.weight",
+      "layers.0.bn.bias",
+      "layers.2.cv1.bn.weight",
+      "layers.2.cv1.bn.bias",
+      "layers.2.m.0.cv1.conv.weight",
+      "layers.2.m.0.cv1.bn.weight",
+      "layers.2.m.0.cv1.bn.bias",
+      "layers.2.m.0.cv2.conv.weight",
+      "layers.2.m.0.cv2.bn.weight",
+      "layers.2.m.0.cv2.bn.bias",
+      "layers_1_conv.weight",
+      "layers_1_bn.weight",
+      "layers_1_bn.bias",
+      "layers_2_cv1_conv.weight",
+      "layers_2_cv2_conv.weight",
+      "layers_2_cv2_bn.weight",
+      "layers_2_cv2_bn.bias",
+      "layers_3_conv.weight",
+      "layers_3_bn.weight",
+      "layers_3_bn.bias",
+      "layers_4_cv1_conv.weight",
+      "layers_4_cv1_bn.weight",
+      "layers_4_cv1_bn.bias",
+      "layers_4_m_0_cv1_conv.weight",
+      "layers_4_m_0_cv1_bn.weight",
+      "layers_4_m_0_cv1_bn.bias",
+      "layers_4_m_0_cv2_conv.weight",
+      "layers_4_m_0_cv2_bn.weight",
+      "layers_4_m_0_cv2_bn.bias",
+      "layers_4_m_1_cv1_conv.weight",
+      "layers_4_m_1_cv1_bn.weight",
+      "layers_4_m_1_cv1_bn.bias",
+      "layers_4_m_1_cv2_conv.weight",
+      "layers_4_m_1_cv2_bn.weight",
+      "layers_4_m_1_cv2_bn.bias",
+      "layers_4_cv2_conv.weight",
+      "layers_4_cv2_bn.weight",
+      "layers_4_cv2_bn.bias",
+      "layers_5_conv.weight",
+      "layers_5_bn.weight",
+      "layers_5_bn.bias",
+      "layers_6_cv1_conv.weight",
+      "layers_6_cv1_bn.weight",
+      "layers_6_cv1_bn.bias",
+      "layers_6_m_0_cv1_conv.weight",
+      "layers_6_m_0_cv1_bn.weight",
+      "layers_6_m_0_cv1_bn.bias",
+      "layers_6_m_0_cv2_conv.weight",
+      "layers_6_m_0_cv2_bn.weight",
+      "layers_6_m_0_cv2_bn.bias",
+      "layers_6_m_1_cv1_conv.weight",
+      "layers_6_m_1_cv1_bn.weight",
+      "layers_6_m_1_cv1_bn.bias",
+      "layers_6_m_1_cv2_conv.weight",
+      "layers_6_m_1_cv2_bn.weight",
+      "layers_6_m_1_cv2_bn.bias",
+      "layers_6_cv2_conv.weight",
+      "layers_6_cv2_bn.weight",
+      "layers_6_cv2_bn.bias",
+      "layers_7_conv.weight",
+      "layers_7_bn.weight",
+      "layers_7_bn.bias",
+      "layers_8_cv1_conv.weight",
+      "layers_8_cv1_bn.weight",
+      "layers_8_cv1_bn.bias",
+      "layers_8_m_0_cv1_conv.weight",
+      "layers_8_m_0_cv1_bn.weight",
+      "layers_8_m_0_cv1_bn.bias",
+      "layers_8_m_0_cv2_conv.weight",
+      "layers_8_m_0_cv2_bn.weight",
+      "layers_8_m_0_cv2_bn.bias",
+      "layers_8_cv2_conv.weight",
+      "layers_8_cv2_bn.weight",
+      "layers_8_cv2_bn.bias",
+      "layers_9_cv1_conv.weight",
+      "layers_9_cv1_bn.weight",
+      "layers_9_cv1_bn.bias",
+      "layers_9_cv2_conv.weight",
+      "layers_9_cv2_bn.weight",
+      "layers_9_cv2_bn.bias",
+      "layers_12_cv1_conv.weight",
+      "layers_12_cv1_bn.weight",
+      "layers_12_cv1_bn.bias",
+      "layers_12_m_0_cv1_conv.weight",
+      "layers_12_m_0_cv1_bn.weight",
+      "layers_12_m_0_cv1_bn.bias",
+      "layers_12_m_0_cv2_conv.weight",
+      "layers_12_m_0_cv2_bn.weight",
+      "layers_12_m_0_cv2_bn.bias",
+      "layers_12_cv2_conv.weight",
+      "layers_12_cv2_bn.weight",
+      "layers_12_cv2_bn.bias",
+      "layers_15_cv1_conv.weight",
+      "layers_15_cv1_bn.weight",
+      "layers_15_cv1_bn.bias",
+      "layers_15_m_0_cv1_conv.weight",
+      "layers_15_m_0_cv1_bn.weight",
+      "layers_15_m_0_cv1_bn.bias",
+      "layers_15_m_0_cv2_conv.weight",
+      "layers_15_m_0_cv2_bn.weight",
+      "layers_15_m_0_cv2_bn.bias",
+      "layers_15_cv2_conv.weight",
+      "layers_15_cv2_bn.weight",
+      "layers_15_cv2_bn.bias",
+      "layers_16_conv.weight",
+      "cv2_0_0_conv.weight",
+      "cv3_0_0_conv.weight",
+      "layers_16_bn.weight",
+      "layers_16_bn.bias",
+      "cv2_0_0_bn.weight",
+      "cv2_0_0_bn.bias",
+      "cv3_0_0_bn.weight",
+      "cv3_0_0_bn.bias",
+      "cv2_0_1_conv.weight",
+      "cv3_0_1_conv.weight",
+      "layers_18_cv1_conv.weight",
+      "cv2_0_1_bn.weight",
+      "cv2_0_1_bn.bias",
+      "cv3_0_1_bn.weight",
+      "cv3_0_1_bn.bias",
+      "layers_18_cv1_bn.weight",
+      "layers_18_cv1_bn.bias",
+      "cv2_0_2.weight",
+      "cv2_0_2.bias",
+      "cv3_0_2.weight",
+      "cv3_0_2.bias",
+      "layers_18_m_0_cv1_conv.weight",
+      "layers_18_m_0_cv1_bn.weight",
+      "layers_18_m_0_cv1_bn.bias",
+      "layers_18_m_0_cv2_conv.weight",
+      "layers_18_m_0_cv2_bn.weight",
+      "layers_18_m_0_cv2_bn.bias",
+      "layers_18_cv2_conv.weight",
+      "layers_18_cv2_bn.weight",
+      "layers_18_cv2_bn.bias",
+      "layers_19_conv.weight",
+      "cv2_1_0_conv.weight",
+      "cv3_1_0_conv.weight",
+      "layers_19_bn.weight",
+      "layers_19_bn.bias",
+      "cv2_1_0_bn.weight",
+      "cv2_1_0_bn.bias",
+      "cv3_1_0_bn.weight",
+      "cv3_1_0_bn.bias",
+      "cv2_1_1_conv.weight",
+      "cv3_1_1_conv.weight",
+      "layers_21_cv1_conv.weight",
+      "cv2_1_1_bn.weight",
+      "cv2_1_1_bn.bias",
+      "cv3_1_1_bn.weight",
+      "cv3_1_1_bn.bias",
+      "layers_21_cv1_bn.weight",
+      "layers_21_cv1_bn.bias",
+      "cv2_1_2.weight",
+      "cv2_1_2.bias",
+      "cv3_1_2.weight",
+      "cv3_1_2.bias",
+      "layers_21_m_0_cv1_conv.weight",
+      "layers_21_m_0_cv1_bn.weight",
+      "layers_21_m_0_cv1_bn.bias",
+      "layers_21_m_0_cv2_conv.weight",
+      "layers_21_m_0_cv2_bn.weight",
+      "layers_21_m_0_cv2_bn.bias",
+      "layers_21_cv2_conv.weight",
+      "layers_21_cv2_bn.weight",
+      "layers_21_cv2_bn.bias",
+      "cv2_2_0_conv.weight",
+      "cv3_2_0_conv.weight",
+      "cv2_2_0_bn.weight",
+      "cv2_2_0_bn.bias",
+      "cv3_2_0_bn.weight",
+      "cv3_2_0_bn.bias",
+      "cv2_2_1_conv.weight",
+      "cv3_2_1_conv.weight",
+      "cv2_2_1_bn.weight",
+      "cv2_2_1_bn.bias",
+      "cv3_2_1_bn.weight",
+      "cv3_2_1_bn.bias",
+      "cv2_2_2.weight",
+      "cv2_2_2.bias",
+      "cv3_2_2.weight",
+      "cv3_2_2.bias"
+    ],
+    "detect_branch_tensors": 48,
+    "detect_branch_params": 257176,
+    "batchnorm_modules": 57,
+    "trainable_tensors": 183,
+    "trainable_params": 882996,
+    "frozen_tensors": 0,
+    "notes": [
+      "detect branches cv2*/cv3* live INSIDE the compressed GraphModule (fork export contract); the decode head (DFL/anchors/sigmoid) has no trainable weights",
+      "phase A keeps backbone/neck BatchNorm in eval mode so pruned-channel statistics are not drifted by 128-image batches",
+      "183 tensors came back from the SDK with requires_grad=False; phase B re-enables them explicitly"
+    ]
+  },
+  "finetune_config": {
+    "phase": "B",
+    "experiment": "E5-1 local fine-tuning recovery",
+    "seed": 0,
+    "deterministic": true,
+    "epochs": 40,
+    "batch": 16,
+    "imgsz": 640,
+    "optimizer": "AdamW(betas=0.9/0.999)",
+    "lr": 0.001,
+    "lr_schedule": "linear warm-up 1 epoch, cosine decay to 10 %",
+    "weight_decay": 0.0005,
+    "weight_decay_applies_to": "conv weights only (ndim>1); BN/bias excluded",
+    "grad_clip_norm": 10.0,
+    "loss": "ultralytics v8DetectionLoss (box 7.5 / cls 0.5 / dfl 1.5, TaskAlignedAssigner topk 10)",
+    "freeze": {
+      "phase": "B",
+      "trainable_prefixes": [
+        "<all>"
+      ],
+      "frozen_backbone_bn_eval": false,
+      "trainable_tensors": 183,
+      "frozen_tensors": 0
+    },
+    "augmentation": {
+      "mosaic": 1.0,
+      "mixup": 0.0,
+      "cutmix": 0.0,
+      "copy_paste": 0.0,
+      "hsv_h": 0.015,
+      "hsv_s": 0.7,
+      "hsv_v": 0.4,
+      "degrees": 0.0,
+      "translate": 0.1,
+      "scale": 0.5,
+      "shear": 0.0,
+      "perspective": 0.0,
+      "flipud": 0.0,
+      "fliplr": 0.5,
+      "erasing": 0.4,
+      "auto_augment": "randaugment"
+    },
+    "workers": 0,
+    "device": "cpu",
+    "amp": false,
+    "ema": false,
+    "dataset": {
+      "identity": "coco128.yaml",
+      "source": "ultralytics coco128.zip (COCO 2017 train subset)",
+      "train": "datasets\\coco128\\images\\train2017",
+      "val": "datasets\\coco128\\images\\train2017",
+      "train_images": 128,
+      "val_images": 128,
+      "train_equals_val": true,
+      "labels_cache": "datasets/coco128/labels/train2017.cache",
+      "preprocessing": "ultralytics YOLODataset train pipeline (mosaic, HSV, flip, letterbox) / val: letterbox rect"
+    },
+    "torch_version": "2.14.1+cpu",
+    "ultralytics_version": "8.4.173",
+    "python": "3.11.9",
+    "source_artifact": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseA.pt",
+    "source_artifact_sha256": "0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a",
+    "source_artifact_trusted": true,
+    "e5_1_candidate_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+    "r1_input_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "iterations_per_epoch": 8,
+    "total_iterations": 320,
+    "val_interval_epochs": 5
+  },
+  "training": {
+    "epochs": 40,
+    "history": [
+      {
+        "epoch": 1,
+        "lr_end": 0.001,
+        "seconds": 14.5,
+        "box_loss": 2.5372,
+        "cls_loss": 3.989,
+        "dfl_loss": 2.4064
+      },
+      {
+        "epoch": 2,
+        "lr_end": 0.0009988826497048732,
+        "seconds": 13.5,
+        "box_loss": 2.3598,
+        "cls_loss": 3.7425,
+        "dfl_loss": 2.2638
+      },
+      {
+        "epoch": 3,
+        "lr_end": 0.0009948769354933904,
+        "seconds": 13.5,
+        "box_loss": 2.1928,
+        "cls_loss": 3.7141,
+        "dfl_loss": 2.1694
+      },
+      {
+        "epoch": 4,
+        "lr_end": 0.0009879860236419037,
+        "seconds": 13.4,
+        "box_loss": 2.1797,
+        "cls_loss": 3.5731,
+        "dfl_loss": 2.1797
+      },
+      {
+        "epoch": 5,
+        "lr_end": 0.0009782546043580302,
+        "seconds": 12.9,
+        "box_loss": 2.0741,
+        "cls_loss": 3.6214,
+        "dfl_loss": 2.0623,
+        "map50_95": 0.00875,
+        "map50": 0.02059,
+        "precision": 0.58042,
+        "recall": 0.03156
+      },
+      {
+        "epoch": 6,
+        "lr_end": 0.000965745789630079,
+        "seconds": 12.1,
+        "box_loss": 2.0739,
+        "cls_loss": 3.5306,
+        "dfl_loss": 2.0603
+      },
+      {
+        "epoch": 7,
+        "lr_end": 0.0009505407039215881,
+        "seconds": 11.8,
+        "box_loss": 2.0168,
+        "cls_loss": 3.4461,
+        "dfl_loss": 2.0415
+      },
+      {
+        "epoch": 8,
+        "lr_end": 0.0009327379580480483,
+        "seconds": 11.7,
+        "box_loss": 2.0062,
+        "cls_loss": 3.386,
+        "dfl_loss": 2.0262
+      },
+      {
+        "epoch": 9,
+        "lr_end": 0.0009124530096479256,
+        "seconds": 10.7,
+        "box_loss": 1.9679,
+        "cls_loss": 3.2736,
+        "dfl_loss": 1.9717
+      },
+      {
+        "epoch": 10,
+        "lr_end": 0.0008898174143955702,
+        "seconds": 11.6,
+        "box_loss": 1.9505,
+        "cls_loss": 3.0999,
+        "dfl_loss": 1.9078,
+        "map50_95": 0.03812,
+        "map50": 0.06976,
+        "precision": 0.53464,
+        "recall": 0.08273
+      },
+      {
+        "epoch": 11,
+        "lr_end": 0.0008649779728121859,
+        "seconds": 11.8,
+        "box_loss": 1.8658,
+        "cls_loss": 3.1857,
+        "dfl_loss": 1.9207
+      },
+      {
+        "epoch": 12,
+        "lr_end": 0.0008380957782081197,
+        "seconds": 11.6,
+        "box_loss": 1.844,
+        "cls_loss": 3.0398,
+        "dfl_loss": 1.8478
+      },
+      {
+        "epoch": 13,
+        "lr_end": 0.0008093451719309255,
+        "seconds": 11.6,
+        "box_loss": 1.8809,
+        "cls_loss": 3.1142,
+        "dfl_loss": 1.9284
+      },
+      {
+        "epoch": 14,
+        "lr_end": 0.0007789126126948265,
+        "seconds": 11.5,
+        "box_loss": 1.8453,
+        "cls_loss": 2.9407,
+        "dfl_loss": 1.8735
+      },
+      {
+        "epoch": 15,
+        "lr_end": 0.0007469954673244031,
+        "seconds": 11.6,
+        "box_loss": 1.8257,
+        "cls_loss": 2.8834,
+        "dfl_loss": 1.872,
+        "map50_95": 0.08034,
+        "map50": 0.14275,
+        "precision": 0.34103,
+        "recall": 0.19631
+      },
+      {
+        "epoch": 16,
+        "lr_end": 0.0007138007307549993,
+        "seconds": 11.4,
+        "box_loss": 1.7319,
+        "cls_loss": 2.8677,
+        "dfl_loss": 1.876
+      },
+      {
+        "epoch": 17,
+        "lr_end": 0.0006795436835911357,
+        "seconds": 11.5,
+        "box_loss": 1.751,
+        "cls_loss": 2.761,
+        "dfl_loss": 1.745
+      },
+      {
+        "epoch": 18,
+        "lr_end": 0.0006444464959291814,
+        "seconds": 11.4,
+        "box_loss": 1.7447,
+        "cls_loss": 2.8756,
+        "dfl_loss": 1.8068
+      },
+      {
+        "epoch": 19,
+        "lr_end": 0.0006087367864990233,
+        "seconds": 11.4,
+        "box_loss": 1.7522,
+        "cls_loss": 2.7608,
+        "dfl_loss": 1.8352
+      },
+      {
+        "epoch": 20,
+        "lr_end": 0.000572646146469259,
+        "seconds": 11.5,
+        "box_loss": 1.6944,
+        "cls_loss": 2.6672,
+        "dfl_loss": 1.7573,
+        "map50_95": 0.12438,
+        "map50": 0.2311,
+        "precision": 0.63592,
+        "recall": 0.18682
+      },
+      {
+        "epoch": 21,
+        "lr_end": 0.0005364086374896001,
+        "seconds": 11.5,
+        "box_loss": 1.726,
+        "cls_loss": 2.5335,
+        "dfl_loss": 1.7565
+      },
+      {
+        "epoch": 22,
+        "lr_end": 0.0005002592737112561,
+        "seconds": 11.3,
+        "box_loss": 1.7329,
+        "cls_loss": 2.6359,
+        "dfl_loss": 1.7733
+      },
+      {
+        "epoch": 23,
+        "lr_end": 0.00046443249762998206,
+        "seconds": 11.6,
+        "box_loss": 1.6482,
+        "cls_loss": 2.6453,
+        "dfl_loss": 1.7565
+      },
+      {
+        "epoch": 24,
+        "lr_end": 0.0004291606596365304,
+        "seconds": 11.5,
+        "box_loss": 1.6592,
+        "cls_loss": 2.4092,
+        "dfl_loss": 1.7089
+      },
+      {
+        "epoch": 25,
+        "lr_end": 0.00039467251113520696,
+        "seconds": 11.5,
+        "box_loss": 1.6839,
+        "cls_loss": 2.5264,
+        "dfl_loss": 1.7536,
+        "map50_95": 0.14694,
+        "map50": 0.26049,
+        "precision": 0.54499,
+        "recall": 0.22579
+      },
+      {
+        "epoch": 26,
+        "lr_end": 0.0003611917210032346,
+        "seconds": 11.5,
+        "box_loss": 1.6088,
+        "cls_loss": 2.4548,
+        "dfl_loss": 1.673
+      },
+      {
+        "epoch": 27,
+        "lr_end": 0.0003289354250122553,
+        "seconds": 11.4,
+        "box_loss": 1.6317,
+        "cls_loss": 2.3695,
+        "dfl_loss": 1.6582
+      },
+      {
+        "epoch": 28,
+        "lr_end": 0.00029811281761953014,
+        "seconds": 11.5,
+        "box_loss": 1.5527,
+        "cls_loss": 2.3581,
+        "dfl_loss": 1.6602
+      },
+      {
+        "epoch": 29,
+        "lr_end": 0.0002689237952616088,
+        "seconds": 11.8,
+        "box_loss": 1.5578,
+        "cls_loss": 2.2332,
+        "dfl_loss": 1.6049
+      },
+      {
+        "epoch": 30,
+        "lr_end": 0.0002415576599492321,
+        "seconds": 12.7,
+        "box_loss": 1.5359,
+        "cls_loss": 2.2961,
+        "dfl_loss": 1.6456,
+        "map50_95": 0.1932,
+        "map50": 0.32324,
+        "precision": 0.55862,
+        "recall": 0.27962
+      },
+      {
+        "epoch": 31,
+        "lr_end": 0.00021619189157115115,
+        "seconds": 11.9,
+        "box_loss": 1.5677,
+        "cls_loss": 2.2746,
+        "dfl_loss": 1.6191
+      },
+      {
+        "epoch": 32,
+        "lr_end": 0.00019299099686894422,
+        "seconds": 12.0,
+        "box_loss": 1.5563,
+        "cls_loss": 2.195,
+        "dfl_loss": 1.6336
+      },
+      {
+        "epoch": 33,
+        "lr_end": 0.00017210544254767101,
+        "seconds": 11.8,
+        "box_loss": 1.5865,
+        "cls_loss": 2.2391,
+        "dfl_loss": 1.6678
+      },
+      {
+        "epoch": 34,
+        "lr_end": 0.00015367067944155172,
+        "seconds": 11.7,
+        "box_loss": 1.5017,
+        "cls_loss": 2.1678,
+        "dfl_loss": 1.6017
+      },
+      {
+        "epoch": 35,
+        "lr_end": 0.00013780626406333034,
+        "seconds": 12.1,
+        "box_loss": 1.5026,
+        "cls_loss": 2.1767,
+        "dfl_loss": 1.6067,
+        "map50_95": 0.24189,
+        "map50": 0.39792,
+        "precision": 0.5682,
+        "recall": 0.38661
+      },
+      {
+        "epoch": 36,
+        "lr_end": 0.00012461508323441186,
+        "seconds": 11.8,
+        "box_loss": 1.4808,
+        "cls_loss": 2.1254,
+        "dfl_loss": 1.6047
+      },
+      {
+        "epoch": 37,
+        "lr_end": 0.00011418268682434455,
+        "seconds": 11.7,
+        "box_loss": 1.5178,
+        "cls_loss": 2.2301,
+        "dfl_loss": 1.628
+      },
+      {
+        "epoch": 38,
+        "lr_end": 0.00010657673292708745,
+        "seconds": 11.5,
+        "box_loss": 1.4948,
+        "cls_loss": 2.1033,
+        "dfl_loss": 1.6165
+      },
+      {
+        "epoch": 39,
+        "lr_end": 0.00010184654907230909,
+        "seconds": 11.5,
+        "box_loss": 1.4667,
+        "cls_loss": 2.121,
+        "dfl_loss": 1.5649
+      },
+      {
+        "epoch": 40,
+        "lr_end": 0.00010002281231742863,
+        "seconds": 11.6,
+        "box_loss": 1.4694,
+        "cls_loss": 2.1429,
+        "dfl_loss": 1.5982,
+        "map50_95": 0.28965,
+        "map50": 0.45843,
+        "precision": 0.59832,
+        "recall": 0.40044
+      }
+    ],
+    "trend": {
+      "status": "MEASURED",
+      "epochs_recorded": 8,
+      "best_epoch": 40,
+      "best_value": 0.28965,
+      "final_epoch": 40,
+      "final_value": 0.28965,
+      "still_improving_at_end": true
+    },
+    "seconds": 509.1,
+    "final_losses": {
+      "box_loss": 1.4694,
+      "cls_loss": 2.1429,
+      "dfl_loss": 1.5982
+    }
+  },
+  "artifact_validation": {
+    "pt": {
+      "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseB.pt",
+      "sha256": "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6",
+      "size_bytes": 3714299,
+      "structural": {
+        "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseB.pt",
+        "format": "pt",
+        "status": "PASS",
+        "message": "loaded as graph_module via full_unpickle (trusted)",
+        "checks": {
+          "exists": true,
+          "non_empty": true,
+          "readable": true,
+          "zip_container": true,
+          "safe_load": false,
+          "full_load": true,
+          "recognised_structure": true,
+          "has_parameters": true
+        },
+        "details": {
+          "size_bytes": 3714299,
+          "magic": "504b0304",
+          "safe_load_error": "UnpicklingError",
+          "load_mode": "full_unpickle (trusted)",
+          "class_name": "GraphModule",
+          "parameter_count": 882996,
+          "parameter_tensors": 183,
+          "object_kind": "graph_module"
+        },
+        "defect_category": null
+      },
+      "trusted_basis": "generated locally by this run (full unpickle allowed in-process); not in configs trust list",
+      "forward_output_shapes": [
+        [
+          1,
+          144,
+          80,
+          80
+        ],
+        [
+          1,
+          144,
+          40,
+          40
+        ],
+        [
+          1,
+          144,
+          20,
+          20
+        ]
+      ],
+      "schema_ok": true,
+      "decoded_output_shape": [
+        1,
+        84,
+        8400
+      ],
+      "decoded_ok": true
+    },
+    "params": {
+      "e5_1_candidate": 882996,
+      "fine_tuned": 882996,
+      "unchanged": true
+    },
+    "flops": {
+      "e5_1_candidate_sdk": 3874910000.0,
+      "e5_1_candidate_independent_2x_macs": 3832092800,
+      "fine_tuned_independent_2x_macs": 3832092800,
+      "onnx_export": {
+        "status": "PASS",
+        "path": "outputs/e5_1_finetune_exports/20261005T043342Z_phaseB/finetuned_body.onnx",
+        "params_onnx": 880124,
+        "macs": 1916046400,
+        "flops_2x_macs": 3832092800,
+        "covered_ops": {
+          "Conv": 63
+        },
+        "uncovered_ops": {
+          "Sigmoid": 57,
+          "Mul": 57,
+          "Constant": 10,
+          "Split": 8,
+          "Add": 6,
+          "Concat": 16,
+          "MaxPool": 3,
+          "Resize": 2
+        },
+        "error": null
+      }
+    },
+    "architecture_unchanged": {
+      "status": "PASS",
+      "params_rel_diff_percent": 0.0,
+      "macs_rel_diff_percent": 0.0,
+      "tolerance_percent": 0.5,
+      "params_equal": true
+    },
+    "status": "PASS"
+  },
+  "accuracy": {
+    "baseline": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.44369,
+        "mAP50": 0.60111,
+        "mAP75": 0.47223,
+        "precision": 0.6286,
+        "recall": 0.52902
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "yolov8n upstream baseline (official weights)",
+      "is_output_equivalence_proxy": false,
+      "extra": {}
+    },
+    "compressed": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.0,
+        "mAP50": 0.0,
+        "mAP75": 0.0,
+        "precision": 3e-05,
+        "recall": 0.00223
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "E5-1 NetsPresso-compressed body (PR_L2 ratio 0.5, no fine-tuning) + rebuilt head",
+      "is_output_equivalence_proxy": false,
+      "extra": {}
+    },
+    "fine_tuned": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.28965,
+        "mAP50": 0.45843,
+        "mAP75": 0.33512,
+        "precision": 0.59832,
+        "recall": 0.40044
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "LOCALLY fine-tuned E5-1 candidate (phase B, 40 epochs)",
+      "is_output_equivalence_proxy": false,
+      "extra": {}
+    },
+    "three_way": {
+      "status": "MEASURED",
+      "metric": "mAP50-95",
+      "baseline": 0.44369,
+      "compressed": 0.0,
+      "fine_tuned": 0.28965,
+      "baseline_to_compressed_pp": -44.369,
+      "baseline_to_fine_tuned_pp": -15.404,
+      "compressed_to_fine_tuned_pp": 28.965,
+      "remaining_drop_pp": 15.404,
+      "recovery_percent": 65.28,
+      "relative_to_baseline_percent": 65.28
+    },
+    "secondary": {
+      "map50": {
+        "baseline": 0.60111,
+        "compressed": 0.0,
+        "fine_tuned": 0.45843
+      },
+      "map75": {
+        "baseline": 0.47223,
+        "compressed": 0.0,
+        "fine_tuned": 0.33512
+      },
+      "precision": {
+        "baseline": 0.6286,
+        "compressed": 3e-05,
+        "fine_tuned": 0.59832
+      },
+      "recall": {
+        "baseline": 0.52902,
+        "compressed": 0.00223,
+        "fine_tuned": 0.40044
+      }
+    },
+    "fine_tuned_vs_baseline": {
+      "status": "MEASURED",
+      "metric": "mAP50-95",
+      "baseline_metric": 0.44369,
+      "candidate_metric": 0.28965,
+      "absolute_delta": -0.15404,
+      "drop_pp": 15.404,
+      "relative_delta_percent": -34.7179,
+      "baseline_label": "yolov8n upstream baseline (official weights)",
+      "candidate_label": "LOCALLY fine-tuned E5-1 candidate (phase B, 40 epochs)",
+      "reason": null,
+      "conditions": {
+        "dataset": "coco128.yaml",
+        "split": "val(train2017 subset)",
+        "imgsz": 640,
+        "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+        "conf": 0.001,
+        "iou": 0.7
+      },
+      "secondary": {
+        "mAP50": {
+          "baseline": 0.60111,
+          "candidate": 0.45843,
+          "drop_pp": 14.268
+        },
+        "mAP75": {
+          "baseline": 0.47223,
+          "candidate": 0.33512,
+          "drop_pp": 13.711
+        },
+        "precision": {
+          "baseline": 0.6286,
+          "candidate": 0.59832,
+          "drop_pp": 3.028
+        },
+        "recall": {
+          "baseline": 0.52902,
+          "candidate": 0.40044,
+          "drop_pp": 12.858
+        }
+      },
+      "is_output_equivalence_proxy": false
+    },
+    "threshold_pp": 1.0,
+    "threshold_basis": "PROJECT-DEFINED EXAMPLE THRESHOLD (configs/quality_gate.yaml release.accuracy); COCO128 smoke -> diagnostic only, Release PASS is never declared from it",
+    "conditions": {
+      "data": "coco128.yaml",
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "rect": true,
+      "batch": 8,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "train_equals_val": true
+    }
+  },
+  "recovery": {
+    "decision": "PARTIAL_RECOVERY",
+    "reason": "gain 28.965 pp (recovery 65.28 %) but remaining drop 15.404 pp > 1.0 pp",
+    "thresholds": {
+      "max_drop_pp": 1.0,
+      "material_improvement_pp": 5.0,
+      "unusable_below": 0.05,
+      "basis": "PROJECT-DEFINED EXAMPLE (smoke-diagnostic, not release)"
+    }
+  },
+  "recovery_assessment": {
+    "historical_e5_1_defects": {
+      "compression": null,
+      "local_eval": "E5-1-local_eval-ACCURACY_REGRESSION",
+      "release": "E5-1-release-ACCURACY_REGRESSION"
+    },
+    "historical_records_modified": false,
+    "assessment": "E5-1 ACCURACY_REGRESSION partially mitigated by local fine-tuning; regression persists",
+    "recovery_decision": {
+      "decision": "PARTIAL_RECOVERY",
+      "reason": "gain 28.965 pp (recovery 65.28 %) but remaining drop 15.404 pp > 1.0 pp",
+      "thresholds": {
+        "max_drop_pp": 1.0,
+        "material_improvement_pp": 5.0,
+        "unusable_below": 0.05,
+        "basis": "PROJECT-DEFINED EXAMPLE (smoke-diagnostic, not release)"
+      }
+    },
+    "root_cause_status": "pruning-without-fine-tuning hypothesis SUPPORTED by recovery evidence"
+  },
+  "output_equivalence_proxy": {
+    "ort_baseline_vs_fine_tuned": {
+      "status": "FAIL",
+      "min_cosine_similarity": 0.982852,
+      "max_abs_diff": 532.553864,
+      "mean_abs_diff": 1.238444,
+      "relative_diff": 0.1844,
+      "shape_match": true,
+      "dtype_match": true,
+      "per_output": [
+        {
+          "cosine_similarity": 0.982852,
+          "max_abs_diff": 532.553864,
+          "mean_abs_diff": 1.238444,
+          "relative_diff": 0.1844,
+          "elements": 705600,
+          "index": 0,
+          "shape": [
+            1,
+            84,
+            8400
+          ]
+        }
+      ],
+      "threshold_min_cosine": 0.99,
+      "note": "output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement",
+      "num_outputs": 1
+    },
+    "real_images": {
+      "images": 8,
+      "aggregate": {
+        "baseline_vs_fine_tuned": {
+          "min_cosine": 0.9919506029563726,
+          "max_abs_diff": 447.9932556152344,
+          "max_relative_l2_diff": 0.12808047077464865
+        },
+        "compressed_vs_fine_tuned": {
+          "min_cosine": 0.9793841892965762,
+          "max_abs_diff": 400.87213134765625,
+          "max_relative_l2_diff": 0.20989997523686818
+        },
+        "baseline_vs_compressed": {
+          "min_cosine": 0.9839862412475613,
+          "max_abs_diff": 455.2752227783203,
+          "max_relative_l2_diff": 0.1787200172424956
+        }
+      },
+      "per_image": [
+        {
+          "image": "000000000009.jpg",
+          "baseline_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9929831764120326,
+            "max_abs_diff": 403.2476348876953,
+            "mean_abs_diff": 0.8536555289293399,
+            "relative_l2_diff": 0.11951148718279843,
+            "bitwise_identical": false
+          },
+          "compressed_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.97964393656513,
+            "max_abs_diff": 399.5833435058594,
+            "mean_abs_diff": 1.4761015208524806,
+            "relative_l2_diff": 0.20896545616389364,
+            "bitwise_identical": false
+          },
+          "baseline_vs_compressed": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9842649076884481,
+            "max_abs_diff": 447.61773681640625,
+            "mean_abs_diff": 1.2860558235862454,
+            "relative_l2_diff": 0.17702231899449156,
+            "bitwise_identical": false
+          }
+        },
+        {
+          "image": "000000000025.jpg",
+          "baseline_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9942374255913137,
+            "max_abs_diff": 394.55743408203125,
+            "mean_abs_diff": 0.7277609896995153,
+            "relative_l2_diff": 0.10836344600412814,
+            "bitwise_identical": false
+          },
+          "compressed_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9862416392868499,
+            "max_abs_diff": 326.7958984375,
+            "mean_abs_diff": 1.1605987185933262,
+            "relative_l2_diff": 0.16982168185964594,
+            "bitwise_identical": false
+          },
+          "baseline_vs_compressed": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9927116918709727,
+            "max_abs_diff": 308.6474609375,
+            "mean_abs_diff": 0.9186599469054384,
+            "relative_l2_diff": 0.12074031018562337,
+            "bitwise_identical": false
+          }
+        },
+        {
+          "image": "000000000030.jpg",
+          "baseline_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9932951990243423,
+            "max_abs_diff": 354.9363250732422,
+            "mean_abs_diff": 0.8008824837189387,
+            "relative_l2_diff": 0.11605851492796009,
+            "bitwise_identical": false
+          },
+          "compressed_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9812726089107765,
+            "max_abs_diff": 394.8246765136719,
+            "mean_abs_diff": 1.4273505498621277,
+            "relative_l2_diff": 0.19959380369781943,
+            "bitwise_identical": false
+          },
+          "baseline_vs_compressed": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9839862412475613,
+            "max_abs_diff": 455.2752227783203,
+            "mean_abs_diff": 1.2824505575685234,
+            "relative_l2_diff": 0.1787200172424956,
+            "bitwise_identical": false
+          }
+        },
+        {
+          "image": "000000000034.jpg",
+          "baseline_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9944426637622403,
+            "max_abs_diff": 419.05347061157227,
+            "mean_abs_diff": 0.7419102083507275,
+            "relative_l2_diff": 0.10659281235395203,
+            "bitwise_identical": false
+          },
+          "compressed_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9832734088119622,
+            "max_abs_diff": 360.41522216796875,
+            "mean_abs_diff": 1.2972995456795233,
+            "relative_l2_diff": 0.18857753179088113,
+            "bitwise_identical": false
+          },
+          "baseline_vs_compressed": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9912368261814489,
+            "max_abs_diff": 328.8169250488281,
+            "mean_abs_diff": 1.0042177954765703,
+            "relative_l2_diff": 0.1326051556698834,
+            "bitwise_identical": false
+          }
+        },
+        {
+          "image": "000000000036.jpg",
+          "baseline_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9927471454115104,
+            "max_abs_diff": 447.9932556152344,
+            "mean_abs_diff": 0.873658310952161,
+            "relative_l2_diff": 0.12143583317128512,
+            "bitwise_identical": false
+          },
+          "compressed_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9793841892965762,
+            "max_abs_diff": 372.0061950683594,
+            "mean_abs_diff": 1.4371612732993766,
+            "relative_l2_diff": 0.20989997523686818,
+            "bitwise_identical": false
+          },
+          "baseline_vs_compressed": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9859629575674119,
+            "max_abs_diff": 366.0523681640625,
+            "mean_abs_diff": 1.1745251400725434,
+            "relative_l2_diff": 0.1673636222181128,
+            "bitwise_identical": false
+          }
+        },
+        {
+          "image": "000000000042.jpg",
+          "baseline_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9937707559716865,
+            "max_abs_diff": 383.34212493896484,
+            "mean_abs_diff": 0.8022091004007623,
+            "relative_l2_diff": 0.11263199709893142,
+            "bitwise_identical": false
+          },
+          "compressed_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9798018290936313,
+            "max_abs_diff": 400.87213134765625,
+            "mean_abs_diff": 1.4729099769512972,
+            "relative_l2_diff": 0.20823710442298876,
+            "bitwise_identical": false
+          },
+          "baseline_vs_compressed": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9846579974529697,
+            "max_abs_diff": 444.3389587402344,
+            "mean_abs_diff": 1.3020603885997872,
+            "relative_l2_diff": 0.17487027094303628,
+            "bitwise_identical": false
+          }
+        },
+        {
+          "image": "000000000049.jpg",
+          "baseline_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9939212514892766,
+            "max_abs_diff": 416.22259521484375,
+            "mean_abs_diff": 0.682682369922274,
+            "relative_l2_diff": 0.1112916347786797,
+            "bitwise_identical": false
+          },
+          "compressed_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.987825842936109,
+            "max_abs_diff": 345.0914306640625,
+            "mean_abs_diff": 1.1028122340888116,
+            "relative_l2_diff": 0.15831130368289173,
+            "bitwise_identical": false
+          },
+          "baseline_vs_compressed": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9938210579286592,
+            "max_abs_diff": 245.56649780273438,
+            "mean_abs_diff": 0.8480684363666049,
+            "relative_l2_diff": 0.11099628676097852,
+            "bitwise_identical": false
+          }
+        },
+        {
+          "image": "000000000061.jpg",
+          "baseline_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9919506029563726,
+            "max_abs_diff": 411.5924377441406,
+            "mean_abs_diff": 0.783379124506845,
+            "relative_l2_diff": 0.12808047077464865,
+            "bitwise_identical": false
+          },
+          "compressed_vs_fine_tuned": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9875192449495128,
+            "max_abs_diff": 339.7096710205078,
+            "mean_abs_diff": 1.1207380305332668,
+            "relative_l2_diff": 0.16213025132719572,
+            "bitwise_identical": false
+          },
+          "baseline_vs_compressed": {
+            "status": "COMPUTED",
+            "count": 705600,
+            "cosine": 0.9918668423881788,
+            "max_abs_diff": 370.49267578125,
+            "mean_abs_diff": 0.8937403707044445,
+            "relative_l2_diff": 0.1274350297510015,
+            "bitwise_identical": false
+          }
+        }
+      ]
+    },
+    "e5_1_reference_baseline_vs_compressed": {
+      "status": "FAIL",
+      "min_cosine_similarity": 0.984289,
+      "max_abs_diff": 449.228973,
+      "mean_abs_diff": 1.269081,
+      "relative_diff": 0.179003,
+      "shape_match": true,
+      "dtype_match": true,
+      "per_output": [
+        {
+          "cosine_similarity": 0.984289,
+          "max_abs_diff": 449.228973,
+          "mean_abs_diff": 1.269081,
+          "relative_diff": 0.179003,
+          "elements": 705600,
+          "index": 0,
+          "shape": [
+            1,
+            84,
+            8400
+          ]
+        }
+      ],
+      "threshold_min_cosine": 0.99,
+      "note": "output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement",
+      "num_outputs": 1
+    },
+    "disclaimer": "output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement Proxy values never replace the measured mAP above."
+  },
+  "performance": {
+    "baseline": {
+      "latency": {
+        "median_ms": 18.8322,
+        "p95_ms": 42.8777,
+        "min_ms": 10.8881,
+        "max_ms": 54.3732,
+        "mean_ms": 21.614,
+        "iterations": 100,
+        "warmup": 10,
+        "source": "local_onnxruntime_cpu"
+      },
+      "memory": {
+        "status": "PASS",
+        "rss_before_mb": 20.051,
+        "rss_after_load_mb": 71.156,
+        "rss_peak_mb": 128.695,
+        "delta_mb": 108.645,
+        "method": "psutil process RSS (CPU only; GPU not applicable)"
+      },
+      "output_shapes": [
+        [
+          1,
+          84,
+          8400
+        ]
+      ]
+    },
+    "fine_tuned": {
+      "latency": {
+        "median_ms": 13.9148,
+        "p95_ms": 35.9422,
+        "min_ms": 8.8582,
+        "max_ms": 47.3394,
+        "mean_ms": 16.45,
+        "iterations": 100,
+        "warmup": 10,
+        "source": "local_onnxruntime_cpu"
+      },
+      "memory": {
+        "status": "PASS",
+        "rss_before_mb": 20.191,
+        "rss_after_load_mb": 61.336,
+        "rss_peak_mb": 113.574,
+        "delta_mb": 93.383,
+        "method": "psutil process RSS (CPU only; GPU not applicable)"
+      },
+      "output_shapes": [
+        [
+          1,
+          84,
+          8400
+        ]
+      ]
+    },
+    "note": "local onnxruntime CPUExecutionProvider, development machine, process-isolated per model (fresh interpreter), same session for both models; not target-device performance",
+    "e5_1_reference": {
+      "baseline": {
+        "latency": {
+          "median_ms": 23.7776,
+          "p95_ms": 58.8408,
+          "min_ms": 11.6238,
+          "max_ms": 67.0594,
+          "mean_ms": 28.9469,
+          "iterations": 100,
+          "warmup": 10,
+          "source": "local_onnxruntime_cpu"
+        },
+        "memory": {
+          "status": "PASS",
+          "rss_before_mb": 20.102,
+          "rss_after_load_mb": 69.852,
+          "rss_peak_mb": 127.184,
+          "delta_mb": 107.082,
+          "method": "psutil process RSS (CPU only; GPU not applicable)"
+        },
+        "output_shapes": [
+          [
+            1,
+            84,
+            8400
+          ]
+        ],
+        "onnx": "outputs/e5_1_exports/20261005T040009Z/r1_body_plus_head.onnx"
+      },
+      "candidate": {
+        "latency": {
+          "median_ms": 16.521,
+          "p95_ms": 36.6576,
+          "min_ms": 9.0514,
+          "max_ms": 92.2576,
+          "mean_ms": 20.0003,
+          "iterations": 100,
+          "warmup": 10,
+          "source": "local_onnxruntime_cpu"
+        },
+        "memory": {
+          "status": "PASS",
+          "rss_before_mb": 20.23,
+          "rss_after_load_mb": 61.34,
+          "rss_peak_mb": 113.59,
+          "delta_mb": 93.359,
+          "method": "psutil process RSS (CPU only; GPU not applicable)"
+        },
+        "output_shapes": [
+          [
+            1,
+            84,
+            8400
+          ]
+        ],
+        "onnx": "outputs/e5_1_exports/20261005T040009Z/candidate_body_plus_head.onnx"
+      },
+      "note": "local onnxruntime CPU, process-isolated per model (fresh interpreter), warm-up/iterations from configs/local_eval.yaml; development machine, not the nominal target device",
+      "onnx_exports": {
+        "baseline": {
+          "status": "PASS",
+          "path": "outputs/e5_1_exports/20261005T040009Z/r1_body_plus_head.onnx",
+          "sha256": "4dcf51aae58d99f21baa3afe2cc46ece3da92552ea953a95af6d1712ba03c968",
+          "structural": {
+            "path": "outputs/e5_1_exports/20261005T040009Z/r1_body_plus_head.onnx",
+            "format": "onnx",
+            "status": "PASS",
+            "message": "valid ONNX graph (309 nodes, 130 initializers)",
+            "checks": {
+              "exists": true,
+              "non_empty": true,
+              "readable": true,
+              "onnx_load": true,
+              "checker": true,
+              "graph_present": true,
+              "has_inputs": true,
+              "has_outputs": true,
+              "has_nodes": true,
+              "has_initializers": true
+            },
+            "details": {
+              "size_bytes": 12656492,
+              "magic": "08071207",
+              "ir_version": 7,
+              "opset_imports": [
+                13
+              ],
+              "inputs": [
+                {
+                  "name": "images",
+                  "shape": [
+                    1,
+                    3,
+                    640,
+                    640
+                  ]
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output0",
+                  "shape": [
+                    1,
+                    84,
+                    8400
+                  ]
+                }
+              ],
+              "node_count": 309,
+              "initializer_count": 130,
+              "op_type_histogram": {
+                "Conv": 64,
+                "Sigmoid": 58,
+                "Mul": 60,
+                "Constant": 41,
+                "Split": 9,
+                "Add": 12,
+                "Concat": 24,
+                "MaxPool": 3,
+                "Resize": 2,
+                "Expand": 6,
+                "Unsqueeze": 7,
+                "Reshape": 8,
+                "ConstantOfShape": 3,
+                "Transpose": 3,
+                "Softmax": 1,
+                "Shape": 1,
+                "Gather": 1,
+                "Div": 2,
+                "Slice": 2,
+                "Sub": 2
+              }
+            },
+            "defect_category": null
+          }
+        },
+        "candidate": {
+          "status": "PASS",
+          "path": "outputs/e5_1_exports/20261005T040009Z/candidate_body_plus_head.onnx",
+          "sha256": "a14de464fe5b7efce1e706d1a13d02ebaf59ace19c630f075f30b7bafac03f5f",
+          "structural": {
+            "path": "outputs/e5_1_exports/20261005T040009Z/candidate_body_plus_head.onnx",
+            "format": "onnx",
+            "status": "PASS",
+            "message": "valid ONNX graph (265 nodes, 127 initializers)",
+            "checks": {
+              "exists": true,
+              "non_empty": true,
+              "readable": true,
+              "onnx_load": true,
+              "checker": true,
+              "graph_present": true,
+              "has_inputs": true,
+              "has_outputs": true,
+              "has_nodes": true,
+              "has_initializers": true
+            },
+            "details": {
+              "size_bytes": 3733173,
+              "magic": "08071207",
+              "ir_version": 7,
+              "opset_imports": [
+                13
+              ],
+              "inputs": [
+                {
+                  "name": "images",
+                  "shape": [
+                    1,
+                    3,
+                    640,
+                    640
+                  ]
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output0",
+                  "shape": [
+                    1,
+                    84,
+                    8400
+                  ]
+                }
+              ],
+              "node_count": 265,
+              "initializer_count": 127,
+              "op_type_histogram": {
+                "Conv": 64,
+                "Sigmoid": 58,
+                "Mul": 60,
+                "Constant": 26,
+                "Split": 9,
+                "Add": 9,
+                "Concat": 19,
+                "MaxPool": 3,
+                "Resize": 2,
+                "Reshape": 5,
+                "Transpose": 1,
+                "Softmax": 1,
+                "Shape": 1,
+                "Gather": 1,
+                "Div": 2,
+                "Slice": 2,
+                "Sub": 2
+              }
+            },
+            "defect_category": null
+          }
+        }
+      }
+    },
+    "onnx_exports": {
+      "baseline": {
+        "status": "PASS",
+        "path": "outputs/e5_1_finetune_exports/20261005T043342Z_phaseB/baseline_body_plus_head.onnx",
+        "sha256": "06254482e2cd02ee93c326d10e525ed6e5f5b7ee2d6257e28af9560c5087c4ee",
+        "structural": {
+          "path": "outputs/e5_1_finetune_exports/20261005T043342Z_phaseB/baseline_body_plus_head.onnx",
+          "format": "onnx",
+          "status": "PASS",
+          "message": "valid ONNX graph (261 nodes, 127 initializers)",
+          "checks": {
+            "exists": true,
+            "non_empty": true,
+            "readable": true,
+            "onnx_load": true,
+            "checker": true,
+            "graph_present": true,
+            "has_inputs": true,
+            "has_outputs": true,
+            "has_nodes": true,
+            "has_initializers": true
+          },
+          "details": {
+            "size_bytes": 12817735,
+            "magic": "08071207",
+            "ir_version": 7,
+            "opset_imports": [
+              13
+            ],
+            "inputs": [
+              {
+                "name": "images",
+                "shape": [
+                  1,
+                  3,
+                  640,
+                  640
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "name": "output0",
+                "shape": [
+                  1,
+                  84,
+                  8400
+                ]
+              }
+            ],
+            "node_count": 261,
+            "initializer_count": 127,
+            "op_type_histogram": {
+              "Conv": 64,
+              "Sigmoid": 58,
+              "Mul": 60,
+              "Constant": 22,
+              "Split": 9,
+              "Add": 9,
+              "Concat": 19,
+              "MaxPool": 3,
+              "Resize": 2,
+              "Reshape": 5,
+              "Transpose": 1,
+              "Softmax": 1,
+              "Shape": 1,
+              "Gather": 1,
+              "Div": 2,
+              "Slice": 2,
+              "Sub": 2
+            }
+          },
+          "defect_category": null
+        }
+      },
+      "fine_tuned": {
+        "status": "PASS",
+        "path": "outputs/e5_1_finetune_exports/20261005T043342Z_phaseB/fine_tuned_body_plus_head.onnx",
+        "sha256": "e370d0421f1c0052ee73561ae50cfd3a135943886d415a49efbf58a987ae47f0",
+        "structural": {
+          "path": "outputs/e5_1_finetune_exports/20261005T043342Z_phaseB/fine_tuned_body_plus_head.onnx",
+          "format": "onnx",
+          "status": "PASS",
+          "message": "valid ONNX graph (265 nodes, 127 initializers)",
+          "checks": {
+            "exists": true,
+            "non_empty": true,
+            "readable": true,
+            "onnx_load": true,
+            "checker": true,
+            "graph_present": true,
+            "has_inputs": true,
+            "has_outputs": true,
+            "has_nodes": true,
+            "has_initializers": true
+          },
+          "details": {
+            "size_bytes": 3733173,
+            "magic": "08071207",
+            "ir_version": 7,
+            "opset_imports": [
+              13
+            ],
+            "inputs": [
+              {
+                "name": "images",
+                "shape": [
+                  1,
+                  3,
+                  640,
+                  640
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "name": "output0",
+                "shape": [
+                  1,
+                  84,
+                  8400
+                ]
+              }
+            ],
+            "node_count": 265,
+            "initializer_count": 127,
+            "op_type_histogram": {
+              "Conv": 64,
+              "Sigmoid": 58,
+              "Mul": 60,
+              "Constant": 26,
+              "Split": 9,
+              "Add": 9,
+              "Concat": 19,
+              "MaxPool": 3,
+              "Resize": 2,
+              "Reshape": 5,
+              "Transpose": 1,
+              "Softmax": 1,
+              "Shape": 1,
+              "Gather": 1,
+              "Div": 2,
+              "Slice": 2,
+              "Sub": 2
+            }
+          },
+          "defect_category": null
+        }
+      }
+    }
+  },
+  "quality_gate": {
+    "compression": {
+      "overall": "PASS",
+      "profile": "compression",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "WARN",
+          "observed": 15.404,
+          "threshold": 1.0,
+          "message": "accuracy drop 15.40 pp exceeds threshold 1.00 pp",
+          "required": false
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -26.112,
+          "threshold": 10.0,
+          "message": "latency 18.832 -> 13.915 ms (-26.11%) within +10.0%",
+          "required": false
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -14.048,
+          "threshold": 15.0,
+          "message": "memory 108.645 -> 93.383 MB (-14.05%) within +15.0%",
+          "required": false
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.091,
+          "threshold": 0.0,
+          "message": "model_size 12.847 -> 3.714 MB (-71.09%) within +0.0%",
+          "required": true
+        },
+        {
+          "name": "artifact",
+          "status": "PASS",
+          "observed": "exists, non-empty, checksum recorded (reference not yet promoted)",
+          "threshold": "required (checksum optional)",
+          "message": "artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        }
+      ],
+      "reasons": []
+    },
+    "local_eval": {
+      "overall": "FAIL",
+      "profile": "local_eval",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "WARN",
+          "observed": 15.404,
+          "threshold": 1.0,
+          "message": "accuracy drop 15.40 pp exceeds threshold 1.00 pp",
+          "required": false
+        },
+        {
+          "name": "output_equivalence_proxy",
+          "status": "FAIL",
+          "observed": 0.982852,
+          "threshold": 0.99,
+          "message": "proxy (not accuracy): min cosine 0.9829 < 0.99",
+          "required": true
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -26.112,
+          "threshold": 10.0,
+          "message": "latency 18.832 -> 13.915 ms (-26.11%) within +10.0%",
+          "required": true
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -14.048,
+          "threshold": 15.0,
+          "message": "memory 108.645 -> 93.383 MB (-14.05%) within +15.0%",
+          "required": true
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.091,
+          "threshold": 0.0,
+          "message": "model_size 12.847 -> 3.714 MB (-71.09%) within +0.0%",
+          "required": true
+        },
+        {
+          "name": "artifact",
+          "status": "PASS",
+          "observed": "exists, non-empty, checksum recorded (reference not yet promoted)",
+          "threshold": "required (checksum optional)",
+          "message": "artifact exists and is non-empty; checksum recorded, no promoted baseline to compare against",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        }
+      ],
+      "reasons": [
+        "Output Equiv. Proxy: proxy (not accuracy): min cosine 0.9829 < 0.99"
+      ]
+    },
+    "release": {
+      "overall": "FAIL",
+      "profile": "release",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "FAIL",
+          "observed": 15.404,
+          "threshold": 1.0,
+          "message": "accuracy drop 15.40 pp exceeds threshold 1.00 pp",
+          "required": true
+        },
+        {
+          "name": "output_equivalence_proxy",
+          "status": "WARN",
+          "observed": 0.982852,
+          "threshold": 0.99,
+          "message": "proxy (not accuracy): min cosine 0.9829 < 0.99",
+          "required": false
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -26.112,
+          "threshold": 10.0,
+          "message": "latency 18.832 -> 13.915 ms (-26.11%) within +10.0%",
+          "required": true
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -14.048,
+          "threshold": 15.0,
+          "message": "memory 108.645 -> 93.383 MB (-14.05%) within +15.0%",
+          "required": true
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.091,
+          "threshold": 10.0,
+          "message": "model_size 12.847 -> 3.714 MB (-71.09%) within +10.0%",
+          "required": false
+        },
+        {
+          "name": "artifact",
+          "status": "NOT_APPLICABLE",
+          "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+          "threshold": "required",
+          "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        },
+        {
+          "name": "reproducibility",
+          "status": "NOT_APPLICABLE",
+          "observed": "NOT_VERIFIED",
+          "threshold": "required",
+          "message": "reproducibility not verified (fewer than two runs)",
+          "required": true
+        }
+      ],
+      "reasons": [
+        "Accuracy: accuracy drop 15.40 pp exceeds threshold 1.00 pp",
+        "Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+        "Reproducibility: reproducibility not verified (fewer than two runs)"
+      ]
+    }
+  },
+  "defects": {
+    "compression": null,
+    "local_eval": {
+      "defect_id": "E5-1-FT-B-local_eval-ACCURACY_REGRESSION",
+      "category": "ACCURACY_REGRESSION",
+      "severity": "MEDIUM",
+      "message": "proxy (not accuracy): min cosine 0.9829 < 0.99",
+      "evidence": [
+        "output_equivalence_proxy: proxy (not accuracy): min cosine 0.9829 < 0.99 (observed=0.982852, threshold=0.99)"
+      ],
+      "suspected_cause": "pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)",
+      "reproducibility": "unknown",
+      "affected_configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "secondary_categories": []
+    },
+    "release": {
+      "defect_id": "E5-1-FT-B-release-ACCURACY_REGRESSION",
+      "category": "ACCURACY_REGRESSION",
+      "severity": "HIGH",
+      "message": "accuracy drop 15.40 pp exceeds threshold 1.00 pp",
+      "evidence": [
+        "accuracy: accuracy drop 15.40 pp exceeds threshold 1.00 pp (observed=15.404, threshold=1.0)"
+      ],
+      "suspected_cause": "pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)",
+      "reproducibility": "unknown",
+      "affected_configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "secondary_categories": []
+    }
+  },
+  "reproducibility": {
+    "training_runs": 1,
+    "seed": 0,
+    "deterministic_flags": true,
+    "level": "NOT_VERIFIED",
+    "source_artifact_sha256": "0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a",
+    "output_artifact_sha256": "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6",
+    "registry_entry": {
+      "artifact_id": "local_finetune:73a8f76f4c88",
+      "model_name": "yolov8n",
+      "source_artifact": "E5-1 sdk_output.pt sha256=21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1 (via outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseA.pt sha256=0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a)",
+      "sha256": "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6",
+      "file_size": 3714299,
+      "format": "pt",
+      "sdk_version": null,
+      "operation": "local_finetune",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "input_shape": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "compression_ratio": 0.5,
+      "environment_fingerprint": {
+        "adapter": "local_e5_1_finetune",
+        "adapter_version": "0.1.0",
+        "sdk_name": "ultralytics+torch (local training)",
+        "sdk_version": "8.4.173",
+        "python_version": "3.11.9",
+        "platform": "Windows 10 AMD64",
+        "extra": {
+          "credit_consuming": false,
+          "netspresso_api_calls": 0,
+          "evaluation_type": "local_finetune",
+          "os": "Windows",
+          "os_release": "10",
+          "os_version": "10.0.26200",
+          "architecture": "AMD64",
+          "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+          "cpu_count": 20,
+          "python": "3.11.9",
+          "python_implementation": "CPython",
+          "execution_provider": "CPUExecutionProvider",
+          "intra_op_threads": null,
+          "thread_env": {
+            "OMP_NUM_THREADS": "1"
+          },
+          "packages": {
+            "ultralytics": "8.4.173",
+            "torch": "2.14.1",
+            "onnx": "1.23.1",
+            "onnxruntime": "1.30.0",
+            "numpy": "2.4.6",
+            "psutil": "7.2.2"
+          }
+        }
+      },
+      "created_at": "2026-10-05T04:42:27+00:00",
+      "status": "candidate",
+      "provenance": {
+        "kind": "LOCAL fine-tuned derivative (not a NetsPresso artifact)",
+        "phase": "B",
+        "config": "reports/yolov8_e5_1_finetune/20261005T043342Z_phaseB/finetune_config.json",
+        "registered_by": "scripts/yolov8_e5_1_finetune.py"
+      },
+      "promotion_evidence": null,
+      "notes": [
+        "candidate only; single local run; not a NetsPresso output"
+      ]
+    },
+    "note": "one seeded local run; bitwise reproducibility of CPU training was not verified (would need a second run)"
+  },
+  "traceability": {
+    "source_model": "yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "r1_fx_artifact": "outputs/models/yolov8n_fx_r1/model_fx.pt (patch r1-upstream-body-wrapper-v1)",
+    "r1_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "netspresso_execution": "20261005T040009Z_automatic_compression: automatic_compression ratio 0.5 (E5-1, NetsPresso-generated)",
+    "candidate_artifact": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+    "candidate_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+    "local_validation": "LOCAL fine-tuning phase B (40 epochs, seed 0) -> outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseB.pt sha256=73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6; via phase A 0a2038725d65ca42",
+    "accuracy_result": "COCO128 mAP50-95 baseline 0.44369 / compressed 0.0 / fine-tuned 0.28965 (recovery 65.28 %)",
+    "quality_gate": {
+      "compression": "PASS",
+      "local_eval": "FAIL",
+      "release": "FAIL"
+    },
+    "credit_record": "ledger unchanged: (50, 450, 2) sha 4b700de201d359cf (0 credits)",
+    "complete": true,
+    "missing_links": [],
+    "question_answered": "Exactly which input artifact produced this candidate artifact? -> see r1_fx_artifact / r1_sha256 -> netspresso_execution -> candidate_sha256"
+  },
+  "next_step": {
+    "code": "B",
+    "label": "HOLD - MORE LOCAL FINE-TUNING",
+    "rationale": [
+      "material recovery (65.28 %) with a short CPU run suggests more local epochs / data close the gap",
+      "do not spend 75 credits on profiling yet"
+    ]
+  },
+  "case_result": {
+    "case_id": "TC-3cb57ccb",
+    "status": "FAIL",
+    "support": "SUPPORTED",
+    "support_reason": null,
+    "selected": true,
+    "selection_reason": "Phase 5-E local fine-tuning recovery",
+    "risk": null,
+    "operation": "local_finetune_recovery",
+    "model": "yolov8n",
+    "device": "intel_xeon_w2233",
+    "runtime": "onnxruntime",
+    "backend": "default",
+    "optimization": "automatic_compression",
+    "execution_time_s": 0.0,
+    "metrics": {
+      "accuracy": 0.28965,
+      "latency_ms": 13.9148,
+      "memory_mb": 93.383,
+      "model_size_mb": 3.714,
+      "extra": {
+        "params_torch": 882996.0,
+        "training_epochs": 40.0,
+        "training_seconds": 509.1,
+        "macs_estimate": 1916046400.0,
+        "proxy_min_cosine_similarity": 0.982852,
+        "proxy_max_abs_diff": 532.553864,
+        "proxy_relative_diff": 0.1844,
+        "proxy_shape_match": 1.0,
+        "proxy_dtype_match": 1.0
+      }
+    },
+    "baseline_metrics": {
+      "accuracy": 0.44369,
+      "latency_ms": 18.8322,
+      "memory_mb": 108.645,
+      "model_size_mb": 12.847,
+      "extra": {
+        "params_torch": 3157184.0
+      }
+    },
+    "artifact": {
+      "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseB.pt",
+      "exists": true,
+      "size_bytes": 3714299,
+      "format": "pt",
+      "checksum_sha256": "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6",
+      "expected_checksum_sha256": null,
+      "checksum_valid": null,
+      "metadata": {
+        "source_model": "E5-1 sdk_output.pt (NetsPresso candidate)",
+        "source_model_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+        "operation": "local_finetune",
+        "structural_validation": {
+          "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseB.pt",
+          "format": "pt",
+          "status": "PASS",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "checks": {
+            "exists": true,
+            "non_empty": true,
+            "readable": true,
+            "zip_container": true,
+            "safe_load": false,
+            "full_load": true,
+            "recognised_structure": true,
+            "has_parameters": true
+          },
+          "details": {
+            "size_bytes": 3714299,
+            "magic": "504b0304",
+            "safe_load_error": "UnpicklingError",
+            "load_mode": "full_unpickle (trusted)",
+            "class_name": "GraphModule",
+            "parameter_count": 882996,
+            "parameter_tensors": 183,
+            "object_kind": "graph_module"
+          },
+          "defect_category": null
+        },
+        "configuration_key": "yolov8n|intel_xeon_w2233|onnxruntime|default|automatic_compression",
+        "evaluation": "local_finetune",
+        "generated_by": "scripts/yolov8_e5_1_finetune.py",
+        "phase": "B"
+      }
+    },
+    "logs": [
+      "Local fine-tuning recovery experiment. No NetsPresso API call was made. The fine-tuned artifact is a LOCAL derivative of the E5-1 NetsPresso candidate, not a NetsPresso output. COCO128 train == val (128 images): smoke/diagnostic only, never release evidence.",
+      "start body sha256=0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a",
+      "fine-tuned sha256=73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6",
+      "phase B, 40 epochs, 509.1 s"
+    ],
+    "error": null,
+    "defect_category": "ACCURACY_REGRESSION",
+    "environment": {
+      "adapter": "local_e5_1_finetune",
+      "adapter_version": "0.1.0",
+      "sdk_name": "ultralytics+torch (local training)",
+      "sdk_version": "8.4.173",
+      "python_version": "3.11.9",
+      "platform": "Windows 10 AMD64",
+      "extra": {
+        "credit_consuming": false,
+        "netspresso_api_calls": 0,
+        "evaluation_type": "local_finetune",
+        "os": "Windows",
+        "os_release": "10",
+        "os_version": "10.0.26200",
+        "architecture": "AMD64",
+        "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+        "cpu_count": 20,
+        "python": "3.11.9",
+        "python_implementation": "CPython",
+        "execution_provider": "CPUExecutionProvider",
+        "intra_op_threads": null,
+        "thread_env": {
+          "OMP_NUM_THREADS": "1"
+        },
+        "packages": {
+          "ultralytics": "8.4.173",
+          "torch": "2.14.1",
+          "onnx": "1.23.1",
+          "onnxruntime": "1.30.0",
+          "numpy": "2.4.6",
+          "psutil": "7.2.2"
+        }
+      }
+    },
+    "reproducibility": {
+      "level": "NOT_VERIFIED",
+      "runs": 1,
+      "checksums": [
+        "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6"
+      ],
+      "notes": "single local fine-tuning run (seeded, deterministic flags); a second run was not performed"
+    },
+    "timestamp": "2026-10-05T04:42:27+00:00",
+    "execution": {
+      "operation": "local_finetune_recovery",
+      "configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "execution_status": "COMPLETED",
+      "execution_time_s": 0.0,
+      "baseline_metrics": {
+        "accuracy": 0.44369,
+        "latency_ms": 18.8322,
+        "memory_mb": 108.645,
+        "model_size_mb": 12.847,
+        "extra": {
+          "params_torch": 3157184.0
+        }
+      },
+      "metrics": {
+        "accuracy": 0.28965,
+        "latency_ms": 13.9148,
+        "memory_mb": 93.383,
+        "model_size_mb": 3.714,
+        "extra": {
+          "params_torch": 882996.0,
+          "training_epochs": 40.0,
+          "training_seconds": 509.1,
+          "macs_estimate": 1916046400.0,
+          "proxy_min_cosine_similarity": 0.982852,
+          "proxy_max_abs_diff": 532.553864,
+          "proxy_relative_diff": 0.1844,
+          "proxy_shape_match": 1.0,
+          "proxy_dtype_match": 1.0
+        }
+      },
+      "artifact": {
+        "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseB.pt",
+        "exists": true,
+        "size_bytes": 3714299,
+        "format": "pt",
+        "checksum_sha256": "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6",
+        "expected_checksum_sha256": null,
+        "checksum_valid": null,
+        "metadata": {
+          "source_model": "E5-1 sdk_output.pt (NetsPresso candidate)",
+          "source_model_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+          "operation": "local_finetune",
+          "structural_validation": {
+            "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseB.pt",
+            "format": "pt",
+            "status": "PASS",
+            "message": "loaded as graph_module via full_unpickle (trusted)",
+            "checks": {
+              "exists": true,
+              "non_empty": true,
+              "readable": true,
+              "zip_container": true,
+              "safe_load": false,
+              "full_load": true,
+              "recognised_structure": true,
+              "has_parameters": true
+            },
+            "details": {
+              "size_bytes": 3714299,
+              "magic": "504b0304",
+              "safe_load_error": "UnpicklingError",
+              "load_mode": "full_unpickle (trusted)",
+              "class_name": "GraphModule",
+              "parameter_count": 882996,
+              "parameter_tensors": 183,
+              "object_kind": "graph_module"
+            },
+            "defect_category": null
+          },
+          "configuration_key": "yolov8n|intel_xeon_w2233|onnxruntime|default|automatic_compression",
+          "evaluation": "local_finetune",
+          "generated_by": "scripts/yolov8_e5_1_finetune.py",
+          "phase": "B"
+        }
+      },
+      "logs": [
+        "Local fine-tuning recovery experiment. No NetsPresso API call was made. The fine-tuned artifact is a LOCAL derivative of the E5-1 NetsPresso candidate, not a NetsPresso output. COCO128 train == val (128 images): smoke/diagnostic only, never release evidence.",
+        "start body sha256=0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a",
+        "fine-tuned sha256=73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6",
+        "phase B, 40 epochs, 509.1 s"
+      ],
+      "error": null,
+      "environment": {
+        "adapter": "local_e5_1_finetune",
+        "adapter_version": "0.1.0",
+        "sdk_name": "ultralytics+torch (local training)",
+        "sdk_version": "8.4.173",
+        "python_version": "3.11.9",
+        "platform": "Windows 10 AMD64",
+        "extra": {
+          "credit_consuming": false,
+          "netspresso_api_calls": 0,
+          "evaluation_type": "local_finetune",
+          "os": "Windows",
+          "os_release": "10",
+          "os_version": "10.0.26200",
+          "architecture": "AMD64",
+          "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+          "cpu_count": 20,
+          "python": "3.11.9",
+          "python_implementation": "CPython",
+          "execution_provider": "CPUExecutionProvider",
+          "intra_op_threads": null,
+          "thread_env": {
+            "OMP_NUM_THREADS": "1"
+          },
+          "packages": {
+            "ultralytics": "8.4.173",
+            "torch": "2.14.1",
+            "onnx": "1.23.1",
+            "onnxruntime": "1.30.0",
+            "numpy": "2.4.6",
+            "psutil": "7.2.2"
+          }
+        }
+      },
+      "reproducibility": {
+        "level": "NOT_VERIFIED",
+        "runs": 1,
+        "checksums": [
+          "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6"
+        ],
+        "notes": "single local fine-tuning run (seeded, deterministic flags); a second run was not performed"
+      },
+      "timestamp": "2026-10-05T04:42:27+00:00",
+      "credit": {
+        "usage_type": "none",
+        "estimated": 0,
+        "actual": null,
+        "note": "local fine-tuning: 0 credits, no API call"
+      },
+      "scenario_id": null
+    },
+    "quality_gate": {
+      "overall": "FAIL",
+      "profile": "release",
+      "criteria": [
+        {
+          "name": "accuracy",
+          "status": "FAIL",
+          "observed": 15.404,
+          "threshold": 1.0,
+          "message": "accuracy drop 15.40 pp exceeds threshold 1.00 pp",
+          "required": true
+        },
+        {
+          "name": "output_equivalence_proxy",
+          "status": "WARN",
+          "observed": 0.982852,
+          "threshold": 0.99,
+          "message": "proxy (not accuracy): min cosine 0.9829 < 0.99",
+          "required": false
+        },
+        {
+          "name": "latency",
+          "status": "PASS",
+          "observed": -26.112,
+          "threshold": 10.0,
+          "message": "latency 18.832 -> 13.915 ms (-26.11%) within +10.0%",
+          "required": true
+        },
+        {
+          "name": "memory",
+          "status": "PASS",
+          "observed": -14.048,
+          "threshold": 15.0,
+          "message": "memory 108.645 -> 93.383 MB (-14.05%) within +15.0%",
+          "required": true
+        },
+        {
+          "name": "model_size",
+          "status": "PASS",
+          "observed": -71.091,
+          "threshold": 10.0,
+          "message": "model_size 12.847 -> 3.714 MB (-71.09%) within +10.0%",
+          "required": false
+        },
+        {
+          "name": "artifact",
+          "status": "NOT_APPLICABLE",
+          "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+          "threshold": "required",
+          "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+          "required": true
+        },
+        {
+          "name": "structural_validity",
+          "status": "PASS",
+          "observed": "PASS",
+          "threshold": "required",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "required": true
+        },
+        {
+          "name": "reproducibility",
+          "status": "NOT_APPLICABLE",
+          "observed": "NOT_VERIFIED",
+          "threshold": "required",
+          "message": "reproducibility not verified (fewer than two runs)",
+          "required": true
+        }
+      ],
+      "reasons": [
+        "Accuracy: accuracy drop 15.40 pp exceeds threshold 1.00 pp",
+        "Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+        "Reproducibility: reproducibility not verified (fewer than two runs)"
+      ]
+    },
+    "defect": {
+      "category": "ACCURACY_REGRESSION",
+      "severity": "HIGH",
+      "message": "accuracy drop 15.40 pp exceeds threshold 1.00 pp",
+      "evidence": [
+        "accuracy: accuracy drop 15.40 pp exceeds threshold 1.00 pp (observed=15.404, threshold=1.0)"
+      ],
+      "suspected_cause": "pruning without fine-tuning / ratio too aggressive for this model (suspected, not confirmed)",
+      "reproducibility": "unknown",
+      "affected_configuration": {
+        "model": "yolov8n",
+        "device": "intel_xeon_w2233",
+        "runtime": "onnxruntime",
+        "backend": "default",
+        "optimization": "automatic_compression"
+      },
+      "secondary_categories": []
+    }
+  },
+  "environment": {
+    "adapter": "local_e5_1_finetune",
+    "adapter_version": "0.1.0",
+    "sdk_name": "ultralytics+torch (local training)",
+    "sdk_version": "8.4.173",
+    "python_version": "3.11.9",
+    "platform": "Windows 10 AMD64",
+    "extra": {
+      "credit_consuming": false,
+      "netspresso_api_calls": 0,
+      "evaluation_type": "local_finetune",
+      "os": "Windows",
+      "os_release": "10",
+      "os_version": "10.0.26200",
+      "architecture": "AMD64",
+      "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+      "cpu_count": 20,
+      "python": "3.11.9",
+      "python_implementation": "CPython",
+      "execution_provider": "CPUExecutionProvider",
+      "intra_op_threads": null,
+      "thread_env": {
+        "OMP_NUM_THREADS": "1"
+      },
+      "packages": {
+        "ultralytics": "8.4.173",
+        "torch": "2.14.1",
+        "onnx": "1.23.1",
+        "onnxruntime": "1.30.0",
+        "numpy": "2.4.6",
+        "psutil": "7.2.2"
+      }
+    }
+  }
+}

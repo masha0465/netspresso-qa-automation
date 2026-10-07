@@ -1,0 +1,173 @@
+{
+  "credit_consuming": false,
+  "disclaimer": "Local fine-tuning recovery experiment. No NetsPresso API call was made. The fine-tuned artifact is a LOCAL derivative of the E5-1 NetsPresso candidate, not a NetsPresso output. COCO128 train == val (128 images): smoke/diagnostic only, never release evidence.",
+  "three_way": {
+    "status": "MEASURED",
+    "metric": "mAP50-95",
+    "baseline": 0.44369,
+    "compressed": 0.0,
+    "fine_tuned": 0.46688,
+    "baseline_to_compressed_pp": -44.369,
+    "baseline_to_fine_tuned_pp": 2.319,
+    "compressed_to_fine_tuned_pp": 46.688,
+    "remaining_drop_pp": -2.319,
+    "recovery_percent": 105.23,
+    "relative_to_baseline_percent": 105.23
+  },
+  "recovery": {
+    "decision": "RECOVERY_SUCCESS",
+    "reason": "remaining drop -2.319 pp <= 1.0 pp on the smoke set",
+    "thresholds": {
+      "max_drop_pp": 1.0,
+      "material_improvement_pp": 5.0,
+      "unusable_below": 0.05,
+      "basis": "PROJECT-DEFINED EXAMPLE (smoke-diagnostic, not release)"
+    }
+  },
+  "recovery_assessment": {
+    "historical_e5_1_defects": {
+      "compression": null,
+      "local_eval": "E5-1-local_eval-ACCURACY_REGRESSION",
+      "release": "E5-1-release-ACCURACY_REGRESSION"
+    },
+    "historical_records_modified": false,
+    "assessment": "E5-1 ACCURACY_REGRESSION recovered by subsequent LOCAL fine-tuning on the smoke set (release evidence still pending)",
+    "recovery_decision": {
+      "decision": "RECOVERY_SUCCESS",
+      "reason": "remaining drop -2.319 pp <= 1.0 pp on the smoke set",
+      "thresholds": {
+        "max_drop_pp": 1.0,
+        "material_improvement_pp": 5.0,
+        "unusable_below": 0.05,
+        "basis": "PROJECT-DEFINED EXAMPLE (smoke-diagnostic, not release)"
+      }
+    },
+    "root_cause_status": "pruning-without-fine-tuning hypothesis SUPPORTED by recovery evidence"
+  },
+  "comparison_table": [
+    {
+      "model": "baseline",
+      "kind": "upstream YOLOv8n (untouched)",
+      "metrics": {
+        "mAP50-95": 0.44369,
+        "mAP50": 0.60111,
+        "mAP75": 0.47223,
+        "precision": 0.6286,
+        "recall": 0.52902
+      },
+      "params": 3157184,
+      "flops_2x_macs": 8742912000,
+      "size_bytes": 12846691,
+      "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b"
+    },
+    {
+      "model": "E5-1 compressed",
+      "kind": "NetsPresso-generated candidate",
+      "metrics": {
+        "mAP50-95": 0.0,
+        "mAP50": 0.0,
+        "mAP75": 0.0,
+        "precision": 3e-05,
+        "recall": 0.00223
+      },
+      "params": 882996,
+      "flops_2x_macs": 3832092800,
+      "size_bytes": 3693813,
+      "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1"
+    },
+    {
+      "model": "fine-tuned A",
+      "kind": "LOCAL derivative (global epochs ..30)",
+      "metrics": {
+        "mAP50-95": 0.0348,
+        "mAP50": 0.05939,
+        "mAP75": 0.03153,
+        "precision": 0.62838,
+        "recall": 0.0452
+      },
+      "params": 882996,
+      "flops_2x_macs": 3832092800,
+      "size_bytes": 3713403,
+      "sha256": "0a2038725d65ca4211891e99b56cd6f772a1f9abc214935b56ccc24b8a0c696a"
+    },
+    {
+      "model": "fine-tuned B",
+      "kind": "LOCAL derivative (global epochs ..40)",
+      "metrics": {
+        "mAP50-95": 0.28965,
+        "mAP50": 0.45843,
+        "mAP75": 0.33512,
+        "precision": 0.59832,
+        "recall": 0.40044
+      },
+      "params": 882996,
+      "flops_2x_macs": 3832092800,
+      "size_bytes": 3714299,
+      "sha256": "73a8f76f4c88324bcb3fafaf5bde50fdba502f1ae63f3f06654144668f35adf6"
+    },
+    {
+      "model": "fine-tuned C",
+      "kind": "LOCAL derivative (global epochs 41..80)",
+      "metrics": {
+        "mAP50-95": 0.46688,
+        "mAP50": 0.67827,
+        "mAP75": 0.53599,
+        "precision": 0.67678,
+        "recall": 0.63216
+      },
+      "params": 882996,
+      "flops_2x_macs": 3832092800,
+      "size_bytes": 3714299,
+      "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee"
+    }
+  ],
+  "continuation_decision": {
+    "decision": "PHASE_C_GO_VAL2017",
+    "case": "A",
+    "reason": "best 0.46688 >= 0.43369 (baseline - 1.0 pp example threshold); release still needs val2017/checksum/reproducibility"
+  },
+  "continuation_next_step": {
+    "label": "COCO VAL2017",
+    "netspresso": "HOLD",
+    "rationale": [
+      "smoke accuracy reached the example threshold band; the next evidence is release data (val2017, 0 credits), not NetsPresso"
+    ]
+  },
+  "netspresso_next_execution": "HOLD",
+  "credit_safety": {
+    "ledger_before": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "ledger_after": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "ledger_unchanged": true,
+    "api_calls": 0,
+    "sdk_execution": 0
+  },
+  "traceability": {
+    "source_model": "yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "r1_fx_artifact": "outputs/models/yolov8n_fx_r1/model_fx.pt (patch r1-upstream-body-wrapper-v1)",
+    "r1_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "netspresso_execution": "20261005T040009Z_automatic_compression: automatic_compression ratio 0.5 (E5-1, NetsPresso-generated)",
+    "candidate_artifact": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+    "candidate_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+    "local_validation": "LOCAL fine-tuning phase C (40 epochs = global 41..80, seed 0) -> outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt sha256=dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee; via phase B 73a8f76f4c88324b <- phase A 0a2038725d65ca42",
+    "accuracy_result": "COCO128 mAP50-95 baseline 0.44369 / compressed 0.0 / fine-tuned 0.46688 (recovery 105.23 %)",
+    "quality_gate": {
+      "compression": "PASS",
+      "local_eval": "PASS",
+      "release": "FAIL"
+    },
+    "credit_record": "ledger unchanged: (50, 450, 2) sha 4b700de201d359cf (0 credits)",
+    "complete": true,
+    "missing_links": [],
+    "question_answered": "Exactly which input artifact produced this candidate artifact? -> see r1_fx_artifact / r1_sha256 -> netspresso_execution -> candidate_sha256"
+  }
+}

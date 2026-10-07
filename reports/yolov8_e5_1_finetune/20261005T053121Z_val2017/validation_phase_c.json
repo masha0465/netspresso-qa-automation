@@ -1,0 +1,153 @@
+{
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "disclaimer": "COCO val2017 independent evaluation: inference only, no training, no NetsPresso API call, 0 credits. COCO128 (train == val) numbers are smoke evidence; val2017 is the unseen-data evidence. Thresholds are PROJECT-DEFINED EXAMPLES; no Release PASS is declared here.",
+  "model": "phase_c",
+  "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate",
+  "model_sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+  "model_size_bytes": 3714299,
+  "integrity_before": {
+    "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+    "exists": true,
+    "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+    "expected_sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+    "size_bytes": 3714299,
+    "expected_size": 3714299,
+    "match": true,
+    "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate"
+  },
+  "integrity_after": {
+    "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+    "exists": true,
+    "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+    "expected_sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+    "size_bytes": 3714299,
+    "expected_size": 3714299,
+    "match": true,
+    "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate"
+  },
+  "immutable": true,
+  "structural": {
+    "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+    "format": "pt",
+    "status": "PASS",
+    "message": "loaded as graph_module via full_unpickle (trusted)",
+    "checks": {
+      "exists": true,
+      "non_empty": true,
+      "readable": true,
+      "zip_container": true,
+      "safe_load": false,
+      "full_load": true,
+      "recognised_structure": true,
+      "has_parameters": true
+    },
+    "details": {
+      "size_bytes": 3714299,
+      "magic": "504b0304",
+      "safe_load_error": "UnpicklingError",
+      "load_mode": "full_unpickle (trusted)",
+      "class_name": "GraphModule",
+      "parameter_count": 882996,
+      "parameter_tensors": 183,
+      "object_kind": "graph_module"
+    },
+    "defect_category": null
+  },
+  "decoded_output_shape": [
+    1,
+    84,
+    8400
+  ],
+  "schema_ok": true,
+  "dataset": {
+    "yaml": "datasets/coco_val2017_eval.yaml",
+    "split": "val2017",
+    "images": 5000,
+    "manifest": "reports/yolov8_e5_1_finetune/20261005T053121Z_val2017/dataset_manifest.json"
+  },
+  "evaluation_config": {
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "rect": true,
+    "batch": 8,
+    "device": "cpu",
+    "half": false,
+    "workers": 0,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "grad_enabled": false,
+    "training": false
+  },
+  "duration_seconds": 97.7,
+  "metrics": {
+    "status": "MEASURED",
+    "reason": null,
+    "primary_metric": "mAP50-95",
+    "metrics": {
+      "mAP50-95": 0.00917,
+      "mAP50": 0.02101,
+      "mAP75": 0.00692,
+      "precision": 0.04391,
+      "recall": 0.04623
+    },
+    "dataset": "coco_val2017_eval.yaml",
+    "dataset_version": "COCO 2017 val (images.cocodataset.org val2017.zip + ultralytics coco2017labels.zip)",
+    "split": "val2017",
+    "images": 5000,
+    "instances": 36335,
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "model_label": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate",
+    "is_output_equivalence_proxy": false,
+    "extra": {
+      "speed_ms": {
+        "preprocess": 0.303,
+        "inference": 10.164,
+        "loss": 0.0,
+        "postprocess": 1.133
+      }
+    }
+  },
+  "environment": {
+    "os": "Windows",
+    "os_release": "10",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "python": "3.11.9",
+    "python_implementation": "CPython",
+    "execution_provider": null,
+    "intra_op_threads": null,
+    "thread_env": {
+      "OMP_NUM_THREADS": "1"
+    },
+    "packages": {
+      "ultralytics": "8.4.173",
+      "torch": "2.14.1",
+      "onnx": "1.23.1",
+      "onnxruntime": "1.30.0",
+      "numpy": "2.4.6",
+      "psutil": "7.2.2"
+    }
+  },
+  "ledger": {
+    "before": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "after": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "unchanged": true
+  },
+  "timestamp": "2026-10-05T05:43:46+00:00"
+}

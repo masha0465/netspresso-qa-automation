@@ -5,7 +5,7 @@ implementations exist (or are planned):
 
 * :class:`framework.adapters.mock_adapter.MockAdapter` – deterministic local
   simulation, 0 credits, used by pytest and CI.
-* ``NetsPressoAdapter`` (Phase 9, Python 3.11 only) – wraps the real SDK and
+* ``NetsPressoAdapter`` (Python 3.11 only) – wraps the real SDK and
   writes :class:`~framework.pipeline.result.ExecutionResult` JSON files that the
   main framework consumes offline.
 

@@ -1,0 +1,94 @@
+{
+  "credit_consuming": false,
+  "disclaimer": "COCO val2017 independent evaluation: inference only, no training, no NetsPresso API call, 0 credits. COCO128 (train == val) numbers are smoke evidence; val2017 is the unseen-data evidence. Thresholds are PROJECT-DEFINED EXAMPLES; no Release PASS is declared here.",
+  "val2017": [
+    {
+      "model": "baseline",
+      "kind": "upstream YOLOv8n R1 fx body (untouched baseline)",
+      "sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "mAP50-95": 0.36804,
+      "mAP50": 0.51861,
+      "mAP75": 0.40003,
+      "precision": 0.63496,
+      "recall": 0.47375,
+      "delta_vs_baseline_pp": 0.0,
+      "recovery_vs_e5_1_pp": 36.804,
+      "duration_seconds": 142.8
+    },
+    {
+      "model": "e5_1",
+      "kind": "NetsPresso-generated E5-1 compressed candidate",
+      "sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "mAP50-95": 0.0,
+      "mAP50": 0.0,
+      "mAP75": 0.0,
+      "precision": 2e-05,
+      "recall": 0.00186,
+      "delta_vs_baseline_pp": -36.804,
+      "recovery_vs_e5_1_pp": 0.0,
+      "duration_seconds": 154.2
+    },
+    {
+      "model": "phase_c",
+      "kind": "LOCAL fine-tuned derivative (phase C, global epoch 80) of the E5-1 candidate",
+      "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+      "mAP50-95": 0.00917,
+      "mAP50": 0.02101,
+      "mAP75": 0.00692,
+      "precision": 0.04391,
+      "recall": 0.04623,
+      "delta_vs_baseline_pp": -35.887,
+      "recovery_vs_e5_1_pp": 0.917,
+      "duration_seconds": 97.7
+    }
+  ],
+  "coco128_smoke": {
+    "baseline": 0.44369,
+    "e5_1": 0.0,
+    "phase_b": 0.28965,
+    "phase_c": 0.46688
+  },
+  "generalization": {
+    "baseline": {
+      "status": "MEASURED",
+      "smoke": 0.44369,
+      "unseen": 0.36804,
+      "gap": 0.07565,
+      "gap_pp": 7.565,
+      "unseen_over_smoke_percent": 82.95
+    },
+    "e5_1": {
+      "status": "MEASURED",
+      "smoke": 0.0,
+      "unseen": 0.0,
+      "gap": 0.0,
+      "gap_pp": 0.0,
+      "unseen_over_smoke_percent": null
+    },
+    "phase_b": {
+      "status": "smoke only",
+      "smoke": 0.28965,
+      "unseen": null,
+      "note": "not required by the plan"
+    },
+    "phase_c": {
+      "status": "MEASURED",
+      "smoke": 0.46688,
+      "unseen": 0.00917,
+      "gap": 0.45771,
+      "gap_pp": 45.771,
+      "unseen_over_smoke_percent": 1.96,
+      "overfit_indicator": {
+        "smoke_above_baseline_smoke": true,
+        "unseen_vs_baseline_unseen_pp": -35.887,
+        "excess_gap_vs_baseline_pp": 38.206,
+        "reading": "smoke (train==val) advantage that disappears on unseen data = memorization; the excess gap over the baseline's own COCO128/val2017 gap quantifies it"
+      }
+    }
+  },
+  "per_model_records": {
+    "baseline": "reports/yolov8_e5_1_finetune/20261005T053121Z_val2017/validation_baseline.json",
+    "e5_1": "reports/yolov8_e5_1_finetune/20261005T053121Z_val2017/validation_e5_1.json",
+    "phase_c": "reports/yolov8_e5_1_finetune/20261005T053121Z_val2017/validation_phase_c.json"
+  }
+}

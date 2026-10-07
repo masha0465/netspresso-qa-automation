@@ -1,0 +1,343 @@
+{
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "disclaimer": "YOLOv8n baseline evidence measured locally. No NetsPresso API call was made. Latency/memory are development-machine numbers, not target-device or vendor benchmarks.",
+  "model": {
+    "name": "yolov8n",
+    "task": "detect",
+    "weights": {
+      "path": "outputs/models/yolov8n.pt",
+      "size_bytes": 6549796,
+      "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "trusted_for_full_unpickle": true,
+      "provenance": {
+        "source": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt",
+        "release": "ultralytics/assets v8.4.0",
+        "size_bytes": 6549796,
+        "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+        "license_note": "ultralytics YOLOv8 weights are AGPL-3.0; used here for local evaluation only, never committed"
+      }
+    },
+    "implementation": {
+      "ultralytics_version": "8.4.173",
+      "task": "detect",
+      "num_classes": 80,
+      "layers": 225,
+      "params_reported": 3157200,
+      "gflops_reported_at_640": 8.8550912,
+      "note": "values reported by the ultralytics implementation (model.info); not NetsPresso SDK values"
+    }
+  },
+  "input_shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "preprocessing": "ultralytics default letterbox to imgsz, RGB, /255 (val); ORT measurement uses uniform random float32 input (latency/memory only)",
+  "artifacts": {
+    "weights_pt": {
+      "structural_validation": {
+        "path": "outputs/models/yolov8n.pt",
+        "format": "pt",
+        "status": "PASS",
+        "message": "loaded as checkpoint via full_unpickle (trusted)",
+        "checks": {
+          "exists": true,
+          "non_empty": true,
+          "readable": true,
+          "zip_container": true,
+          "safe_load": false,
+          "full_load": true,
+          "recognised_structure": true,
+          "has_parameters": true
+        },
+        "details": {
+          "size_bytes": 6549796,
+          "magic": "504b0304",
+          "safe_load_error": "UnpicklingError",
+          "load_mode": "full_unpickle (trusted)",
+          "checkpoint_key": "model",
+          "keys": [
+            "best_fitness",
+            "date",
+            "docs",
+            "ema",
+            "epoch",
+            "license",
+            "model",
+            "optimizer",
+            "train_args",
+            "updates",
+            "version"
+          ],
+          "class_name": "DetectionModel",
+          "parameter_count": 3157200,
+          "parameter_tensors": 184,
+          "object_kind": "checkpoint"
+        },
+        "defect_category": null
+      }
+    },
+    "onnx_export": {
+      "path": "outputs/models/yolov8n_640_opset13.onnx",
+      "size_bytes": 12824019,
+      "sha256": "7bf62b34a420a12ba685e779f8ca32c859d88eb3ad9e5a7a31f9ad3d1d5697be",
+      "checksums": {
+        "raw_sha256": "7bf62b34a420a12ba685e779f8ca32c859d88eb3ad9e5a7a31f9ad3d1d5697be",
+        "normalized_sha256": "6f180ff2e65fba4272c2eb57bf49fadbabc02ca6031e8df5f7c61546ea0de598",
+        "normalization_policy": "onnx-metadata-v1: drop all metadata_props; clear model.doc_string; graph/initializers/opsets/producer untouched",
+        "normalization_version": 1,
+        "removed_metadata_keys": [
+          "description",
+          "author",
+          "date",
+          "version",
+          "license",
+          "docs",
+          "stride",
+          "task",
+          "head",
+          "batch",
+          "imgsz",
+          "names",
+          "args",
+          "channels",
+          "end2end"
+        ],
+        "cleared_fields": [],
+        "status": "COMPUTED"
+      },
+      "opset": 13,
+      "dynamic": false,
+      "simplify": false,
+      "structural_validation": {
+        "path": "outputs/models/yolov8n_640_opset13.onnx",
+        "format": "onnx",
+        "status": "PASS",
+        "message": "valid ONNX graph (263 nodes, 127 initializers)",
+        "checks": {
+          "exists": true,
+          "non_empty": true,
+          "readable": true,
+          "onnx_load": true,
+          "checker": true,
+          "graph_present": true,
+          "has_inputs": true,
+          "has_outputs": true,
+          "has_nodes": true,
+          "has_initializers": true
+        },
+        "details": {
+          "size_bytes": 12824019,
+          "magic": "08071207",
+          "ir_version": 7,
+          "opset_imports": [
+            13
+          ],
+          "inputs": [
+            {
+              "name": "images",
+              "shape": [
+                1,
+                3,
+                640,
+                640
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "name": "output0",
+              "shape": [
+                1,
+                84,
+                8400
+              ]
+            }
+          ],
+          "node_count": 263,
+          "initializer_count": 127,
+          "op_type_histogram": {
+            "Conv": 64,
+            "Sigmoid": 58,
+            "Mul": 60,
+            "Constant": 24,
+            "Split": 8,
+            "Add": 9,
+            "Concat": 17,
+            "MaxPool": 3,
+            "Resize": 2,
+            "Reshape": 8,
+            "Transpose": 1,
+            "Softmax": 1,
+            "Shape": 1,
+            "Gather": 1,
+            "Div": 2,
+            "Slice": 2,
+            "Sub": 2
+          }
+        },
+        "defect_category": null
+      }
+    }
+  },
+  "params_flops": {
+    "params_torch": 3157200,
+    "params_onnx_initializers": 3151904,
+    "macs_estimate": 4371993600,
+    "params_torch_vs_reported": {
+      "name": "params",
+      "sdk_reported": 3157200,
+      "independently_verified": 3157200,
+      "delta": 0,
+      "delta_percent": 0.0,
+      "tolerance_percent": 0.5,
+      "verification_status": "PASS",
+      "method": "torch numel vs ultralytics model.info",
+      "notes": []
+    },
+    "params_onnx_vs_torch": {
+      "name": "params",
+      "sdk_reported": 3157200,
+      "independently_verified": 3151904,
+      "delta": -5296,
+      "delta_percent": 0.1677,
+      "tolerance_percent": 0.5,
+      "verification_status": "PASS",
+      "method": "ONNX initializer elements vs torch numel (export may fold BN / add constants)",
+      "notes": []
+    },
+    "flops_estimate_vs_reported": {
+      "name": "flops",
+      "sdk_reported": 8855091200.0,
+      "independently_verified": 8743987200.0,
+      "delta": -111104000.0,
+      "delta_percent": 1.2547,
+      "tolerance_percent": 10.0,
+      "verification_status": "PASS",
+      "method": "ONNX MAC estimate (Conv/Gemm/MatMul) vs ultralytics GFLOPs",
+      "notes": [
+        "closest convention: 2*MACs (MACs=4371993600, 2*MACs=8743987200); SDK does not document its FLOPs convention"
+      ]
+    },
+    "macs_coverage": {
+      "covered_ops": {
+        "Conv": 64
+      },
+      "uncovered_ops": {
+        "Sigmoid": 58,
+        "Mul": 60,
+        "Constant": 24,
+        "Split": 8,
+        "Add": 9,
+        "Concat": 17,
+        "MaxPool": 3,
+        "Resize": 2,
+        "Reshape": 8,
+        "Transpose": 1,
+        "Softmax": 1,
+        "Shape": 1,
+        "Gather": 1,
+        "Div": 2,
+        "Slice": 2,
+        "Sub": 2
+      },
+      "error": null
+    }
+  },
+  "performance": {
+    "source": "local_onnxruntime_cpu (isolated process)",
+    "latency": {
+      "median_ms": 22.7157,
+      "p95_ms": 47.8508,
+      "min_ms": 11.2014,
+      "max_ms": 71.7582,
+      "mean_ms": 25.9382,
+      "iterations": 100,
+      "warmup": 10,
+      "source": "local_onnxruntime_cpu"
+    },
+    "memory": {
+      "status": "PASS",
+      "rss_before_mb": 20.23,
+      "rss_after_load_mb": 69.723,
+      "rss_peak_mb": 127.301,
+      "delta_mb": 107.07,
+      "method": "psutil process RSS (CPU only; GPU not applicable)"
+    },
+    "gpu_memory": "N/A (no GPU)",
+    "outputs": {
+      "names": [
+        "output0"
+      ],
+      "shapes": [
+        [
+          1,
+          84,
+          8400
+        ]
+      ],
+      "dtypes": [
+        "float32"
+      ]
+    }
+  },
+  "accuracy": {
+    "status": "MEASURED",
+    "dataset_yaml": "coco128.yaml",
+    "dataset_root": "datasets",
+    "split": "val",
+    "imgsz": 640,
+    "metrics": {
+      "mAP50-95": 0.44369,
+      "mAP50": 0.60111,
+      "mAP75": 0.47223,
+      "precision": 0.6286,
+      "recall": 0.52902
+    },
+    "results_dict": {
+      "metrics/precision(B)": 0.6286,
+      "metrics/recall(B)": 0.52902,
+      "metrics/mAP50(B)": 0.60111,
+      "metrics/mAP50-95(B)": 0.44369,
+      "fitness": 0.44369
+    },
+    "speed_ms_per_image": {
+      "preprocess": 0.316,
+      "inference": 16.359,
+      "loss": 0.0,
+      "postprocess": 0.678
+    },
+    "conf_iou_settings": "ultralytics val defaults (conf=0.001, iou=0.7) unless overridden",
+    "note": "smoke-scale dataset if coco128: not comparable to the published COCO val2017 figure"
+  },
+  "seed": 0,
+  "environment": {
+    "os": "Windows",
+    "os_release": "10",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "python": "3.11.9",
+    "python_implementation": "CPython",
+    "execution_provider": "CPUExecutionProvider",
+    "intra_op_threads": null,
+    "thread_env": {
+      "OMP_NUM_THREADS": "1"
+    },
+    "packages": {
+      "ultralytics": "8.4.173",
+      "torch": "2.14.1",
+      "torchvision": "0.29.1",
+      "onnx": "1.23.1",
+      "onnxruntime": "1.30.0",
+      "onnxslim": "0.1.97",
+      "numpy": "2.4.6",
+      "opencv-python": "5.0.0.93",
+      "psutil": "7.2.2"
+    }
+  },
+  "timestamp": "2026-10-05T02:50:00+00:00"
+}

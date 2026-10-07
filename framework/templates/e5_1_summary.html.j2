@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>E5-1 Summary — {{ r.experiment.experiment_id }} {{ r.experiment.model }} {{ r.experiment.operation }}</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1100px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; } th { background: #f5f7fa; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS, .COMPLETED, .MEASURED, .MATCH, .READY { background: #e3f6ec; color: #0f5132; } .FAIL, .ERROR, .MISMATCH, .BLOCKED { background: #fbe3e4; color: #7a1e26; } .WARN, .HOLD { background: #fff1cc; color: #6b4e00; }
+  .NOT_APPLICABLE, .NOT_VERIFIED, .N\/A, .NOT_COMPARABLE, .NOT_OBSERVED { background: #eef0f3; color: #3e4c59; }
+  .note { background: #fff8e6; border-left: 3px solid #d4a72c; padding: .5rem .75rem; margin: 1rem 0; font-size: .9rem; }
+  .muted { color: #616e7c; font-size: .9rem; } code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>Phase 5-E E5-1 — single real automatic_compression of the R1 YOLOv8n fx body</h1>
+<p class="muted">experiment <code>{{ r.experiment.experiment_id }}</code> · {{ r.experiment.timestamp }} · model <code>{{ r.experiment.model }}</code> · operation <code>{{ r.experiment.operation }}</code> ratio {{ r.experiment.compression_ratio }} · input {{ r.experiment.input_shape }} · real run <code>{{ r.experiment.run_dir }}</code></p>
+<div class="note"><strong>{{ r.disclaimer }}</strong><br>All thresholds are PROJECT-DEFINED EXAMPLE policy, not official Nota/NetsPresso criteria. Latency/memory are development-machine measurements. "Output equivalence proxy" is NOT accuracy. COCO128 is a smoke dataset; it does not decide release accuracy.</div>
+
+<h2>0. Status summary</h2>
+<table><tr><th>Execution</th><th>Artifact</th><th>Validation</th><th>Gate compression</th><th>Gate local_eval</th><th>Gate release</th><th>Release</th><th>Next step</th></tr>
+<tr><td><span class="status {{ r.statuses.execution_status }}">{{ r.statuses.execution_status }}</span></td><td><span class="status {{ r.statuses.artifact_status }}">{{ r.statuses.artifact_status }}</span></td>
+<td><span class="status {{ r.statuses.validation_status }}">{{ r.statuses.validation_status }}</span></td>
+{% for p in ['compression', 'local_eval', 'release'] %}<td><span class="status {{ r.quality_gate[p].overall }}">{{ r.quality_gate[p].overall }}</span></td>{% endfor %}
+<td><span class="status {{ r.statuses.release_status }}">{{ r.statuses.release_status }}</span></td><td><span class="status {{ r.recommendation.decision }}">{{ r.recommendation.decision }}</span></td></tr></table>
+
+<h2>1. Traceability chain</h2>
+<table>{% for k, v in r.traceability.items() if k not in ['complete', 'missing_links', 'question_answered'] %}<tr><th style="width:14rem">{{ k }}</th><td><code>{{ v }}</code></td></tr>{% endfor %}
+<tr><th>complete</th><td>{{ r.traceability.complete }}{% if r.traceability.missing_links %} — missing: {{ r.traceability.missing_links }}{% endif %}</td></tr></table>
+
+<h2>2. NetsPresso execution and credit</h2>
+<table><tr><th>SDK</th><th>Status</th><th>Method</th><th>Duration (s)</th><th>Model ID (upload / compressed)</th><th>Account before → after</th><th>Observed delta</th><th>Expected</th><th>Classification</th></tr>
+<tr><td>{{ r.netspresso_execution.sdk_version }}</td><td><span class="status {{ r.netspresso_execution.status }}">{{ r.netspresso_execution.status }}</span></td><td><code>{{ r.netspresso_execution.method }}</code></td><td>{{ r.netspresso_execution.execution_time_s }}</td>
+<td><code>{{ r.netspresso_execution.sdk_model_id }}</code> / <code>{{ r.netspresso_execution.compressed_model_id }}</code></td><td>{{ r.netspresso_execution.credit.account_total_before }} → {{ r.netspresso_execution.credit.account_total_after }}</td>
+<td>{{ r.netspresso_execution.credit.delta_classification.observed }}</td><td>{{ r.netspresso_execution.credit.delta_classification.expected }}</td><td><span class="status {{ r.netspresso_execution.credit.delta_classification.status }}">{{ r.netspresso_execution.credit.delta_classification.status }}</span></td></tr></table>
+<p class="muted">service operations executed: {{ r.netspresso_execution.operations_executed }} · ledger after: used {{ r.netspresso_execution.ledger_after.used_credit }} / remaining {{ r.netspresso_execution.ledger_after.remaining_estimate }} / operations {{ r.netspresso_execution.ledger_after.operations }}</p>
+
+<h2>3. Input provenance → candidate artifact</h2>
+<table><tr><th></th><th>Path</th><th>SHA-256</th><th>Size (B)</th><th>Format</th><th>Structural</th><th>Forward / output</th></tr>
+<tr><td>input (R1)</td><td><code>{{ r.input_provenance.source_artifact }}</code></td><td><code>{{ r.input_provenance.source_sha256 }}</code></td><td>{{ r.input_provenance.source_size_bytes }}</td><td>pt (fx GraphModule)</td><td>{{ r.input_provenance.generation_method }}</td><td>{{ r.input_provenance.r1_validation_reference }}</td></tr>
+{% for k, a in r.candidate_artifact.items() if k in ['pt', 'onnx'] %}
+<tr><td>candidate {{ k }}</td><td><code>{{ a.path }}</code></td><td><code>{{ a.sha256 }}</code></td><td>{{ a.size_bytes }}</td><td>{{ a.format }}</td><td><span class="status {{ a.structural.status }}">{{ a.structural.status }}</span> {{ a.structural.message }}</td><td>{{ a.forward_output_shapes or a.graph_outputs }} {% if a.schema_ok is defined %}schema_ok={{ a.schema_ok }}{% endif %}</td></tr>
+{% endfor %}</table>
+
+<h2>4. Parameters / FLOPs</h2>
+<table><tr><th></th><th>Baseline (SDK original)</th><th>Baseline (independent)</th><th>Candidate (SDK)</th><th>Candidate (independent)</th><th>Reduction (SDK)</th><th>Verification</th></tr>
+<tr><td>params</td><td>{{ r.model_metrics.params.baseline_sdk }}</td><td>{{ r.model_metrics.params.baseline_independent }}</td><td>{{ r.model_metrics.params.candidate_sdk }}</td><td>{{ r.model_metrics.params.candidate_independent }}</td><td>{{ r.model_metrics.params.reduction_percent_sdk }} %</td><td><span class="status {{ r.model_metrics.params.verification.candidate.verification_status }}">{{ r.model_metrics.params.verification.candidate.verification_status }}</span></td></tr>
+<tr><td>FLOPs</td><td>{{ r.model_metrics.flops.baseline_sdk }}</td><td>{{ r.model_metrics.flops.baseline_independent_2x_macs }}</td><td>{{ r.model_metrics.flops.candidate_sdk }}</td><td>{{ r.model_metrics.flops.candidate_independent_2x_macs }}</td><td>{{ r.model_metrics.flops.reduction_percent_sdk }} %</td><td><span class="status {{ r.model_metrics.flops.verification.candidate.verification_status }}">{{ r.model_metrics.flops.verification.candidate.verification_status }}</span></td></tr></table>
+<p class="muted">{{ r.model_metrics.flops.convention_note }}</p>
+
+<h2>5. Detection head re-attachment and COCO128 smoke accuracy</h2>
+<p>Head re-attach: <span class="status {{ r.head_reattach.status }}">{{ r.head_reattach.status }}</span> {{ r.head_reattach.head_class }} → decoded {{ r.head_reattach.decoded_output_shape }} (expected {{ r.head_reattach.expected }})</p>
+<table><tr><th></th><th>mAP50-95</th><th>mAP50</th><th>mAP75</th><th>Precision</th><th>Recall</th><th>Evaluator</th></tr>
+{% for label in ['baseline', 'candidate'] %}{% set m = r.accuracy[label] %}
+<tr><td>{{ label }} ({{ m.model_label }})</td>{% if m.status == 'MEASURED' %}<td>{{ m.metrics['mAP50-95'] }}</td><td>{{ m.metrics['mAP50'] }}</td><td>{{ m.metrics['mAP75'] }}</td><td>{{ m.metrics.precision }}</td><td>{{ m.metrics.recall }}</td>{% else %}<td colspan="5">{{ m.status }} — {{ m.reason }}</td>{% endif %}<td>{{ m.evaluator }}</td></tr>
+{% endfor %}</table>
+<p>Comparison: <span class="status {{ r.accuracy.comparison.status }}">{{ r.accuracy.comparison.status }}</span> absolute_delta {{ r.accuracy.comparison.absolute_delta }} · drop_pp {{ r.accuracy.comparison.drop_pp }} · relative_delta {{ r.accuracy.comparison.relative_delta_percent }} % · threshold {{ r.accuracy.threshold_pp }} pp ({{ r.accuracy.threshold_basis }})</p>
+
+<h2>6. Output equivalence proxy (NOT accuracy)</h2>
+<table><tr><th>Comparison</th><th>min cosine</th><th>max |Δ|</th><th>relative diff</th><th>outputs</th><th>Status</th></tr>
+<tr><td>ORT, identical deterministic input (gate signal)</td><td>{{ r.output_equivalence_proxy.ort.min_cosine_similarity }}</td><td>{{ r.output_equivalence_proxy.ort.max_abs_diff }}</td><td>{{ r.output_equivalence_proxy.ort.relative_diff }}</td><td>{{ r.output_equivalence_proxy.ort.num_outputs }}</td><td><span class="status {{ r.output_equivalence_proxy.ort.status }}">{{ r.output_equivalence_proxy.ort.status }}</span></td></tr>
+<tr><td>real COCO128 images, decoded pre-NMS (R1 body+head vs candidate body+head)</td><td>{{ r.output_equivalence_proxy.real_images.aggregate.decoded.min_cosine }}</td><td>{{ r.output_equivalence_proxy.real_images.aggregate.decoded.max_abs_diff }}</td><td>{{ r.output_equivalence_proxy.real_images.aggregate.decoded.max_relative_l2_diff }}</td><td>{{ r.output_equivalence_proxy.real_images.images }} images</td><td>-</td></tr></table>
+<p class="muted">{{ r.output_equivalence_proxy.disclaimer }}</p>
+
+<h2>7. Local ONNX Runtime latency / memory (development machine)</h2>
+<table><tr><th></th><th>median (ms)</th><th>p95 (ms)</th><th>peak RSS Δ (MB)</th><th>ONNX</th></tr>
+{% for label in ['baseline', 'candidate'] %}{% set p = r.performance[label] %}
+<tr><td>{{ label }}</td>{% if p %}<td>{{ p.latency.median_ms }}</td><td>{{ p.latency.p95_ms }}</td><td>{{ p.memory.delta_mb }}</td><td><code>{{ p.onnx }}</code></td>{% else %}<td colspan="4">N/A</td>{% endif %}</tr>
+{% endfor %}</table>
+<p class="muted">{{ r.performance.note }}</p>
+
+<h2>8. Quality Gate by profile</h2>
+<table><tr><th>Profile</th><th>Overall</th><th>Criteria</th><th>Reasons</th></tr>
+{% for name, g in r.quality_gate.items() %}
+<tr><td><code>{{ name }}</code></td><td><span class="status {{ g.overall }}">{{ g.overall }}</span></td>
+<td><table>{% for c in g.criteria %}<tr><td>{{ c.name }}</td><td><span class="status {{ c.status }}">{{ c.status }}</span></td><td>{{ c.observed }}</td><td>{{ c.threshold }}</td></tr>{% endfor %}</table></td>
+<td>{% if g.reasons %}<ul>{% for x in g.reasons %}<li>{{ x }}</li>{% endfor %}</ul>{% else %}-{% endif %}</td></tr>
+{% endfor %}</table>
+<p class="muted">NetsPresso execution PASS ≠ candidate release PASS. The release profile keeps its missing-evidence rules (reproducibility requires a second authorized run; checksum requires a promoted baseline).</p>
+
+<h2>9. Defects</h2>
+<table><tr><th>Profile</th><th>ID</th><th>Category</th><th>Severity</th><th>Message</th></tr>
+{% for name, d in r.defects.by_profile.items() %}<tr><td><code>{{ name }}</code></td>{% if d %}<td><code>{{ d.defect_id }}</code></td><td>{{ d.category }}</td><td>{{ d.severity }}</td><td>{{ d.message }}</td>{% else %}<td colspan="4">none</td>{% endif %}</tr>{% endfor %}</table>
+<p><strong>Root-cause assessment:</strong> {{ r.defects.root_cause_assessment.suspected_root_cause }} — confidence <code>{{ r.defects.root_cause_assessment.confidence }}</code>, verified: {{ r.defects.root_cause_assessment.verified }}. {{ r.defects.root_cause_assessment.evidence }}</p>
+
+<h2>10. Reproducibility and registry</h2>
+<p>execution_runs {{ r.reproducibility.execution_runs }} · level <code>{{ r.reproducibility.level }}</code> · registry <code>{{ r.reproducibility.registry_entry.artifact_id }}</code> status <code>{{ r.reproducibility.registry_entry.status }}</code>. {{ r.reproducibility.note }}</p>
+
+<h2>11. Next-step recommendation</h2>
+<p><span class="status {{ r.recommendation.decision }}">{{ r.recommendation.decision }}</span></p>
+<ul>{% for x in r.recommendation.rationale %}<li>{{ x }}</li>{% endfor %}</ul>
+</body>
+</html>

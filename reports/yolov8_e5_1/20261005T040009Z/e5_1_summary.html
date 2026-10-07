@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>E5-1 Summary — E5-1 yolov8n automatic_compression</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1100px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; } th { background: #f5f7fa; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS, .COMPLETED, .MEASURED, .MATCH, .READY { background: #e3f6ec; color: #0f5132; } .FAIL, .ERROR, .MISMATCH, .BLOCKED { background: #fbe3e4; color: #7a1e26; } .WARN, .HOLD { background: #fff1cc; color: #6b4e00; }
+  .NOT_APPLICABLE, .NOT_VERIFIED, .N\/A, .NOT_COMPARABLE, .NOT_OBSERVED { background: #eef0f3; color: #3e4c59; }
+  .note { background: #fff8e6; border-left: 3px solid #d4a72c; padding: .5rem .75rem; margin: 1rem 0; font-size: .9rem; }
+  .muted { color: #616e7c; font-size: .9rem; } code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>Phase 5-E E5-1 — single real automatic_compression of the R1 YOLOv8n fx body</h1>
+<p class="muted">experiment <code>E5-1</code> · 2026-10-05T04:09:47+00:00 · model <code>yolov8n</code> · operation <code>automatic_compression</code> ratio 0.5 · input [1, 3, 640, 640] · real run <code>reports/real_runs/20261005T040009Z_automatic_compression</code></p>
+<div class="note"><strong>E5-1 local validation of the NetsPresso-compressed artifact. No NetsPresso API call was made in this step. Local measurements are development-machine evidence, not NetsPresso server-side measurements.</strong><br>All thresholds are PROJECT-DEFINED EXAMPLE policy, not official Nota/NetsPresso criteria. Latency/memory are development-machine measurements. "Output equivalence proxy" is NOT accuracy. COCO128 is a smoke dataset; it does not decide release accuracy.</div>
+
+<h2>0. Status summary</h2>
+<table><tr><th>Execution</th><th>Artifact</th><th>Validation</th><th>Gate compression</th><th>Gate local_eval</th><th>Gate release</th><th>Release</th><th>Next step</th></tr>
+<tr><td><span class="status COMPLETED">COMPLETED</span></td><td><span class="status PASS">PASS</span></td>
+<td><span class="status PASS">PASS</span></td>
+<td><span class="status PASS">PASS</span></td><td><span class="status FAIL">FAIL</span></td><td><span class="status FAIL">FAIL</span></td><td><span class="status FAIL">FAIL</span></td><td><span class="status HOLD">HOLD</span></td></tr></table>
+
+<h2>1. Traceability chain</h2>
+<table><tr><th style="width:14rem">source_model</th><td><code>yolov8n.pt sha256=f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36 (ultralytics checkpoint 8.0.0.dev0)</code></td></tr><tr><th style="width:14rem">r1_fx_artifact</th><td><code>outputs/models/yolov8n_fx_r1/model_fx.pt (patch r1-upstream-body-wrapper-v1, reports/yolov8_baseline/20261005T034329Z_r1/r1_result.json)</code></td></tr><tr><th style="width:14rem">r1_sha256</th><td><code>d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b</code></td></tr><tr><th style="width:14rem">netspresso_execution</th><td><code>20261005T040009Z_automatic_compression: automatic_compression ratio 0.5 sdk 1.17.0 status COMPLETED model_id 491890fb-de7f-4a95-8e4b-a448859c73a7 -&gt; compressed 491890fb-de7f-4a95-8e4b-a448859c73a7</code></td></tr><tr><th style="width:14rem">candidate_artifact</th><td><code>reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt</code></td></tr><tr><th style="width:14rem">candidate_sha256</th><td><code>21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1</code></td></tr><tr><th style="width:14rem">local_validation</th><td><code>reports/yolov8_e5_1/20261005T040009Z/e5_1_result.json</code></td></tr><tr><th style="width:14rem">accuracy_result</th><td><code>COCO128 mAP50-95 baseline 0.44369 -&gt; candidate 0.0 (drop_pp 44.369, MEASURED)</code></td></tr><tr><th style="width:14rem">quality_gate</th><td><code>{&#39;compression&#39;: &#39;PASS&#39;, &#39;local_eval&#39;: &#39;FAIL&#39;, &#39;release&#39;: &#39;FAIL&#39;}</code></td></tr><tr><th style="width:14rem">credit_record</th><td><code>reports/credit_usage.json entry #2: account 475 -&gt; 450 (MATCH)</code></td></tr><tr><th>complete</th><td>True</td></tr></table>
+
+<h2>2. NetsPresso execution and credit</h2>
+<table><tr><th>SDK</th><th>Status</th><th>Method</th><th>Duration (s)</th><th>Model ID (upload / compressed)</th><th>Account before → after</th><th>Observed delta</th><th>Expected</th><th>Classification</th></tr>
+<tr><td>1.17.0</td><td><span class="status COMPLETED">COMPLETED</span></td><td><code>NetsPresso.compressor_v2().automatic_compression</code></td><td>29.329</td>
+<td><code>491890fb-de7f-4a95-8e4b-a448859c73a7</code> / <code>491890fb-de7f-4a95-8e4b-a448859c73a7</code></td><td>475 → 450</td>
+<td>25</td><td>25</td><td><span class="status MATCH">MATCH</span></td></tr></table>
+<p class="muted">service operations executed: 1 · ledger after: used 50 / remaining 450 / operations 2</p>
+
+<h2>3. Input provenance → candidate artifact</h2>
+<table><tr><th></th><th>Path</th><th>SHA-256</th><th>Size (B)</th><th>Format</th><th>Structural</th><th>Forward / output</th></tr>
+<tr><td>input (R1)</td><td><code>outputs/models/yolov8n_fx_r1/model_fx.pt</code></td><td><code>d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b</code></td><td>12846691</td><td>pt (fx GraphModule)</td><td>scripts/yolov8_r1_traceable_export.py: upstream ultralytics ultralytics 8.4.173 (upstream, unmodified), patch r1-upstream-body-wrapper-v1</td><td>reports/yolov8_baseline/20261005T034329Z_r1/r1_result.json</td></tr>
+<tr><td>candidate pt</td><td><code>reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt</code></td><td><code>21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1</code></td><td>3693813</td><td>pt (torch.save GraphModule)</td><td><span class="status PASS">PASS</span> loaded as graph_module via full_unpickle (trusted)</td><td>[[1, 144, 80, 80], [1, 144, 40, 40], [1, 144, 20, 20]] schema_ok=True</td></tr>
+<tr><td>candidate onnx</td><td><code>reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.onnx</code></td><td><code>925a818c138368f4b9a2671724aaf11e9af50bbbb3f18184e0834416d0c645dd</code></td><td>3553251</td><td>onnx (SDK companion export)</td><td><span class="status PASS">PASS</span> valid ONNX graph (222 nodes, 126 initializers)</td><td>[{&#39;name&#39;: &#39;output&#39;, &#39;shape&#39;: [&#39;batch_size&#39;, 144, 80, 80]}, {&#39;name&#39;: &#39;615&#39;, &#39;shape&#39;: [&#39;Concat615_dim_0&#39;, 144, 40, 40]}, {&#39;name&#39;: &#39;647&#39;, &#39;shape&#39;: [&#39;Concat647_dim_0&#39;, 144, 20, 20]}] </td></tr>
+</table>
+
+<h2>4. Parameters / FLOPs</h2>
+<table><tr><th></th><th>Baseline (SDK original)</th><th>Baseline (independent)</th><th>Candidate (SDK)</th><th>Candidate (independent)</th><th>Reduction (SDK)</th><th>Verification</th></tr>
+<tr><td>params</td><td>3157184</td><td>3157184</td><td>882996</td><td>882996</td><td>72.03 %</td><td><span class="status PASS">PASS</span></td></tr>
+<tr><td>FLOPs</td><td>8800920000.0</td><td>8742912000</td><td>3874910000.0</td><td>3832092800</td><td>55.97 %</td><td><span class="status PASS">PASS</span></td></tr></table>
+<p class="muted">SDK &#39;flops&#39; compared as 2 x MACs (observed convention in Phase 5-B/5-D and here; not claimed as an official documented NetsPresso definition).</p>
+
+<h2>5. Detection head re-attachment and COCO128 smoke accuracy</h2>
+<p>Head re-attach: <span class="status PASS">PASS</span> R1DecodeHead (rebuilt from R1 head meta; upstream DFL/make_anchors/dist2bbox) → decoded [1, 84, 8400] (expected [1, 84, 8400])</p>
+<table><tr><th></th><th>mAP50-95</th><th>mAP50</th><th>mAP75</th><th>Precision</th><th>Recall</th><th>Evaluator</th></tr>
+<tr><td>baseline (yolov8n upstream baseline (official weights))</td><td>0.44369</td><td>0.60111</td><td>0.47223</td><td>0.6286</td><td>0.52902</td><td>ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)</td></tr>
+<tr><td>candidate (E5-1 NetsPresso-compressed body (PR_L2 ratio 0.5, no fine-tuning) + rebuilt head)</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3e-05</td><td>0.00223</td><td>ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)</td></tr>
+</table>
+<p>Comparison: <span class="status MEASURED">MEASURED</span> absolute_delta -0.44369 · drop_pp 44.369 · relative_delta -100.0 % · threshold 1.0 pp (PROJECT-DEFINED EXAMPLE THRESHOLD (configs/quality_gate.yaml release.accuracy); diagnostic use on COCO128 smoke only, not a release decision)</p>
+
+<h2>6. Output equivalence proxy (NOT accuracy)</h2>
+<table><tr><th>Comparison</th><th>min cosine</th><th>max |Δ|</th><th>relative diff</th><th>outputs</th><th>Status</th></tr>
+<tr><td>ORT, identical deterministic input (gate signal)</td><td>0.984289</td><td>449.228973</td><td>0.179003</td><td>1</td><td><span class="status FAIL">FAIL</span></td></tr>
+<tr><td>real COCO128 images, decoded pre-NMS (R1 body+head vs candidate body+head)</td><td>0.9839862412475613</td><td>455.2752227783203</td><td>0.1787200172424956</td><td>8 images</td><td>-</td></tr></table>
+<p class="muted">output equivalence PROXY on identical deterministic inputs - NOT a labeled accuracy measurement The proxy never replaces the measured detection accuracy above.</p>
+
+<h2>7. Local ONNX Runtime latency / memory (development machine)</h2>
+<table><tr><th></th><th>median (ms)</th><th>p95 (ms)</th><th>peak RSS Δ (MB)</th><th>ONNX</th></tr>
+<tr><td>baseline</td><td>23.7776</td><td>58.8408</td><td>107.082</td><td><code>outputs/e5_1_exports/20261005T040009Z/r1_body_plus_head.onnx</code></td></tr>
+<tr><td>candidate</td><td>16.521</td><td>36.6576</td><td>93.359</td><td><code>outputs/e5_1_exports/20261005T040009Z/candidate_body_plus_head.onnx</code></td></tr>
+</table>
+<p class="muted">local onnxruntime CPU, process-isolated per model (fresh interpreter), warm-up/iterations from configs/local_eval.yaml; development machine, not the nominal target device</p>
+
+<h2>8. Quality Gate by profile</h2>
+<table><tr><th>Profile</th><th>Overall</th><th>Criteria</th><th>Reasons</th></tr>
+<tr><td><code>compression</code></td><td><span class="status PASS">PASS</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status WARN">WARN</span></td><td>44.369</td><td>1.0</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-30.519</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-12.815</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.246</td><td>0.0</td></tr><tr><td>artifact</td><td><span class="status PASS">PASS</span></td><td>exists, non-empty, checksum recorded (reference not yet promoted)</td><td>required (checksum optional)</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr></table></td>
+<td>-</td></tr>
+<tr><td><code>local_eval</code></td><td><span class="status FAIL">FAIL</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status WARN">WARN</span></td><td>44.369</td><td>1.0</td></tr><tr><td>output_equivalence_proxy</td><td><span class="status FAIL">FAIL</span></td><td>0.984289</td><td>0.99</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-30.519</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-12.815</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.246</td><td>0.0</td></tr><tr><td>artifact</td><td><span class="status PASS">PASS</span></td><td>exists, non-empty, checksum recorded (reference not yet promoted)</td><td>required (checksum optional)</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr></table></td>
+<td><ul><li>Output Equiv. Proxy: proxy (not accuracy): min cosine 0.9843 &lt; 0.99</li></ul></td></tr>
+<tr><td><code>release</code></td><td><span class="status FAIL">FAIL</span></td>
+<td><table><tr><td>accuracy</td><td><span class="status FAIL">FAIL</span></td><td>44.369</td><td>1.0</td></tr><tr><td>output_equivalence_proxy</td><td><span class="status WARN">WARN</span></td><td>0.984289</td><td>0.99</td></tr><tr><td>latency</td><td><span class="status PASS">PASS</span></td><td>-30.519</td><td>10.0</td></tr><tr><td>memory</td><td><span class="status PASS">PASS</span></td><td>-12.815</td><td>15.0</td></tr><tr><td>model_size</td><td><span class="status PASS">PASS</span></td><td>-71.246</td><td>10.0</td></tr><tr><td>artifact</td><td><span class="status NOT_APPLICABLE">NOT_APPLICABLE</span></td><td>exists, non-empty, checksum not verifiable (no expected checksum)</td><td>required</td></tr><tr><td>structural_validity</td><td><span class="status PASS">PASS</span></td><td>PASS</td><td>required</td></tr><tr><td>reproducibility</td><td><span class="status NOT_APPLICABLE">NOT_APPLICABLE</span></td><td>NOT_VERIFIED</td><td>required</td></tr></table></td>
+<td><ul><li>Accuracy: accuracy drop 44.37 pp exceeds threshold 1.00 pp</li><li>Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet</li><li>Reproducibility: reproducibility not verified (fewer than two runs)</li></ul></td></tr>
+</table>
+<p class="muted">NetsPresso execution PASS ≠ candidate release PASS. The release profile keeps its missing-evidence rules (reproducibility requires a second authorized run; checksum requires a promoted baseline).</p>
+
+<h2>9. Defects</h2>
+<table><tr><th>Profile</th><th>ID</th><th>Category</th><th>Severity</th><th>Message</th></tr>
+<tr><td><code>compression</code></td><td colspan="4">none</td></tr><tr><td><code>local_eval</code></td><td><code>E5-1-local_eval-ACCURACY_REGRESSION</code></td><td>ACCURACY_REGRESSION</td><td>MEDIUM</td><td>proxy (not accuracy): min cosine 0.9843 &lt; 0.99</td></tr><tr><td><code>release</code></td><td><code>E5-1-release-ACCURACY_REGRESSION</code></td><td>ACCURACY_REGRESSION</td><td>HIGH</td><td>accuracy drop 44.37 pp exceeds threshold 1.00 pp</td></tr></table>
+<p><strong>Root-cause assessment:</strong> structured pruning (SDK method PR_L2, ratio 0.5) applied WITHOUT the fine-tuning step the official ModelZoo-YOLOv8 workflow prescribes after compression; accuracy collapse before retraining is the expected behaviour of pruning — confidence <code>MEDIUM</code>, verified: False. params -72.03 %, FLOPs -55.97 %, mAP50-95 drop 44.369 pp on COCO128 (smoke); output proxy cosine 0.9839862412475613. Verification would require fine-tuning the candidate and re-evaluating (not done in this phase; 0 credits but training time).</p>
+
+<h2>10. Reproducibility and registry</h2>
+<p>execution_runs 1 · level <code>NOT_VERIFIED</code> · registry <code>automatic_compression:21d8cbd1361c</code> status <code>candidate</code>. candidate registered, NOT promoted; no second real run was performed (by design)</p>
+
+<h2>11. Next-step recommendation</h2>
+<p><span class="status HOLD">HOLD</span></p>
+<ul><li>COCO128 smoke mAP50-95 0.44369 -&gt; 0.0 (drop 44.369 pp vs example threshold 1.0 pp)</li><li>SDK-reported reduction: params -72.03 %, FLOPs -55.97 %</li><li>local ORT median latency 23.7776 -&gt; 16.521 ms (development machine)</li><li>substantial accuracy regression: the official YOLOv8 workflow fine-tunes after compression; conversion/profiling of an un-retrained candidate is premature</li><li>options: (a) fine-tune the candidate locally (0 credits, CPU time) and re-evaluate; (b) a lower compression ratio would cost another 25 credits and still needs fine-tuning; (c) keep YOLOv8n - the model is not the problem, the missing retraining step is</li></ul>
+</body>
+</html>

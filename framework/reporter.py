@@ -77,6 +77,36 @@ def write_regression_html(report: RegressionReport, path: Path | str) -> Path:
     return p
 
 
+def write_e5_1_html(result: dict[str, Any], path: Path | str) -> Path:
+    """Render the Phase 5-E E5-1 experiment summary (see scripts/yolov8_e5_1_local_validation.py)."""
+    template = _env.get_template("e5_1_summary.html.j2")
+    html = template.render(r=result)
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(html, encoding="utf-8")
+    return p
+
+
+def write_val2017_html(result: dict[str, Any], path: Path | str) -> Path:
+    """Render the Phase 5-E COCO val2017 independent-evaluation summary (see scripts/yolov8_val2017_eval.py)."""
+    template = _env.get_template("val2017_summary.html.j2")
+    html = template.render(r=result)
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(html, encoding="utf-8")
+    return p
+
+
+def write_finetune_html(result: dict[str, Any], path: Path | str) -> Path:
+    """Render the Phase 5-E local fine-tuning recovery summary (see scripts/yolov8_e5_1_finetune.py)."""
+    template = _env.get_template("finetune_summary.html.j2")
+    html = template.render(r=result)
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(html, encoding="utf-8")
+    return p
+
+
 def write_local_eval_html(result: dict[str, Any], path: Path | str) -> Path:
     """Render the 0-credit local evaluation result (see scripts/run_local_eval.py)."""
     template = _env.get_template("local_eval_report.html.j2")

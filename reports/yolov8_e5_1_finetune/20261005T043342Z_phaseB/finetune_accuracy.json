@@ -1,0 +1,176 @@
+{
+  "credit_consuming": false,
+  "disclaimer": "Local fine-tuning recovery experiment. No NetsPresso API call was made. The fine-tuned artifact is a LOCAL derivative of the E5-1 NetsPresso candidate, not a NetsPresso output. COCO128 train == val (128 images): smoke/diagnostic only, never release evidence.",
+  "baseline": {
+    "status": "MEASURED",
+    "reason": null,
+    "primary_metric": "mAP50-95",
+    "metrics": {
+      "mAP50-95": 0.44369,
+      "mAP50": 0.60111,
+      "mAP75": 0.47223,
+      "precision": 0.6286,
+      "recall": 0.52902
+    },
+    "dataset": "coco128.yaml",
+    "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+    "split": "val(train2017 subset)",
+    "images": 128,
+    "instances": 929,
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "model_label": "yolov8n upstream baseline (official weights)",
+    "is_output_equivalence_proxy": false,
+    "extra": {}
+  },
+  "compressed": {
+    "status": "MEASURED",
+    "reason": null,
+    "primary_metric": "mAP50-95",
+    "metrics": {
+      "mAP50-95": 0.0,
+      "mAP50": 0.0,
+      "mAP75": 0.0,
+      "precision": 3e-05,
+      "recall": 0.00223
+    },
+    "dataset": "coco128.yaml",
+    "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+    "split": "val(train2017 subset)",
+    "images": 128,
+    "instances": 929,
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "model_label": "E5-1 NetsPresso-compressed body (PR_L2 ratio 0.5, no fine-tuning) + rebuilt head",
+    "is_output_equivalence_proxy": false,
+    "extra": {}
+  },
+  "fine_tuned": {
+    "status": "MEASURED",
+    "reason": null,
+    "primary_metric": "mAP50-95",
+    "metrics": {
+      "mAP50-95": 0.28965,
+      "mAP50": 0.45843,
+      "mAP75": 0.33512,
+      "precision": 0.59832,
+      "recall": 0.40044
+    },
+    "dataset": "coco128.yaml",
+    "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+    "split": "val(train2017 subset)",
+    "images": 128,
+    "instances": 929,
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "model_label": "LOCALLY fine-tuned E5-1 candidate (phase B, 40 epochs)",
+    "is_output_equivalence_proxy": false,
+    "extra": {}
+  },
+  "three_way": {
+    "status": "MEASURED",
+    "metric": "mAP50-95",
+    "baseline": 0.44369,
+    "compressed": 0.0,
+    "fine_tuned": 0.28965,
+    "baseline_to_compressed_pp": -44.369,
+    "baseline_to_fine_tuned_pp": -15.404,
+    "compressed_to_fine_tuned_pp": 28.965,
+    "remaining_drop_pp": 15.404,
+    "recovery_percent": 65.28,
+    "relative_to_baseline_percent": 65.28
+  },
+  "secondary": {
+    "map50": {
+      "baseline": 0.60111,
+      "compressed": 0.0,
+      "fine_tuned": 0.45843
+    },
+    "map75": {
+      "baseline": 0.47223,
+      "compressed": 0.0,
+      "fine_tuned": 0.33512
+    },
+    "precision": {
+      "baseline": 0.6286,
+      "compressed": 3e-05,
+      "fine_tuned": 0.59832
+    },
+    "recall": {
+      "baseline": 0.52902,
+      "compressed": 0.00223,
+      "fine_tuned": 0.40044
+    }
+  },
+  "fine_tuned_vs_baseline": {
+    "status": "MEASURED",
+    "metric": "mAP50-95",
+    "baseline_metric": 0.44369,
+    "candidate_metric": 0.28965,
+    "absolute_delta": -0.15404,
+    "drop_pp": 15.404,
+    "relative_delta_percent": -34.7179,
+    "baseline_label": "yolov8n upstream baseline (official weights)",
+    "candidate_label": "LOCALLY fine-tuned E5-1 candidate (phase B, 40 epochs)",
+    "reason": null,
+    "conditions": {
+      "dataset": "coco128.yaml",
+      "split": "val(train2017 subset)",
+      "imgsz": 640,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "conf": 0.001,
+      "iou": 0.7
+    },
+    "secondary": {
+      "mAP50": {
+        "baseline": 0.60111,
+        "candidate": 0.45843,
+        "drop_pp": 14.268
+      },
+      "mAP75": {
+        "baseline": 0.47223,
+        "candidate": 0.33512,
+        "drop_pp": 13.711
+      },
+      "precision": {
+        "baseline": 0.6286,
+        "candidate": 0.59832,
+        "drop_pp": 3.028
+      },
+      "recall": {
+        "baseline": 0.52902,
+        "candidate": 0.40044,
+        "drop_pp": 12.858
+      }
+    },
+    "is_output_equivalence_proxy": false
+  },
+  "threshold_pp": 1.0,
+  "threshold_basis": "PROJECT-DEFINED EXAMPLE THRESHOLD (configs/quality_gate.yaml release.accuracy); COCO128 smoke -> diagnostic only, Release PASS is never declared from it",
+  "conditions": {
+    "data": "coco128.yaml",
+    "imgsz": 640,
+    "conf": 0.001,
+    "iou": 0.7,
+    "rect": true,
+    "batch": 8,
+    "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+    "train_equals_val": true
+  },
+  "recovery": {
+    "decision": "PARTIAL_RECOVERY",
+    "reason": "gain 28.965 pp (recovery 65.28 %) but remaining drop 15.404 pp > 1.0 pp",
+    "thresholds": {
+      "max_drop_pp": 1.0,
+      "material_improvement_pp": 5.0,
+      "unusable_below": 0.05,
+      "basis": "PROJECT-DEFINED EXAMPLE (smoke-diagnostic, not release)"
+    }
+  }
+}

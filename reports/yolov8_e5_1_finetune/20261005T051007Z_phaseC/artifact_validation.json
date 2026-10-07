@@ -1,0 +1,102 @@
+{
+  "credit_consuming": false,
+  "pt": {
+    "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+    "sha256": "dba5cd214f0f4098c2708366fb8ee2a3f2d4e5681b7668fc49f36aa148a4d9ee",
+    "size_bytes": 3714299,
+    "structural": {
+      "path": "outputs/models/yolov8n_e5_1_finetuned/model_fx_phaseC.pt",
+      "format": "pt",
+      "status": "PASS",
+      "message": "loaded as graph_module via full_unpickle (trusted)",
+      "checks": {
+        "exists": true,
+        "non_empty": true,
+        "readable": true,
+        "zip_container": true,
+        "safe_load": false,
+        "full_load": true,
+        "recognised_structure": true,
+        "has_parameters": true
+      },
+      "details": {
+        "size_bytes": 3714299,
+        "magic": "504b0304",
+        "safe_load_error": "UnpicklingError",
+        "load_mode": "full_unpickle (trusted)",
+        "class_name": "GraphModule",
+        "parameter_count": 882996,
+        "parameter_tensors": 183,
+        "object_kind": "graph_module"
+      },
+      "defect_category": null
+    },
+    "trusted_basis": "generated locally by this run (full unpickle allowed in-process); not in configs trust list",
+    "forward_output_shapes": [
+      [
+        1,
+        144,
+        80,
+        80
+      ],
+      [
+        1,
+        144,
+        40,
+        40
+      ],
+      [
+        1,
+        144,
+        20,
+        20
+      ]
+    ],
+    "schema_ok": true,
+    "decoded_output_shape": [
+      1,
+      84,
+      8400
+    ],
+    "decoded_ok": true
+  },
+  "params": {
+    "e5_1_candidate": 882996,
+    "fine_tuned": 882996,
+    "unchanged": true
+  },
+  "flops": {
+    "e5_1_candidate_sdk": 3874910000.0,
+    "e5_1_candidate_independent_2x_macs": 3832092800,
+    "fine_tuned_independent_2x_macs": 3832092800,
+    "onnx_export": {
+      "status": "PASS",
+      "path": "outputs/e5_1_finetune_exports/20261005T051007Z_phaseC/finetuned_body.onnx",
+      "params_onnx": 880124,
+      "macs": 1916046400,
+      "flops_2x_macs": 3832092800,
+      "covered_ops": {
+        "Conv": 63
+      },
+      "uncovered_ops": {
+        "Sigmoid": 57,
+        "Mul": 57,
+        "Constant": 10,
+        "Split": 8,
+        "Add": 6,
+        "Concat": 16,
+        "MaxPool": 3,
+        "Resize": 2
+      },
+      "error": null
+    }
+  },
+  "architecture_unchanged": {
+    "status": "PASS",
+    "params_rel_diff_percent": 0.0,
+    "macs_rel_diff_percent": 0.0,
+    "tolerance_percent": 0.5,
+    "params_equal": true
+  },
+  "status": "PASS"
+}

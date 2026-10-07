@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>COCO val2017 independent evaluation — {{ r.decision }}</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1100px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; } th { background: #f5f7fa; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS, .VAL2017_PASS_CANDIDATE, .MEASURED { background: #e3f6ec; color: #0f5132; } .FAIL, .VAL2017_ACCURACY_REGRESSION, .VAL2017_OVERFIT { background: #fbe3e4; color: #7a1e26; }
+  .WARN, .VAL2017_PARTIAL_RECOVERY { background: #fff1cc; color: #6b4e00; } .NOT_APPLICABLE, .NOT_VERIFIED, .VAL2017_INCONCLUSIVE { background: #eef0f3; color: #3e4c59; }
+  .note { background: #fff8e6; border-left: 3px solid #d4a72c; padding: .5rem .75rem; margin: 1rem 0; font-size: .9rem; }
+  .muted { color: #616e7c; font-size: .9rem; } code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>Phase 5-E — COCO val2017 independent (unseen) evaluation</h1>
+<p class="muted">{{ r.experiment.timestamp }} · report <code>{{ r.experiment.report_dir }}</code> · phase C record <code>{{ r.experiment.phase_c_record }}</code> · training_performed {{ r.training_performed }} · API calls {{ r.netspresso_api_calls }}</p>
+<div class="note"><strong>{{ r.disclaimer }}</strong></div>
+
+<h2>0. Decision</h2>
+<p><span class="status {{ r.decision }}">{{ r.decision }}</span> (case {{ r.classification.case }}) — {{ r.classification.reason }}<br>Next step: <strong>{{ r.next_step.label }}</strong> · NetsPresso additional execution: <strong>{{ r.netspresso_additional_execution }}</strong> · {{ r.next_step.rationale }}</p>
+
+<h2>1. Dataset</h2>
+<p>COCO val2017 · images {{ r.dataset.images }} · annotations {{ r.dataset.annotations }} · label files {{ r.dataset.label_files }} · contamination vs COCO128 training images: filename overlap {{ r.dataset.contamination_check.filename_overlap }}, image-id overlap {{ r.dataset.contamination_check.coco_image_id_overlap }}, content-SHA overlap {{ r.dataset.contamination_check.content_sha256_overlap }} → <strong>{{ r.dataset.contamination_check.conclusion }}</strong> · COCO128 train == val: {{ r.dataset.coco128_train_equals_val }}</p>
+
+<h2>2. Accuracy on val2017 (unseen) — imgsz {{ r.evaluation_config.imgsz }}, conf {{ r.evaluation_config.conf }}, IoU {{ r.evaluation_config.iou }}, rect {{ r.evaluation_config.rect }}, batch {{ r.evaluation_config.batch }}</h2>
+<table><tr><th>Model</th><th>Kind</th><th>mAP50-95</th><th>mAP50</th><th>mAP75</th><th>Precision</th><th>Recall</th><th>Δ vs baseline (pp)</th><th>recovery vs E5-1 (pp)</th><th>duration (s)</th><th>SHA</th></tr>
+{% for row in r.accuracy.val2017 %}<tr><td>{{ row.model }}</td><td>{{ row.kind }}</td><td><strong>{{ row['mAP50-95'] }}</strong></td><td>{{ row['mAP50'] }}</td><td>{{ row['mAP75'] }}</td><td>{{ row.precision }}</td><td>{{ row.recall }}</td><td>{{ row.delta_vs_baseline_pp }}</td><td>{{ row.recovery_vs_e5_1_pp }}</td><td>{{ row.duration_seconds }}</td><td><code>{{ row.sha256[:16] }}…</code></td></tr>{% endfor %}</table>
+
+<h2>3. Generalization: COCO128 (train == val) vs val2017</h2>
+<table><tr><th>Model</th><th>COCO128 mAP50-95</th><th>val2017 mAP50-95</th><th>gap (pp)</th><th>unseen / smoke</th></tr>
+{% for k in ['baseline', 'e5_1', 'phase_b', 'phase_c'] %}{% set g = r.generalization[k] %}<tr><td>{{ k }}</td><td>{{ g.smoke }}</td><td>{{ g.unseen if g.unseen is not none else 'not required' }}</td><td>{{ g.gap_pp if g.gap_pp is defined else '-' }}</td><td>{{ g.unseen_over_smoke_percent if g.unseen_over_smoke_percent is defined else '-' }} %</td></tr>{% endfor %}</table>
+<p>Phase C overfit indicator: smoke above baseline smoke = {{ r.generalization.phase_c.overfit_indicator.smoke_above_baseline_smoke }} · unseen vs baseline unseen = {{ r.generalization.phase_c.overfit_indicator.unseen_vs_baseline_unseen_pp }} pp · excess gap vs baseline's own gap = <strong>{{ r.generalization.phase_c.overfit_indicator.excess_gap_vs_baseline_pp }} pp</strong>. {{ r.generalization.phase_c.overfit_indicator.reading }}</p>
+
+<h2>4. Recovery (unseen)</h2>
+<p>E5-1 → Phase C <strong>+{{ r.recovery.e5_1_to_phase_c_pp }} pp</strong> · Phase C → baseline {{ r.recovery.phase_c_to_baseline_pp }} pp · remaining drop <strong>{{ r.recovery.remaining_drop_pp }} pp</strong> · recovery rate {{ r.recovery.recovery_rate_percent }} % · thresholds {{ r.classification.thresholds }}</p>
+
+<h2>5. Output equivalence proxy (unseen images; NOT accuracy)</h2>
+<table><tr><th>Comparison</th><th>min cosine</th><th>max |Δ|</th><th>relative</th></tr>{% for k, v in r.output_equivalence_proxy.aggregate.items() %}<tr><td>{{ k }}</td><td>{{ v.min_cosine }}</td><td>{{ v.max_abs_diff }}</td><td>{{ v.max_relative_l2_diff }}</td></tr>{% endfor %}</table>
+<p class="muted">{{ r.output_equivalence_proxy.disclaimer }}</p>
+
+<h2>6. Quality Gate (accuracy = val2017; latency/memory/proxy referenced from the phase C measurement)</h2>
+<table><tr><th>Profile</th><th>Overall</th><th>Criteria</th><th>Reasons</th></tr>
+{% for name, g in r.quality_gate.items() %}<tr><td><code>{{ name }}</code></td><td><span class="status {{ g.overall }}">{{ g.overall }}</span></td>
+<td><table>{% for c in g.criteria %}<tr><td>{{ c.name }}</td><td><span class="status {{ c.status }}">{{ c.status }}</span></td><td>{{ c.observed }}</td><td>{{ c.threshold }}</td></tr>{% endfor %}</table></td>
+<td>{% if g.reasons %}<ul>{% for x in g.reasons %}<li>{{ x }}</li>{% endfor %}</ul>{% else %}-{% endif %}</td></tr>{% endfor %}</table>
+<p class="muted">{{ r.performance.source }} · baseline promotion: {{ r.baseline_promotion }} · reproducibility {{ r.reproducibility.level }}</p>
+
+<h2>7. Model integrity (before / after all evaluations)</h2>
+<table><tr><th>Model</th><th>SHA-256</th><th>size (B)</th><th>immutable</th></tr>{% for k, v in r.model_integrity.items() %}<tr><td>{{ k }}</td><td><code>{{ v.after.sha256 }}</code></td><td>{{ v.after.size_bytes }}</td><td>{{ v.immutable_across_evaluations }}</td></tr>{% endfor %}</table>
+
+<h2>8. Credit safety and traceability</h2>
+<p>ledger {{ r.credit_safety.ledger_before.used }}/{{ r.credit_safety.ledger_before.remaining }}/{{ r.credit_safety.ledger_before.operations }} → {{ r.credit_safety.ledger_after.used }}/{{ r.credit_safety.ledger_after.remaining }}/{{ r.credit_safety.ledger_after.operations }} (unchanged {{ r.credit_safety.ledger_unchanged }}) · API calls {{ r.credit_safety.api_calls }} · SDK execution {{ r.credit_safety.sdk_execution }}</p>
+<table>{% for k, v in r.traceability.items() if k not in ['complete', 'missing_links', 'question_answered'] %}<tr><th style="width:14rem">{{ k }}</th><td><code>{{ v }}</code></td></tr>{% endfor %}</table>
+</body>
+</html>

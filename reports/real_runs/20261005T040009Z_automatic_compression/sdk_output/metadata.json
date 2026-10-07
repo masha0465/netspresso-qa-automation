@@ -1,0 +1,885 @@
+{
+    "status": "completed",
+    "error_detail": {
+        "data": {
+            "origin": "",
+            "error_log": "",
+            "link": null
+        },
+        "error_code": "",
+        "name": "",
+        "message": ""
+    },
+    "task_type": "compress",
+    "input_model_path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+    "compressed_model_path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+    "compressed_onnx_model_path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.onnx",
+    "is_retrainable": false,
+    "model_info": {
+        "task": "",
+        "model": "",
+        "dataset": "",
+        "data_type": "FP32",
+        "framework": "pytorch",
+        "input_shapes": [
+            {
+                "batch": 1,
+                "channel": 3,
+                "dimension": [
+                    640,
+                    640
+                ]
+            }
+        ]
+    },
+    "training_info": {
+        "epochs": 0,
+        "batch_size": 0,
+        "learning_rate": 0.001,
+        "optimizer": "Adam",
+        "scheduler": "CosineAnnealingWarmRestartsWithCustomWarmUp"
+    },
+    "compression_info": {
+        "method": "PR_L2",
+        "ratio": 0.5,
+        "options": {
+            "reshape_channel_axis": -1,
+            "policy": "average",
+            "layer_norm": "standard_score",
+            "group_policy": "average",
+            "step_size": 2,
+            "step_op": "round",
+            "reverse": false
+        },
+        "layers": [
+            {
+                "use": false,
+                "name": "layers_0_conv",
+                "channels": [
+                    16
+                ],
+                "values": [
+                    0.0
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_1_conv",
+                "channels": [
+                    32
+                ],
+                "values": [
+                    0.25
+                ]
+            },
+            {
+                "use": false,
+                "name": "layers_2_m_0_cv1_conv",
+                "channels": [
+                    16
+                ],
+                "values": [
+                    0.0
+                ]
+            },
+            {
+                "use": false,
+                "name": "add",
+                "channels": [
+                    16
+                ],
+                "values": [
+                    0.0
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_2_cv2_conv",
+                "channels": [
+                    32
+                ],
+                "values": [
+                    0.1875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_3_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.328125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_4_m_0_cv1_conv",
+                "channels": [
+                    32
+                ],
+                "values": [
+                    0.1875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_4_m_1_cv1_conv",
+                "channels": [
+                    32
+                ],
+                "values": [
+                    0.25
+                ]
+            },
+            {
+                "use": true,
+                "name": "add_2",
+                "channels": [
+                    32
+                ],
+                "values": [
+                    0.0625
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_4_cv2_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.390625
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_5_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.5078125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_6_m_0_cv1_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.328125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_6_m_1_cv1_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.28125
+                ]
+            },
+            {
+                "use": true,
+                "name": "add_4",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.21875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_6_cv2_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.4921875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_7_conv",
+                "channels": [
+                    256
+                ],
+                "values": [
+                    0.73828125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_8_m_0_cv1_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.5625
+                ]
+            },
+            {
+                "use": true,
+                "name": "add_5",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.4453125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_8_cv2_conv",
+                "channels": [
+                    256
+                ],
+                "values": [
+                    0.76171875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_9_cv1_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.5703125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_9_cv2_conv",
+                "channels": [
+                    256
+                ],
+                "values": [
+                    0.73046875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_12_cv1_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.5078125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_12_m_0_cv1_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.3125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_12_m_0_cv2_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.296875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_12_cv2_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.5546875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_15_cv1_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.09375
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_15_m_0_cv1_conv",
+                "channels": [
+                    32
+                ],
+                "values": [
+                    0.125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_15_m_0_cv2_conv",
+                "channels": [
+                    32
+                ],
+                "values": [
+                    0.21875
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_15_cv2_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.34375
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_16_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.4375
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv2_0_0_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.34375
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv3_0_0_conv",
+                "channels": [
+                    80
+                ],
+                "values": [
+                    0.425
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv2_0_1_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.359375
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv3_0_1_conv",
+                "channels": [
+                    80
+                ],
+                "values": [
+                    0.4125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_18_cv1_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.484375
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_18_m_0_cv1_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.328125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_18_m_0_cv2_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.28125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_18_cv2_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.53125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_19_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.5078125
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv2_1_0_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.328125
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv3_1_0_conv",
+                "channels": [
+                    80
+                ],
+                "values": [
+                    0.5
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv2_1_1_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.359375
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv3_1_1_conv",
+                "channels": [
+                    80
+                ],
+                "values": [
+                    0.45
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_21_cv1_conv",
+                "channels": [
+                    256
+                ],
+                "values": [
+                    0.70703125
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_21_m_0_cv1_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.484375
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_21_m_0_cv2_conv",
+                "channels": [
+                    128
+                ],
+                "values": [
+                    0.609375
+                ]
+            },
+            {
+                "use": true,
+                "name": "layers_21_cv2_conv",
+                "channels": [
+                    256
+                ],
+                "values": [
+                    0.71875
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv2_2_0_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.359375
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv3_2_0_conv",
+                "channels": [
+                    80
+                ],
+                "values": [
+                    0.4625
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv2_2_1_conv",
+                "channels": [
+                    64
+                ],
+                "values": [
+                    0.328125
+                ]
+            },
+            {
+                "use": true,
+                "name": "cv3_2_1_conv",
+                "channels": [
+                    80
+                ],
+                "values": [
+                    0.45
+                ]
+            }
+        ]
+    },
+    "results": {
+        "original_model": {
+            "size": 12.2516,
+            "flops": 8800920000.0,
+            "number_of_parameters": 3157184,
+            "trainable_parameters": 0,
+            "non_trainable_parameters": 3157184,
+            "number_of_layers": null,
+            "model_id": "498c4990-5716-4ae9-8513-998062e4927a"
+        },
+        "compressed_model": {
+            "size": 3.52269,
+            "flops": 3874910000.0,
+            "number_of_parameters": 882996,
+            "trainable_parameters": 877796,
+            "non_trainable_parameters": 5200,
+            "number_of_layers": null,
+            "model_id": "491890fb-de7f-4a95-8e4b-a448859c73a7"
+        }
+    },
+    "available_options": [
+        {
+            "framework": "tensorrt",
+            "display_framework": "TensorRT",
+            "devices": [
+                {
+                    "device_name": "AWS-T4",
+                    "display_device_name": "NVIDIA AWS-T4",
+                    "display_brand_name": "NVIDIA",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "Jetson-AGX-Orin",
+                    "display_device_name": "NVIDIA Jetson AGX Orin",
+                    "display_brand_name": "NVIDIA",
+                    "software_versions": [
+                        {
+                            "software_version": "5.0.1-b118",
+                            "display_software_versions": "Jetpack 5.0.1"
+                        },
+                        {
+                            "software_version": "6.2.1+b38",
+                            "display_software_versions": "Jetpack 6.2.1"
+                        }
+                    ],
+                    "data_types": [
+                        "FP16",
+                        "INT8",
+                        "MIX"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "Jetson-Nano",
+                    "display_device_name": "NVIDIA Jetson Nano",
+                    "display_brand_name": "NVIDIA",
+                    "software_versions": [
+                        {
+                            "software_version": "4.4.1-b50",
+                            "display_software_versions": "Jetpack 4.4.1"
+                        },
+                        {
+                            "software_version": "4.6-b199",
+                            "display_software_versions": "Jetpack 4.6"
+                        }
+                    ],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "Jetson-Nx",
+                    "display_device_name": "NVIDIA Jetson Xavier NX",
+                    "display_brand_name": "NVIDIA",
+                    "software_versions": [
+                        {
+                            "software_version": "4.6-b199",
+                            "display_software_versions": "Jetpack 4.6"
+                        },
+                        {
+                            "software_version": "5.0.2-b231",
+                            "display_software_versions": "Jetpack 5.0.2"
+                        }
+                    ],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "Jetson-Orin-Nano",
+                    "display_device_name": "NVIDIA Jetson Orin Nano",
+                    "display_brand_name": "NVIDIA",
+                    "software_versions": [
+                        {
+                            "software_version": "6.1+b123",
+                            "display_software_versions": "Jetpack 6.1"
+                        }
+                    ],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "Jetson-Tx2",
+                    "display_device_name": "NVIDIA Jetson Tx2",
+                    "display_brand_name": "NVIDIA",
+                    "software_versions": [
+                        {
+                            "software_version": "4.6-b199",
+                            "display_software_versions": "Jetpack 4.6"
+                        }
+                    ],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "Jetson-Xavier",
+                    "display_device_name": "NVIDIA Jetson AGX Xavier",
+                    "display_brand_name": "NVIDIA",
+                    "software_versions": [
+                        {
+                            "software_version": "4.6-b199",
+                            "display_software_versions": "Jetpack 4.6"
+                        }
+                    ],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                }
+            ]
+        },
+        {
+            "framework": "tensorflow_lite",
+            "display_framework": "Tensorflow Lite",
+            "devices": [
+                {
+                    "device_name": "Arm Virtual Hardware Ethos-U Series",
+                    "display_device_name": "Arm Virtual Hardware Corstone-300 (Ethos-U55/U65)",
+                    "display_brand_name": "Arm",
+                    "software_versions": [],
+                    "data_types": [
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "Ensemble-E7-DevKit-Gen2",
+                    "display_device_name": "Alif Ensemble DevKit-E7 Gen2 (Arm Cortex-M55+Ethos-U55)",
+                    "display_brand_name": "Arm",
+                    "software_versions": [],
+                    "data_types": [
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "RaspberryPi-Zero2W",
+                    "display_device_name": "RaspberryPi Zero2W",
+                    "display_brand_name": "RaspberryPi",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16",
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "RaspberryPi-ZeroW",
+                    "display_device_name": "RaspberryPi ZeroW",
+                    "display_brand_name": "RaspberryPi",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16",
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "RaspberryPi2B",
+                    "display_device_name": "Raspberry Pi 2B",
+                    "display_brand_name": "RaspberryPi",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16",
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "RaspberryPi3B",
+                    "display_device_name": "Raspberry Pi 3B",
+                    "display_brand_name": "RaspberryPi",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16",
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "RaspberryPi3BPlus",
+                    "display_device_name": "Raspberry Pi 3B+",
+                    "display_brand_name": "RaspberryPi",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16",
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "RaspberryPi4B",
+                    "display_device_name": "Raspberry Pi 4B",
+                    "display_brand_name": "RaspberryPi",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16",
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "RaspberryPi5",
+                    "display_device_name": "RaspberryPi 5 (Arm Cortex-A76)",
+                    "display_brand_name": "RaspberryPi",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16",
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "Renesas-RA8D1",
+                    "display_device_name": "Renesas RA8D1 (Arm Cortex-M85)",
+                    "display_brand_name": "Arm",
+                    "software_versions": [],
+                    "data_types": [
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "arduino_nicla_vision",
+                    "display_device_name": "Arduino Nicla Vision(Arm Cortex-M7/M4)",
+                    "display_brand_name": "Arm",
+                    "software_versions": [],
+                    "data_types": [
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "nxp_imx93_ethos_u65",
+                    "display_device_name": "NXP i.MX 93(Arm Cortex-A55/M33+Ethos-U65)",
+                    "display_brand_name": "Arm",
+                    "software_versions": [],
+                    "data_types": [
+                        "INT8"
+                    ],
+                    "hardware_types": []
+                }
+            ]
+        },
+        {
+            "framework": "openvino",
+            "display_framework": "OpenVINO",
+            "devices": [
+                {
+                    "device_name": "Intel-Xeon",
+                    "display_device_name": "Intel Xeon W-2233",
+                    "display_brand_name": "Intel",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                }
+            ]
+        },
+        {
+            "framework": "drpai",
+            "display_framework": "DRP-AI",
+            "devices": [
+                {
+                    "device_name": "rzv2l_avnet",
+                    "display_device_name": "RZ/V2L",
+                    "display_brand_name": "Renesas",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                },
+                {
+                    "device_name": "rzv2m",
+                    "display_device_name": "RZ/V2M",
+                    "display_brand_name": "Renesas",
+                    "software_versions": [],
+                    "data_types": [
+                        "FP16"
+                    ],
+                    "hardware_types": []
+                }
+            ]
+        }
+    ],
+    "training_result": {}
+}

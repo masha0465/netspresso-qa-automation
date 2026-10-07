@@ -1,0 +1,72 @@
+{
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "disclaimer": "COCO val2017 independent evaluation: inference only, no training, no NetsPresso API call, 0 credits. COCO128 (train == val) numbers are smoke evidence; val2017 is the unseen-data evidence. Thresholds are PROJECT-DEFINED EXAMPLES; no Release PASS is declared here.",
+  "dataset": "COCO val2017 (official images.cocodataset.org) + ultralytics coco2017labels.zip",
+  "downloads": [
+    {
+      "file": "coco2017labels.zip",
+      "url": "https://github.com/ultralytics/assets/releases/download/v0.0.0/coco2017labels.zip",
+      "size_bytes": 48639045,
+      "sha256": "51a5175c894a7a1010f90eb4cba613473445f02633b684ed46c0292a997d0234"
+    },
+    {
+      "file": "val2017.zip",
+      "url": "http://images.cocodataset.org/zips/val2017.zip",
+      "size_bytes": 815585330,
+      "sha256": "4f7e2ccb2866ec5041993c9cf2a952bbed69647b115d0f74da7ce8f4bef82f05"
+    }
+  ],
+  "note": "train2017.zip (19 GB) deliberately NOT downloaded; only the 5,000-image validation split is needed",
+  "download_seconds": 268.2,
+  "val2017": {
+    "images_dir": "datasets/coco/images/val2017",
+    "image_count": 5000,
+    "label_files": 4952,
+    "label_boxes": 36335,
+    "images_without_label_file": 48,
+    "annotations_json": {
+      "path": "datasets/coco/annotations/instances_val2017.json",
+      "exists": true,
+      "images": 5000,
+      "annotations": 36781,
+      "categories": 80,
+      "sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f"
+    },
+    "list_file": "datasets/coco/val2017.txt",
+    "list_entries": 5000
+  },
+  "contamination_check": {
+    "coco128_images": 128,
+    "coco128_source_split": "train2017 (ultralytics coco128.zip)",
+    "val2017_images": 5000,
+    "filename_overlap": 0,
+    "coco_image_id_overlap": 0,
+    "content_sha256_overlap": 0,
+    "overlap_ratio_of_coco128": 0.0,
+    "hashing_seconds": 22.6,
+    "coco128_train_equals_val": true,
+    "conclusion": "val2017 is disjoint from the COCO128 training images"
+  },
+  "data_yaml": {
+    "path": "datasets/coco_val2017_eval.yaml",
+    "val": "val2017.txt",
+    "train_field_note": "train points to val2017.txt only because ultralytics requires the key; nothing is trained",
+    "nc": 80
+  },
+  "timestamp": "2026-10-05T05:36:34+00:00",
+  "ledger": {
+    "before": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    },
+    "after": {
+      "used": 50,
+      "remaining": 450,
+      "operations": 2,
+      "sha256": "4b700de201d359cfefa418dd8c9a5393f9405a6c3686081257f42f45aab223e9"
+    }
+  }
+}

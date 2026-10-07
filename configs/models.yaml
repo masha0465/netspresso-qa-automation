@@ -10,7 +10,7 @@ models:
     task: object_detection
     framework: onnx
     input_shape: [1, 3, 640, 640]
-    accuracy_metric: mAP50           # generic label used in reports
+    accuracy_metric: mAP50-95        # primary detection metric (COCO-style); mAP50/mAP75/P/R are secondary
     source: "public ModelZoo-YOLOv8 (Nota-NetsPresso GitHub)"
     risk:
       new_model: false

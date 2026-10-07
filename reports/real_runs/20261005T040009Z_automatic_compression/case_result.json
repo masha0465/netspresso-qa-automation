@@ -1,0 +1,287 @@
+{
+  "case_id": "TC-3cb57ccb",
+  "status": "FAIL",
+  "support": "SUPPORTED",
+  "support_reason": null,
+  "selected": true,
+  "selection_reason": "Phase 5-B single real experiment",
+  "risk": null,
+  "operation": "automatic_compression",
+  "model": "yolov8n",
+  "device": "intel_xeon_w2233",
+  "runtime": "onnxruntime",
+  "backend": "default",
+  "optimization": "automatic_compression",
+  "execution_time_s": 29.329,
+  "metrics": {
+    "accuracy": null,
+    "latency_ms": null,
+    "memory_mb": null,
+    "model_size_mb": 3.694,
+    "extra": {
+      "sdk_compressed_size": 3.52269,
+      "sdk_compressed_flops": 3874910000.0,
+      "sdk_compressed_number_of_parameters": 882996.0,
+      "sdk_compressed_trainable_parameters": 877796.0,
+      "sdk_compressed_non_trainable_parameters": 5200.0
+    }
+  },
+  "baseline_metrics": {
+    "accuracy": null,
+    "latency_ms": null,
+    "memory_mb": null,
+    "model_size_mb": 12.847,
+    "extra": {
+      "sdk_original_size": 12.2516,
+      "sdk_original_flops": 8800920000.0,
+      "sdk_original_number_of_parameters": 3157184.0,
+      "sdk_original_trainable_parameters": 0.0,
+      "sdk_original_non_trainable_parameters": 3157184.0
+    }
+  },
+  "artifact": {
+    "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+    "exists": true,
+    "size_bytes": 3693813,
+    "format": "pt",
+    "checksum_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+    "expected_checksum_sha256": null,
+    "checksum_valid": null,
+    "metadata": {
+      "source_model": "model_fx.pt",
+      "source_model_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "operation": "automatic_compression",
+      "compression_method": "PR_L2",
+      "compression_ratio": 0.5,
+      "sdk_model_id": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+      "sdk_version": "1.17.0",
+      "sdk_metadata_path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/metadata.json",
+      "compressed_onnx_model_path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.onnx",
+      "configuration_key": "yolov8n|intel_xeon_w2233|onnxruntime|default|automatic_compression",
+      "generated_by": "NetsPressoAdapter 0.2.0 (real run)"
+    }
+  },
+  "logs": [
+    "[netspresso] REAL RUN authorized: operation=automatic_compression sdk_version=1.17.0",
+    "[netspresso] input model: outputs/models/yolov8n_fx_r1/model_fx.pt (12846691 bytes)",
+    "[netspresso] authenticated; account credit total before: 475",
+    "[netspresso] calling compressor_v2().automatic_compression(ratio=0.5, framework=pytorch, input_shapes=[{'batch': 1, 'channel': 3, 'dimension': [640, 640]}])",
+    "[netspresso] account credit total after: 450",
+    "[netspresso] SDK metadata status: completed",
+    "[netspresso] compressed model: reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt exists=True sha256=21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1"
+  ],
+  "error": null,
+  "defect_category": "UNCLASSIFIED",
+  "environment": {
+    "adapter": "netspresso",
+    "adapter_version": "0.2.0",
+    "sdk_name": "netspresso",
+    "sdk_version": "1.17.0",
+    "python_version": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "extra": {
+      "execution_mode": "REAL_RUN_AUTHORIZED",
+      "sdk_loaded": true,
+      "sdk_version_researched": "1.17.0",
+      "api_calls_executed": 1,
+      "operations_executed": 1,
+      "api_key_env": "NETSPRESSO_API_KEY",
+      "api_key_present": true
+    }
+  },
+  "reproducibility": {
+    "level": "NOT_VERIFIED",
+    "runs": 1,
+    "checksums": [
+      "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1"
+    ],
+    "notes": "single real run; reproducibility requires a second authorized run"
+  },
+  "timestamp": "2026-10-05T04:00:15+00:00",
+  "execution": {
+    "operation": "automatic_compression",
+    "configuration": {
+      "model": "yolov8n",
+      "device": "intel_xeon_w2233",
+      "runtime": "onnxruntime",
+      "backend": "default",
+      "optimization": "automatic_compression"
+    },
+    "execution_status": "COMPLETED",
+    "execution_time_s": 29.329,
+    "baseline_metrics": {
+      "accuracy": null,
+      "latency_ms": null,
+      "memory_mb": null,
+      "model_size_mb": 12.847,
+      "extra": {
+        "sdk_original_size": 12.2516,
+        "sdk_original_flops": 8800920000.0,
+        "sdk_original_number_of_parameters": 3157184.0,
+        "sdk_original_trainable_parameters": 0.0,
+        "sdk_original_non_trainable_parameters": 3157184.0
+      }
+    },
+    "metrics": {
+      "accuracy": null,
+      "latency_ms": null,
+      "memory_mb": null,
+      "model_size_mb": 3.694,
+      "extra": {
+        "sdk_compressed_size": 3.52269,
+        "sdk_compressed_flops": 3874910000.0,
+        "sdk_compressed_number_of_parameters": 882996.0,
+        "sdk_compressed_trainable_parameters": 877796.0,
+        "sdk_compressed_non_trainable_parameters": 5200.0
+      }
+    },
+    "artifact": {
+      "path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt",
+      "exists": true,
+      "size_bytes": 3693813,
+      "format": "pt",
+      "checksum_sha256": "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1",
+      "expected_checksum_sha256": null,
+      "checksum_valid": null,
+      "metadata": {
+        "source_model": "model_fx.pt",
+        "source_model_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+        "operation": "automatic_compression",
+        "compression_method": "PR_L2",
+        "compression_ratio": 0.5,
+        "sdk_model_id": "491890fb-de7f-4a95-8e4b-a448859c73a7",
+        "sdk_version": "1.17.0",
+        "sdk_metadata_path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/metadata.json",
+        "compressed_onnx_model_path": "reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.onnx",
+        "configuration_key": "yolov8n|intel_xeon_w2233|onnxruntime|default|automatic_compression",
+        "generated_by": "NetsPressoAdapter 0.2.0 (real run)"
+      }
+    },
+    "logs": [
+      "[netspresso] REAL RUN authorized: operation=automatic_compression sdk_version=1.17.0",
+      "[netspresso] input model: outputs/models/yolov8n_fx_r1/model_fx.pt (12846691 bytes)",
+      "[netspresso] authenticated; account credit total before: 475",
+      "[netspresso] calling compressor_v2().automatic_compression(ratio=0.5, framework=pytorch, input_shapes=[{'batch': 1, 'channel': 3, 'dimension': [640, 640]}])",
+      "[netspresso] account credit total after: 450",
+      "[netspresso] SDK metadata status: completed",
+      "[netspresso] compressed model: reports/real_runs/20261005T040009Z_automatic_compression/sdk_output/sdk_output.pt exists=True sha256=21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1"
+    ],
+    "error": null,
+    "environment": {
+      "adapter": "netspresso",
+      "adapter_version": "0.2.0",
+      "sdk_name": "netspresso",
+      "sdk_version": "1.17.0",
+      "python_version": "3.11.9",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "extra": {
+        "execution_mode": "REAL_RUN_AUTHORIZED",
+        "sdk_loaded": true,
+        "sdk_version_researched": "1.17.0",
+        "api_calls_executed": 1,
+        "operations_executed": 1,
+        "api_key_env": "NETSPRESSO_API_KEY",
+        "api_key_present": true
+      }
+    },
+    "reproducibility": {
+      "level": "NOT_VERIFIED",
+      "runs": 1,
+      "checksums": [
+        "21d8cbd1361cfd3ef55c0c132d11f3fad294dbde6f175e8082bc0233b860e0f1"
+      ],
+      "notes": "single real run; reproducibility requires a second authorized run"
+    },
+    "timestamp": "2026-10-05T04:00:15+00:00",
+    "credit": {
+      "usage_type": "actual",
+      "estimated": 25,
+      "actual": 25,
+      "note": "actual = account credit total before (475) - after (450), observed via the SDK's user/credit query; estimate 25 = CLIENT_SIDE_PRE_CHECK_CONSTANT (netspresso 1.17.0, netspresso/enums/credit.py); actual server-side deduction NOT verified"
+    },
+    "scenario_id": null
+  },
+  "quality_gate": {
+    "overall": "FAIL",
+    "profile": "release",
+    "criteria": [
+      {
+        "name": "accuracy",
+        "status": "NOT_APPLICABLE",
+        "observed": null,
+        "threshold": 1.0,
+        "message": "accuracy not available for baseline and/or current metrics",
+        "required": true
+      },
+      {
+        "name": "latency",
+        "status": "NOT_APPLICABLE",
+        "observed": null,
+        "threshold": 10.0,
+        "message": "latency not available or baseline is zero",
+        "required": true
+      },
+      {
+        "name": "memory",
+        "status": "NOT_APPLICABLE",
+        "observed": null,
+        "threshold": 15.0,
+        "message": "memory not available or baseline is zero",
+        "required": true
+      },
+      {
+        "name": "model_size",
+        "status": "PASS",
+        "observed": -71.246,
+        "threshold": 10.0,
+        "message": "model_size 12.847 -> 3.694 MB (-71.25%) within +10.0%",
+        "required": false
+      },
+      {
+        "name": "artifact",
+        "status": "NOT_APPLICABLE",
+        "observed": "exists, non-empty, checksum not verifiable (no expected checksum)",
+        "threshold": "required",
+        "message": "artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+        "required": true
+      },
+      {
+        "name": "reproducibility",
+        "status": "NOT_APPLICABLE",
+        "observed": "NOT_VERIFIED",
+        "threshold": "required",
+        "message": "reproducibility not verified (fewer than two runs)",
+        "required": true
+      }
+    ],
+    "reasons": [
+      "Accuracy: accuracy not available for baseline and/or current metrics",
+      "Latency: latency not available or baseline is zero",
+      "Memory: memory not available or baseline is zero",
+      "Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+      "Reproducibility: reproducibility not verified (fewer than two runs)"
+    ]
+  },
+  "defect": {
+    "category": "UNCLASSIFIED",
+    "severity": "MEDIUM",
+    "message": "required criteria could not be evaluated (missing data): accuracy, latency, memory, artifact, reproducibility",
+    "evidence": [
+      "Accuracy: accuracy not available for baseline and/or current metrics",
+      "Latency: latency not available or baseline is zero",
+      "Memory: memory not available or baseline is zero",
+      "Artifact Integrity: artifact exists but checksum is not verifiable: no expected checksum recorded yet",
+      "Reproducibility: reproducibility not verified (fewer than two runs)"
+    ],
+    "suspected_cause": null,
+    "reproducibility": "unknown",
+    "affected_configuration": {
+      "model": "yolov8n",
+      "device": "intel_xeon_w2233",
+      "runtime": "onnxruntime",
+      "backend": "default",
+      "optimization": "automatic_compression"
+    },
+    "secondary_categories": []
+  }
+}

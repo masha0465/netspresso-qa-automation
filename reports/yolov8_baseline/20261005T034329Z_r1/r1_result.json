@@ -1,0 +1,1856 @@
+{
+  "credit_consuming": false,
+  "netspresso_api_calls": 0,
+  "disclaimer": "R1 traceable fx export ran locally against upstream ultralytics. No NetsPresso API call was made. Equivalence here is between two local models (upstream vs exported body + rebuilt head); it is not a compression result.",
+  "phase": "5-E R1",
+  "patch_id": "r1-upstream-body-wrapper-v1",
+  "weights": {
+    "path": "outputs/models/yolov8n.pt",
+    "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "size_bytes": 6549796
+  },
+  "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+  "input_shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "checkpoint_metadata": {
+    "date": "2022-12-30T00:12:08.084698",
+    "version": "8.0.0.dev0",
+    "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+    "docs": "https://docs.ultralytics.com"
+  },
+  "baseline_reproduction": {
+    "current": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.44369,
+        "mAP50": 0.60111,
+        "mAP75": 0.47223,
+        "precision": 0.6286,
+        "recall": 0.52902
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "yolov8n upstream baseline (official weights)",
+      "is_output_equivalence_proxy": false,
+      "extra": {
+        "speed_ms": {
+          "preprocess": 0.345,
+          "inference": 18.497,
+          "loss": 0.0,
+          "postprocess": 0.821
+        }
+      }
+    },
+    "previous_record": {
+      "record": "reports/yolov8_baseline/20261005T024950Z/baseline.json",
+      "map50_95": 0.44369,
+      "ultralytics_version": "8.4.173"
+    },
+    "reproduced": true
+  },
+  "traceability_analysis": {
+    "layers": [
+      {
+        "index": 0,
+        "type": "ultralytics.nn.modules.conv.Conv",
+        "from": -1
+      },
+      {
+        "index": 1,
+        "type": "ultralytics.nn.modules.conv.Conv",
+        "from": -1
+      },
+      {
+        "index": 2,
+        "type": "ultralytics.nn.modules.block.C2f",
+        "from": -1
+      },
+      {
+        "index": 3,
+        "type": "ultralytics.nn.modules.conv.Conv",
+        "from": -1
+      },
+      {
+        "index": 4,
+        "type": "ultralytics.nn.modules.block.C2f",
+        "from": -1
+      },
+      {
+        "index": 5,
+        "type": "ultralytics.nn.modules.conv.Conv",
+        "from": -1
+      },
+      {
+        "index": 6,
+        "type": "ultralytics.nn.modules.block.C2f",
+        "from": -1
+      },
+      {
+        "index": 7,
+        "type": "ultralytics.nn.modules.conv.Conv",
+        "from": -1
+      },
+      {
+        "index": 8,
+        "type": "ultralytics.nn.modules.block.C2f",
+        "from": -1
+      },
+      {
+        "index": 9,
+        "type": "ultralytics.nn.modules.block.SPPF",
+        "from": -1
+      },
+      {
+        "index": 10,
+        "type": "torch.nn.modules.upsampling.Upsample",
+        "from": -1
+      },
+      {
+        "index": 11,
+        "type": "ultralytics.nn.modules.conv.Concat",
+        "from": [
+          -1,
+          6
+        ]
+      },
+      {
+        "index": 12,
+        "type": "ultralytics.nn.modules.block.C2f",
+        "from": -1
+      },
+      {
+        "index": 13,
+        "type": "torch.nn.modules.upsampling.Upsample",
+        "from": -1
+      },
+      {
+        "index": 14,
+        "type": "ultralytics.nn.modules.conv.Concat",
+        "from": [
+          -1,
+          4
+        ]
+      },
+      {
+        "index": 15,
+        "type": "ultralytics.nn.modules.block.C2f",
+        "from": -1
+      },
+      {
+        "index": 16,
+        "type": "ultralytics.nn.modules.conv.Conv",
+        "from": -1
+      },
+      {
+        "index": 17,
+        "type": "ultralytics.nn.modules.conv.Concat",
+        "from": [
+          -1,
+          12
+        ]
+      },
+      {
+        "index": 18,
+        "type": "ultralytics.nn.modules.block.C2f",
+        "from": -1
+      },
+      {
+        "index": 19,
+        "type": "ultralytics.nn.modules.conv.Conv",
+        "from": -1
+      },
+      {
+        "index": 20,
+        "type": "ultralytics.nn.modules.conv.Concat",
+        "from": [
+          -1,
+          9
+        ]
+      },
+      {
+        "index": 21,
+        "type": "ultralytics.nn.modules.block.C2f",
+        "from": -1
+      },
+      {
+        "index": 22,
+        "type": "ultralytics.nn.modules.head.Detect",
+        "from": [
+          15,
+          18,
+          21
+        ]
+      }
+    ],
+    "detect_from": [
+      15,
+      18,
+      21
+    ],
+    "detect_attrs": {
+      "nc": 80,
+      "nl": 3,
+      "reg_max": 16,
+      "stride": [
+        8.0,
+        16.0,
+        32.0
+      ],
+      "end2end": false,
+      "legacy": false
+    },
+    "upstream_detect_train_output": {
+      "type": "dict",
+      "keys": [
+        "boxes",
+        "feats",
+        "scores"
+      ],
+      "shapes": {
+        "boxes": [
+          1,
+          64,
+          8400
+        ],
+        "scores": [
+          1,
+          80,
+          8400
+        ]
+      },
+      "note": "upstream 8.4 Detect returns a dict {boxes, scores, feats} in train mode; the fork (8.0.108) returns nl maps [N, nc+4*reg_max, H, W]"
+    },
+    "direct_trace_eval": {
+      "status": "FAILED",
+      "error": "TraceError: Proxy object cannot be iterated. This can be attempted when the Proxy is used in a loop or as a *args or **kwargs function argument. See the torch.fx docs on pytorch.org for a more detailed explanatio"
+    },
+    "direct_trace_train": {
+      "status": "FAILED",
+      "error": "TraceError: Proxy object cannot be iterated. This can be attempted when the Proxy is used in a loop or as a *args or **kwargs function argument. See the torch.fx docs on pytorch.org for a more detailed explanatio"
+    },
+    "reference_model_note": "reference DetectionModel never ran in train mode (BN statistics untouched); train-mode/trace probes used a discarded deepcopy",
+    "boundary": {
+      "patch_id": "r1-upstream-body-wrapper-v1",
+      "in_graph": [
+        "backbone + neck layers model.0 .. model.21 (Conv/C2f/SPPF/Upsample/Concat, traced through to torch.nn leaves)",
+        "Detect.cv2[i] (box branch, 4*reg_max ch) and Detect.cv3[i] (class branch, nc ch) per level, concatenated -> [N, nc+4*reg_max, H/s, W/s]"
+      ],
+      "out_of_graph": [
+        "DFL (distribution -> distance expectation)",
+        "anchor grid / stride tensors (make_anchors)",
+        "box decode (dist2bbox, xywh) * stride",
+        "class sigmoid",
+        "NMS (non_max_suppression) and all predictor/validator post-processing",
+        "pre-processing (letterbox, /255, BGR->RGB)"
+      ],
+      "patch_steps": [
+        "wrapper module around the unmodified upstream DetectionModel: replays BaseModel._predict_once over layers 0..N-2 and emits the fork-contract maps",
+        "C2f instances: bind upstream's own traceable alternative `forward_split` (same chained Bottleneck semantics; avoids iterating a Proxy from chunk()) - the same swap ultralytics' exporter applies for some export formats"
+      ],
+      "head_metadata_contract": [
+        "nc",
+        "nl",
+        "anchors",
+        "stride",
+        "strides",
+        "inplace"
+      ],
+      "note": "This boundary is identical to the official fork's export_netspresso() body/head split, so the artifact is consumable by the fork's DetectionModel_netspresso re-attach path. It is a QA-defined traceability boundary around unmodified upstream product code, not a modification of ultralytics."
+    }
+  },
+  "export": {
+    "source_model_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "source_model_version": "ultralytics checkpoint version=8.0.0.dev0 date=2022-12-30T00:12:08.084698",
+    "source_code_version": "ultralytics 8.4.173 (upstream, unmodified)",
+    "patch_identifier": "r1-upstream-body-wrapper-v1",
+    "input_shape": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "fx_version": "torch.fx (torch 2.14.1+cpu)",
+    "torch_version": "2.14.1+cpu",
+    "python_version": "3.11.9",
+    "timestamp": "2026-10-05T03:43:35+00:00",
+    "artifact_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+    "artifact_size_bytes": 12846691,
+    "artifact_path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+    "head_meta_sha256": "6d9043d46c6aa48af87e32cc2cec10cb6a1b80c6ef031154af842bc8bd7ee137",
+    "head_meta_path": "outputs/models/yolov8n_fx_r1/netspresso_head_meta.json",
+    "export_method": "torch.fx.Tracer().trace(TraceableYOLOv8Body(upstream DetectionModel)) -> GraphModule -> torch.save",
+    "graph": {
+      "node_count": 230,
+      "ops": {
+        "call_function": 38,
+        "call_method": 8,
+        "call_module": 182,
+        "output": 1,
+        "placeholder": 1
+      },
+      "leaf_module_classes": {
+        "torch.nn.modules.activation.SiLU": 57,
+        "torch.nn.modules.batchnorm.BatchNorm2d": 57,
+        "torch.nn.modules.conv.Conv2d": 63,
+        "torch.nn.modules.pooling.MaxPool2d": 3,
+        "torch.nn.modules.upsampling.Upsample": 2
+      },
+      "non_torch_nn_leaves": [],
+      "out_of_graph_markers_found_in_graph": [],
+      "leaf_clean": true
+    },
+    "reproducibility": {
+      "export_1_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "export_2_sha256": "d8e761dae29301ef51df9e7679c729338a522d397e271a900d453d171e1c022b",
+      "bitwise_identical": true,
+      "head_meta_identical": true,
+      "status": "PASS",
+      "note": "raw SHA preserved; no metadata normalization needed for the torch.save container when raw SHAs already match"
+    },
+    "patched_c2f_instances": [
+      {
+        "index": 2,
+        "bottlenecks": 1
+      },
+      {
+        "index": 4,
+        "bottlenecks": 2
+      },
+      {
+        "index": 6,
+        "bottlenecks": 2
+      },
+      {
+        "index": 8,
+        "bottlenecks": 1
+      },
+      {
+        "index": 12,
+        "bottlenecks": 1
+      },
+      {
+        "index": 15,
+        "bottlenecks": 1
+      },
+      {
+        "index": 18,
+        "bottlenecks": 1
+      },
+      {
+        "index": 21,
+        "bottlenecks": 1
+      }
+    ],
+    "traceability_boundary": {
+      "patch_id": "r1-upstream-body-wrapper-v1",
+      "in_graph": [
+        "backbone + neck layers model.0 .. model.21 (Conv/C2f/SPPF/Upsample/Concat, traced through to torch.nn leaves)",
+        "Detect.cv2[i] (box branch, 4*reg_max ch) and Detect.cv3[i] (class branch, nc ch) per level, concatenated -> [N, nc+4*reg_max, H/s, W/s]"
+      ],
+      "out_of_graph": [
+        "DFL (distribution -> distance expectation)",
+        "anchor grid / stride tensors (make_anchors)",
+        "box decode (dist2bbox, xywh) * stride",
+        "class sigmoid",
+        "NMS (non_max_suppression) and all predictor/validator post-processing",
+        "pre-processing (letterbox, /255, BGR->RGB)"
+      ],
+      "patch_steps": [
+        "wrapper module around the unmodified upstream DetectionModel: replays BaseModel._predict_once over layers 0..N-2 and emits the fork-contract maps",
+        "C2f instances: bind upstream's own traceable alternative `forward_split` (same chained Bottleneck semantics; avoids iterating a Proxy from chunk()) - the same swap ultralytics' exporter applies for some export formats"
+      ],
+      "head_metadata_contract": [
+        "nc",
+        "nl",
+        "anchors",
+        "stride",
+        "strides",
+        "inplace"
+      ],
+      "note": "This boundary is identical to the official fork's export_netspresso() body/head split, so the artifact is consumable by the fork's DetectionModel_netspresso re-attach path. It is a QA-defined traceability boundary around unmodified upstream product code, not a modification of ultralytics."
+    },
+    "credit_consuming": false,
+    "netspresso_api_calls": 0
+  },
+  "artifact_validation": {
+    "structural": {
+      "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+      "format": "pt",
+      "status": "PASS",
+      "message": "loaded as graph_module via full_unpickle (trusted)",
+      "checks": {
+        "exists": true,
+        "non_empty": true,
+        "readable": true,
+        "zip_container": true,
+        "safe_load": false,
+        "full_load": true,
+        "recognised_structure": true,
+        "has_parameters": true
+      },
+      "details": {
+        "size_bytes": 12846691,
+        "magic": "504b0304",
+        "safe_load_error": "UnpicklingError",
+        "load_mode": "full_unpickle (trusted)",
+        "class_name": "GraphModule",
+        "parameter_count": 3157184,
+        "parameter_tensors": 183,
+        "object_kind": "graph_module"
+      },
+      "defect_category": null
+    },
+    "precheck": {
+      "status": "READY",
+      "message": "known contract checks passed (format, GraphModule, head metadata, input shape, output schema)",
+      "checks": {
+        "fx_exists": true,
+        "fx_extension_pt": true,
+        "head_meta_exists": true,
+        "head_meta_valid": true,
+        "nc_matches_expected": true,
+        "input_shape_compatible": true,
+        "fx_is_graph_module": true,
+        "output_schema": true
+      },
+      "details": {
+        "task": "detect",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "head_meta": {
+          "nc": 80,
+          "nl": 3,
+          "stride": [
+            8.0,
+            16.0,
+            32.0
+          ],
+          "strides_shape": [
+            1,
+            8400
+          ],
+          "anchors_shape": [
+            2,
+            8400
+          ],
+          "inplace": true,
+          "outputs_per_anchor": 144,
+          "reg_max": 16,
+          "source": "outputs/models/yolov8n_fx_r1/netspresso_head_meta.json"
+        },
+        "input_shape_message": "input [N=1,C=3,H=640,W=640] compatible with strides [8.0, 16.0, 32.0]",
+        "structural_validation": {
+          "path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
+          "format": "pt",
+          "status": "PASS",
+          "message": "loaded as graph_module via full_unpickle (trusted)",
+          "checks": {
+            "exists": true,
+            "non_empty": true,
+            "readable": true,
+            "zip_container": true,
+            "safe_load": false,
+            "full_load": true,
+            "recognised_structure": true,
+            "has_parameters": true
+          },
+          "details": {
+            "size_bytes": 12846691,
+            "magic": "504b0304",
+            "safe_load_error": "UnpicklingError",
+            "load_mode": "full_unpickle (trusted)",
+            "class_name": "GraphModule",
+            "parameter_count": 3157184,
+            "parameter_tensors": 183,
+            "object_kind": "graph_module"
+          },
+          "defect_category": null
+        },
+        "expected_body_output_shapes": [
+          [
+            1,
+            144,
+            80,
+            80
+          ],
+          [
+            1,
+            144,
+            40,
+            40
+          ],
+          [
+            1,
+            144,
+            20,
+            20
+          ]
+        ],
+        "observed_body_output_shapes": [
+          [
+            1,
+            144,
+            80,
+            80
+          ],
+          [
+            1,
+            144,
+            40,
+            40
+          ],
+          [
+            1,
+            144,
+            20,
+            20
+          ]
+        ],
+        "output_schema_message": "output schema matches expected [[1, 144, 80, 80], [1, 144, 40, 40], [1, 144, 20, 20]]"
+      },
+      "meaning": "READY = known contract checks passed; it does NOT assert that the NetsPresso server will accept the upload"
+    },
+    "status": "PASS"
+  },
+  "reattach": {
+    "status": "PASS",
+    "decoded_output_shape": [
+      1,
+      84,
+      8400
+    ],
+    "body_output_shapes": [
+      [
+        1,
+        144,
+        80,
+        80
+      ],
+      [
+        1,
+        144,
+        40,
+        40
+      ],
+      [
+        1,
+        144,
+        20,
+        20
+      ]
+    ],
+    "messages": [
+      "output schema matches expected [[1, 144, 80, 80], [1, 144, 40, 40], [1, 144, 20, 20]]",
+      "output schema matches expected [[1, 84, 8400]]"
+    ],
+    "dfl_weights_equal_checkpoint": true,
+    "head_class": "R1DecodeHead (rebuilt from head meta; upstream DFL/make_anchors/dist2bbox)"
+  },
+  "functional_equivalence": {
+    "images": 8,
+    "per_image": [
+      {
+        "image": "000000000009.jpg",
+        "raw_boxes": {
+          "status": "COMPUTED",
+          "count": 537600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "raw_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_all": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_boxes": {
+          "status": "COMPUTED",
+          "count": 33600,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "noise_floor_fused_vs_unfused_decoded": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999998886,
+          "max_abs_diff": 0.0068359375,
+          "mean_abs_diff": 2.087629293185949e-06,
+          "relative_l2_diff": 3.7549397905138527e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000025.jpg",
+        "raw_boxes": {
+          "status": "COMPUTED",
+          "count": 537600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "raw_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_all": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_boxes": {
+          "status": "COMPUTED",
+          "count": 33600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 0.9999999999999998,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "noise_floor_fused_vs_unfused_decoded": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999998952,
+          "max_abs_diff": 0.0023193359375,
+          "mean_abs_diff": 2.192808188435048e-06,
+          "relative_l2_diff": 3.469506418525175e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000030.jpg",
+        "raw_boxes": {
+          "status": "COMPUTED",
+          "count": 537600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "raw_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_all": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_boxes": {
+          "status": "COMPUTED",
+          "count": 33600,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 0.9999999999999999,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "noise_floor_fused_vs_unfused_decoded": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999998708,
+          "max_abs_diff": 0.00311279296875,
+          "mean_abs_diff": 2.5940741227030096e-06,
+          "relative_l2_diff": 4.229358280057669e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000034.jpg",
+        "raw_boxes": {
+          "status": "COMPUTED",
+          "count": 537600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "raw_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_all": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_boxes": {
+          "status": "COMPUTED",
+          "count": 33600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 0.9999999999999999,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "noise_floor_fused_vs_unfused_decoded": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999998733,
+          "max_abs_diff": 0.0030059814453125,
+          "mean_abs_diff": 2.4883720401835e-06,
+          "relative_l2_diff": 4.2867310026689945e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000036.jpg",
+        "raw_boxes": {
+          "status": "COMPUTED",
+          "count": 537600,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "raw_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_all": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_boxes": {
+          "status": "COMPUTED",
+          "count": 33600,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 0.9999999999999998,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "noise_floor_fused_vs_unfused_decoded": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999998624,
+          "max_abs_diff": 0.003631591796875,
+          "mean_abs_diff": 2.486944127727801e-06,
+          "relative_l2_diff": 4.264501228463543e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000042.jpg",
+        "raw_boxes": {
+          "status": "COMPUTED",
+          "count": 537600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "raw_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_all": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_boxes": {
+          "status": "COMPUTED",
+          "count": 33600,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 0.9999999999999998,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "noise_floor_fused_vs_unfused_decoded": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999998761,
+          "max_abs_diff": 0.004791259765625,
+          "mean_abs_diff": 2.410425298826788e-06,
+          "relative_l2_diff": 4.063874918882314e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000049.jpg",
+        "raw_boxes": {
+          "status": "COMPUTED",
+          "count": 537600,
+          "cosine": 1.0000000000000002,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "raw_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_all": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999999998,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_boxes": {
+          "status": "COMPUTED",
+          "count": 33600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "noise_floor_fused_vs_unfused_decoded": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999998618,
+          "max_abs_diff": 0.003387451171875,
+          "mean_abs_diff": 2.434747526782411e-06,
+          "relative_l2_diff": 4.405107928867867e-07,
+          "bitwise_identical": false
+        }
+      },
+      {
+        "image": "000000000061.jpg",
+        "raw_boxes": {
+          "status": "COMPUTED",
+          "count": 537600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "raw_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_all": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_boxes": {
+          "status": "COMPUTED",
+          "count": 33600,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "decoded_scores": {
+          "status": "COMPUTED",
+          "count": 672000,
+          "cosine": 1.0,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "relative_l2_diff": 0.0,
+          "bitwise_identical": true
+        },
+        "noise_floor_fused_vs_unfused_decoded": {
+          "status": "COMPUTED",
+          "count": 705600,
+          "cosine": 0.9999999999998993,
+          "max_abs_diff": 0.0025634765625,
+          "mean_abs_diff": 2.068882760876769e-06,
+          "relative_l2_diff": 3.53252133519687e-07,
+          "bitwise_identical": false
+        }
+      }
+    ],
+    "aggregate": {
+      "raw_boxes": {
+        "min_cosine": 1.0,
+        "max_abs_diff": 0.0,
+        "max_relative_l2_diff": 0.0,
+        "all_bitwise_identical": true
+      },
+      "raw_scores": {
+        "min_cosine": 1.0,
+        "max_abs_diff": 0.0,
+        "max_relative_l2_diff": 0.0,
+        "all_bitwise_identical": true
+      },
+      "decoded_all": {
+        "min_cosine": 0.9999999999999998,
+        "max_abs_diff": 0.0,
+        "max_relative_l2_diff": 0.0,
+        "all_bitwise_identical": true
+      },
+      "decoded_boxes": {
+        "min_cosine": 1.0,
+        "max_abs_diff": 0.0,
+        "max_relative_l2_diff": 0.0,
+        "all_bitwise_identical": true
+      },
+      "decoded_scores": {
+        "min_cosine": 0.9999999999999998,
+        "max_abs_diff": 0.0,
+        "max_relative_l2_diff": 0.0,
+        "all_bitwise_identical": true
+      },
+      "noise_floor_fused_vs_unfused_decoded": {
+        "min_cosine": 0.9999999999998618,
+        "max_abs_diff": 0.0068359375,
+        "max_relative_l2_diff": 4.405107928867867e-07,
+        "all_bitwise_identical": false
+      }
+    },
+    "verdict_pre_nms_decoded": {
+      "verdict": "EQUIVALENT",
+      "failed_checks": [],
+      "thresholds": {
+        "min_cosine": 0.999999,
+        "max_relative_l2_diff": 0.0001,
+        "max_abs_diff": null,
+        "basis": "PROJECT-DEFINED EXAMPLE THRESHOLD (set after measuring the fused/unfused noise floor)"
+      }
+    },
+    "comparison": "upstream DetectionModel (unfused, eval) vs R1 fx body + R1DecodeHead, identical preprocessed input, before NMS",
+    "note": "noise_floor = upstream unfused vs upstream fused (same model, BN folding) - the magnitude of ordinary fp32 re-association noise"
+  },
+  "one_image_diagnostic": {
+    "image": "000000000009.jpg",
+    "original_hw": [
+      480,
+      640
+    ],
+    "settings": {
+      "predictor_default": {
+        "conf": 0.25,
+        "iou": 0.7,
+        "comparison": {
+          "ref_count": 6,
+          "cand_count": 6,
+          "count_equal": true,
+          "matched": 6,
+          "unmatched_ref": 0,
+          "unmatched_cand": 0,
+          "max_coordinate_abs_diff": 0.0,
+          "max_confidence_abs_diff": 0.0,
+          "min_matched_iou": 1.0,
+          "class_ids_ref": [
+            45,
+            45,
+            45,
+            45,
+            50,
+            52
+          ],
+          "class_ids_cand": [
+            45,
+            45,
+            45,
+            45,
+            50,
+            52
+          ],
+          "all_matched": true
+        },
+        "upstream_top5": [
+          [
+            306.433,
+            80.862,
+            627.862,
+            320.693,
+            0.901,
+            45.0
+          ],
+          [
+            254.808,
+            311.798,
+            566.386,
+            554.901,
+            0.816,
+            50.0
+          ],
+          [
+            -1.088,
+            88.797,
+            527.632,
+            537.47,
+            0.549,
+            45.0
+          ],
+          [
+            0.33,
+            191.939,
+            230.052,
+            383.033,
+            0.433,
+            52.0
+          ],
+          [
+            0.772,
+            266.761,
+            601.913,
+            556.217,
+            0.368,
+            45.0
+          ]
+        ],
+        "r1_top5": [
+          [
+            306.433,
+            80.862,
+            627.862,
+            320.693,
+            0.901,
+            45.0
+          ],
+          [
+            254.808,
+            311.798,
+            566.386,
+            554.901,
+            0.816,
+            50.0
+          ],
+          [
+            -1.088,
+            88.797,
+            527.632,
+            537.47,
+            0.549,
+            45.0
+          ],
+          [
+            0.33,
+            191.939,
+            230.052,
+            383.033,
+            0.433,
+            52.0
+          ],
+          [
+            0.772,
+            266.761,
+            601.913,
+            556.217,
+            0.368,
+            45.0
+          ]
+        ]
+      },
+      "validator": {
+        "conf": 0.001,
+        "iou": 0.7,
+        "comparison": {
+          "ref_count": 194,
+          "cand_count": 194,
+          "count_equal": true,
+          "matched": 194,
+          "unmatched_ref": 0,
+          "unmatched_cand": 0,
+          "max_coordinate_abs_diff": 0.0,
+          "max_confidence_abs_diff": 0.0,
+          "min_matched_iou": 1.0,
+          "class_ids_ref": [
+            42,
+            43,
+            43,
+            43,
+            43,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            48,
+            48,
+            48,
+            48,
+            48,
+            48,
+            48,
+            48,
+            48,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            52,
+            54,
+            55,
+            55,
+            55,
+            55,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "class_ids_cand": [
+            42,
+            43,
+            43,
+            43,
+            43,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            44,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            45,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            46,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            47,
+            48,
+            48,
+            48,
+            48,
+            48,
+            48,
+            48,
+            48,
+            48,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            51,
+            52,
+            54,
+            55,
+            55,
+            55,
+            55,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "all_matched": true
+        },
+        "upstream_top5": [
+          [
+            306.433,
+            80.862,
+            627.862,
+            320.693,
+            0.901,
+            45.0
+          ],
+          [
+            254.808,
+            311.798,
+            566.386,
+            554.901,
+            0.816,
+            50.0
+          ],
+          [
+            -1.088,
+            88.797,
+            527.632,
+            537.47,
+            0.549,
+            45.0
+          ],
+          [
+            0.33,
+            191.939,
+            230.052,
+            383.033,
+            0.433,
+            52.0
+          ],
+          [
+            0.772,
+            266.761,
+            601.913,
+            556.217,
+            0.368,
+            45.0
+          ]
+        ],
+        "r1_top5": [
+          [
+            306.433,
+            80.862,
+            627.862,
+            320.693,
+            0.901,
+            45.0
+          ],
+          [
+            254.808,
+            311.798,
+            566.386,
+            554.901,
+            0.816,
+            50.0
+          ],
+          [
+            -1.088,
+            88.797,
+            527.632,
+            537.47,
+            0.549,
+            45.0
+          ],
+          [
+            0.33,
+            191.939,
+            230.052,
+            383.033,
+            0.433,
+            52.0
+          ],
+          [
+            0.772,
+            266.761,
+            601.913,
+            556.217,
+            0.368,
+            45.0
+          ]
+        ]
+      }
+    },
+    "status": "PASS"
+  },
+  "cross_env_dumps": {
+    "dir": "outputs/models/yolov8n_fx_r1/diag",
+    "keys": 29,
+    "note": "numpy arrays (float32) - no pickle; used by the fork/torch-2.0.1 cross-check"
+  },
+  "detection_evaluation": {
+    "baseline": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.44369,
+        "mAP50": 0.60111,
+        "mAP75": 0.47223,
+        "precision": 0.6286,
+        "recall": 0.52902
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "yolov8n upstream baseline (official weights)",
+      "is_output_equivalence_proxy": false,
+      "extra": {
+        "speed_ms": {
+          "preprocess": 0.345,
+          "inference": 18.497,
+          "loss": 0.0,
+          "postprocess": 0.821
+        }
+      }
+    },
+    "r1": {
+      "status": "MEASURED",
+      "reason": null,
+      "primary_metric": "mAP50-95",
+      "metrics": {
+        "mAP50-95": 0.44369,
+        "mAP50": 0.60111,
+        "mAP75": 0.47223,
+        "precision": 0.6286,
+        "recall": 0.52902
+      },
+      "dataset": "coco128.yaml",
+      "dataset_version": "ultralytics coco128.zip (COCO 2017 subset)",
+      "split": "val(train2017 subset)",
+      "images": 128,
+      "instances": 929,
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+      "model_label": "R1 upstream-traced fx body + R1DecodeHead (rebuilt from head meta)",
+      "is_output_equivalence_proxy": false,
+      "extra": {
+        "speed_ms": {
+          "preprocess": 0.425,
+          "inference": 19.728,
+          "loss": 0.0,
+          "postprocess": 0.754
+        }
+      }
+    },
+    "comparison": {
+      "status": "MEASURED",
+      "metric": "mAP50-95",
+      "baseline_metric": 0.44369,
+      "candidate_metric": 0.44369,
+      "absolute_delta": 0.0,
+      "drop_pp": 0.0,
+      "relative_delta_percent": 0.0,
+      "baseline_label": "yolov8n upstream baseline (official weights)",
+      "candidate_label": "R1 upstream-traced fx body + R1DecodeHead (rebuilt from head meta)",
+      "reason": null,
+      "conditions": {
+        "dataset": "coco128.yaml",
+        "split": "val(train2017 subset)",
+        "imgsz": 640,
+        "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+        "conf": 0.001,
+        "iou": 0.7
+      },
+      "secondary": {
+        "mAP50": {
+          "baseline": 0.60111,
+          "candidate": 0.60111,
+          "drop_pp": 0.0
+        },
+        "mAP75": {
+          "baseline": 0.47223,
+          "candidate": 0.47223,
+          "drop_pp": 0.0
+        },
+        "precision": {
+          "baseline": 0.6286,
+          "candidate": 0.6286,
+          "drop_pp": 0.0
+        },
+        "recall": {
+          "baseline": 0.52902,
+          "candidate": 0.52902,
+          "drop_pp": 0.0
+        }
+      },
+      "is_output_equivalence_proxy": false
+    },
+    "conditions": {
+      "data": "coco128.yaml",
+      "imgsz": 640,
+      "conf": 0.001,
+      "iou": 0.7,
+      "rect": true,
+      "batch": 8,
+      "device": "cpu",
+      "half": false
+    },
+    "note": "same evaluator build, same data/split/imgsz/conf/iou/rect; R1 body is unfused while the baseline validator fuses Conv+BN"
+  },
+  "r1_criteria": {
+    "baseline_reproduced": true,
+    "traceable_export_created": true,
+    "head_reattach": true,
+    "schema_pass": true,
+    "pre_nms_equivalence": true,
+    "one_image_detection_match": true,
+    "coco128_map_equivalent": true,
+    "artifact_validation": true,
+    "reproducibility": true
+  },
+  "r1_status_this_env": "PASS",
+  "environment": {
+    "os": "Windows",
+    "os_release": "10",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "python": "3.11.9",
+    "python_implementation": "CPython",
+    "execution_provider": null,
+    "intra_op_threads": null,
+    "thread_env": {
+      "OMP_NUM_THREADS": "1"
+    },
+    "packages": {
+      "ultralytics": "8.4.173",
+      "torch": "2.14.1",
+      "torchvision": "0.29.1",
+      "numpy": "2.4.6",
+      "onnx": "1.23.1",
+      "psutil": "7.2.2",
+      "opencv-python": "5.0.0.93"
+    }
+  },
+  "timestamp": "2026-10-05T03:43:44+00:00",
+  "ledger_unchanged": true
+}

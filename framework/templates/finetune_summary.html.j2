@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>E5-1 Fine-tuning Recovery — phase {{ r.experiment.finetune_phase }}</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; margin: 2rem auto; max-width: 1100px; color: #1f2933; line-height: 1.45; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; border-bottom: 1px solid #d9dee3; padding-bottom: .25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin-top: .5rem; }
+  th, td { border: 1px solid #d9dee3; padding: .35rem .5rem; text-align: left; vertical-align: top; } th { background: #f5f7fa; }
+  .status { font-weight: 600; padding: .1rem .45rem; border-radius: 3px; display: inline-block; }
+  .PASS, .MEASURED, .RECOVERY_SUCCESS { background: #e3f6ec; color: #0f5132; } .FAIL, .RECOVERY_FAILED, .BLOCKED { background: #fbe3e4; color: #7a1e26; } .WARN, .PARTIAL_RECOVERY { background: #fff1cc; color: #6b4e00; }
+  .NOT_APPLICABLE, .NOT_VERIFIED, .N\/A { background: #eef0f3; color: #3e4c59; }
+  .note { background: #fff8e6; border-left: 3px solid #d4a72c; padding: .5rem .75rem; margin: 1rem 0; font-size: .9rem; }
+  .muted { color: #616e7c; font-size: .9rem; } code { background: #f5f7fa; padding: 0 .25rem; border-radius: 3px; font-size: .85em; }
+</style>
+</head>
+<body>
+<h1>Phase 5-E — local fine-tuning recovery of the E5-1 compressed YOLOv8n (phase {{ r.experiment.finetune_phase }})</h1>
+<p class="muted">{{ r.experiment.timestamp }} · report <code>{{ r.experiment.report_dir }}</code> · E5-1 record <code>{{ r.experiment.e5_1_record }}</code> · credit_consuming {{ r.credit_consuming }} · API calls {{ r.netspresso_api_calls }}</p>
+<div class="note"><strong>{{ r.disclaimer }}</strong><br>The fine-tuned artifact is a LOCAL derivative; the NetsPresso-generated artifact is the E5-1 candidate (sha 21d8cbd1…). Thresholds are PROJECT-DEFINED EXAMPLES. Latency/memory: development machine, CPUExecutionProvider.</div>
+
+<h2>0. Decision</h2>
+<p><span class="status {{ r.recovery.decision }}">{{ r.recovery.decision }}</span> {{ r.recovery.reason }} · next step <strong>{{ r.next_step.code }}. {{ r.next_step.label }}</strong></p>
+<table><tr><th>Ledger before</th><th>Ledger after</th><th>Unchanged</th><th>E5-1 files immutable</th><th>Artifact validation</th><th>Gate compression</th><th>Gate local_eval</th><th>Gate release</th></tr>
+<tr><td>{{ r.credit_safety.ledger_before.used }} / {{ r.credit_safety.ledger_before.remaining }} / {{ r.credit_safety.ledger_before.operations }}</td><td>{{ r.credit_safety.ledger_after.used }} / {{ r.credit_safety.ledger_after.remaining }} / {{ r.credit_safety.ledger_after.operations }}</td>
+<td>{{ r.credit_safety.ledger_unchanged }}</td><td>{{ r.e5_1_verification.e5_1_files_immutable }}</td><td><span class="status {{ r.artifact_validation.status }}">{{ r.artifact_validation.status }}</span></td>
+{% for p in ['compression', 'local_eval', 'release'] %}<td><span class="status {{ r.quality_gate[p].overall }}">{{ r.quality_gate[p].overall }}</span></td>{% endfor %}</tr></table>
+
+<h2>1. Three-way accuracy (COCO128 smoke, imgsz 640, conf 0.001, IoU 0.7, rect=True, same evaluator)</h2>
+<table><tr><th>Model</th><th>Kind</th><th>mAP50-95</th><th>mAP50</th><th>mAP75</th><th>Precision</th><th>Recall</th></tr>
+{% for label, kind in [('baseline', 'upstream YOLOv8n (untouched)'), ('compressed', 'E5-1 NetsPresso-generated candidate'), ('fine_tuned', 'LOCAL fine-tuned derivative')] %}{% set m = r.accuracy[label] %}
+<tr><td>{{ label }}</td><td>{{ kind }}</td>{% if m.status == 'MEASURED' %}<td><strong>{{ m.metrics['mAP50-95'] }}</strong></td><td>{{ m.metrics['mAP50'] }}</td><td>{{ m.metrics['mAP75'] }}</td><td>{{ m.metrics.precision }}</td><td>{{ m.metrics.recall }}</td>{% else %}<td colspan="5">{{ m.status }} {{ m.reason }}</td>{% endif %}</tr>
+{% endfor %}</table>
+<p>baseline → compressed {{ r.accuracy.three_way.baseline_to_compressed_pp }} pp · baseline → fine-tuned {{ r.accuracy.three_way.baseline_to_fine_tuned_pp }} pp · compressed → fine-tuned +{{ r.accuracy.three_way.compressed_to_fine_tuned_pp }} pp · <strong>recovery {{ r.accuracy.three_way.recovery_percent }} %</strong> · remaining drop {{ r.accuracy.three_way.remaining_drop_pp }} pp vs example threshold {{ r.accuracy.threshold_pp }} pp</p>
+<p class="muted">{{ r.accuracy.threshold_basis }} · train == val: {{ r.accuracy.conditions.train_equals_val }}</p>
+
+{% if r.comparison_table is defined %}
+<h2>1b. Multi-way comparison (all local phases)</h2>
+<table><tr><th>model</th><th>kind</th><th>mAP50-95</th><th>mAP50</th><th>mAP75</th><th>P</th><th>R</th><th>params</th><th>FLOPs (2×MACs)</th><th>size (B)</th><th>SHA-256</th></tr>
+{% for row in r.comparison_table %}<tr><td>{{ row.model }}</td><td>{{ row.kind }}</td><td><strong>{{ row.metrics['mAP50-95'] }}</strong></td><td>{{ row.metrics['mAP50'] }}</td><td>{{ row.metrics['mAP75'] }}</td><td>{{ row.metrics.precision }}</td><td>{{ row.metrics.recall }}</td><td>{{ row.params }}</td><td>{{ row.flops_2x_macs }}</td><td>{{ row.size_bytes }}</td><td><code>{{ (row.sha256 or '')[:16] }}…</code></td></tr>{% endfor %}</table>
+<p>Continuation decision: <span class="status {{ r.continuation_decision.decision }}">{{ r.continuation_decision.decision }}</span> {{ r.continuation_decision.reason }} · best {{ r.training.best.map50_95 }} at global epoch {{ r.training.best.global_epoch }} · previous best {{ r.training.previous_best_map50_95 }} · stop reason <code>{{ r.training.early_stopping.stopped_reason }}</code> · rollback {{ r.training.rollback.applied }} · milestones {{ r.training.milestones_reached }} · next <strong>{{ r.continuation_next_step.label }}</strong> · NetsPresso execution <strong>{{ r.netspresso_next_execution }}</strong></p>
+{% endif %}
+
+<h2>2. Fine-tuning configuration and training</h2>
+<table><tr><th>phase</th><th>epochs</th><th>batch</th><th>imgsz</th><th>optimizer</th><th>lr</th><th>weight decay</th><th>freeze</th><th>seed</th><th>seconds</th><th>torch / ultralytics</th></tr>
+<tr><td>{{ r.finetune_config.phase }}</td><td>{{ r.finetune_config.epochs }}</td><td>{{ r.finetune_config.batch }}</td><td>{{ r.finetune_config.imgsz }}</td><td>{{ r.finetune_config.optimizer }}<br><span class="muted">{{ r.finetune_config.lr_schedule }}</span></td><td>{{ r.finetune_config.lr }}</td><td>{{ r.finetune_config.weight_decay }}</td>
+<td>trainable prefixes {{ r.finetune_config.freeze.trainable_prefixes }}<br>{{ r.finetune_config.freeze.trainable_tensors }} trainable / {{ r.finetune_config.freeze.frozen_tensors }} frozen tensors</td><td>{{ r.finetune_config.seed }}</td><td>{{ r.training.seconds }}</td><td>{{ r.finetune_config.torch_version }} / {{ r.finetune_config.ultralytics_version }}</td></tr></table>
+<p class="muted">augmentation: {{ r.finetune_config.augmentation }} · dataset: {{ r.finetune_config.dataset.identity }} ({{ r.finetune_config.dataset.train_images }} train images, source {{ r.finetune_config.dataset.source }})</p>
+<table><tr><th>epoch</th><th>box</th><th>cls</th><th>dfl</th><th>lr end</th><th>s</th><th>mAP50-95</th><th>mAP50</th></tr>
+{% for h in r.training.history %}<tr><td>{{ h.epoch }}</td><td>{{ h.box_loss }}</td><td>{{ h.cls_loss }}</td><td>{{ h.dfl_loss }}</td><td>{{ '%.2e' % h.lr_end }}</td><td>{{ h.seconds }}</td><td>{{ h.map50_95 if h.map50_95 is defined else '' }}</td><td>{{ h.map50 if h.map50 is defined else '' }}</td></tr>{% endfor %}</table>
+
+<h2>3. Artifact, params, FLOPs</h2>
+<table><tr><th>Artifact</th><th>SHA-256</th><th>Size</th><th>Structural</th><th>Forward</th><th>Decoded</th><th>params</th><th>FLOPs (2×MACs)</th><th>Architecture unchanged</th></tr>
+<tr><td><code>{{ r.artifact_validation.pt.path }}</code><br><span class="muted">LOCAL fine-tuned derivative</span></td><td><code>{{ r.artifact_validation.pt.sha256 }}</code></td><td>{{ r.artifact_validation.pt.size_bytes }}</td><td><span class="status {{ r.artifact_validation.pt.structural.status }}">{{ r.artifact_validation.pt.structural.status }}</span></td>
+<td>{{ r.artifact_validation.pt.forward_output_shapes }}</td><td>{{ r.artifact_validation.pt.decoded_output_shape }}</td><td>{{ r.artifact_validation.params.fine_tuned }} (E5-1 {{ r.artifact_validation.params.e5_1_candidate }})</td><td>{{ r.artifact_validation.flops.fine_tuned_independent_2x_macs }} (E5-1 {{ r.artifact_validation.flops.e5_1_candidate_independent_2x_macs }}; SDK {{ r.artifact_validation.flops.e5_1_candidate_sdk }})</td>
+<td><span class="status {{ r.artifact_validation.architecture_unchanged.status }}">{{ r.artifact_validation.architecture_unchanged.status }}</span></td></tr></table>
+
+<h2>4. Output equivalence proxy (NOT accuracy)</h2>
+<table><tr><th>Comparison</th><th>min cosine</th><th>max |Δ|</th><th>relative diff</th></tr>
+<tr><td>ORT identical input: baseline vs fine-tuned</td><td>{{ r.output_equivalence_proxy.ort_baseline_vs_fine_tuned.min_cosine_similarity }}</td><td>{{ r.output_equivalence_proxy.ort_baseline_vs_fine_tuned.max_abs_diff }}</td><td>{{ r.output_equivalence_proxy.ort_baseline_vs_fine_tuned.relative_diff }}</td></tr>
+{% for k, v in r.output_equivalence_proxy.real_images.aggregate.items() %}<tr><td>real images ({{ r.output_equivalence_proxy.real_images.images }}): {{ k }}</td><td>{{ v.min_cosine }}</td><td>{{ v.max_abs_diff }}</td><td>{{ v.max_relative_l2_diff }}</td></tr>{% endfor %}</table>
+<p class="muted">{{ r.output_equivalence_proxy.disclaimer }}</p>
+
+<h2>5. Local ORT latency / memory</h2>
+<table><tr><th></th><th>median (ms)</th><th>p95 (ms)</th><th>peak RSS Δ (MB)</th></tr>
+{% for label in ['baseline', 'fine_tuned'] %}{% set p = r.performance[label] %}<tr><td>{{ label }}</td>{% if p %}<td>{{ p.latency.median_ms }}</td><td>{{ p.latency.p95_ms }}</td><td>{{ p.memory.delta_mb }}</td>{% else %}<td colspan="3">N/A</td>{% endif %}</tr>{% endfor %}</table>
+<p class="muted">{{ r.performance.note }}</p>
+
+<h2>6. Quality Gate</h2>
+<table><tr><th>Profile</th><th>Overall</th><th>Criteria</th><th>Reasons</th></tr>
+{% for name, g in r.quality_gate.items() %}<tr><td><code>{{ name }}</code></td><td><span class="status {{ g.overall }}">{{ g.overall }}</span></td>
+<td><table>{% for c in g.criteria %}<tr><td>{{ c.name }}</td><td><span class="status {{ c.status }}">{{ c.status }}</span></td><td>{{ c.observed }}</td><td>{{ c.threshold }}</td></tr>{% endfor %}</table></td>
+<td>{% if g.reasons %}<ul>{% for x in g.reasons %}<li>{{ x }}</li>{% endfor %}</ul>{% else %}-{% endif %}</td></tr>{% endfor %}</table>
+
+<h2>7. Defects and recovery assessment</h2>
+<table><tr><th>Profile</th><th>Defect</th></tr>{% for name, d in r.defects.items() %}<tr><td><code>{{ name }}</code></td><td>{% if d %}<code>{{ d.defect_id }}</code> {{ d.category }} [{{ d.severity }}] {{ d.message }}{% else %}none{% endif %}</td></tr>{% endfor %}</table>
+<p>Historical E5-1 defects (unchanged): {{ r.recovery_assessment.historical_e5_1_defects }}<br><strong>{{ r.recovery_assessment.assessment }}</strong> · {{ r.recovery_assessment.root_cause_status }}</p>
+
+<h2>8. Traceability</h2>
+<table>{% for k, v in r.traceability.items() if k not in ['complete', 'missing_links', 'question_answered'] %}<tr><th style="width:14rem">{{ k }}</th><td><code>{{ v }}</code></td></tr>{% endfor %}<tr><th>complete</th><td>{{ r.traceability.complete }}</td></tr></table>
+
+<h2>9. Reproducibility</h2>
+<p>training runs {{ r.reproducibility.training_runs }} · seed {{ r.reproducibility.seed }} · level <code>{{ r.reproducibility.level }}</code> · source sha <code>{{ r.reproducibility.source_artifact_sha256 }}</code> → output sha <code>{{ r.reproducibility.output_artifact_sha256 }}</code> · registry <code>{{ r.reproducibility.registry_entry.artifact_id }}</code> ({{ r.reproducibility.registry_entry.status }}). {{ r.reproducibility.note }}</p>
+
+<h2>10. Next step</h2>
+<p><strong>{{ r.next_step.code }}. {{ r.next_step.label }}</strong></p><ul>{% for x in r.next_step.rationale %}<li>{{ x }}</li>{% endfor %}</ul>
+</body>
+</html>

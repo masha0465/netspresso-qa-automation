@@ -1,9 +1,9 @@
 {
   "starting_credit": 500,
-  "used_credit": 25,
-  "remaining_estimate": 475,
+  "used_credit": 50,
+  "remaining_estimate": 450,
   "simulated_total": 0,
-  "last_updated": "2026-10-05T01:04:30+00:00",
+  "last_updated": "2026-10-05T04:00:44+00:00",
   "operations": [
     {
       "timestamp": "2026-10-05T01:04:30+00:00",
@@ -24,6 +24,29 @@
         "run_dir": "reports/real_runs/20261005T010356Z_automatic_compression",
         "sdk_version": "1.17.0",
         "model_path": "outputs/models/graphmodule.pt",
+        "operations_executed": 1,
+        "api_calls_executed": 1
+      }
+    },
+    {
+      "timestamp": "2026-10-05T04:00:44+00:00",
+      "operation": "automatic_compression",
+      "model": "yolov8n",
+      "purpose": "Phase 5-E E5-1: single automatic_compression of the R1-validated upstream YOLOv8n fx body (ratio 0.5, 640x640)",
+      "usage_type": "actual",
+      "estimated_credit": 25,
+      "actual_credit": 25,
+      "remaining_estimate": 450,
+      "result": "COMPLETED",
+      "error": null,
+      "confirmation": true,
+      "adapter": "netspresso",
+      "details": {
+        "estimate_basis": "CLIENT_SIDE_PRE_CHECK_CONSTANT (not verified server-side)",
+        "credit_note": "actual = account credit total before (475) - after (450), observed via the SDK's user/credit query; estimate 25 = CLIENT_SIDE_PRE_CHECK_CONSTANT (netspresso 1.17.0, netspresso/enums/credit.py); actual server-side deduction NOT verified",
+        "run_dir": "reports/real_runs/20261005T040009Z_automatic_compression",
+        "sdk_version": "1.17.0",
+        "model_path": "outputs/models/yolov8n_fx_r1/model_fx.pt",
         "operations_executed": 1,
         "api_calls_executed": 1
       }

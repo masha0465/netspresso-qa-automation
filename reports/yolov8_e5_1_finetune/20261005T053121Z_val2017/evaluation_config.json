@@ -1,0 +1,19 @@
+{
+  "credit_consuming": false,
+  "imgsz": 640,
+  "conf": 0.001,
+  "iou": 0.7,
+  "rect": true,
+  "batch": 8,
+  "device": "cpu",
+  "half": false,
+  "workers": 0,
+  "evaluator": "ultralytics 8.4.173 DetectionValidator (torch 2.14.1+cpu)",
+  "independent_processes": true,
+  "order": [
+    "baseline",
+    "e5_1",
+    "phase_c"
+  ],
+  "dataset_yaml": "datasets/coco_val2017_eval.yaml"
+}
